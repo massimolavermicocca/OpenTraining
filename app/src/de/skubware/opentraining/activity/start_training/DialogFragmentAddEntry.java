@@ -408,18 +408,7 @@ public class DialogFragmentAddEntry extends DialogFragment {
 		// only load last settings if no argument for mFSet has been passed(that
 		// means mFSet is null)
 		if (setToSet == null) {
-			Log.v(TAG, "Trying to find old TrainingEntry for loading spinner settings.");
-
-			List<TrainingEntry> entryList = mFex.getTrainingEntryList();
-			TrainingEntry previousEntry;
-			for (int i = entryList.size() - 1; (i >= 0) && (setToSet == null); i--) {
-				previousEntry = entryList.get(i);
-				List<FSet> fsetList = previousEntry.getFSetList();
-				if (!fsetList.isEmpty()) {
-					setToSet = fsetList.get(fsetList.size() - 1);
-				}
-			}
-
+			setToSet = searchOldTrainingEntry(setToSet);
 		}
 
 		if (setToSet == null) {
@@ -465,4 +454,20 @@ public class DialogFragmentAddEntry extends DialogFragment {
 
 	}
 
+	private FSet searchOldTrainingEntry(FSet setToSet) {
+		Log.v(TAG, "Trying to find old TrainingEntry for loading spinner settings.");
+
+		List<TrainingEntry> entryList = mFex.getTrainingEntryList();
+		TrainingEntry previousEntry;
+		for (int i = entryList.size() - 1; (i >= 0) && (setToSet == null); i--) {
+			previousEntry = entryList.get(i);
+			List<FSet> fsetList = previousEntry.getFSetList();
+			if (!fsetList.isEmpty()) {
+				setToSet = fsetList.get(fsetList.size() - 1);
+				return setToSet;
+			}
+		}
+
+		return null;
+	}
 }
