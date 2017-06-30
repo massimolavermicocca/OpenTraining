@@ -162,7 +162,7 @@ public class FSet implements Serializable, Cloneable {
 		}
 
 		/**
-		 * @class Weight
+		 * @class Weight 
 		 */
 		public static class Weight extends SetParameter {
 
