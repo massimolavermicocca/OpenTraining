@@ -7,13 +7,31 @@
 		
 		if ($file != "." && $file != ".." && ($file_extension == ".html" || $file_extension == ".HTML" ) ) {
 			// Link erstellen
-			echo "<a href=\"$file\">$file</a><br>\n";
+			    $str = <<<HTML
+			<a href=$file>$file</a><br>\n
+			HTML;
+
+			echo $str;
+
+			//echo "<a href=\"$file\">$file</a><br>\n";
 		}
 		
 		if(is_dir($file)){
 			// Link zu HQ und HD Bildern erstellen
-			echo "<a href=\"$file\"/hq/list_images.php>HQ $file</a><br>\n";
-			echo "<a href=\"$file\"/fullhd/list_images.php>HD $file</a><br>\n";
+			$str = <<<HTML
+			<a href=$file/hq/list_images.php>HQ $file</a><br>\n
+			HTML;
+
+			echo $str;
+
+			$str1 = <<<HTML
+			<a href=$file/fullhd/list_images.php>HD $file</a><br>\n
+			HTML;
+
+			echo $str1;
+
+			//echo "<a href=\"$file\"/hq/list_images.php>HQ $file</a><br>\n";
+			//echo "<a href=\"$file\"/fullhd/list_images.php>HD $file</a><br>\n";
 		}
 	}
 	// Verzeichnis schließen
