@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<ExerciseType language="de" name="Bankdrücken (enger Griff)">
+  <Locale language="en" name="Bench press (narrow grip)"/>
+  <Locale language="it" name="Distensioni su panca (grip stretto)"/>
+  <Locale language="ja" name="ベンチプレス (ナロー グリップ)"/>
+  <Muscle name="Brustmuskel" level="3"/>
+  <SportsEquipment name="Trainingsbank"/>
+  <SportsEquipment name="Langhantel"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Narrow-grip-bench-press-1.png"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Narrow-grip-bench-press-2.png"/>
+</ExerciseType>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<ExerciseType language="de" name="Butterfly (auf Hantelbank)">
+  <Locale language="en" name="Rear lateral raise (lying)"/>
+  <Locale language="it" name="Sollevamento posteriore/laterale (supino)"/>
+  <Locale language="ja" name="リア ラテラル レイズ (ライング)"/>
+  <Muscle name="Brustmuskel" level="3"/>
+  <Muscle name="Schulter" level="3"/>
+  <SportsEquipment name="Trainingsbank"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Lying-rear-lateral-raise-1.png"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Lying-rear-lateral-raise-2.png"/>
+</ExerciseType>

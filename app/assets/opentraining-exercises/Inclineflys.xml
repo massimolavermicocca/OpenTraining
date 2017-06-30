@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<ExerciseType language="en" name="Butterflies (incline)">
+  <Locale language="de" name="Butterfly (geneigt)"/>
+  <Locale language="it" name="Farfalla (inclinato)"/>
+  <Locale language="ja" name="バタフライ (インクライン)"/>
+  <Muscle name="Chest" level="3"/>
+  <SportsEquipment name="Bench"/>
+  <SportsEquipment name="Dumbbell"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Incline-flys-1.png"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Incline-flys-2.png"/>
+</ExerciseType>

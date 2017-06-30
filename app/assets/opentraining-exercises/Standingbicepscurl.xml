@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<ExerciseType language="de" name="Curl (mit Kabel, stehend)">
+  <Locale language="en" name="Curl (standing)"/>
+  <Locale language="it" name="Trazioni (in piedi, con cavo)"/>
+  <Locale language="ja" name="カール (立位)"/>
+  <Muscle name="Bizeps" level="3"/>
+  <SportsEquipment name="Kabelzug"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Standing-biceps-curl-1.png"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Standing-biceps-curl-2.png"/>
+</ExerciseType>

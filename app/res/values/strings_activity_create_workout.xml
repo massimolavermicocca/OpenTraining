@@ -1,0 +1,55 @@
+<resources>
+
+    
+    <!-- Exercise List -->
+    <string name="search">Search</string>
+    <string name="filter">Filter</string>
+
+    
+    <!-- Exercise List Menu -->
+    <string name="menu_item_show_default_exercises_title">Show default exercises</string>
+    <string name="menu_item_show_synced_exercises_title">Show synced exercises</string>
+    <string name="menu_item_show_custom_exercises_title">Show custom exercises</string>
+    <string name="delete_exercise">Delete exercise</string>
+    
+    
+    <!-- Exercise Detail -->
+    <string name="title_exercisetype_detail">ExerciseType Detail</string>
+    <string name="title_exercisetype_list">ExerciseTypes</string>
+    <string name="exercise_already_in_workout">You\'ve already added this exercise to your workout.</string>
+    <string name="no_description_available">No description available.</string>
+    
+    
+    <!-- Exercise Detail Menu -->
+    <string name="add_exercise">Add exercise</string>
+    <string name="exercise">Exercise</string>
+    <string name="has_been_added">has been added</string>
+    <string name="show_workout">Show workout</string>
+    <string name="workout_empty">The Workout is empty.</string>
+    <string name="license_info">License info</string>
+    <string name="no_license_available">No license available.</string>
+
+    
+    <!-- DialogFilterMuscleAndEquipment -->
+    <string name="settings">Settings</string>
+    <string name="muscles">Muscles</string>
+    <string name="equipment">Equipment</string>
+
+    
+    <!-- DialogWorkoutOverviewFragment -->
+    <string name="save_workout">Save</string>
+    <string name="add_more_exercises">Add more exercises</string>
+    <string name="discard">"Discard</string>
+    <string name="title_exercise_detail">Exercise Detail</string>
+    <string name="title_exercise_list">Exercise</string>
+    <string name="override">Override</string>
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="really_remove_exercise">Do you really want to remove the exercise EXERCISE_NAME from Workout?</string>
+    
+    
+    <!-- DialogSaveWorkoutFragment -->
+    <string name="workout_name_hint">Enter workout name</string>
+    <string name="workout_already_exists">There is already a Workout with this name.</string>
+    
+
+</resources>

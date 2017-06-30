@@ -1,0 +1,69 @@
+<resources>
+
+    <string name="title_activity_settings">Einstellungen</string>
+
+    <!-- Strings related to Settings -->
+
+
+    <!-- General settings -->
+    <string name="pref_header_general">Allgemein</string>
+    <string name="pref_title_default_workout_name">Default Workout Name</string>
+    <string name="pref_default_workout_name">Workout</string>
+
+    <!-- Settings for Licenses -->
+    <string name="pref_header_licenses">Lizenzen</string>
+    <string name="show_disclaimer_dialog">Disclaimer Dialog anzeigen</string>
+    <string name="open_source_licenses">Lizenzen und Danksagungen</string>
+    
+    <!-- Sync settings -->
+    <string name="pref_header_sync_settings">Synchronisation</string>
+    <string name="pref_title_exercise_download_url">Synchronisations URL</string>
+    <string name="start_sync">Übungs-Download starten</string>
+    <string name="more_sync_settings">Weitere Synchronisations-Einstellungen</string>
+    <string name="wipe_synced_exercises">Heruntergeladene Übungen löschen</string>
+    <string name="wipe_synced_exercises_summary">Heruntergeladene Bilder werden auch gelöscht. Die Standard OpenTraining Übungen sind davon nicht betroffen.</string>
+    <string name="synced_files_deleted_msg">Heruntergeladene Übungen wurden gelöscht</string>
+    <string name="about_wger_sync">Über Synchronisation mit wger</string>
+    <string name="about_wger_sync_fulltext">Zur Zeit können nur neue Übungen heruntergeladen werden. In Zukunft können eventuell auch Trainingspläne mit wger synchronisert werden. Sämtliche Daten werden nur (SSL-)verschlüsselt übertragen.</string>
+    <string name="sync_only_exercises_with_description">Nur Übungen mit Beschreibung</string>
+    <string name="sync_only_exercises_with_images">Nur Übungen mit Bildern</string>
+    <string name="languages">Sprachen</string>
+
+    
+    <!-- Sync progess -->
+    <string name="no_internet_connection">Synchronisierung kann nicht gestartet werden: Keine Internetverbindung vorhanden</string> 
+    <string name="sync_canceled">Synchronisation abgebrochen</string>
+	<string name="sync_in_progess">Synchronisiere &#8230;</string>
+	<string name="downloading_exercises">Übungen werden heruntergeladen</string>
+	<string name="downloading_language_files">Sprachdaten herunterladen</string>
+	<string name="downloading_muscle_files">Muskeldaten herunterladen</string>
+	<string name="downloading_images">Bilder herunterladen (dies kann einige Minuten dauern)</string>		
+	<string name="verifying_exercises">Übungen überprüfen</string>
+	<string name="saving_exercises">Übungen speichern</string>	
+	<string name="sync_finished">Synchronisation beendet</string>
+	<string name="sync_finished_no_new_exercises">Es wurden keine neuen Übungen gefunden</string>	
+	<string name="sync_error">Fehler bei der Synchronisation</string>
+	<string name="sync_error_msg">Es ist ein Fehler währen der Synchronisation aufgetreten.</string>
+	<string name="show_more_information_about_error">Weitere Informationen über den Fehler.</string>
+	<string name="summary">Zusammenfassung</string>
+	<string name="exercises_to_save">Zu speichernde Übungen:&#160;</string>
+	
+	
+	<!-- Miscellaneous settings -->	
+    <string name="pref_header_miscellaneous_settings">Sonstiges</string>
+    <string name="miscellaneous">Sonstiges</string>
+    <string name="view_changelog">Changelog</string>
+    
+	<!-- Training Timer -->
+    <string name="pref_header_training_timer">Training-Timer</string>
+    <string name="more_settings">Weitere Einstellungen</string>
+    <string name="title_training_timer">Training-Timer</string>
+    <string name="notification">Benachrichtigung</string>	
+    <string name="summary_training_timer">Benachrichtigung wann das Training fortgesetzt werden soll</string>
+    <string name="title_training_timer_sound_enabled">Sound bei Benachrichtigung</string>
+    <string name="title_training_timer_vibration_enabled">Vibration bei Benachrichtigung</string>
+    <string name="recovery_time">Erholungszeit</string>
+    <string name="title_training_timer_exercise_time">Zwischen Übungen</string>
+    <string name="title_training_timer_set_time">Zwischen Sätzen</string>
+    
+</resources>

@@ -1,0 +1,140 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/about_scroll_view"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:id="@+id/layout_root"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <TextView
+            android:id="@+id/text_license_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="License of OpenTraining"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/released_button_background" />
+
+        <TextView
+            android:id="@+id/TextView02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/disclaimer"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/TextView05"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Translation credits"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/released_button_background" />
+
+        <TextView
+            android:id="@+id/TextView06"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/translation_credits"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/text_view_license_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="License of Swipe To Dismiss"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/released_button_background" />
+
+        <TextView
+            android:id="@+id/TextView01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/license_text_swipe_to_dismiss"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/TextView04"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="License of Inscription (used for changelog)"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/released_button_background" />
+
+        <TextView
+            android:id="@+id/TextView03"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/license_inscription"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/TextView07"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="License of FancyCoverFlow"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/released_button_background" />
+
+        <TextView
+            android:id="@+id/TextView08"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/license_fancy_coverflow"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/TextView09"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="39dp"
+            android:text="License of ACRA"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/released_button_background" />
+
+        <TextView
+            android:id="@+id/TextView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.08"
+            android:text="@string/license_acra"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="39dp"
+            android:text="License of MPAndroidChart"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/released_button_background" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.08"
+            android:text="@string/license_mpandroidchart"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/text_view_license_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="39dp"
+            android:text="Image licenses"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/released_button_background" />
+
+        <TextView
+            android:id="@+id/text_view_license_background"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/license_text_images"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<ExerciseType language="de" name="Curl (auf Ball)">
+  <Locale language="en" name="Curl (on ball)"/>
+  <Locale language="it" name="Trazioni (sulla ball)"/>
+  <Locale language="ja" name="カール (ボール上で)"/>
+  <Muscle name="Bizeps" level="3"/>
+  <SportsEquipment name="Kurzhantel"/>
+  <SportsEquipment name="Swiss Ball"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Medicine-ball-biceps-curl-on-stability-ball-1.png"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Medicine-ball-biceps-curl-on-stability-ball-2.png"/>
+</ExerciseType>

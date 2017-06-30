@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:yourapp="http://schemas.android.com/apk/res-auto" >
+
+    <item
+        android:id="@+id/menu_item_rename_workout"
+        yourapp:showAsAction="ifRoom|withText"
+        android:title="@string/rename_workout"/>
+    <item
+        android:id="@+id/menu_item_delete_workout"
+        yourapp:showAsAction="ifRoom|withText"
+        android:title="@string/delete_workout"/>
+    <item
+        android:id="@+id/menu_item_edit_workout"
+        yourapp:showAsAction="ifRoom|withText"
+        android:title="@string/edit_workout"/>
+
+	<item
+		android:id="@+id/menu_item_share"
+		yourapp:showAsAction="ifRoom"
+		android:title="@string/share"/>
+	
+</menu>

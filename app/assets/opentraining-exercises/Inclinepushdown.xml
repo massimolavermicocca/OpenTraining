@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<ExerciseType language="en" name="Pushdown (incline)">
+  <Locale language="de" name="Pushdown (geneigt)"/>
+  <Locale language="it" name="Pushdown (inclinato)"/>
+  <Locale language="ja" name="プッシュダウン (インクライン)"/>
+  <Muscle name="Latissimus" level="3"/>
+  <SportsEquipment name="Kabelzug"/>
+  <SportsEquipment name="Bench"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Incline-pushdown-1.png"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Incline-pushdown-2.png"/>
+</ExerciseType>

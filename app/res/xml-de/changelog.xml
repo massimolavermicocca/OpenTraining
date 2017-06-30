@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<changelog>
+    <release version="0.7.6" versioncode="32" summary="Portugiesische Übersetzung" date="03/22/2015">
+        <change>Portugiesische Übersetzung der App hinzugefügt. Dank dafür an Narigao.</change>
+        <change>Workout Erstellung: Wenn kein Bild verfügbar ist wird nun stattdessen die Beschreibung angezeigt</change>
+    </release>
+    <release version="0.7.5" versioncode="31" summary="Dialog Bugfix" date="02/24/2015">
+        <change>Behebt einen Fehler bei 2 Dialogen (es waren nicht alle Optionen sichtbar)</change>
+    </release>
+    <release version="0.7.4" versioncode="30" summary="Charts" date="02/23/2015">
+        <change>Statt mit einer Tabelle wird der Trainingsverlauf nun mit einem Diagramm dargestellt</change>
+        <change>Keine Unterstützung mehr für Android 2.x und 3.x (aufgrund der verwendeten Bibliothek für Diagramme)</change>
+        <change>Update der verwendeten Android Support Library</change>
+    </release>
+    <release version="0.7.3" versioncode="29" summary="Japanische Übersetzung" date="10/10/2014">
+		<change>Japanische Übersetzung der App hinzugefügt. Dank dafür an naofum.</change>
+        <change>Italienische Übersetzung wurde aktualisiert.</change>
+    </release>    
+    <release version="0.7.2" versioncode="28" summary="Bugfixes" date="08/14/2014">
+        <change>Einige Bugs behoben, die zum Absturz der App führen können.</change>
+    </release> 
+    <release version="0.7.1" versioncode="27" summary="Fehler melden und Übersetzungs-Updates" date="06/03/2014">
+        <change>Man kann nun leicht Fehler melden : Workout erstellen -> Übung wählen -> Menü -> Fehler melden</change>     
+        <change>Arabische Übersetzung der App hinzugefügt. Dank dafür an cwfowers.</change>
+        <change>Aktualisierung der französischen Übersetzung. Dank dafür nochmals an Kcchouette.</change>
+        <change>Bibliothek für das Senden von Absturzberichten hinzugefügt</change>
+        <change>Bugfix: 2 potentielle Abstürze behoben</change>
+    </release>    
+    <release version="0.7" versioncode="26" summary="Neue Übungen erstellen und französische Übersetzung" date="05/12/2014">
+        <change>Ein oft gewünschtes Feature ist endlich fertig: Eigene Übungen erstellen (Workout erstellen->Menü->Übung erstellen).</change>
+        <change>Französische Übersetzung der App hinzugefügt. Dank dafür an Kcchouette.</change>
+        <change>Bugfix: Der Übungs-Download funktioniert wieder.</change>    
+        <change>Dieses Update kommt leider etwas später als erhofft. Bitte meldet auch weiterhin alle Fehler/Probleme dieser App.</change>     
+    </release>    
+    <release version="0.6.2" versioncode="25" summary="Bugfix für Android 2.x" date="03/25/2013">
+        <change>Bugfix für Absturz auf älteren Android Geräten (Version 2.x). Ein weiteres Update mit einigen Fehlerbehebungen wird vermutlich innerhalb der nächsten 2 Wochen folgen.</change>
+    </release>      
+    <release version="0.6.1" versioncode="24" summary="Spanische Übersetzung" date="01/30/2013">
+        <change>Spanische Übersetzung der App hinzugefügt. Dank dafür an Sebastián Di Luise.</change>
+        <change>Neues Design für Navigations-Activity</change>
+        <change>Nicht mehr rechtzeitig für dieses Update fertig geworden, aber beim nächsten Update dabei: eigene Übungen erstellen</change>
+    </release>
+    <release version="0.6" versioncode="22" summary="Training-Timer und italienische Übersetzung" date="12/8/2013">
+        <change>Training-Timer hinzugefügt. Der Timer benachrichtigt den Nutzer, wenn die Erholungsphase vorbei ist und das Training fortgesetzt werden soll. In den Einstellungen kann man u.A. die Erholungszeit ändern oder dieses Feature deaktiviert.</change>
+        <change>Italienische Übersetzung hinzugefügt. Dank dafür an Andrea Brancaleoni (https://github.com/thypon).</change>
+        <change>Bugfix: die App hat zuvor beim Drehen des Bildschirmes manchmal den Übungsfortschritt vergessen.</change>        
+    </release>    
+    <release version="0.5.2" versioncode="20" summary="Neues Icon" date="11/5/2013">
+        <change>Die App hat ein neues Icon bekommen.</change>
+    </release>    
+    <release version="0.5.1" versioncode="19" summary="Gewählte Übungen hervorheben und Bugfixes" date="10/20/2013">
+        <change>Wenn ein neues Workout erstellt wird, werden die gewählten Übungen nun hervorgehoben.</change>
+        <change>Die App speichert jetzt, wie weit in der Liste mit Übungen gescrollt wurde (wenn man beim Workout erstellen von der Übungs-Detail-Ansicht zurückkehrt)</change>
+        <change>Fehlende Übersetzungen hinzugefügt</change>
+    </release> 
+    <release version="0.5" versioncode="18" summary="Neue Übungen und Design Änderung" date="10/13/2013">
+        <change>33 neue Übungen hinzugefügt</change>
+        <change>Design zu Holo-Style geändert</change>
+        <change>Download von neuen Übungen von wger.de (bisher nur Übungen ohne Bilder verfügbar)</change>
+        <change>Changelog hinzugefügt (kann auch unter "Einstellungen" aufgerufen werden)</change>
+    </release>
+    <release version="0.4.1" versioncode="13" summary="Beispiel Workout" date="05/24/2013">
+        <change>Training UI verbessert</change>
+        <change>Beispiel Workout hinzugefügt</change>
+    </release>
+</changelog>

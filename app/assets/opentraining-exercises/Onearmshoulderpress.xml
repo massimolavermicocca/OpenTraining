@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<ExerciseType language="de" name="Schulterpresse (einarmig)">
+  <Locale language="en" name="Shoulder press (one arm)"/>
+  <Locale language="it" name="Pressa spalle (un braccio)"/>
+  <Locale language="ja" name="ショルダー プレス (片腕)"/>
+  <SportsEquipment name="Kurzhantel"/>
+  <Muscle name="Schulter" level="3"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="One-arm-shoulder-press-1.png"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="One-arm-shoulder-press-2.png"/>
+</ExerciseType>

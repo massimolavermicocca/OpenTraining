@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:yourapp="http://schemas.android.com/apk/res-auto" >
+   
+    
+    <item android:id="@+id/action_search"
+         android:title="@string/search"
+         android:icon="@drawable/icon_search"
+         yourapp:showAsAction="ifRoom|collapseActionView"
+         yourapp:actionViewClass="android.support.v7.widget.SearchView" />
+
+    <item
+        android:id="@+id/menu_item_filter_settings"
+        android:icon="@drawable/icon_settings"
+        yourapp:showAsAction="ifRoom"
+        android:title="@string/filter"/>
+    <item
+        android:id="@+id/menu_item_show_workout"
+        android:icon="@drawable/icon_exercise"
+        yourapp:showAsAction="ifRoom"
+        android:title="@string/show_workout"/>
+    
+    <item
+        android:id="@+id/menu_item_create_exercise"
+        android:icon="@drawable/icon_add"
+        yourapp:showAsAction="ifRoom"
+        android:title="@string/create_exercise_activity_title"/>
+    
+    <item 
+        android:id="@+id/menu_item_show_default_exercises"
+        android:visible="true" 
+        android:checked="true" 
+        android:checkable="true"
+        yourapp:showAsAction="never"
+        android:title="@string/menu_item_show_default_exercises_title"/>
+   
+   <item 
+      	android:id="@+id/menu_item_show_synced_exercises"
+        android:visible="false" 
+        android:checked="true" 
+        android:checkable="true"
+        yourapp:showAsAction="never"
+        android:title="@string/menu_item_show_synced_exercises_title"/> 
+        
+   <item 
+      	android:id="@+id/menu_item_show_custom_exercises"
+        android:visible="false" 
+        android:checked="true" 
+        android:checkable="true"
+        yourapp:showAsAction="never"
+        android:title="@string/menu_item_show_custom_exercises_title"/>    
+</menu>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<ExerciseType language="de" name="Trizepsstrecken (liegend)">
+  <Locale language="en" name="Triceps extension across face (lying)"/>
+  <Locale language="it" name="Estensione tricipiti lungo la faccia (supino)"/>
+  <Locale language="ja" name="トライセップス エクステンション アクロス フェイス (ライング)"/>
+  <Muscle name="Trizeps" level="3"/>
+  <SportsEquipment name="Trainingsbank"/>
+  <SportsEquipment name="Kurzhantel"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Lying-triceps-extension-across-face-1.png"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Lying-triceps-extension-across-face-2.png"/>
+</ExerciseType>

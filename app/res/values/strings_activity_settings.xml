@@ -1,0 +1,154 @@
+<resources>
+
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+
+    <!-- General settings -->
+    <string name="pref_header_general">General</string>
+    <string name="pref_title_default_workout_name">Default Workout name</string>
+    <string name="pref_default_workout_name">Workout</string>
+
+    <!-- Settings for Licenses -->
+    <string name="pref_header_licenses">Licenses</string>
+    <string name="show_disclaimer_dialog">Show disclaimer dialog</string>
+    <string name="open_source_licenses">Licenses and Credits</string>
+    <string name="translation_credits" translatable="false">
+        Italian Translation by Andrea Brancaleoni (https://github.com/thypon)\n
+        Spanish Translation by Sebastián Di Luise
+        French Translation by Kcchouette
+        Arabic Translation by cwfowers
+    </string>
+    <string name="license_text_images" translatable="false">
+The exercises images by Everkinetic are licensed under a Creative Commons Attribution-Share Alike 3.0 Unported License.\n\n
+The license text can be found at: http://creativecommons.org/licenses/by-sa/3.0/. \n\n
+
+
+The app icon has been designed by Olli Wiegner (http://www.olliwiegner.de) and is released under the CC-BY 3.0 Unported License \n\n
+The license text can be found at: http://creativecommons.org/licenses/by/3.0/
+	</string>
+    <string name="license_text_swipe_to_dismiss" translatable="false">
+ Copyright 2012 Roman Nurik
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at\n\n
+ 
+      http://www.apache.org/licenses/LICENSE-2.0\n\n
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+	</string>	
+    
+    <string name="license_inscription" translatable="false">
+Kroniek library
+(c) 2012 Martin van Zuilekom (http://martin.cubeactive.com)\n\n
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at\n\n
+
+http://www.apache.org/licenses/LICENSE-2.0\n\n
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.	
+</string>	
+
+<string name="license_fancy_coverflow" translatable="false">
+Copyright 2013 David Schreiber\n\n
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at\n\n
+
+       http://www.apache.org/licenses/LICENSE-2.0\n\n
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+</string>	
+
+<string name="license_acra" translatable="false">
+Copyright 2010 Emmanuel Astier, Kevin Gaudin and others\n\n
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at\n\n
+
+http://www.apache.org/licenses/LICENSE-2.0\n\n
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+</string>	
+
+<string name="license_mpandroidchart" translatable="false">
+Copyright 2014 Philipp Jahoda\n\n
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at\n\n
+http://www.apache.org/licenses/LICENSE-2.0\n\n
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.\n
+Special thanks to mikegr and ph1lb4 for their contributions to this project.
+</string>
+
+    <!-- Sync settings -->
+    <string name="pref_header_sync_settings">Synchronization</string>
+    <string translatable="false" name="pref_default_exercise_sync_url">wger.de</string>
+    <string name="pref_title_exercise_download_url">Sync URL</string>
+    <string name="start_sync">Start exercise download</string>
+    <string name="more_sync_settings">More sync settings</string>
+    <string name="wipe_synced_exercises">Delete downloaded exercises</string>
+    <string name="wipe_synced_exercises_summary">Downloaded images will be deleted too. Default exercises of OpenTraining won"'"t be deleted.</string>
+    <string name="synced_files_deleted_msg">Downloaded exercises have been deleted</string>
+    <string name="about_wger_sync">About sync with wger</string>
+    <string name="about_wger_sync_fulltext">Currently only new exercises can be downloaded. In future you may be able to sync your workouts with wger. SSL encryption will always be used to protect your privacy.</string>
+    <string name="sync_only_exercises_with_description">Only exercises with description</string>
+    <string name="sync_only_exercises_with_images">Only exercises with images</string>
+    <string name="languages">Languages</string>
+    
+    
+    <!-- Sync progess -->
+    <string name="no_internet_connection">Can"'"t start sync: no internet connection</string>
+    <string name="sync_canceled">Synchronisation canceled</string>
+	<string name="sync_in_progess">Synchronizing &#8230;</string>
+	<string name="downloading_exercises">Downloading exercises</string>
+	<string name="downloading_language_files">Downloading language files</string>
+	<string name="downloading_muscle_files">Downloading muscle files</string>
+	<string name="downloading_images">Downloading images (this may take some minutes)</string>	
+	<string name="verifying_exercises">Verifying exercises</string>
+	<string name="saving_exercises">Saving exercises</string>
+	<string name="sync_finished">Synchronisation finished</string>
+	<string name="sync_finished_no_new_exercises">No new exercises found</string>
+	<string name="sync_error">Error during synchronisation</string>
+	<string name="sync_error_msg">A problem occurred during synchronisation.</string>
+	<string name="show_more_information_about_error">More information about the error</string>
+	<string name="summary">Summary</string>
+	<string name="exercises_to_save">Exercises to save:&#160;</string>
+
+	<!-- Miscellaneous settings -->
+    <string name="pref_header_miscellaneous_settings">Miscellaneous</string>
+    <string name="miscellaneous">Miscellaneous</string>
+    <string name="view_changelog">Changelog</string>
+	
+	<!-- Training Timer -->
+    <string name="pref_header_training_timer">Training-Timer</string>
+    <string name="more_settings">More settings</string>		
+    <string name="title_training_timer">Training-Timer</string>
+    <string name="notification">Notification</string>
+    <string name="summary_training_timer">Notification when you should continue your training</string>
+    <string name="title_training_timer_sound_enabled">Notification sound</string>
+    <string name="title_training_timer_vibration_enabled">Notification vibration</string>
+    <string name="recovery_time">Recovery time</string>
+    <string name="title_training_timer_exercise_time">Between exercises</string>
+    <string name="title_training_timer_set_time">Between sets</string>
+
+</resources>

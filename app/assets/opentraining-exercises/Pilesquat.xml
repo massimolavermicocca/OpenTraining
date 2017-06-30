@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<ExerciseType language="en" name="Pile-Squat">
+  <Locale language="de" name="Kniebeuge (mit Kurzhantel)"/>
+  <Locale language="it" name="Squat (con manubrio)"/>
+  <Locale language="ja" name="パイル スクアット"/>
+  <Muscle name="Thigh" level="3"/>
+  <Muscle name="Derriere" level="3"/>
+  <SportsEquipment name="Dumbbell"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Pile-squat-1.png"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Pile-squat-2.png"/>
+</ExerciseType>

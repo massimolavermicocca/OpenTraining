@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<ExerciseType language="de" name="Superman">
+  <Locale language="en" name="Superman"/>
+  <Locale language="it" name="Superman"/>
+  <Locale language="ja" name="スーパーマン"/>
+  <SportsEquipment name="Keine"/>
+  <Muscle name="Rückenmuskeln" level="3"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Supermans-1.png"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Supermans-2.png"/>
+</ExerciseType>

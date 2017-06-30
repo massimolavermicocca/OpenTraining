@@ -1,0 +1,59 @@
+<resources>
+    
+    <!-- CreateExerciseActivity -->
+    <string name="create_exercise_activity_title">Übung erstellen</string>
+    <string name="could_not_save_exercise">Die Übung konnte nicht gespeichert werden.</string>
+    <string name="exercise_saved">Die Übung wurde gespeichert.</string>
+    <string name="provide_name">Du musst einen Namen eingeben.</string>
+    <string name="name_already_used">Der Name wird bereits für einer andere Übung verwendet. Bitte wähle einen anderen Namen.</string>
+   
+    
+    <!-- Dialog SaveExercise? -->
+    <string name="save_exercise">"Übung speichern?"</string>
+    <string name="discard_exercise">Übung verwerfen</string>
+    <string name="should_exercise_be_saved">"Soll die Übung gespeichert werden?</string>
+        
+    <!-- Menu of CreateExerciseActivity -->
+    <string name="text_about_creating_exercise">Es muss mindestens ein Name eingegeben werden, alle weiteren Angaben sind optional.</string>
+    <string name="title_about_creating_exercise">Über Übungen erstellen</string>
+    <string name="info">Info</string>
+        
+    <!-- NameFragment -->
+    <string name="title_name_fragment">Name</string>
+    <string name="exercisename">Übungname</string>
+    <string name="exercisenames">Übungsnamen</string>
+    <string name="exercise_name_empty">Du musst einen Übungsnamen eingeben</string>
+    
+    <!-- DescriptionFragment -->
+    <string name="title_description_fragment">Beschreibung</string>        
+    <string name="description">Beschreibung</string>
+    <string name="the_exercise_description">Eine Beschreibung der Übung</string>
+    
+    <!-- ImageFragment -->
+    <string name="title_image_fragment">Bilder</string>
+    <string name="images">Bilder</string>
+    <string name="did_not_provide_image">Es wurde kein Bild hinzugefügt.</string> 
+    <string name="take_photo">Foto machen</string>
+    <string name="chose_photo">Foto wählen</string>
+    <string name="no_images_there">Keine Bilder vorhanden</string>
+    <string name="error_did_not_return_image">Fehler: es wurde kein Bild zurückgegeben</string>
+    <string name="edit_image_metadata">Bild-Metadaten bearbeiten</string>
+    <string name="delete_image">Bild entfernen</string>
+    <string name="author_colon">Autor:</string>
+    <string name="license_colon">Lizenz:</string>
+    <string name="position_colon">Position:</string>
+
+    <!-- SpinnerDataFragment -->    
+    <string name="swipe_to_dismiss_advise">Listenelemente können durch swipen entfernt werden</string>
+    <string name="object_already_in_list">%s wurde bereits hinzugefügt</string>
+    
+	<!-- MuscleDataFragment -->
+    <string name="title_muscle_data_fragment">Muskeln</string>
+    <string name="chosen_muscles">Gewählte Muskeln</string>
+    
+    <!-- EquipmentDataFragment -->
+    <string name="title_equipment_data_fragment">Equipment</string>
+    <string name="chosen_equipment">Gewähltes Equipment</string>    
+    <string name="equipment_already_in_list">Das gewählte Equipment wurde bereits hinzugefügt</string>        
+
+</resources>

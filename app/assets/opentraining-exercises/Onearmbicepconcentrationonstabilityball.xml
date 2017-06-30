@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<ExerciseType language="de" name="Curl (einarmig, auf Ball)">
+  <Locale language="en" name="Biceps concentration curl (on ball, one arm)"/>
+  <Locale language="it" name="Trazioni (sulla palla, un braccio)"/>
+  <Locale language="ja" name="バイセップス コンセントレーション カール (ボール上で, 片腕)"/>
+  <Muscle name="Bizeps" level="3"/>
+  <SportsEquipment name="Kurzhantel"/>
+  <SportsEquipment name="Swiss Ball"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="One-arm-bicep-concentration-on-stability-ball-1.png"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="One-arm-bicep-concentration-on-stability-ball-2.png"/>
+</ExerciseType>

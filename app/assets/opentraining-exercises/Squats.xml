@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<ExerciseType language="de" name="Kniebeuge">
+  <Locale language="en" name="Squats"/>
+  <Locale language="it" name="Squat"/>
+  <Locale language="ja" name="スクアット"/>
+  <Muscle name="Oberschenkelmuskel" level="3"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Squats-1.png"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Squats-2-1.png"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Squats-2-2.png"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Squats-2.png"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Squats-4-1.png"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Squats-4-2.png"/>
+</ExerciseType>

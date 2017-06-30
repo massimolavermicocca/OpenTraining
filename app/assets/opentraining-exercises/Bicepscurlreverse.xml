@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<ExerciseType language="de" name="Curl (umgedreht)">
+  <Locale language="en" name="Curl (reverse)"/>
+  <Locale language="it" name="Trazioni (inverse)"/>
+  <Locale language="ja" name="カール (リバース)"/>
+  <Muscle name="Bizeps" level="3"/>
+  <SportsEquipment name="Kurzhantel"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Biceps-curl-reverse-1.png"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Biceps-curl-reverse-2.png"/>
+</ExerciseType>

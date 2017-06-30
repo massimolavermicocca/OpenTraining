@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<ExerciseType language="de" name="Rudern (einarmig, mit Kurzhantel)">
+  <Locale language="en" name="Rear deltoid row"/>
+  <Locale language="it" name="Vogare (un braccio, con manubrio)"/>
+  <Locale language="ja" name="リア デルトイド ロー"/>
+  <Muscle name="Rückenmuskeln" level="3"/>
+  <SportsEquipment name="Kurzhantel"/>
+  <SportsEquipment name="Trainingsbank"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Rear-deltoid-row-1.png"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Rear-deltoid-row-2.png"/>
+</ExerciseType>

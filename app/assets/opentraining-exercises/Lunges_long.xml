@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<ExerciseType language="de" name="Ausfallschritt (Langhantel)">
+  <Locale language="en" name="Lunges (barbell)"/>
+  <Locale language="it" name="Affondi (sbarra)"/>
+  <Locale language="ja" name="ランジ (バーベル)"/>
+  <SportsEquipment name="Langhantel"/>
+  <Muscle name="Po" level="3"/>
+  <Muscle name="Oberschenkelmuskel" level="3"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Lunges-1.png"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Lunges-2.png"/>
+</ExerciseType>

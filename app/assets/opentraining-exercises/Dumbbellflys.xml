@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<ExerciseType language="de" name="Butterfly (schräg)">
+  <Locale language="en" name="Dumbell flies"/>
+  <Locale language="it" name="Farfalla"/>
+  <Locale language="ja" name="ダンベル フライ"/>
+  <Muscle name="Brustmuskel" level="3"/>
+  <SportsEquipment name="Kurzhantel"/>
+  <SportsEquipment name="Hantelbank"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Dumbbell-flys-1.png"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Dumbbell-flys-2.png"/>
+</ExerciseType>

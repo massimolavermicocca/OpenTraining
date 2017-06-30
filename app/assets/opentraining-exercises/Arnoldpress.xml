@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<ExerciseType language="de" name="Arnold Presse">
+  <Locale language="en" name="Arnoldpress"/>
+  <Locale language="it" name="Arnoldpress"/>
+  <Locale language="ja" name="アーノルドプレス"/>
+  <Muscle name="Schulter" level="3"/>
+  <SportsEquipment name="Trainingsbank"/>
+  <SportsEquipment name="Kurzhantel"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Arnold-press-1.png"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Arnold-press-2.png"/>
+</ExerciseType>

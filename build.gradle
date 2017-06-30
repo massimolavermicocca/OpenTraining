@@ -1,0 +1,74 @@
+// lives in the project directory
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+
+  dependencies {
+    classpath 'com.android.tools.build:gradle:1.1.0'
+  }
+}
+
+apply plugin: "com.android.application"
+
+repositories {
+  mavenCentral()
+}
+
+android {
+  compileSdkVersion 21
+  buildToolsVersion "21.1.2"
+
+  defaultConfig {
+    minSdkVersion 14
+    targetSdkVersion 21
+    versionCode 32
+    versionName "0.7.6"
+  }
+
+  sourceSets {
+    main {
+      manifest {
+        srcFile "app/AndroidManifest.xml"
+      }
+      java {
+        srcDir "app/src"
+      }
+      res {
+        srcDir "app/res"
+      }
+      assets {
+        srcDir "app/assets"
+      }
+      resources {
+        srcDir "app/src"
+      }
+    }
+    instrumentTest.setRoot("test")
+    instrumentTest {
+      java.srcDirs = ["test/src"]
+      res.srcDirs = ["test/res"]
+      assets.srcDirs = ["test/assets"]
+      resources.srcDirs = ["test/src"]
+    }
+  }
+  buildTypes {
+    release {
+      lintOptions {
+        abortOnError false
+      }
+    }
+  }
+}
+
+dependencies {
+    compile 'com.android.support:support-v4:21.0.3+'
+    compile 'com.android.support:appcompat-v7:21.0.3+'
+    compile fileTree(dir: 'app/libs', exclude: 'acra-*', include: '*.jar')
+    compile 'ch.acra:acra:4.5.0'
+    androidTestCompile 'com.jayway.android.robotium:robotium-solo:4.2'
+    compile 'org.quanqi:mpandroidchart:1.7.5'
+    compile 'com.nineoldandroids:library:2.4.0'
+}
+
+task wrapper (type: Wrapper) { gradleVersion = "1.11" }

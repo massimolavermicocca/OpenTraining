@@ -1,0 +1,35 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- NOTE: EditTextPreference accepts EditText attributes. -->
+    <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
+
+    <Preference
+        android:key="start_sync"
+        android:title="@string/start_sync" />
+
+
+    <PreferenceScreen
+        android:persistent="false"
+        android:title="@string/more_sync_settings" >
+        
+        <EditTextPreference
+            android:capitalize="words"
+            android:defaultValue="@string/pref_default_exercise_sync_url"
+            android:inputType="textUri"
+            android:key="exercise_sync_url"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/pref_title_exercise_download_url" />
+
+        <Preference
+            android:key="wipe_synced_exercises"
+            android:summary="@string/wipe_synced_exercises_summary"
+            android:title="@string/wipe_synced_exercises" />
+        
+        <Preference
+            android:key="about_wger_sync"
+            android:title="@string/about_wger_sync" />
+    </PreferenceScreen>
+
+</PreferenceScreen>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<ExerciseType language="de" name="Curl (einarmig, auf Pult, Langhantel)">
+  <Locale language="en" name="Preacher curl (barbell)"/>
+  <Locale language="it" name="Trazioni (sbarra, preacher)"/>
+  <Locale language="ja" name="プリーチャー カール (バーベル)"/>
+  <SportsEquipment name="Curlpult"/>
+  <SportsEquipment name="Swiss Ball"/>
+  <SportsEquipment name="Langhantel"/>
+  <Muscle name="Bizeps" level="3"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Preacher-curl-3-1.png"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Preacher-curl-3-2.png"/>
+</ExerciseType>

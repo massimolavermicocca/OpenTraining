@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<ExerciseType language="de" name="Spidercurl">
+  <Locale language="en" name="Spidercurl"/>
+  <Locale language="it" name="Spidercurl"/>
+  <Locale language="ja" name="スパイダーカール"/>
+  <Muscle name="Bizeps" level="3"/>
+  <SportsEquipment name="Langhantel"/>
+  <SportsEquipment name="Curlpult"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Spider-curl-1.png"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Spider-curl-2.png"/>
+</ExerciseType>

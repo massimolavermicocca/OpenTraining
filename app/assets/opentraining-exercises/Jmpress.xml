@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<ExerciseType language="en" name="JM Press">
+  <Locale language="de" name="JM Presse"/>
+  <Locale language="it" name="Pressa JM"/>
+  <Locale language="ja" name="JM プレス"/>
+  <Muscle name="Triceps" level="3"/>
+  <SportsEquipment name="Barbell"/>
+  <SportsEquipment name="Bench"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Jm-press-1.png"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Jm-press-2.png"/>
+  <Image author="Everkinetic" license="CC-BY-SA 3" path="Jm-press-3.png"/>
+</ExerciseType>
