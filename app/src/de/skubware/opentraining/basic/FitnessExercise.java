@@ -24,7 +24,6 @@ import java.io.File;
 import java.io.Serializable;
 import java.net.URL;
 import java.util.*;
-
 import de.skubware.opentraining.Exceptions.ErrorException;
 
 /**
@@ -63,17 +62,17 @@ public class FitnessExercise implements IExercise, Serializable {
 	 * @param set
 	 *            The FitnessSets for this FitnessExercise, may be emtpy
 	 * 
-	 * @throws de.skubware.opentraining.Exceptions.ErrorException
+	 * @throws ErrorException
 	 *             if exType is null
 	 */
 	public FitnessExercise(ExerciseType exType, FSet... set) throws ErrorException {
 		if (exType == null) {
-			throw new de.skubware.opentraining.Exceptions.ErrorException();
+			throw new ErrorException();
 		}
 
 		for (FSet s : set) {
 			if (s == null) {
-				throw new de.skubware.opentraining.Exceptions.ErrorException();
+				throw new ErrorException();
 			}
 		}
 
@@ -172,12 +171,12 @@ public class FitnessExercise implements IExercise, Serializable {
 	 * @param newName
 	 *            The new custom name for this FitnessExercise.
 	 * 
-	 * @throws de.skubware.opentraining.Exceptions.ErrorException
+	 * @throws ErrorException
 	 *             if argument is null
 	 */
 	public void setCustomName(String newName) throws ErrorException {
 		if (newName == null)
-			throw new de.skubware.opentraining.Exceptions.ErrorException("setCustonName() Argument must not be null");
+			throw new ErrorException("setCustonName() Argument must not be null");
 
 		this.mCustomName = newName;
 	}
@@ -324,7 +323,7 @@ public class FitnessExercise implements IExercise, Serializable {
 	 *         status done. Will also return false if there are no
 	 *         TrainingEntrys.
 	 */
-	public boolean isTrainingEntryFinished(TrainingEntry entry){
+	public boolean isTrainingEntryFinished(TrainingEntry entry) throws ErrorException {
 		if(!mTrainingEntryList.contains(entry))
 				throw new IllegalArgumentException("Entry not contained.");
 		if(entry.getFSetList().isEmpty())

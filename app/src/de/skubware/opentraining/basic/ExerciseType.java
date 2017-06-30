@@ -24,6 +24,7 @@ import java.io.File;
 import java.io.Serializable;
 import java.net.URL;
 import java.util.*;
+import de.skubware.opentraining.Exceptions.ErrorException;
 
 import android.util.Log;
 
@@ -32,7 +33,7 @@ import android.util.Log;
  * 
  */
 
-public final class ExerciseType implements Comparable<ExerciseType>, IExercise, Serializable {
+public final class ExerciseType implements Comparable<ExerciseType>, IExercise, Serializable{
 	/** Default serialVersionUID */
 	private static final long serialVersionUID = 1L;
 
@@ -97,13 +98,13 @@ public final class ExerciseType implements Comparable<ExerciseType>, IExercise, 
 		private ExerciseSource mExerciseSource; // required
 
 		
-		public Builder(String name, ExerciseSource exerciseSource) {
+		public Builder(String name, ExerciseSource exerciseSource) throws ErrorException{
 			// null name is NOT allowed
 			if (name == null) {
-				throw new NullPointerException("Name of exercise must not be null");
+				throw new ErrorException("Name of exercise must not be null");
 			}
 			if (exerciseSource == null) {
-				throw new NullPointerException("Source of exercise must not be null");
+				throw new ErrorException("Source of exercise must not be null");
 			}
 
 			this.name = name;
@@ -454,7 +455,7 @@ public final class ExerciseType implements Comparable<ExerciseType>, IExercise, 
 	 * 
 	 * @return A new {@link FitnessExercise} with this ExerciseType.
 	 */
-	public FitnessExercise asFitnessExercise() {
+	public FitnessExercise asFitnessExercise() throws ErrorException {
 		return new FitnessExercise(this);
 	}
 
@@ -465,7 +466,7 @@ public final class ExerciseType implements Comparable<ExerciseType>, IExercise, 
 	 *            The ExerciseTypes
 	 * @return The created FitnessExercises
 	 */
-	public static Collection<FitnessExercise> asFitnessExercise(List<ExerciseType> exes) {
+	public static Collection<FitnessExercise> asFitnessExercise(List<ExerciseType> exes) throws	ErrorException {
 		List<FitnessExercise> fExes = new ArrayList<FitnessExercise>();
 		for (ExerciseType ex : exes) {
 			fExes.add(new FitnessExercise(ex));

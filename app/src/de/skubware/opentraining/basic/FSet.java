@@ -27,6 +27,8 @@ import java.util.List;
 
 import android.util.Log;
 
+import de.skubware.opentraining.Exceptions.ErrorException;
+
 /**
  * There are several parameters that define how an exercise is executed:<br><br>
  * 
@@ -270,16 +272,16 @@ public class FSet implements Serializable, Cloneable {
 	 * 
 	 * @throws IllegalArgumentException
 	 *             if cats is empty
-	 * @throws NullPointerException
+	 * @throws ErrorException
 	 *             if any argument is null
 	 */
-	public FSet(SetParameter... cats) {
+	public FSet(SetParameter... cats) throws ErrorException {
 		if(cats.length < 1)
 			throw new IllegalArgumentException("cats must not be empty");
 		
 		for (SetParameter c : cats) {
 			if (c == null) {
-				throw new NullPointerException();
+				throw new ErrorException();
 			}
 		}
 		java.util.Collections.addAll(this.mSetParameterList, cats);

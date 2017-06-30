@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.IdentityHashMap;
 import java.util.List;
+import de.skubware.opentraining.Exceptions.ErrorException;
 
 /**
  * A TrainingEnty is particularly a collection of {@link FSet}s and stores the
@@ -84,9 +85,9 @@ public class TrainingEntry implements Comparable<TrainingEntry>, Serializable {
 	 *            The FSet to add (may not be null)
 	 * 
 	 */
-	public void add(FSet set) {
+	public void add(FSet set) throws ErrorException {
 		if(set == null)
-			throw new NullPointerException("FSet may not be null");
+			throw new ErrorException("FSet may not be null");
 		
 		mFSetList.add(set);
 		mSetBeenDoneMap.put(set, true);
@@ -170,11 +171,11 @@ public class TrainingEntry implements Comparable<TrainingEntry>, Serializable {
 	 * 
 	 * @return true, if the set has been done
 	 * 
-	 * @throws NullPointerException if the set is not part of this TrainingEntry
+	 * @throws ErrorException if the set is not part of this TrainingEntry
 	 */
-	public boolean hasBeenDone(FSet set){
+	public boolean hasBeenDone(FSet set) throws ErrorException{
 		if(!mFSetList.contains(set))
-			throw new NullPointerException("No such key: " + set.toString());
+			throw new ErrorException("No such key: " + set.toString());
 				
 		return mSetBeenDoneMap.get(set);
 	}
