@@ -46,7 +46,7 @@ public abstract class FancyCoverFlowAdapter extends BaseAdapter {
         wrappedView = this.getCoverFlowItem(i, wrappedView, viewGroup);
 
         if (wrappedView == null) {
-            throw new NullPointerException("getCoverFlowItem() was expected to return a view, but null was returned.");
+            throw new IllegalArgumentException("getCoverFlowItem() was expected to return a view, but null was returned.");
         }
 
         final boolean isReflectionEnabled = coverFlow.isReflectionEnabled();
