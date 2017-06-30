@@ -70,9 +70,8 @@ public class WgerImageDownloader {
 	 */
 	public ArrayList<ExerciseType> downloadImages(List<ExerciseType.Builder> exerciseBuilderList) throws IOException, JSONException {
 		ArrayList<ExerciseType> newExerciseList = new ArrayList<ExerciseType>();
-
-		// add label to be able to break/continue from inner loop
-		outerloop:
+		boolean imageWithName = false;
+		
 		for (ExerciseType.Builder exBuilder : exerciseBuilderList) {
 			List<File> newImagePathList = new ArrayList<File>();
 			Map<File, License> newImageLicenseMap = new HashMap<File, License>();
@@ -103,24 +102,28 @@ public class WgerImageDownloader {
 				String imageName = (new File(imageDownloadPath)).getName();
 				if(dataHelper.drawableExist(imageName)){
 					Log.d(TAG, "There's already an image with the same name as: " + imageDownloadPath + ". The exercise: " + ex.getLocalizedName() + " is propably duplicate, it will not be added.");
-					continue outerloop;
-				}else{
+					imageWithName = true;
+				}else {
 					// only download image if its name is unique
 					imageName = downloadImageToSyncedImagesFolder(imageDownloadPath); // imageName may change!
+
+					// add image name + license to list/map
+					File imageFile = new File(imageName);
+					newImagePathList.add(imageFile);
+					newImageLicenseMap.put(imageFile, license);
 				}
-				
-				// add image name + license to list/map
-				File imageFile = new File(imageName);
-				newImagePathList.add(imageFile);
-				newImageLicenseMap.put(imageFile, license);
+
 			}
-			// set collected values for builder, add new object to exercise list
-			exBuilder.imagePath(newImagePathList);
-			exBuilder.imageLicenseMap(newImageLicenseMap);
 
-			newExerciseList.add(exBuilder.build());
+			if(!imageWithName) {
+				// set collected values for builder, add new object to exercise list
+				exBuilder.imagePath(newImagePathList);
+				exBuilder.imageLicenseMap(newImageLicenseMap);
 
+				newExerciseList.add(exBuilder.build());
+			}
 		}
+
 		return newExerciseList;
 	}
 
