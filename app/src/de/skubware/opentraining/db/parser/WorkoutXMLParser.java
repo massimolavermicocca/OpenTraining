@@ -50,7 +50,9 @@ import java.util.Map;
  * @author Christian Skubich
  */
 public class WorkoutXMLParser extends DefaultHandler {
-	/** Tag for logging */
+	/**
+	 * Tag for logging
+	 */
 	static final String TAG = "WorkoutXMLParser";
 
 	private Context mContext;
@@ -60,51 +62,79 @@ public class WorkoutXMLParser extends DefaultHandler {
 	private Workout mWorkout;
 
 	// Workout stuff
-	/** Name of the {@link Workout} */
+	/**
+	 * Name of the {@link Workout}
+	 */
 	private String mWorkoutName;
 
-	/** Integer for the number of rows of the workout. */
+	/**
+	 * Integer for the number of rows of the workout.
+	 */
 	private Integer mRowCount;
 
 	// FitnessExercise stuff
-	/** List to store the {@link FitnessExercise}s */
+	/**
+	 * List to store the {@link FitnessExercise}s
+	 */
 	private List<FitnessExercise> mFExList = new ArrayList<FitnessExercise>();
 
-	/** The last {@link ExerciseType} that was parsed */
+	/**
+	 * The last {@link ExerciseType} that was parsed
+	 */
 	private ExerciseType mExerciseType;
 
-	/** The custom name of the {@link FitnessExercise} */
+	/**
+	 * The custom name of the {@link FitnessExercise}
+	 */
 	private String mCustomName;
 
 	// TrainingEntry stuff
-	/** A Map for the TrainingEntrys of a FitnessExercise. */
+	/**
+	 * A Map for the TrainingEntrys of a FitnessExercise.
+	 */
 	private List<TrainingEntry> mTrainingEntryList = new ArrayList<TrainingEntry>();
 
-	/** Date for the last parsed {@link TrainingEntry} */
+	/**
+	 * Date for the last parsed {@link TrainingEntry}
+	 */
 	private TrainingEntry mTrainingEntry;
 
 	// FSet stuff
-	/** List for the {@link FSet}s */
+	/**
+	 * List for the {@link FSet}s
+	 */
 	private List<FSet> mFSetList = new ArrayList<FSet>();
 
-	/** List for the {@link FSet}s of the TrainingEntry */
+	/**
+	 * List for the {@link FSet}s of the TrainingEntry
+	 */
 	private List<FSet> mTrainingEntryFSetList = new ArrayList<FSet>();
 
-	/** Map for the status of the FSets. */
-	private Map<FSet,Boolean> mSetHasBeenDoneMap = new HashMap<FSet,Boolean>();
-	
-	/** The status of the FSet */
+	/**
+	 * Map for the status of the FSets.
+	 */
+	private Map<FSet, Boolean> mSetHasBeenDoneMap = new HashMap<FSet, Boolean>();
+
+	/**
+	 * The status of the FSet
+	 */
 	private boolean mSetHasBeenDone = true;
-	
+
 	private boolean parsingTrainingEntry = false;
 
-	/** List of the {@link SetParameter}s */
+	/**
+	 * List of the {@link SetParameter}s
+	 */
 	private List<SetParameter> mSetParameter = new ArrayList<SetParameter>();
 
-	/** Name of the last parsed {@link SetParameter} */
+	/**
+	 * Name of the last parsed {@link SetParameter}
+	 */
 	private String mSetParameterName;
 
-	/** Value of the last parsed {@link SetParameter} */
+	/**
+	 * Value of the last parsed {@link SetParameter}
+	 */
 	private String mSetParameterValue;
 
 	public WorkoutXMLParser() {
@@ -132,15 +162,15 @@ public class WorkoutXMLParser extends DefaultHandler {
 				BufferedReader br = new BufferedReader(new FileReader(f));
 				String line;
 				StringBuilder sb = new StringBuilder();
-				
-				while((line=br.readLine())!= null){
-				    sb.append(line.trim());
+
+				while ((line = br.readLine()) != null) {
+					sb.append(line.trim());
 				}
 				workoutString = sb.toString();
 			} catch (IOException ioEx) {
 				Log.e(TAG, "Error during reading Workout file.", ioEx);
 			}
-			
+
 			Log.e(TAG, "Error during parsing Workout. Workout file: \n " + workoutString, e);
 		} catch (Exception e) {
 			Log.e(TAG, "Error during parsing Workout.", e);
@@ -153,7 +183,7 @@ public class WorkoutXMLParser extends DefaultHandler {
 	// because using constructor of TrainingEntry
 	@Override
 	public void startElement(String uri, String name, String qname, Attributes attributes) throws SAXException {
-		switch(qname) {
+		switch (qname) {
 			case "Workout":
 				mWorkoutName = attributes.getValue("name");
 				String r = attributes.getValue("rows");
@@ -178,7 +208,7 @@ public class WorkoutXMLParser extends DefaultHandler {
 				}
 				break;
 			case "Fset":
-				if(attributes.getValue("hasBeenDone") != null)
+				if (attributes.getValue("hasBeenDone") != null)
 					mSetHasBeenDone = Boolean.parseBoolean(attributes.getValue("hasBeenDone"));
 				break;
 			case "SetParameter":
@@ -209,7 +239,7 @@ public class WorkoutXMLParser extends DefaultHandler {
 
 	@Override
 	public void endElement(String uri, String localName, String qName) {
-		switch(qName) {
+		switch (qName) {
 			case "Workout":
 				this.mWorkout = new Workout(this.mWorkoutName, this.mFExList.toArray(new FitnessExercise[0]));
 				if (this.mRowCount != null) {
@@ -247,7 +277,7 @@ public class WorkoutXMLParser extends DefaultHandler {
 				FSet createdFSet = new FSet(this.mSetParameter.toArray(new SetParameter[1]));
 				if (parsingTrainingEntry && !mSetParameter.isEmpty()) {
 					mTrainingEntryFSetList.add(createdFSet);
-				} else if(!mSetParameter.isEmpty()){
+				} else if (!mSetParameter.isEmpty()) {
 					mFSetList.add(createdFSet);
 				}
 
@@ -256,20 +286,8 @@ public class WorkoutXMLParser extends DefaultHandler {
 				this.mSetParameter = new ArrayList<SetParameter>();
 				break;
 			case "SetParameter":
-				boolean created = false;
-				if (this.mSetParameterName.equals(new SetParameter.Weight(1).getName())) {
-					this.mSetParameter.add(new SetParameter.Weight(Integer.parseInt(this.mSetParameterValue)));
-					created = true;
-				} else if (this.mSetParameterName.equals(new SetParameter.Repetition(1).getName())) {
-					this.mSetParameter.add(new SetParameter.Repetition(Integer.parseInt(this.mSetParameterValue)));
-					created = true;
-				} else if (this.mSetParameterName.equals(new SetParameter.Duration(1).getName())) {
-					this.mSetParameter.add(new SetParameter.Duration(Integer.parseInt(this.mSetParameterValue)));
-					created = true;
-				} else if (this.mSetParameterName.equals(new SetParameter.FreeField(" ").getName())) {
-					this.mSetParameter.add(new SetParameter.FreeField(this.mSetParameterValue));
-					created = true;
-				} else {
+				boolean created = setParameterName();
+				if(!created) {
 					throw new IllegalStateException();
 				}
 
@@ -285,9 +303,29 @@ public class WorkoutXMLParser extends DefaultHandler {
 				this.mTrainingEntryList.add(this.mTrainingEntry);
 				this.mTrainingEntry = null;
 				this.mTrainingEntryFSetList = new ArrayList<FSet>();
-				this.mSetHasBeenDoneMap = new HashMap<FSet,Boolean>();
+				this.mSetHasBeenDoneMap = new HashMap<FSet, Boolean>();
 				parsingTrainingEntry = false;
 				break;
 		}
+	}
+
+	private boolean setParameterName() {
+		boolean created = false;
+
+		if (this.mSetParameterName.equals(new SetParameter.Weight(1).getName())) {
+			this.mSetParameter.add(new SetParameter.Weight(Integer.parseInt(this.mSetParameterValue)));
+			created = true;
+		} else if (this.mSetParameterName.equals(new SetParameter.Repetition(1).getName())) {
+			this.mSetParameter.add(new SetParameter.Repetition(Integer.parseInt(this.mSetParameterValue)));
+			created = true;
+		} else if (this.mSetParameterName.equals(new SetParameter.Duration(1).getName())) {
+			this.mSetParameter.add(new SetParameter.Duration(Integer.parseInt(this.mSetParameterValue)));
+			created = true;
+		} else if (this.mSetParameterName.equals(new SetParameter.FreeField(" ").getName())) {
+			this.mSetParameter.add(new SetParameter.FreeField(this.mSetParameterValue));
+			created = true;
+		}
+
+		return created;
 	}
 }
