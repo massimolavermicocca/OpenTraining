@@ -408,18 +408,7 @@ public class DialogFragmentAddEntry extends DialogFragment {
 		// only load last settings if no argument for mFSet has been passed(that
 		// means mFSet is null)
 		if (setToSet == null) {
-			Log.v(TAG, "Trying to find old TrainingEntry for loading spinner settings.");
-
-			List<TrainingEntry> entryList = mFex.getTrainingEntryList();
-			TrainingEntry previousEntry;
-			for (int i = entryList.size() - 1; (i >= 0) && (setToSet == null); i--) {
-				previousEntry = entryList.get(i);
-				List<FSet> fsetList = previousEntry.getFSetList();
-				if (!fsetList.isEmpty()) {
-					setToSet = fsetList.get(fsetList.size() - 1);
-				}
-			}
-
+			setToSet = searchOldTrainingEntry(setToSet);
 		}
 
 		if (setToSet == null) {
@@ -434,7 +423,7 @@ public class DialogFragmentAddEntry extends DialogFragment {
 		for (SetParameter param : setToSet.getSetParameters()) {
 			int value = param.getValue();
 
-			if (param instanceof SetParameter.Duration) {
+			/*if (param instanceof SetParameter.Duration) {
 				checkbox_duration.setChecked(true);
 				setDurationValue(value);
 			}
@@ -445,9 +434,40 @@ public class DialogFragmentAddEntry extends DialogFragment {
 			if (param instanceof SetParameter.Weight) {
 				checkbox_weight.setChecked(true);
 				setWeightValue(value);
+			}*/
+
+			switch(param.getClass().getSimpleName()) {
+				case "Duration":
+					checkbox_duration.setChecked(true);
+					setDurationValue(value);
+					break;
+				case "Repetition":
+					checkbox_repetitions.setChecked(true);
+					setRepetitionValue(value);
+					break;
+				case "Weight":
+					checkbox_weight.setChecked(true);
+					setWeightValue(value);
+					break;
 			}
 		}
 
 	}
 
+	private FSet searchOldTrainingEntry(FSet setToSet) {
+		Log.v(TAG, "Trying to find old TrainingEntry for loading spinner settings.");
+
+		List<TrainingEntry> entryList = mFex.getTrainingEntryList();
+		TrainingEntry previousEntry;
+		for (int i = entryList.size() - 1; (i >= 0) && (setToSet == null); i--) {
+			previousEntry = entryList.get(i);
+			List<FSet> fsetList = previousEntry.getFSetList();
+			if (!fsetList.isEmpty()) {
+				setToSet = fsetList.get(fsetList.size() - 1);
+				return setToSet;
+			}
+		}
+
+		return null;
+	}
 }
