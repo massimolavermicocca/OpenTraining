@@ -46,7 +46,7 @@ public class SendExerciseFeedbackDialogFragment  extends DialogFragment{
 
 	// key for bundle (save/restore instance state)
 	private final String KEY_EXERCISE = "key_exercise";
-	private final String KEY_USER_MESSAGE = "key_user_message";
+	private final String KEY_US_MESSAGE = "key_us_message";
 	private final String KEY_EXERCISE_UPDATE_REASON = "key_exercise_update_reason";
 
 	private ExerciseType mExercise;
@@ -54,7 +54,7 @@ public class SendExerciseFeedbackDialogFragment  extends DialogFragment{
 	private Spinner mReasonSpinner;
 	private EditText mEditText;
 	
-	private String mUserMessage = "";
+	private String mUsMessage = "";
 	private int mReasonSelected = -1;
 
 	/**
