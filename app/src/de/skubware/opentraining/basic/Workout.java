@@ -24,6 +24,7 @@ import java.io.Serializable;
 import java.util.*;
 
 import android.util.Log;
+import de.skubware.opentraining.Exceptions.ErrorException;
 
 /**
  * This class represents a single workout. A workout needs a name and consists
@@ -56,13 +57,13 @@ public class Workout implements Iterable<FitnessExercise>, Serializable {
 	 * @param fExes
 	 *            The FitnessExercises of the workout
 	 * 
-	 * @throws NullPointerException
+	 * @throws ErrorException
 	 *             if any argument is null or empty
 	 * 
 	 */
-	public Workout(String name, Collection<FitnessExercise> fExes) {
+	public Workout(String name, Collection<FitnessExercise> fExes) throws ErrorException {
 		if (name == null || name.replaceAll(" ", "").equals("") || fExes == null || fExes.isEmpty() || fExes.contains(null)) {
-			throw new NullPointerException();
+			throw new ErrorException();
 		}
 
 		// Assign given values
@@ -74,7 +75,7 @@ public class Workout implements Iterable<FitnessExercise>, Serializable {
 	/**
 	 * @see #Workout(String, Collection<FitnessExercise>)
 	 */
-	public Workout(String name, FitnessExercise... fExes) {
+	public Workout(String name, FitnessExercise... fExes) throws ErrorException {
 		this(name, Arrays.asList(fExes));
 	}
 
@@ -88,7 +89,7 @@ public class Workout implements Iterable<FitnessExercise>, Serializable {
 	 * @param exes
 	 *            The ExerciseTypes that should be added to workout.
 	 */
-	public Workout(String name, List<ExerciseType> exes) {
+	public Workout(String name, List<ExerciseType> exes) throws ErrorException {
 		this(name, ExerciseType.asFitnessExercise(exes));
 	}
 
@@ -324,7 +325,7 @@ public class Workout implements Iterable<FitnessExercise>, Serializable {
 	  * Returns a new Workout only containing the Exercises, but no history(FSets).
 	  * The crated Workout will have the same name.
 	  */
-	public Workout getWorkoutWithoutHistory(){
+	public Workout getWorkoutWithoutHistory() throws ErrorException{
 		List<FitnessExercise> fExList = new ArrayList<FitnessExercise>();
 		for(FitnessExercise fEx: this.fitnessExercises){
 			fExList.add(new FitnessExercise(fEx.getExType())); // copy exercises without FSets

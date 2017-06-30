@@ -28,10 +28,8 @@ import java.util.Map;
 
 import android.util.Log;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
@@ -63,7 +61,7 @@ public class ExerciseTypeGSONSerializer implements JsonSerializer<ExerciseType>{
 	public JsonElement serialize(ExerciseType ex, Type typeOfSrc, JsonSerializationContext context) {
 		
 		if(sMuscleMap == null || sLanguageMap == null || sEquipmentMap == null) 
-			throw new NullPointerException("At least one map in " + TAG + " has not been initialized");
+			throw new IllegalArgumentException("At least one map in " + TAG + " has not been initialized");
 		
 
 		JsonObject mainObject = new JsonObject();
