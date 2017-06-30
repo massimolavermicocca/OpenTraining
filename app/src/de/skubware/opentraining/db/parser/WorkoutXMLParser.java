@@ -245,14 +245,10 @@ public class WorkoutXMLParser extends DefaultHandler {
 				break;
 			case "Fset":
 				FSet createdFSet = new FSet(this.mSetParameter.toArray(new SetParameter[1]));
-				if (parsingTrainingEntry) {
-					if (!mSetParameter.isEmpty()) {
-						mTrainingEntryFSetList.add(createdFSet);
-					}
-				} else {
-					if (!mSetParameter.isEmpty()) {
-						mFSetList.add(createdFSet);
-					}
+				if (parsingTrainingEntry && !mSetParameter.isEmpty()) {
+					mTrainingEntryFSetList.add(createdFSet);
+				} else if(!mSetParameter.isEmpty()){
+					mFSetList.add(createdFSet);
 				}
 
 				this.mSetHasBeenDoneMap.put(createdFSet, mSetHasBeenDone);
@@ -264,22 +260,19 @@ public class WorkoutXMLParser extends DefaultHandler {
 				if (this.mSetParameterName.equals(new SetParameter.Weight(1).getName())) {
 					this.mSetParameter.add(new SetParameter.Weight(Integer.parseInt(this.mSetParameterValue)));
 					created = true;
-				}
-				if (this.mSetParameterName.equals(new SetParameter.Repetition(1).getName())) {
+				} else if (this.mSetParameterName.equals(new SetParameter.Repetition(1).getName())) {
 					this.mSetParameter.add(new SetParameter.Repetition(Integer.parseInt(this.mSetParameterValue)));
 					created = true;
-				}
-				if (this.mSetParameterName.equals(new SetParameter.Duration(1).getName())) {
+				} else if (this.mSetParameterName.equals(new SetParameter.Duration(1).getName())) {
 					this.mSetParameter.add(new SetParameter.Duration(Integer.parseInt(this.mSetParameterValue)));
 					created = true;
-				}
-				if (this.mSetParameterName.equals(new SetParameter.FreeField(" ").getName())) {
+				} else if (this.mSetParameterName.equals(new SetParameter.FreeField(" ").getName())) {
 					this.mSetParameter.add(new SetParameter.FreeField(this.mSetParameterValue));
 					created = true;
-				}
-				if (!created) {
+				} else {
 					throw new IllegalStateException();
 				}
+
 				mSetParameterName = null;
 				mSetParameterValue = null;
 				break;
