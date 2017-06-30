@@ -25,6 +25,8 @@ import java.io.Serializable;
 import java.net.URL;
 import java.util.*;
 
+import de.skubware.opentraining.Exceptions.ErrorException;
+
 /**
  * A FitnessExercise needs an ExerciseType and may have FSets and
  * TrainingEntries.
@@ -61,17 +63,17 @@ public class FitnessExercise implements IExercise, Serializable {
 	 * @param set
 	 *            The FitnessSets for this FitnessExercise, may be emtpy
 	 * 
-	 * @throws NullPointerException
+	 * @throws de.skubware.opentraining.Exceptions.ErrorException
 	 *             if exType is null
 	 */
-	public FitnessExercise(ExerciseType exType, FSet... set) {
+	public FitnessExercise(ExerciseType exType, FSet... set) throws ErrorException {
 		if (exType == null) {
-			throw new NullPointerException();
+			throw new de.skubware.opentraining.Exceptions.ErrorException();
 		}
 
 		for (FSet s : set) {
 			if (s == null) {
-				throw new NullPointerException();
+				throw new de.skubware.opentraining.Exceptions.ErrorException();
 			}
 		}
 
@@ -170,12 +172,12 @@ public class FitnessExercise implements IExercise, Serializable {
 	 * @param newName
 	 *            The new custom name for this FitnessExercise.
 	 * 
-	 * @throws NullPointerException
+	 * @throws de.skubware.opentraining.Exceptions.ErrorException
 	 *             if argument is null
 	 */
-	public void setCustomName(String newName) {
+	public void setCustomName(String newName) throws ErrorException {
 		if (newName == null)
-			throw new NullPointerException("setCustonName() Argument must not be null");
+			throw new de.skubware.opentraining.Exceptions.ErrorException("setCustonName() Argument must not be null");
 
 		this.mCustomName = newName;
 	}
