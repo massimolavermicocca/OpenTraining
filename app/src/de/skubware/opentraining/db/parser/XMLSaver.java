@@ -116,7 +116,7 @@ public class XMLSaver {
 				// append ExerciseType
 				fE.appendChild(exTypeE);
 
-				for (FSet set : fEx.getFSetList()) {
+				/*for (FSet set : fEx.getFSetList()) {
 					Element fSetE = doc.createElement("FSet");
 
 					for (SetParameter c : set.getSetParameters()) {
@@ -132,39 +132,10 @@ public class XMLSaver {
 
 					// append FitnessExercise
 					fE.appendChild(fSetE);
-				}
+				}*/
 
-				for (TrainingEntry entry : fEx.getTrainingEntryList()) {
-					Element entryE = doc.createElement("TrainingEntry");
-					
-					// save date
-					if(entry.getDate()!=null){
-						entryE.setAttribute("date", format.format(entry.getDate()));
-					}else{
-						entryE.setAttribute("date", "null");
-					}
-
-					//TODO refactor
-					for (FSet set: entry.getFSetList()) {
-						Element fSetE = doc.createElement("FSet");
-						fSetE.setAttribute("hasBeenDone", Boolean.toString(entry.hasBeenDone(set)) );
-						for (SetParameter c : set.getSetParameters()) {
-							Element catE = doc.createElement("SetParameter");
-							catE.setAttribute("name", c.getName());
-							if(! (c instanceof FSet.SetParameter.FreeField) ){
-								catE.setAttribute("value", Integer.toString(c.getValue()));
-							}else{
-								catE.setAttribute("value",c.toString());
-							}
-							fSetE.appendChild(catE);
-						}
-						
-						entryE.appendChild(fSetE);
-					}
-
-					// append TrainingEntry
-					fE.appendChild(entryE);
-				}
+				fE = fillWithFitnessExercise(fEx, doc, fE);
+				fE = fillWithTrainingEntry(fEx, doc, fE, format);
 				
 				wE.appendChild(fE);
 			}
@@ -207,7 +178,63 @@ public class XMLSaver {
 		return success;
 	}
 	
-	
+	private static Element fillWithFitnessExercise(FitnessExercise fEx, Document doc, Element fE) {
+		for (FSet set : fEx.getFSetList()) {
+			Element fSetE = doc.createElement("FSet");
+
+			for (SetParameter c : set.getSetParameters()) {
+				Element catE = doc.createElement("SetParameter");
+				catE.setAttribute("name", c.getName());
+				if(! (c instanceof FSet.SetParameter.FreeField) ){
+					catE.setAttribute("value", Integer.toString(c.getValue()));
+				}else{
+					catE.setAttribute("value",c.toString());
+				}
+				fSetE.appendChild(catE);
+			}
+
+			// append FitnessExercise
+			fE.appendChild(fSetE);
+		}
+
+		return fE;
+	}
+
+	private static Element fillWithTrainingEntry(FitnessExercise fEx, Document doc, Element fE, SimpleDateFormat format) throws ErrorException {
+		for (TrainingEntry entry : fEx.getTrainingEntryList()) {
+			Element entryE = doc.createElement("TrainingEntry");
+
+			// save date
+			if(entry.getDate()!=null){
+				entryE.setAttribute("date", format.format(entry.getDate()));
+			}else{
+				entryE.setAttribute("date", "null");
+			}
+
+			//TODO refactor
+			for (FSet set: entry.getFSetList()) {
+				Element fSetE = doc.createElement("FSet");
+				fSetE.setAttribute("hasBeenDone", Boolean.toString(entry.hasBeenDone(set)) );
+				for (SetParameter c : set.getSetParameters()) {
+					Element catE = doc.createElement("SetParameter");
+					catE.setAttribute("name", c.getName());
+					if(! (c instanceof FSet.SetParameter.FreeField) ){
+						catE.setAttribute("value", Integer.toString(c.getValue()));
+					}else{
+						catE.setAttribute("value",c.toString());
+					}
+					fSetE.appendChild(catE);
+				}
+
+				entryE.appendChild(fSetE);
+			}
+
+			// append TrainingEntry
+			fE.appendChild(entryE);
+		}
+
+		return fE;
+	}
 
 	/**
 	 * Saves an ExerciseType to the given destination.
