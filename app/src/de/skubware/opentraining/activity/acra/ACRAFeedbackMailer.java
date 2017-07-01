@@ -5,9 +5,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import org.acra.collector.CrashReportData;
@@ -84,17 +82,17 @@ public class ACRAFeedbackMailer implements ReportSender {
 	}
 
 	private String getKey(String token) {
-		return md5(String.format("%s+%s", SHARED_SECRET, token));
+		return makeSha(String.format("%s+%s", SHARED_SECRET, token));
 	}
 
 	private String getToken() {
-		return md5(UUID.randomUUID().toString());
+		return makeSha(UUID.randomUUID().toString());
 	}
 
-	public static String md5(String s) {
+	public static String makeSha(String s) {
 		MessageDigest m = null;
 		try {
-			m = MessageDigest.getInstance("MD5");
+			m = MessageDigest.getInstance("SHA-256");
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
