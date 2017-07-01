@@ -40,8 +40,7 @@ import de.skubware.opentraining.R;
 /**
  * @class OpenTrainingApplication
  */
-
-public class OpenTrainingApplication  extends Application{
+public class OpenTrainingApplication extends Application{
 
     @Override
     public void onCreate() {
