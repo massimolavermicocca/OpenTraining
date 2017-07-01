@@ -71,7 +71,7 @@ public class WgerImageDownloader {
 	public ArrayList<ExerciseType> downloadImages(List<ExerciseType.Builder> exerciseBuilderList) throws IOException, JSONException {
 		ArrayList<ExerciseType> newExerciseList = new ArrayList<ExerciseType>();
 		boolean imageWithName = false;
-		
+
 		for (ExerciseType.Builder exBuilder : exerciseBuilderList) {
 			List<File> newImagePathList = new ArrayList<File>();
 			Map<File, License> newImageLicenseMap = new HashMap<File, License>();

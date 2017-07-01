@@ -28,6 +28,9 @@ import android.view.animation.Transformation;
 import android.widget.Gallery;
 import android.widget.SpinnerAdapter;
 
+/**
+ * @class FancyCoverFlow
+ */
 public class FancyCoverFlow extends Gallery {
 
     // =============================================================================
@@ -366,6 +369,9 @@ public class FancyCoverFlow extends Gallery {
     // Public classes
     // =============================================================================
 
+    /**
+     * @class LayoutParams
+     */
     public static class LayoutParams extends Gallery.LayoutParams {
         public LayoutParams(Context c, AttributeSet attrs) {
             super(c, attrs);

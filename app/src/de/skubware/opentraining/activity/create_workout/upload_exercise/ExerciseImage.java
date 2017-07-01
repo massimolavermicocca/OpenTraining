@@ -7,6 +7,9 @@ import android.content.Context;
 import de.skubware.opentraining.basic.License;
 import de.skubware.opentraining.db.IDataProvider;
 
+/**
+ * @class ExerciseImage
+ */
 public class ExerciseImage {
 	File mImagePath;
 	String mRealImagePath;

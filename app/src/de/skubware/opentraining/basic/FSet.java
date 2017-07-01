@@ -134,11 +134,12 @@ public class FSet implements Serializable, Cloneable {
 				return false;
 			SetParameter other = (SetParameter) obj;
 			return other.name.equals(this.name) && other.value == this.value;
-		}		
+		}
 
-		
 
-		// Classes
+		/**
+		 * @class Repetition
+		 */
 		public static class Repetition extends SetParameter {
 
 			/**
@@ -160,6 +161,9 @@ public class FSet implements Serializable, Cloneable {
 			}
 		}
 
+		/**
+		 * @class Weight
+		 */
 		public static class Weight extends SetParameter {
 
 			/**
@@ -188,6 +192,9 @@ public class FSet implements Serializable, Cloneable {
 			}
 		}
 
+		/**
+		 * @class Duration
+		 */
 		public static class Duration extends SetParameter {
 
 			/**
@@ -212,7 +219,10 @@ public class FSet implements Serializable, Cloneable {
 				this(parameter.value);
 			}
 		}
-		
+
+		/**
+		 * @class FreeField
+		 */
 		public static class FreeField extends SetParameter {
 			/**
 			 * 
