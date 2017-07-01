@@ -21,14 +21,15 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
+import java.security.SecureRandom;
+
 
 /** 
  * Based on acra-mailer(https://github.com/d-a-n/acra-mailer) of d-a-n. 
  */
 public class ACRACrashReportMailer implements ReportSender {
 	private final static String BASE_URL = "http://skubware.de/opentraining/acra_crash.php";
-	private final static String SHARED_SECRET = "my_on_github_with_everyone_shared_secret";
+	private final static SecureRandom random = new SecureRandom();
 	private Map<String, String> custom_data = null;
 
 	public ACRACrashReportMailer() {
@@ -108,11 +109,11 @@ public class ACRACrashReportMailer implements ReportSender {
 	}
 
 	private String getKey(String token) {
-		return makeSha(String.format("%s+%s", SHARED_SECRET, token));
+		return makeSha(String.format("%s+%s", new BigInteger(100, random).toString(), token));
 	}
 
 	private String getToken() {
-		return makeSha(UUID.randomUUID().toString());
+		return makeSha(new BigInteger(100, random).toString());
 	}
 
 	public static String makeSha(String s) {
