@@ -63,9 +63,6 @@ public class MuscleJSONParser extends AbstractJSONParser<List<Muscle>> {
 	@Override
 	public List<Muscle> parse(String jsonString) {
 		List<Muscle> muscleList = new ArrayList<Muscle>();
-
-
-
 		JSONArray jsonArray;
 		try {
 			jsonArray = new JSONArray(jsonString);
@@ -99,11 +96,7 @@ public class MuscleJSONParser extends AbstractJSONParser<List<Muscle>> {
 						}
 
 
-						if(m == null){
-							m = new Muscle(new Locale(locale), nameList);
-						}else{
-							m.addNames(new Locale(locale), nameList);
-						}
+						m = analizeM(nameList, m, locale);
 					}
 					nameList.clear();
 				}
@@ -121,6 +114,15 @@ public class MuscleJSONParser extends AbstractJSONParser<List<Muscle>> {
 		if(muscleList.isEmpty())
 			throw new AssertionError("JSON parsing failed: no muscles parsed.");
 		return muscleList;
+	}
+
+	private Muscle analizeM(List<String> nameList, Muscle m, String locale) {
+		if(m == null){
+            m = new Muscle(new Locale(locale), nameList);
+        }else{
+            m.addNames(new Locale(locale), nameList);
+        }
+		return m;
 	}
 
 
