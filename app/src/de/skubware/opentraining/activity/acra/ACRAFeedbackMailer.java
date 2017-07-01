@@ -2,9 +2,9 @@ package de.skubware.opentraining.activity.acra;
 
 import android.util.Log;
 
+import org.acra.collector.CrashReportData;
 import org.acra.ACRA;
 import org.acra.ReportField;
-import org.acra.collector.CrashReportData;
 import org.acra.sender.ReportSender;
 import org.acra.sender.ReportSenderException;
 import org.apache.http.NameValuePair;
@@ -64,7 +64,6 @@ public class ACRAFeedbackMailer implements ReportSender {
 			httpPost.setEntity(new UrlEncodedFormEntity(parameters, HTTP.UTF_8));
 			httpClient.execute(httpPost);
 			
-			
 			// set the crash report sender again after sending the feedback
 			ACRA.getErrorReporter().removeAllReportSenders();
 	        ACRA.getErrorReporter().setReportSender(new ACRACrashReportMailer());
@@ -82,17 +81,17 @@ public class ACRAFeedbackMailer implements ReportSender {
 	}
 
 	private String getKey(String token) {
-		return md5(String.format("%s+%s", SHARED_SECRET, token));
+		return makeSha(String.format("%s+%s", SHARED_SECRET, token));
 	}
 
 	private String getToken() {
-		return md5(UUID.randomUUID().toString());
+		return makeSha(UUID.randomUUID().toString());
 	}
 
-	public static String md5(String s) {
+	public static String makeSha(String s) {
 		MessageDigest m = null;
 		try {
-			m = MessageDigest.getInstance("MD5");
+			m = MessageDigest.getInstance("SHA-256");
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
