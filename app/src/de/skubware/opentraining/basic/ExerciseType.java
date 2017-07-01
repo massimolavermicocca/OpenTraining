@@ -122,81 +122,81 @@ public final class ExerciseType implements Comparable<ExerciseType>, IExercise, 
 			this.mExerciseSource = exerciseSource;
 		}
 
-		public Builder translationMap(Map<Locale, String> translationMap) {
+		public Builder translationMap(Map<Locale, String> my_translationMap) {
 			if (translationMap != null)
-				this.translationMap = translationMap;
+				this.translationMap = my_translationMap;
 			return this;
 		}
 
-		public Builder description(String description) {
+		public Builder description(String my_description) {
 			if (description != null)
-				this.description = description;
+				this.description = my_description;
 			return this;
 		}
 
-		public Builder imagePath(List<File> imagePaths) {
+		public Builder imagePath(List<File> my_imagePaths) {
 			if (imagePaths.size() > 0)
-				this.imagePaths = imagePaths;
+				this.imagePaths = my_imagePaths;
 			return this;
 		}
 
-		public Builder imageLicenseMap(Map<File, License> imageLicenseMap) {
+		public Builder imageLicenseMap(Map<File, License> my_imageLicenseMap) {
 			if (imageLicenseMap.size() > 0)
-				this.imageLicenseMap = imageLicenseMap;
+				this.imageLicenseMap = my_imageLicenseMap;
 			return this;
 		}
 
-		public Builder imageWidth(int imageWidth) {
+		public Builder imageWidth(int new_imageWidth) {
 			if (imageWidth > 0)
-				this.imageWidth = imageWidth;
+				this.imageWidth = new_imageWidth;
 			return this;
 		}
 
-		public Builder imageHeigth(int imageHeight) {
+		public Builder imageHeigth(int new_imageHeight) {
 			if (imageHeight > 0)
-				this.imageHeight = imageHeight;
+				this.imageHeight = new_imageHeight;
 			return this;
 		}
 
-		public Builder neededTools(SortedSet<SportsEquipment> neededTools) {
+		public Builder neededTools(SortedSet<SportsEquipment> my_neededTools) {
 			if (neededTools.size() > 0)
-				this.neededTools = neededTools;
+				this.neededTools = my_neededTools;
 			return this;
 		}
 
-		public Builder activatedMuscles(SortedSet<Muscle> activatedMuscles) {
+		public Builder activatedMuscles(SortedSet<Muscle> my_activatedMuscles) {
 			if (activatedMuscles.size() > 0)
-				this.activatedMuscles = activatedMuscles;
+				this.activatedMuscles = my_activatedMuscles;
 			return this;
 		}
 
-		public Builder activationMap(Map<Muscle, ActivationLevel> activationMap) {
+		public Builder activationMap(Map<Muscle, ActivationLevel> my_activationMap) {
 			if (activationMap.size() > 0)
-				this.activationMap = activationMap;
+				this.activationMap = my_activationMap;
 			return this;
 		}
 
-		public Builder exerciseTags(SortedSet<ExerciseTag> exerciseTag) {
+		public Builder exerciseTags(SortedSet<ExerciseTag> my_exerciseTag) {
 			if (exerciseTag.size() > 0)
-				this.exerciseTag = exerciseTag;
+				this.exerciseTag = my_exerciseTag;
 			return this;
 		}
 
-		public Builder relatedURL(List<URL> relatedURL) {
+		public Builder relatedURL(List<URL> my_relatedURL) {
 			if (relatedURL.size() > 0)
-				this.relatedURL = relatedURL;
+				this.relatedURL = my_relatedURL;
 			return this;
 		}
 
-		public Builder hints(List<String> hints) {
+		public Builder hints(List<String> my_hints) {
 			if (hints.size() > 0)
-				this.hints = hints;
+				this.hints = my_hints;
 			return this;
 		}
 
-		public Builder iconPath(File iconPath) {
+		public Builder iconPath(File new_iconPath) {
 			if (iconPath != null)
-				this.iconPath = iconPath;
+				this.iconPath = new_iconPath;
 			return this;
 		}
 
