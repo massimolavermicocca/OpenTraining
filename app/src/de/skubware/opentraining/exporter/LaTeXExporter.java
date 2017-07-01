@@ -22,8 +22,6 @@ package de.skubware.opentraining.exporter;
 
 import android.content.Context;
 
-import java.io.FileNotFoundException;
-
 import de.skubware.opentraining.basic.FSet;
 import de.skubware.opentraining.basic.FitnessExercise;
 import de.skubware.opentraining.basic.Workout;

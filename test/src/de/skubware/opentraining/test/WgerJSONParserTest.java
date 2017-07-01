@@ -36,7 +36,6 @@ import de.skubware.opentraining.activity.settings.sync.WgerJSONParser;
 import de.skubware.opentraining.basic.ExerciseType;
 import de.skubware.opentraining.basic.ExerciseType.ExerciseSource;
 import de.skubware.opentraining.basic.Muscle;
-import de.skubware.opentraining.basic.Workout;
 import de.skubware.opentraining.db.DataProvider;
 import de.skubware.opentraining.db.IDataProvider;
 

@@ -20,10 +20,22 @@
 
 package de.skubware.opentraining.activity.manage_workouts;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
+import de.skubware.opentraining.R;
+import de.skubware.opentraining.activity.create_workout.ExerciseTypeListActivity;
+import de.skubware.opentraining.basic.FitnessExercise;
+import de.skubware.opentraining.basic.Workout;
+import de.skubware.opentraining.db.DataProvider;
+import de.skubware.opentraining.db.IDataProvider;
+import de.skubware.opentraining.db.parser.XMLSaver;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.content.DialogInterface.OnClickListener;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -40,19 +52,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-
-import de.skubware.opentraining.R;
-import de.skubware.opentraining.activity.create_workout.ExerciseTypeListActivity;
-import de.skubware.opentraining.basic.FitnessExercise;
-import de.skubware.opentraining.basic.Workout;
-import de.skubware.opentraining.db.DataProvider;
-import de.skubware.opentraining.db.IDataProvider;
-import de.skubware.opentraining.db.parser.XMLSaver;
 
 /**
  * A fragment representing a single Workout detail screen. This fragment is
@@ -220,7 +219,7 @@ public class WorkoutDetailFragment extends Fragment {
 				builder.setNeutralButton(getString(R.string.workout_without_history), new OnClickListener(){
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						
+
 						Intent shareIntent = getShareIntent(mWorkout.getWorkoutWithoutHistory());
 						startActivity(Intent.createChooser(shareIntent, getString(R.string.send_workout_to)));				
 					}

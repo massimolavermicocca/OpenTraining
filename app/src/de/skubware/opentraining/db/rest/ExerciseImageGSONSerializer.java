@@ -37,7 +37,6 @@ import java.io.FileNotFoundException;
 import java.lang.reflect.Type;
 
 import de.skubware.opentraining.activity.create_workout.upload_exercise.ExerciseImage;
-import de.skubware.opentraining.basic.ExerciseType;
 
 /**
  * Class for serializing {@link ExerciseType} to the wger.de-JSON-format.

@@ -47,6 +47,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import de.skubware.opentraining.Exceptions.ErrorException;
 import de.skubware.opentraining.R;
 import de.skubware.opentraining.activity.create_workout.upload_exercise.UploadExerciseImagesAsyncTask;
 import de.skubware.opentraining.basic.ExerciseType;
@@ -195,7 +196,11 @@ public class ExerciseTypeDetailFragment extends Fragment {
 					SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getActivity());
 					String defaultWorkoutName =  settings.getString("default_workout_name", "Workout");
 
-					mWorkout = new Workout(defaultWorkoutName, new FitnessExercise(mExercise));
+					try {
+						mWorkout = new Workout(defaultWorkoutName, new FitnessExercise(mExercise));
+					} catch (ErrorException e) {
+						e.printStackTrace();
+					}
 				} else {
 
 					// assert that there is not already such an exercise in the
@@ -207,7 +212,11 @@ public class ExerciseTypeDetailFragment extends Fragment {
 						}
 					}
 
-					mWorkout.addFitnessExercise(new FitnessExercise(mExercise));
+					try {
+						mWorkout.addFitnessExercise(new FitnessExercise(mExercise));
+					} catch (ErrorException e) {
+						e.printStackTrace();
+					}
 				}
 
 				// update Workout in Activity
