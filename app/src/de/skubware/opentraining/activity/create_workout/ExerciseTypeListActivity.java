@@ -128,13 +128,9 @@ public class ExerciseTypeListActivity extends ActionBarActivity implements Exerc
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		SharedPreferences.Editor sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this).edit();
-		
 		switch(item.getItemId()){
 			case android.R.id.home:
-				if (mWorkout != null)
-					showDialog();
-				else
-					finish();
+				isNull(mWorkout);
 				break;
 			case R.id.menu_item_show_workout:
 				showDialog();
@@ -163,6 +159,13 @@ public class ExerciseTypeListActivity extends ActionBarActivity implements Exerc
 		sharedPrefs.commit();
 
 		return super.onOptionsItemSelected(item);
+	}
+
+	private void isNull(Workout mWorkout){
+		if (mWorkout != null)
+			showDialog();
+		else
+			finish();
 	}
 
 	@Override
