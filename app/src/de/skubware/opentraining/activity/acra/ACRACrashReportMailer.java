@@ -115,12 +115,12 @@ public class ACRACrashReportMailer implements ReportSender {
 
 	private String getKey(String token) throws NoSuchAlgorithmException {
         final SecureRandom random = new SecureRandom().getInstance("SHA1PRNG");
-        return makeSha(String.format("%s+%s", random.nextInt(Integer.MAX_VALUE), token));
+        return makeSha(String.format("%s+%s", Integer.toString(random.nextInt(Integer.MAX_VALUE)), token));
 	}
 
 	private String getToken()throws NoSuchAlgorithmException{
         final SecureRandom random = new SecureRandom().getInstance("SHA1PRNG");
-		return makeSha(String.valueOf(random.nextInt(Integer.MAX_VALUE)));
+		return makeSha(Integer.toString(random.nextInt(Integer.MAX_VALUE)));
 	}
 
 	public static String makeSha(String s) {
