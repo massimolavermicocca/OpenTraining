@@ -137,15 +137,14 @@ public class DialogFragmentHistory extends DialogFragment {
         DateFormat dateformat = new SimpleDateFormat( "dd.MM" );
         for(TrainingEntry entry:mFex.getTrainingEntryList()){
             int setNumber = 0;
+            try {
             for(FSet fset:entry.getFSetList()){
 
                 // skip sets that haven't been done
-                try {
+
                     if(!entry.hasBeenDone(fset))
                         continue;
-                } catch (ErrorException e) {
 
-                }
                 // x value: date
 
                 xVals.add(dateformat.format(entry.getDate()) + " ("  + setNumber + ")");
@@ -169,7 +168,9 @@ public class DialogFragmentHistory extends DialogFragment {
                 setParameterNumber++;
                 setNumber++;
             }
+            } catch (ErrorException e) {
 
+            }
         }
 
 

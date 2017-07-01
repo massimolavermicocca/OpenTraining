@@ -527,28 +527,32 @@ public class DataProvider implements IDataProvider {
 			String[] exampleWorkouts = mContext.getAssets().list(
 					IDataProvider.EXAMPLE_WORKOUT_FOLDER);
 			byte[] buffer = new byte[1024];
-			for (String file : exampleWorkouts) {
-				InputStream in = null;
-				OutputStream out;
-				try {
-					in = mContext.getAssets().open(IDataProvider.EXAMPLE_WORKOUT_FOLDER + "/" + file);
-					out = new FileOutputStream(mContext.getFilesDir().toString() + "/" + file);
+			String fileException = "";
 
-					// copy file
-					int read;
-					while ((read = in.read(buffer)) != -1) {
-						out.write(buffer, 0, read);
-					}
+			try {
+                for (String file : exampleWorkouts) {
+                    InputStream in = null;
+                    OutputStream out;
+                    fileException = file;
+                    in = mContext.getAssets().open(IDataProvider.EXAMPLE_WORKOUT_FOLDER + "/" + file);
+                    out = new FileOutputStream(mContext.getFilesDir().toString() + "/" + file);
 
-					buffer = null;
-					in.close();
-					in = null;
-					out.flush();
-					out.close();
-					out = null;
-				} catch (IOException e) {
-					Log.e("tag", "Failed to copy asset file: " + file, e);
-				}
+                    // copy file
+                    int read;
+                    while ((read = in.read(buffer)) != -1) {
+                        out.write(buffer, 0, read);
+                    }
+
+                    buffer = null;
+                    in.close();
+                    in = null;
+                    out.flush();
+                    out.close();
+                    out = null;
+
+                }
+			} catch (IOException e) {
+				Log.e("tag", "Failed to copy asset file: " + fileException, e);
 			}
 
 		} catch (IOException e) {
