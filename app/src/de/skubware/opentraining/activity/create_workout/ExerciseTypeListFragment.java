@@ -116,7 +116,7 @@ public class ExerciseTypeListFragment extends ListFragment implements OnQueryTex
 		/**
 		 * Callback for when an item has been selected.
 		 */
-		public void onItemSelected(ExerciseType ex);
+		public void onItemSelected(ExerciseType selected_exercise);
 	}
 
 	/**

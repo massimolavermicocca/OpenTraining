@@ -43,6 +43,7 @@ import java.util.TreeSet;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import de.skubware.opentraining.Exceptions.ErrorException;
 import de.skubware.opentraining.basic.ActivationLevel;
 import de.skubware.opentraining.basic.ExerciseTag;
 import de.skubware.opentraining.basic.ExerciseType;
@@ -106,7 +107,7 @@ public class ExerciseTypeXMLParser extends DefaultHandler {
 	/**
 	 * Parses xml file
 	 * 
-	 * @param Einzulesende
+	 * @param f
 	 *            Datei
 	 */
 	public ExerciseType read(File f) {
@@ -128,8 +129,7 @@ public class ExerciseTypeXMLParser extends DefaultHandler {
 	/**
 	 * Parses xml file
 	 * 
-	 * @param Einzulesende
-	 *            Datei
+	 * @param f
 	 */
 	public ExerciseType read(InputStream f) {
 		try {
@@ -151,7 +151,7 @@ public class ExerciseTypeXMLParser extends DefaultHandler {
 	 * 
 	 * @param uri
 	 *            name space prefix
-	 * @param name
+	 * @param selected_name
 	 *            name of element
 	 * @param qname
 	 *            full qualified name with uri and name
@@ -162,13 +162,13 @@ public class ExerciseTypeXMLParser extends DefaultHandler {
 	 *             if parsing fails
 	 */
 	@Override
-	public void startElement(String uri, String name, String qname, Attributes attributes) throws SAXException {
+	public void startElement(String uri, String selected_name, String qname, Attributes attributes) throws SAXException {
 		
 		if (qname.equals("ExerciseType")) {
-			this.name = attributes.getValue("name");
+			this.name = attributes.getValue("selected_name");
 			String language = attributes.getValue("language");
 			if (language == null) {
-				Log.i(TAG, "Default name without language " + attributes.getValue("name"));
+				Log.i(TAG, "Default name without language " + attributes.getValue("selected_name"));
 			}else{
 				this.translationMap.put(new Locale(language), this.name);
 			}
@@ -176,30 +176,30 @@ public class ExerciseTypeXMLParser extends DefaultHandler {
 		if(qname.equals("Locale")){
 			String language = attributes.getValue("language");
 			if (language == null) {
-				Log.e(TAG, "Locale without language" + attributes.getValue("name"));
+				Log.e(TAG, "Locale without language" + attributes.getValue("selected_name"));
 			}
-			String translatedname = attributes.getValue("name");
+			String translatedname = attributes.getValue("selected_name");
 			if (translatedname == null) {
-				Log.e(TAG, "Locale without translatedname" + attributes.getValue("name"));
+				Log.e(TAG, "Locale without translatedname" + attributes.getValue("selected_name"));
 			}
 			this.translationMap.put(new Locale(language), translatedname);
 		}
 		if (qname.equals("SportsEquipment")) {
-			SportsEquipment eq = mDataProvider.getEquipmentByName(attributes.getValue("name"));
+			SportsEquipment eq = mDataProvider.getEquipmentByName(attributes.getValue("selected_name"));
 			if (eq == null) {
-				Log.e(TAG, "The SportsEquipment: " + attributes.getValue("name") + " couldn't be found.");
+				Log.e(TAG, "The SportsEquipment: " + attributes.getValue("selected_name") + " couldn't be found.");
 			}
 			this.requiredEquipment.add(eq);
 		}
 		if (qname.equals("Muscle")) {
 			Muscle muscle = null;
 			try{
-				muscle = mDataProvider.getMuscleByName(attributes.getValue("name"));
+				muscle = mDataProvider.getMuscleByName(attributes.getValue("selected_name"));
 			}catch(IllegalArgumentException illEx){
-				Log.e(TAG, "The Muscle: " + attributes.getValue("name") + " couldn't be found. Ex: " + this.name);
+				Log.e(TAG, "The Muscle: " + attributes.getValue("selected_name") + " couldn't be found. Ex: " + this.name);
 			}
 			if (muscle == null) {
-				Log.e(TAG, "The Muscle: " + attributes.getValue("name") + " couldn't be found. Ex: " + this.name);
+				Log.e(TAG, "The Muscle: " + attributes.getValue("selected_name") + " couldn't be found. Ex: " + this.name);
 			}
 
 			this.activatedMuscles.add(muscle);
@@ -244,9 +244,9 @@ public class ExerciseTypeXMLParser extends DefaultHandler {
 			}
 		}
 		if (qname.equals("Tag")) {
-			ExerciseTag tag = mDataProvider.getExerciseTagByName(attributes.getValue("name"));
+			ExerciseTag tag = mDataProvider.getExerciseTagByName(attributes.getValue("selected_name"));
 			if (tag == null) {
-				Log.e(TAG, "The Tag: " + attributes.getValue("name") + " couldn't be found.");
+				Log.e(TAG, "The Tag: " + attributes.getValue("selected_name") + " couldn't be found.");
 			}
 			this.exerciseTag.add(tag);
 		}
@@ -272,9 +272,13 @@ public class ExerciseTypeXMLParser extends DefaultHandler {
 		if (qName.equals("ExerciseType")) {
 
 			// let the builder do its job :)
-			this.exType = new ExerciseType.Builder(this.name, this.mExerciseSource).translationMap(this.translationMap).activatedMuscles(this.activatedMuscles).activationMap(this.activationMap).description(this.description)
-					.exerciseTags(this.exerciseTag).imagePath(this.imagePaths).neededTools(this.requiredEquipment).relatedURL(this.relatedURL)
-					.imageLicenseMap(this.imageLicenseMap).hints(hints).iconPath(iconPath).build();
+			try {
+				this.exType = new ExerciseType.Builder(this.name, this.mExerciseSource).translationMap(this.translationMap).activatedMuscles(this.activatedMuscles).activationMap(this.activationMap).description(this.description)
+                        .exerciseTags(this.exerciseTag).imagePath(this.imagePaths).neededTools(this.requiredEquipment).relatedURL(this.relatedURL)
+                        .imageLicenseMap(this.imageLicenseMap).hints(hints).iconPath(iconPath).build();
+			} catch (ErrorException e) {
+				e.printStackTrace();
+			}
 
 			this.name = null;
 			

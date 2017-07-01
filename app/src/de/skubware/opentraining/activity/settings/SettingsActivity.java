@@ -272,8 +272,8 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 	 */
 	private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
 		@Override
-		public boolean onPreferenceChange(Preference preference, Object value) {
-			preference.setSummary(value.toString());
+		public boolean onPreferenceChange(Preference changed_preference, Object new_value) {
+			changed_preference.setSummary(new_value.toString());
 			return true;
 		}
 	};
@@ -287,14 +287,14 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 	 * 
 	 * @see #sBindPreferenceSummaryToValueListener
 	 */
-	private static void bindPreferenceSummaryToValue(Preference preference) {
+	private static void bindPreferenceSummaryToValue(Preference summary_preference) {
 		// Set the listener to watch for value changes.
-		preference.setOnPreferenceChangeListener(sBindPreferenceSummaryToValueListener);
+		summary_preference.setOnPreferenceChangeListener(sBindPreferenceSummaryToValueListener);
 
 		// Trigger the listener immediately with the preference's
 		// current value.
-		sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
-				PreferenceManager.getDefaultSharedPreferences(preference.getContext()).getString(preference.getKey(), ""));
+		sBindPreferenceSummaryToValueListener.onPreferenceChange(summary_preference,
+				PreferenceManager.getDefaultSharedPreferences(summary_preference.getContext()).getString(summary_preference.getKey(), ""));
 	}
 
 

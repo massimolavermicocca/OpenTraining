@@ -135,7 +135,8 @@ public class WorkoutListActivity extends ActionBarActivity implements WorkoutLis
 	/**
 	 * Callback method from {@link WorkoutListFragment.Callbacks} indicating
 	 * that the item with the given ID was selected.
-	 */
+     * @param workout
+     */
 	@Override
 	public void onItemSelected(Workout workout) {
 		if (mTwoPane) {
@@ -143,7 +144,7 @@ public class WorkoutListActivity extends ActionBarActivity implements WorkoutLis
 			// adding or replacing the detail fragment using a
 			// fragment transaction.
 			Bundle arguments = new Bundle();
-			arguments.putSerializable(WorkoutDetailFragment.ARG_WORKOUT, workout);
+			arguments.putSerializable(WorkoutDetailFragment.ARG_WORKOUT, identifier);
 			WorkoutDetailFragment fragment = new WorkoutDetailFragment();
 			fragment.setArguments(arguments);
 			getSupportFragmentManager().beginTransaction().replace(R.id.workout_detail_container, fragment).commit();
@@ -152,7 +153,7 @@ public class WorkoutListActivity extends ActionBarActivity implements WorkoutLis
 			// In single-pane mode, simply start the detail activity
 			// for the selected item ID.
 			Intent detailIntent = new Intent(this, WorkoutDetailActivity.class);
-			detailIntent.putExtra(WorkoutDetailFragment.ARG_WORKOUT, workout);
+			detailIntent.putExtra(WorkoutDetailFragment.ARG_WORKOUT, identifier);
 			startActivityForResult(detailIntent, RESULT_WORKOUT);
 		}
 	}

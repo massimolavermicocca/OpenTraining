@@ -81,6 +81,7 @@ public class WorkoutListFragment extends ListFragment {
 	public interface Callbacks {
 		/**
 		 * Callback for when a {@link Workout} has been selected.
+		 * @param workout
 		 */
 		public void onItemSelected(Workout workout);
 	}
@@ -91,7 +92,7 @@ public class WorkoutListFragment extends ListFragment {
 	 */
 	private static Callbacks sDummyCallbacks = new Callbacks() {
 		@Override
-		public void onItemSelected(Workout id) {
+		public void onItemSelected(Workout identifier) {
 		}
 	};
 
@@ -214,8 +215,8 @@ public class WorkoutListFragment extends ListFragment {
 	}
 
 	@Override
-	public void onListItemClick(ListView listView, View view, int position, long id) {
-		super.onListItemClick(listView, view, position, id);
+	public void onListItemClick(ListView listView, View view, int position, long selected_id) {
+		super.onListItemClick(listView, view, position, selected_id);
 
 		// Notify the active callbacks interface (the activity, if the
 		// fragment is attached to one) that an item has been selected.

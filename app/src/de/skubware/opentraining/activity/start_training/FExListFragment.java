@@ -28,6 +28,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import de.skubware.opentraining.Exceptions.ErrorException;
 import de.skubware.opentraining.basic.FitnessExercise;
 import de.skubware.opentraining.basic.Workout;
 
@@ -59,13 +60,13 @@ public class FExListFragment extends ListFragment {
 	 * Create a new instance of MyDialogFragment, providing "num" as an
 	 * argument.
 	 * 
-	 * @param mWorkout
+	 * @param new_Workout
 	 */
-	static FExListFragment newInstance(Workout mWorkout) {
+	static FExListFragment newInstance(Workout new_Workout) {
 		FExListFragment f = new FExListFragment();
 
 		Bundle args = new Bundle();
-		args.putSerializable(ARG_WORKOUT, mWorkout);
+		args.putSerializable(ARG_WORKOUT, new_Workout);
 		f.setArguments(args);
 
 		return f;
@@ -91,6 +92,7 @@ public class FExListFragment extends ListFragment {
 	public interface Callbacks {
 		/**
 		 * Callback for when an item has been selected.
+		 * @param fitnessExercise
 		 */
 		public void onItemSelected(FitnessExercise fitnessExercise);
 	}
@@ -101,7 +103,7 @@ public class FExListFragment extends ListFragment {
 	 */
 	private static Callbacks sDummyCallbacks = new Callbacks() {
 		@Override
-		public void onItemSelected(FitnessExercise id) {
+		public void onItemSelected(FitnessExercise identifier) {
 		}
 	};
 
@@ -118,12 +120,16 @@ public class FExListFragment extends ListFragment {
 
 		if (savedInstanceState != null) {
 			mWorkout = (Workout) savedInstanceState.getSerializable(ARG_WORKOUT);
-			setWorkout(mWorkout);
+			try {
+				setWorkout(mWorkout);
+			} catch (ErrorException e) {
+				e.printStackTrace();
+			}
 		}
 
 	}
 
-	public void setWorkout(Workout workout) {
+	public void setWorkout(Workout workout) throws ErrorException {
 		mWorkout = workout;
 
 		FExListAdapter adapter = new FExListAdapter((FragmentActivity) getActivity(), mWorkout);
@@ -142,8 +148,8 @@ public class FExListFragment extends ListFragment {
 	}
 	
 	@Override
-	public void onListItemClick(ListView listView, View view, int position, long id) {
-		super.onListItemClick(listView, view, position, id);
+	public void onListItemClick(ListView listView, View view, int position, long selected_id) {
+		super.onListItemClick(listView, view, position, selected_id);
  
 		// Notify the active callbacks interface (the activity, if the
 		// fragment is attached to one) that an item has been selected.

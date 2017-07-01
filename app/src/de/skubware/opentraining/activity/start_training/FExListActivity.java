@@ -119,7 +119,8 @@ public class FExListActivity extends ActionBarActivity implements FExListFragmen
 	/**
 	 * Callback method from {@link FExListFragment.Callbacks} indicating that
 	 * the item with the given ID was selected.
-	 */
+     * @param ex
+     */
 	@Override
 	public void onItemSelected(FitnessExercise ex) {
 		if (mTwoPane) {

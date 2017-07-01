@@ -106,9 +106,9 @@ public abstract class Translatable implements Comparable<Translatable>, Serializ
 		this.addNames(locale, nameList.toArray(new String[nameList.size()]));
 	}
 
-	public boolean isAlternativeName(String name) {
+	public boolean isAlternativeName(String new_name) {
 		for (Locale locale : nameMap.keySet()) {
-			if (nameMap.get(locale).contains(name))
+			if (nameMap.get(locale).contains(new_name))
 				return true;
 
 		}
