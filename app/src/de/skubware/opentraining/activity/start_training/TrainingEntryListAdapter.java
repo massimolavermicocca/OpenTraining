@@ -1,21 +1,21 @@
 /**
- * 
+ *
  * This is OpenTraining, an Android application for planning your your fitness training.
  * Copyright (C) 2012-2014 Christian Skubich
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  */
 
 package de.skubware.opentraining.activity.start_training;
@@ -49,6 +49,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+/**
+ * @class TrainingEntryListAdapter
+ */
 public class TrainingEntryListAdapter extends BaseAdapter {
 
 	private FragmentActivity mActivity;
@@ -119,7 +122,7 @@ public class TrainingEntryListAdapter extends BaseAdapter {
 				textview_rep.setText(para.toString());
 			}
 		}
-		
+
 		// set button icons
 		final ImageButton imagebutton_check = (ImageButton) vi.findViewById(R.id.imagebutton_check);
 		if(mTrainingEntry.hasBeenDone(set)){
@@ -127,7 +130,7 @@ public class TrainingEntryListAdapter extends BaseAdapter {
 		}else{
 			imagebutton_check.setImageResource(R.drawable.icon_check_white);
 		}
-		
+
 
 		// add button listener
 
@@ -138,11 +141,11 @@ public class TrainingEntryListAdapter extends BaseAdapter {
 				if(mTrainingEntry.hasBeenDone(set)){
 					return;
 				}
-				
+
 				imagebutton_check.setImageResource(R.drawable.icon_check_green);
 				mTrainingEntry.setHasBeenDone(set, true);
 				trainingEntryEdited();
-				
+
 				if(mFEx.isTrainingEntryFinished(mTrainingEntry)){
 					// start recovery timer
 					RecoveryTimerManager.INSTANCE.startExerciseRecoveryTimer(mActivity);
@@ -178,13 +181,13 @@ public class TrainingEntryListAdapter extends BaseAdapter {
 	public void remove(int position) {
 		mTrainingEntry.getFSetList().remove(position);
 		trainingEntryEdited();
-		
+
 		if(mFEx.isTrainingEntryFinished(mTrainingEntry)){
 			showExerciseFinishedDialog();
 		}
-	}	
-	
-	
+	}
+
+
 	private void trainingEntryEdited(){
 		FExDetailFragment fragment = (FExDetailFragment) mActivity.getSupportFragmentManager().findFragmentById(R.id.exercise_detail_container);
 		fragment.onEntryEdited(this.mFEx);
@@ -192,11 +195,11 @@ public class TrainingEntryListAdapter extends BaseAdapter {
 
 	/**
 	 * Shows DialogFragmentAddEntry with the given {@link FSet}.
-	 * 
+	 *
 	 * @param set
 	 *            The FSet to edit. If it is null a new FSet will be added to
 	 *            the TrainingEntry.
-	 * 
+	 *
 	 * @see DialogFragmentAddEntry#newInstance(FitnessExercise, FSet)
 	 */
 	private void showDialog(FSet set, int setPosition) {
@@ -211,7 +214,7 @@ public class TrainingEntryListAdapter extends BaseAdapter {
 		DialogFragment newFragment = DialogFragmentAddEntry.newInstance(mFEx, set, setPosition, mTrainingEntry);
 		newFragment.show(ft, "dialog");
 	}
-	
+
 	private void showExerciseFinishedDialog(){
 		AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
 		builder.setTitle(mActivity.getString(R.string.exercise_finished));
@@ -227,9 +230,9 @@ public class TrainingEntryListAdapter extends BaseAdapter {
 			}
 		});
 
-		
+
 		builder.create().show();
 	}
-	
+
 
 }

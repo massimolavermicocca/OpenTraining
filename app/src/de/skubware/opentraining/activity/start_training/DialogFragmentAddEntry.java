@@ -1,21 +1,21 @@
 /**
- * 
+ *
  * This is OpenTraining, an Android application for planning your your fitness training.
  * Copyright (C) 2012-2014 Christian Skubich
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  */
 
 package de.skubware.opentraining.activity.start_training;
@@ -48,7 +48,7 @@ import android.widget.TextView;
 /**
  * Dialog Fragment that adds or edits an {@link TrainingEntry}/ of an
  * {@link FitnessExercise}.
- * 
+ *
  */
 public class DialogFragmentAddEntry extends DialogFragment {
 	/** Tag for logging */
@@ -62,7 +62,7 @@ public class DialogFragmentAddEntry extends DialogFragment {
 
 	/** ID for argument (position of the FSet in the list) */
 	public static String ARG_ID_FSET_POSITION = "fset_position";
-	
+
 	/** ID for optional argument ({@link TrainingEntry}) */
 	public static String ARG_ID_TRAINING_ENTRY = "trainingentry";
 
@@ -74,7 +74,7 @@ public class DialogFragmentAddEntry extends DialogFragment {
 
 	/** Currently edited {@link FSet} */
 	private FSet mFSet;
-	
+
 	/** The position of {@link #mFSet} in {@link #mTrainingEntry} */
 	private int mFSetPosition;
 
@@ -85,12 +85,15 @@ public class DialogFragmentAddEntry extends DialogFragment {
 	private CheckBox checkbox_duration;
 	private CheckBox checkbox_weight;
 	private CheckBox checkbox_repetitions;
-	
+
 	enum EntryAction{
 		CREATING_ENTRY, EDITING_ENTRY;
 	}
 	private EntryAction mState;
 
+	/**
+	 * @interface Callbacks
+	 */
 	public interface Callbacks {
 		/**
 		 * Callback for when an item has been changed.
@@ -100,20 +103,20 @@ public class DialogFragmentAddEntry extends DialogFragment {
 
 	/**
 	 * Create a new instance of DialogFragmentAddEntry.
-	 * 
+	 *
 	 * @param fEx
 	 *            The {@link FitnessExercise} that should be edited
 	 * @param set
 	 *            Optional parameter, the {@link FSet} that should be edited. If
 	 *            this is null a new FSet will be added to the
 	 *            {@link TrainingEntry}
- 	 * @param setPosition
+	 * @param setPosition
 	 *			  The position of FSet in the TrainingEntry. Will only be used, if the set is edited
 	 * @param trainingEntry
 	 *            Optional parameter, the {@link TrainingEntry} that should be
 	 *            edited. If this is null the latest TrainingEntry will be
 	 *            chosen.
-	 * 
+	 *
 	 * @return The DialogFragment
 	 */
 	static DialogFragmentAddEntry newInstance(FitnessExercise fEx, FSet set, int setPosition, TrainingEntry trainingEntry) {
@@ -150,7 +153,7 @@ public class DialogFragmentAddEntry extends DialogFragment {
 			mTrainingEntry = latestEntry;
 			mState = EntryAction.CREATING_ENTRY;
 		}
-		
+
 		if(mFSet==null){
 			Log.v(TAG, "Argument for mFSet was null.");
 			mState = EntryAction.CREATING_ENTRY;
@@ -178,7 +181,7 @@ public class DialogFragmentAddEntry extends DialogFragment {
 
 		setSpinners();
 
-		
+
 		// show different text, if an entry is edited(not created)
 		TextView tw = (TextView)v.findViewById(R.id.textview_entryaction);
 		if(mState == EntryAction.EDITING_ENTRY){
@@ -187,7 +190,7 @@ public class DialogFragmentAddEntry extends DialogFragment {
 			tw.setText(getActivity().getString(R.string.add_entry));
 		}
 
-		
+
 		return new AlertDialog.Builder(getActivity()).setTitle(DateFormat.getInstance().format(mTrainingEntry.getDate())).setView(v)
 				.setCancelable(true).setPositiveButton(getString(R.string.save_entry), new DialogInterface.OnClickListener() {
 					@Override
@@ -255,15 +258,15 @@ public class DialogFragmentAddEntry extends DialogFragment {
 		int val = Integer.parseInt((String) spinner_duration.getSelectedItem());
 
 		switch (spinner_duration_unit.getSelectedItemPosition()) {
-		case 0: // seconds
-			break;
-		case 2: // hours
-			val = 60 * val; // no break!
-		case 1: // minutes
-			val = 60 * val;
-			break;
-		default:
-			Log.e(TAG, "Unknown choice.");
+			case 0: // seconds
+				break;
+			case 2: // hours
+				val = 60 * val; // no break!
+			case 1: // minutes
+				val = 60 * val;
+				break;
+			default:
+				Log.e(TAG, "Unknown choice.");
 		}
 		return val;
 	}
@@ -360,7 +363,7 @@ public class DialogFragmentAddEntry extends DialogFragment {
 		for (int i = 6000; i <= 200000; i += 1000) {
 			weightList.add(i / 1000 + "," + i % 1000 + " kg");
 		}
-		
+
 		for (int i = 205000; i <= 400000; i += 5000) {
 			weightList.add(i / 1000 + "," + i % 1000 + " kg");
 		}
@@ -368,7 +371,7 @@ public class DialogFragmentAddEntry extends DialogFragment {
 		for (int i = 410000; i <= 500000; i += 10000) {
 			weightList.add(i / 1000 + "," + i % 1000 + " kg");
 		}
-		
+
 		ArrayAdapter<String> weightAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, weightList);
 		weightAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinner_weight.setAdapter(weightAdapter);

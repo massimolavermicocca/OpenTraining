@@ -1,21 +1,21 @@
 /**
- * 
+ *
  * This is OpenTraining, an Android application for planning your your fitness training.
  * Copyright (C) 2012-2014 Christian Skubich
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  */
 
 package de.skubware.opentraining.activity.start_training;
@@ -42,6 +42,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TextView.BufferType;
 
+/**
+ * @class FExListAdapter
+ */
 public class FExListAdapter extends BaseAdapter {
 
 	private FragmentActivity mActivity;
@@ -67,7 +70,7 @@ public class FExListAdapter extends BaseAdapter {
 			mFitnessExerciseList = new ArrayList<FitnessExercise>();
 		}
 
-			
+
 	}
 
 	public int getCount() {
@@ -85,21 +88,21 @@ public class FExListAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View vi = convertView;
 		FitnessExercise fEx = (FitnessExercise) getItem(position);
-		
+
 		if(fEx.isTrainingEntryFinished(fEx.getLastTrainingEntry())){
 			vi = mInflater.inflate(R.layout.list_row_fex_done, null);
 		}else{
-			vi = mInflater.inflate(R.layout.list_row_fex, null);	
+			vi = mInflater.inflate(R.layout.list_row_fex, null);
 			int unfinished = calculateUnfinishedTrainingEntries(fEx);
-			
+
 			TextView textview_remaining_sets =(TextView) vi.findViewById(R.id.textview_remaining_sets);
 			textview_remaining_sets.setText(mActivity.getString(R.string.remaining_sets) + " "+ unfinished);
 		}
-		
+
 		final ImageView imageview_ex_image = (ImageView) vi.findViewById(R.id.imageview_ex_image);
 		DataHelper data = new DataHelper(mActivity);
 		// Images
-		if (!fEx.getImagePaths().isEmpty()) {		
+		if (!fEx.getImagePaths().isEmpty()) {
 			String icon = fEx.getImagePaths().get(0).toString();
 			icon = icon.replace(".", "_icon.");
 			Drawable iconDrawable = data.getDrawable(icon);
@@ -111,10 +114,10 @@ public class FExListAdapter extends BaseAdapter {
 			// set default image if no image can be found
 			imageview_ex_image.setImageResource(R.drawable.ic_launcher);
 		}
-		
-		
+
+
 		TextView textview_exercise_name = (TextView) vi.findViewById(R.id.textview_exercise_name);
-		
+
 		String ex_name = fEx.getLocalizedName();
 		textview_exercise_name.setText(ex_name, BufferType.SPANNABLE);
 
