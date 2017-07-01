@@ -86,13 +86,13 @@ public class ExerciseImageListAdapter extends BaseAdapter{
 				= new Parcelable.Creator<ImageData>() {
 
 			@Override
-			public ImageData createFromParcel(Parcel new_parcel) {
-				return new ImageData(new_parcel);
+			public ImageData createFromParcel(Parcel new_parc) {
+				return new ImageData(new_parc);
 			}
 
 			@Override
-			public ImageData[] newArray(int new_size) {
-				return new ImageData[new_size];
+			public ImageData[] newArray(int sz) {
+				return new ImageData[sz];
 			}
 		};
 
