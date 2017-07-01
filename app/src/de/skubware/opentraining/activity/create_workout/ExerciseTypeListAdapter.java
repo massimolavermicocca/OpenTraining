@@ -20,16 +20,17 @@
 
 package de.skubware.opentraining.activity.create_workout;
 
+import android.app.Activity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import de.skubware.opentraining.basic.ExerciseType;
 import de.skubware.opentraining.basic.FitnessExercise;
 import de.skubware.opentraining.basic.Workout;
-import android.app.Activity;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 
 /**
  * An ArrayAdapter used in {@link ExerciseTypeListFragment}. Had to use a custom

@@ -20,15 +20,6 @@
 
 package de.skubware.opentraining.activity.start_training;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-
-import de.skubware.opentraining.R;
-import de.skubware.opentraining.basic.FSet;
-import de.skubware.opentraining.basic.FSet.SetParameter;
-import de.skubware.opentraining.basic.FitnessExercise;
-import de.skubware.opentraining.basic.TrainingEntry;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -44,6 +35,16 @@ import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+
+import de.skubware.opentraining.R;
+import de.skubware.opentraining.basic.FSet;
+import de.skubware.opentraining.basic.FSet.SetParameter;
+import de.skubware.opentraining.basic.FitnessExercise;
+import de.skubware.opentraining.basic.TrainingEntry;
 
 
 /**

@@ -19,6 +19,14 @@
  */
 package de.skubware.opentraining.activity.settings.sync;
 
+import android.content.Context;
+import android.os.Bundle;
+import android.util.Log;
+import android.util.SparseArray;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -32,13 +40,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.content.Context;
-import android.os.Bundle;
-import android.util.Log;
-import android.util.SparseArray;
 import de.skubware.opentraining.basic.ExerciseType;
 import de.skubware.opentraining.basic.License;
 import de.skubware.opentraining.basic.License.LicenseType;

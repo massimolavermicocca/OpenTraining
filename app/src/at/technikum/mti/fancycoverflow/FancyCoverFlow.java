@@ -17,16 +17,18 @@
 
 package at.technikum.mti.fancycoverflow;
 
-import de.skubware.opentraining.R;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.*;
+import android.graphics.Camera;
+import android.graphics.Matrix;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Transformation;
 import android.widget.Gallery;
 import android.widget.SpinnerAdapter;
+
+import de.skubware.opentraining.R;
 
 /**
  * @class FancyCoverFlow

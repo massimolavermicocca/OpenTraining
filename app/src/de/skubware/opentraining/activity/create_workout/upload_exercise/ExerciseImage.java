@@ -1,8 +1,8 @@
 package de.skubware.opentraining.activity.create_workout.upload_exercise;
 
-import java.io.File;
-
 import android.content.Context;
+
+import java.io.File;
 
 import de.skubware.opentraining.basic.License;
 import de.skubware.opentraining.db.IDataProvider;

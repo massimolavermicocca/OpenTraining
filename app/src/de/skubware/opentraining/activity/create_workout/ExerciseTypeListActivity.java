@@ -20,12 +20,6 @@
 
 package de.skubware.opentraining.activity.create_workout;
 
-import de.skubware.opentraining.R;
-import de.skubware.opentraining.activity.create_exercise.CreateExerciseActivity;
-import de.skubware.opentraining.basic.ExerciseType;
-import de.skubware.opentraining.basic.Workout;
-import de.skubware.opentraining.db.DataProvider;
-import de.skubware.opentraining.db.IDataProvider;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -42,6 +36,13 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import de.skubware.opentraining.R;
+import de.skubware.opentraining.activity.create_exercise.CreateExerciseActivity;
+import de.skubware.opentraining.basic.ExerciseType;
+import de.skubware.opentraining.basic.Workout;
+import de.skubware.opentraining.db.DataProvider;
+import de.skubware.opentraining.db.IDataProvider;
 
 /**
  * An activity representing a list of ExerciseTypes. This activity has different

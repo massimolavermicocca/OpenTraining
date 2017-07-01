@@ -20,6 +20,13 @@
 
 package de.skubware.opentraining.activity.settings.sync;
 
+import android.util.Log;
+import android.util.SparseArray;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,13 +35,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.util.Log;
-import android.util.SparseArray;
 
 import de.skubware.opentraining.basic.ExerciseType;
 import de.skubware.opentraining.basic.ExerciseType.ExerciseSource;

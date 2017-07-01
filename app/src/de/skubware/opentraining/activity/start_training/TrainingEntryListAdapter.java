@@ -20,26 +20,13 @@
 
 package de.skubware.opentraining.activity.start_training;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
-import de.skubware.opentraining.R;
-import de.skubware.opentraining.basic.FSet;
-import de.skubware.opentraining.basic.FSet.SetParameter;
-import de.skubware.opentraining.basic.FitnessExercise;
-import de.skubware.opentraining.basic.TrainingEntry;
-
 import android.app.AlertDialog;
-import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.NotificationCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -48,6 +35,12 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import de.skubware.opentraining.R;
+import de.skubware.opentraining.basic.FSet;
+import de.skubware.opentraining.basic.FSet.SetParameter;
+import de.skubware.opentraining.basic.FitnessExercise;
+import de.skubware.opentraining.basic.TrainingEntry;
 
 /**
  * @class TrainingEntryListAdapter

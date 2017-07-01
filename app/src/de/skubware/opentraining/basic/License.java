@@ -20,11 +20,11 @@
 
 package de.skubware.opentraining.basic;
 
+import android.util.Log;
+
 import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
-
-import android.util.Log;
 
 /**
  * Class for representing the license of an image. Currently not used, will be

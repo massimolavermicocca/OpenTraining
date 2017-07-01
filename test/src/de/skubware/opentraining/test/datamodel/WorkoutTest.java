@@ -21,12 +21,13 @@
 package de.skubware.opentraining.test.datamodel;
 
 import android.test.AndroidTestCase;
+
 import de.skubware.opentraining.basic.ExerciseType;
+import de.skubware.opentraining.basic.ExerciseType.ExerciseSource;
 import de.skubware.opentraining.basic.FSet;
+import de.skubware.opentraining.basic.FSet.SetParameter.*;
 import de.skubware.opentraining.basic.FitnessExercise;
 import de.skubware.opentraining.basic.Workout;
-import de.skubware.opentraining.basic.ExerciseType.ExerciseSource;
-import de.skubware.opentraining.basic.FSet.SetParameter.*;
 
 /**
  * Tests for {@link WorkoutTest}.

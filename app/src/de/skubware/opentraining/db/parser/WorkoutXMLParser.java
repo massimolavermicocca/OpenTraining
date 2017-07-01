@@ -20,21 +20,17 @@
 
 package de.skubware.opentraining.db.parser;
 
-import javax.xml.parsers.*;
-
-import org.xml.sax.*;
-import org.xml.sax.helpers.*;
-
 import android.content.Context;
 import android.util.Log;
 
-import de.skubware.opentraining.basic.*;
-import de.skubware.opentraining.basic.ExerciseType.ExerciseSource;
-import de.skubware.opentraining.basic.FSet.SetParameter;
-import de.skubware.opentraining.db.DataProvider;
-import de.skubware.opentraining.db.IDataProvider;
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -42,6 +38,19 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+import de.skubware.opentraining.basic.ExerciseType;
+import de.skubware.opentraining.basic.ExerciseType.ExerciseSource;
+import de.skubware.opentraining.basic.FSet;
+import de.skubware.opentraining.basic.FSet.SetParameter;
+import de.skubware.opentraining.basic.FitnessExercise;
+import de.skubware.opentraining.basic.TrainingEntry;
+import de.skubware.opentraining.basic.Workout;
+import de.skubware.opentraining.db.DataProvider;
+import de.skubware.opentraining.db.IDataProvider;
 
 /**
  * An implementation of a SaxParser for parsing .xml files to a {@link Workout}

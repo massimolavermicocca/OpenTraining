@@ -20,7 +20,8 @@
 
 package de.skubware.opentraining.basic;
 
-import java.util.*;
+import java.util.List;
+import java.util.Locale;
 
 /**
  * @class SportsEquipment

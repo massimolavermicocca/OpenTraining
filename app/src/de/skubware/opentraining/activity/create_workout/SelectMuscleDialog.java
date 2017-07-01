@@ -20,7 +20,6 @@
 
 package de.skubware.opentraining.activity.create_workout;
 
-import java.util.HashMap;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -37,6 +36,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.ImageView;
+
+import java.util.HashMap;
+
 import de.skubware.opentraining.R;
 import de.skubware.opentraining.basic.Muscle;
 import de.skubware.opentraining.db.DataProvider;

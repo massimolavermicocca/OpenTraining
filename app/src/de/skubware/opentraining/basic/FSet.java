@@ -20,12 +20,12 @@
 
 package de.skubware.opentraining.basic;
 
+import android.util.Log;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import android.util.Log;
 
 import de.skubware.opentraining.Exceptions.ErrorException;
 

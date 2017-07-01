@@ -20,21 +20,6 @@
 
 package de.skubware.opentraining.activity.create_workout.upload_exercise;
 
-import java.io.UnsupportedEncodingException;
-import java.util.Locale;
-import java.util.Map;
-
-import retrofit.RequestInterceptor;
-import retrofit.RestAdapter;
-import retrofit.RetrofitError;
-import retrofit.RequestInterceptor.RequestFacade;
-import retrofit.RestAdapter.LogLevel;
-import retrofit.android.AndroidLog;
-import retrofit.client.Response;
-import retrofit.converter.GsonConverter;
-import retrofit.mime.MimeUtil;
-import retrofit.mime.TypedByteArray;
-import retrofit.mime.TypedInput;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -47,21 +32,31 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSerializer;
 
+import java.io.UnsupportedEncodingException;
+import java.util.Locale;
+import java.util.Map;
+
 import de.skubware.opentraining.BuildConfig;
 import de.skubware.opentraining.R;
 import de.skubware.opentraining.activity.create_workout.ExerciseTypeDetailFragment;
 import de.skubware.opentraining.basic.ExerciseType;
 import de.skubware.opentraining.basic.Muscle;
 import de.skubware.opentraining.basic.SportsEquipment;
-import de.skubware.opentraining.db.rest.ExerciseImageGSONSerializer;
 import de.skubware.opentraining.db.rest.ExerciseTypeGSONSerializer;
-import de.skubware.opentraining.db.rest.LanguageGSONDeserializer;
-import de.skubware.opentraining.db.rest.MuscleGSONDeserializer;
 import de.skubware.opentraining.db.rest.ServerModel;
-import de.skubware.opentraining.db.rest.SportsEquipmentGSONDeserializer;
 import de.skubware.opentraining.db.rest.ServerModel.Equipment;
 import de.skubware.opentraining.db.rest.ServerModel.Language;
 import de.skubware.opentraining.db.rest.ServerModel.MuscleCategory;
+import retrofit.RequestInterceptor;
+import retrofit.RestAdapter;
+import retrofit.RestAdapter.LogLevel;
+import retrofit.RetrofitError;
+import retrofit.android.AndroidLog;
+import retrofit.client.Response;
+import retrofit.converter.GsonConverter;
+import retrofit.mime.MimeUtil;
+import retrofit.mime.TypedByteArray;
+import retrofit.mime.TypedInput;
 
 /**
  * @class UploadExerciseAsyncTask

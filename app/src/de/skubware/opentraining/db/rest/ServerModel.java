@@ -20,12 +20,13 @@
 
 package de.skubware.opentraining.db.rest;
 
+import android.content.Context;
+import android.util.Log;
+
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import android.content.Context;
-import android.util.Log;
 import de.skubware.opentraining.basic.Muscle;
 import de.skubware.opentraining.basic.SportsEquipment;
 import de.skubware.opentraining.db.DataProvider;

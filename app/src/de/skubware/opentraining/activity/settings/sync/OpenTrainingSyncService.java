@@ -20,18 +20,20 @@
 
 package de.skubware.opentraining.activity.settings.sync;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import org.json.JSONException;
-import de.skubware.opentraining.basic.ExerciseType;
-import de.skubware.opentraining.db.DataProvider;
-import de.skubware.opentraining.db.IDataProvider;
-
 import android.app.IntentService;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.ResultReceiver;
 import android.util.Log;
+
+import org.json.JSONException;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import de.skubware.opentraining.basic.ExerciseType;
+import de.skubware.opentraining.db.DataProvider;
+import de.skubware.opentraining.db.IDataProvider;
 
 /**
  * A service for syncing OpenTraining with wger.

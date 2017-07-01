@@ -20,40 +20,24 @@
 
 package de.skubware.opentraining.db.rest;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
 import android.util.Log;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.lang.reflect.Type;
+
 import de.skubware.opentraining.activity.create_workout.upload_exercise.ExerciseImage;
 import de.skubware.opentraining.basic.ExerciseType;
-import de.skubware.opentraining.basic.License;
-import de.skubware.opentraining.basic.Muscle;
-import de.skubware.opentraining.basic.SportsEquipment;
-import de.skubware.opentraining.db.DataProvider;
-import de.skubware.opentraining.db.rest.ServerModel.Equipment;
-import de.skubware.opentraining.db.rest.ServerModel.Language;
-import de.skubware.opentraining.db.rest.ServerModel.MuscleCategory;
 
 /**
  * Class for serializing {@link ExerciseType} to the wger.de-JSON-format.

@@ -21,6 +21,7 @@
 package de.skubware.opentraining.test.datamodel;
 
 import android.test.AndroidTestCase;
+
 import de.skubware.opentraining.basic.FSet;
 import de.skubware.opentraining.basic.FSet.SetParameter;
 import de.skubware.opentraining.basic.FSet.SetParameter.*;

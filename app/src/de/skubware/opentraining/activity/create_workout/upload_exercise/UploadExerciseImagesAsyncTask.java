@@ -20,15 +20,16 @@
 
 package de.skubware.opentraining.activity.create_workout.upload_exercise;
 
-import retrofit.RestAdapter;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+
 import de.skubware.opentraining.basic.ExerciseType;
 import de.skubware.opentraining.db.rest.ExerciseImageGSONSerializer;
+import retrofit.RestAdapter;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 /**
  * @class UploadExerciseImagesAsyncTask

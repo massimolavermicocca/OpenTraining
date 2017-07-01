@@ -21,10 +21,12 @@
 package de.skubware.opentraining.activity.acra;
 
 
-import org.acra.*;
-import org.acra.annotation.*;
-
 import android.app.Application;
+
+import org.acra.ACRA;
+import org.acra.ReportingInteractionMode;
+import org.acra.annotation.ReportsCrashes;
+
 import de.skubware.opentraining.BuildConfig;
 import de.skubware.opentraining.R;
 

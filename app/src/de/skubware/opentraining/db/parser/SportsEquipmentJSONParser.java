@@ -20,15 +20,15 @@
 
 package de.skubware.opentraining.db.parser;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.util.Log;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 import de.skubware.opentraining.basic.SportsEquipment;
 

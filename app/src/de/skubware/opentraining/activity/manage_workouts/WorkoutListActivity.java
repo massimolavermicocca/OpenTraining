@@ -20,16 +20,6 @@
 
 package de.skubware.opentraining.activity.manage_workouts;
 
-import java.io.File;
-import java.util.HashSet;
-import java.util.Set;
-
-import de.skubware.opentraining.R;
-import de.skubware.opentraining.basic.Workout;
-import de.skubware.opentraining.db.DataProvider;
-import de.skubware.opentraining.db.IDataProvider;
-import de.skubware.opentraining.db.parser.WorkoutXMLParser;
-
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
@@ -41,6 +31,16 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.widget.Toast;
+
+import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
+
+import de.skubware.opentraining.R;
+import de.skubware.opentraining.basic.Workout;
+import de.skubware.opentraining.db.DataProvider;
+import de.skubware.opentraining.db.IDataProvider;
+import de.skubware.opentraining.db.parser.WorkoutXMLParser;
 
 /**
  * An activity representing a list of Workouts. This activity has different

@@ -27,6 +27,7 @@ import android.text.SpannableString;
 import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
+
 import de.skubware.opentraining.R;
 
 /**

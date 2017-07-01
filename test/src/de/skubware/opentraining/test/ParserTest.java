@@ -20,6 +20,9 @@
 
 package de.skubware.opentraining.test;
 
+import android.test.AndroidTestCase;
+import android.util.Log;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,14 +34,11 @@ import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-
-import android.test.AndroidTestCase;
-import android.util.Log;
-import de.skubware.opentraining.basic.ExerciseType;
-import de.skubware.opentraining.basic.FSet;
-import de.skubware.opentraining.basic.ExerciseType.ExerciseSource;
-import de.skubware.opentraining.basic.FSet.SetParameter.*;
 import de.skubware.opentraining.basic.ExerciseTag;
+import de.skubware.opentraining.basic.ExerciseType;
+import de.skubware.opentraining.basic.ExerciseType.ExerciseSource;
+import de.skubware.opentraining.basic.FSet;
+import de.skubware.opentraining.basic.FSet.SetParameter.*;
 import de.skubware.opentraining.basic.FitnessExercise;
 import de.skubware.opentraining.basic.License;
 import de.skubware.opentraining.basic.Muscle;

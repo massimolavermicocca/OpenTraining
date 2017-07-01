@@ -20,10 +20,11 @@
 
 package de.skubware.opentraining.exporter;
 
-import java.io.IOException;
-
 import android.content.Context;
 import android.util.Log;
+
+import java.io.IOException;
+
 import de.skubware.opentraining.basic.FitnessExercise;
 import de.skubware.opentraining.basic.Workout;
 import de.skubware.opentraining.db.DataHelper;

@@ -21,8 +21,6 @@
 
 package de.skubware.opentraining.activity.create_exercise;
 
-import java.util.List;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,8 +28,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+
+import java.util.List;
+
 import de.skubware.opentraining.R;
-import de.skubware.opentraining.basic.Muscle;
 import de.skubware.opentraining.basic.Translatable;
 
 /**

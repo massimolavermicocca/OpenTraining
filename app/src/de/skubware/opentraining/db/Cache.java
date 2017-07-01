@@ -20,10 +20,10 @@
 
 package de.skubware.opentraining.db;
 
-import java.util.List;
-
 import android.content.Context;
 import android.util.Log;
+
+import java.util.List;
 
 import de.skubware.opentraining.basic.ExerciseTag;
 import de.skubware.opentraining.basic.ExerciseType;

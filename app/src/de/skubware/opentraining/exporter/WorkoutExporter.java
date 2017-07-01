@@ -20,13 +20,13 @@
 
 package de.skubware.opentraining.exporter;
 
+import android.content.Context;
+import android.util.Log;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-
-import android.content.Context;
-import android.util.Log;
 
 import de.skubware.opentraining.basic.Workout;
 
