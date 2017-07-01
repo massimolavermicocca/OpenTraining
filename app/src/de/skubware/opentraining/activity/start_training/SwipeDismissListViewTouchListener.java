@@ -186,22 +186,10 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener {
                 int x = (int) motionEvent.getRawX() - listViewCoords[0];
                 int y = (int) motionEvent.getRawY() - listViewCoords[1];
                 View child;
-                for (int i = 0; i < childCount; i++) {
-                    child = mListView.getChildAt(i);
-                    child.getHitRect(rect);
-                    if (rect.contains(x, y)) {
-                        mDownView = child;
-                        break;
-                    }
-                }
 
-                if (mDownView != null) {
-                    mDownX = motionEvent.getRawX();
-                    mDownPosition = mListView.getPositionForView(mDownView);
+                findMDownView(rect, childCount, x, y);
 
-                    mVelocityTracker = VelocityTracker.obtain();
-                    mVelocityTracker.addMovement(motionEvent);
-                }
+                checkMDownView(motionEvent);
                 view.onTouchEvent(motionEvent);
                 return true;
             }
@@ -221,34 +209,11 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener {
                 if (Math.abs(deltaX) > mViewWidth / 2) {
                     dismiss = true;
                     dismissRight = deltaX > 0;
-                } else if (mMinFlingVelocity <= velocityX && velocityX <= mMaxFlingVelocity
-                        && velocityY < velocityX) {
+                } else if (checkVelocity(velocityX, velocityY)) {
                     dismiss = true;
                     dismissRight = mVelocityTracker.getXVelocity() > 0;
                 }
-                if (dismiss) {
-                    // dismiss
-                    final View downView = mDownView; // mDownView gets null'd before animation ends
-                    final int downPosition = mDownPosition;
-                    ++mDismissAnimationRefCount;
-                    animate(mDownView)
-                            .translationX(dismissRight ? mViewWidth : -mViewWidth)
-                            .alpha(0)
-                            .setDuration(mAnimationTime)
-                            .setListener(new AnimatorListenerAdapter() {
-                                @Override
-                                public void onAnimationEnd(Animator animation) {
-                                    performDismiss(downView, downPosition);
-                                }
-                            });
-                } else {
-                    // cancel
-                    animate(mDownView)
-                            .translationX(0)
-                            .alpha(1)
-                            .setDuration(mAnimationTime)
-                            .setListener(null);
-                }
+                checkDismiss(dismiss, dismissRight);
                 mVelocityTracker = null;
                 mDownX = 0;
                 mDownView = null;
@@ -258,7 +223,7 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener {
             }
 
             case MotionEvent.ACTION_MOVE: {
-                if (mVelocityTracker == null || mPaused) {
+                if (checkPaused()) {
                     break;
                 }
 
@@ -286,6 +251,63 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener {
             }
         }
         return false;
+    }
+
+    private void checkMDownView(MotionEvent motionEvent) {
+        if (mDownView != null) {
+            mDownX = motionEvent.getRawX();
+            mDownPosition = mListView.getPositionForView(mDownView);
+
+            mVelocityTracker = VelocityTracker.obtain();
+            mVelocityTracker.addMovement(motionEvent);
+        }
+    }
+
+    private void findMDownView(Rect rect, int childCount, int x, int y) {
+        View child;
+        for (int i = 0; i < childCount; i++) {
+            child = mListView.getChildAt(i);
+            child.getHitRect(rect);
+            if (rect.contains(x, y)) {
+                mDownView = child;
+                break;
+            }
+        }
+    }
+
+    private boolean checkPaused() {
+        return mVelocityTracker == null || mPaused;
+    }
+
+    private void checkDismiss(boolean dismiss, boolean dismissRight) {
+        if (dismiss) {
+            // dismiss
+            final View downView = mDownView; // mDownView gets null'd before animation ends
+            final int downPosition = mDownPosition;
+            ++mDismissAnimationRefCount;
+            animate(mDownView)
+                    .translationX(dismissRight ? mViewWidth : -mViewWidth)
+                    .alpha(0)
+                    .setDuration(mAnimationTime)
+                    .setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            performDismiss(downView, downPosition);
+                        }
+                    });
+        } else {
+            // cancel
+            animate(mDownView)
+                    .translationX(0)
+                    .alpha(1)
+                    .setDuration(mAnimationTime)
+                    .setListener(null);
+        }
+    }
+
+    private boolean checkVelocity(float velocityX, float velocityY) {
+        return mMinFlingVelocity <= velocityX && velocityX <= mMaxFlingVelocity
+                && velocityY < velocityX;
     }
 
     class PendingDismissData implements Comparable<PendingDismissData> {
