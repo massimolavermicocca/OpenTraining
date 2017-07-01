@@ -64,7 +64,6 @@ public class ACRAFeedbackMailer implements ReportSender {
 			httpPost.setEntity(new UrlEncodedFormEntity(parameters, HTTP.UTF_8));
 			httpClient.execute(httpPost);
 			
-			
 			// set the crash report sender again after sending the feedback
 			ACRA.getErrorReporter().removeAllReportSenders();
 	        ACRA.getErrorReporter().setReportSender(new ACRACrashReportMailer());
