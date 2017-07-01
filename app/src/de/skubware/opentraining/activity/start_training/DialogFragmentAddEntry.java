@@ -197,18 +197,7 @@ public class DialogFragmentAddEntry extends DialogFragment {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						List<SetParameter> setParameters = new ArrayList<SetParameter>();
-						if (checkbox_duration.isChecked()) {
-							SetParameter.Duration duration = new SetParameter.Duration(getDurationValue());
-							setParameters.add(duration);
-						}
-						if (checkbox_weight.isChecked()) {
-							SetParameter.Weight weight = new SetParameter.Weight(getWeightValue());
-							setParameters.add(weight);
-						}
-						if (checkbox_repetitions.isChecked()) {
-							SetParameter.Repetition repetition = new SetParameter.Repetition(getRepetitionValue());
-							setParameters.add(repetition);
-						}
+						analyze(setParameters);
 
 						// if no SetParameter has been chosen, the FSet
 						// must not be created or even has to be deleted
@@ -216,8 +205,7 @@ public class DialogFragmentAddEntry extends DialogFragment {
 							if (mFSet != null) {
 								// delete existing FSet
 								boolean success = mTrainingEntry.getFSetList().remove(mFSet);
-								if(!success)
-									Log.e(TAG, "Could not delete FSet:\n " + mFSet.toString() + "\n in TrainingEntry:\n " + mTrainingEntry.toDebugString());
+								checkSuccess(success);
 							} else {
 								// do nothing
 								dialog.dismiss();
@@ -253,6 +241,26 @@ public class DialogFragmentAddEntry extends DialogFragment {
 						dialog.dismiss();
 					}
 				}).create();
+	}
+
+	private void checkSuccess(boolean success) {
+		if(!success)
+            Log.e(TAG, "Could not delete FSet:\n " + mFSet.toString() + "\n in TrainingEntry:\n " + mTrainingEntry.toDebugString());
+	}
+
+	private void analyze(List<SetParameter> setParameters) {
+		if (checkbox_duration.isChecked()) {
+            SetParameter.Duration duration = new SetParameter.Duration(getDurationValue());
+            setParameters.add(duration);
+        }
+		if (checkbox_weight.isChecked()) {
+            SetParameter.Weight weight = new SetParameter.Weight(getWeightValue());
+            setParameters.add(weight);
+        }
+		if (checkbox_repetitions.isChecked()) {
+            SetParameter.Repetition repetition = new SetParameter.Repetition(getRepetitionValue());
+            setParameters.add(repetition);
+        }
 	}
 
 	private int getDurationValue() {
