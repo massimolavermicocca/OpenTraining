@@ -247,7 +247,7 @@ class FancyCoverFlowItemWrapper extends ViewGroup {
         matrix.postScale(1, -1);
 
 
-        final int scaledDownHeight = (int) (height * originalScaledownFactor);
+        final int scaledDownHeight = Math.round(height * originalScaledownFactor);
         final int invertedHeight = height - scaledDownHeight - reflectionGap;
         final int invertedBitmapSourceTop = scaledDownHeight - invertedHeight;
         final Bitmap invertedBitmap = Bitmap.createBitmap(this.wrappedViewBitmap, 0, invertedBitmapSourceTop, width, invertedHeight, matrix, true);
