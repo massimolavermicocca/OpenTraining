@@ -20,6 +20,10 @@
 
 package de.skubware.opentraining.db;
 
+import android.content.Context;
+import android.support.v7.widget.ShareActionProvider;
+import android.util.Log;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FilenameFilter;
@@ -46,9 +50,6 @@ import de.skubware.opentraining.db.parser.MuscleJSONParser;
 import de.skubware.opentraining.db.parser.SportsEquipmentJSONParser;
 import de.skubware.opentraining.db.parser.WorkoutXMLParser;
 import de.skubware.opentraining.db.parser.XMLSaver;
-import android.content.Context;
-import android.support.v7.widget.ShareActionProvider;
-import android.util.Log;
 
 /**
  * Implementation of {@link IDataProvider}.

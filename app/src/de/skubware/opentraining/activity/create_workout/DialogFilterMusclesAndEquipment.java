@@ -20,13 +20,6 @@
 
 package de.skubware.opentraining.activity.create_workout;
 
-import java.util.List;
-
-import de.skubware.opentraining.R;
-import de.skubware.opentraining.basic.Muscle;
-import de.skubware.opentraining.basic.SportsEquipment;
-import de.skubware.opentraining.db.DataProvider;
-import de.skubware.opentraining.db.IDataProvider;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -39,6 +32,14 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TabHost;
+
+import java.util.List;
+
+import de.skubware.opentraining.R;
+import de.skubware.opentraining.basic.Muscle;
+import de.skubware.opentraining.basic.SportsEquipment;
+import de.skubware.opentraining.db.DataProvider;
+import de.skubware.opentraining.db.IDataProvider;
 
 /**
  * A dialog for selecting the {@link Muscle}s and {@link SportsEquipment} that

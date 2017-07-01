@@ -20,6 +20,8 @@
 
 package de.skubware.opentraining.db.parser;
 
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -30,8 +32,6 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringWriter;
 import java.io.Writer;
-
-import android.util.Log;
 
 /**
  * Superclass for JSON Parser that implements {@link IParser}.

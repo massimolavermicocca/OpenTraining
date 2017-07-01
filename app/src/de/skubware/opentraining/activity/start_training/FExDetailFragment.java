@@ -21,9 +21,6 @@
 package de.skubware.opentraining.activity.start_training;
 
 
-import java.util.Collections;
-import java.util.List;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -46,6 +43,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import java.util.Collections;
+import java.util.List;
+
 import de.skubware.opentraining.R;
 import de.skubware.opentraining.activity.create_workout.ExerciseDetailOnGestureListener;
 import de.skubware.opentraining.basic.FSet;

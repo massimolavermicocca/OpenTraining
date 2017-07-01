@@ -20,8 +20,6 @@
 
 package de.skubware.opentraining.activity.create_workout;
 
-import org.acra.ACRA;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -33,6 +31,9 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+
+import org.acra.ACRA;
+
 import de.skubware.opentraining.R;
 import de.skubware.opentraining.activity.acra.ACRAFeedbackMailer;
 import de.skubware.opentraining.activity.acra.RequestExerciseUpdate;

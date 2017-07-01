@@ -21,18 +21,19 @@
 
 package de.skubware.opentraining.activity.create_exercise;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
-import de.skubware.opentraining.R;
-import de.skubware.opentraining.activity.start_training.SwipeDismissListViewTouchListener;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import de.skubware.opentraining.R;
+import de.skubware.opentraining.activity.start_training.SwipeDismissListViewTouchListener;
 
 
 /**

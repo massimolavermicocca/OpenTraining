@@ -21,9 +21,6 @@
 
 package de.skubware.opentraining.activity.start_training;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -35,6 +32,10 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
 import de.skubware.opentraining.R;
 
 /**

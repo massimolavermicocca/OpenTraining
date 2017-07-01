@@ -20,16 +20,6 @@
 
 package de.skubware.opentraining.activity;
 
-import java.util.List;
-
-import de.skubware.opentraining.R;
-import de.skubware.opentraining.activity.create_workout.ExerciseTypeListActivity;
-import de.skubware.opentraining.activity.manage_workouts.WorkoutListActivity;
-import de.skubware.opentraining.activity.settings.SettingsActivity;
-import de.skubware.opentraining.basic.Workout;
-import de.skubware.opentraining.db.Cache;
-import de.skubware.opentraining.db.DataProvider;
-import de.skubware.opentraining.db.IDataProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -44,7 +34,18 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Toast;
+
+import java.util.List;
+
 import at.technikum.mti.fancycoverflow.FancyCoverFlow;
+import de.skubware.opentraining.R;
+import de.skubware.opentraining.activity.create_workout.ExerciseTypeListActivity;
+import de.skubware.opentraining.activity.manage_workouts.WorkoutListActivity;
+import de.skubware.opentraining.activity.settings.SettingsActivity;
+import de.skubware.opentraining.basic.Workout;
+import de.skubware.opentraining.db.Cache;
+import de.skubware.opentraining.db.DataProvider;
+import de.skubware.opentraining.db.IDataProvider;
 
 /**
  * @class MainActivity

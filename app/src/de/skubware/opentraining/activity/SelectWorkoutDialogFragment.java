@@ -20,6 +20,16 @@
 
 package de.skubware.opentraining.activity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+
 import java.util.Calendar;
 import java.util.List;
 
@@ -31,15 +41,6 @@ import de.skubware.opentraining.basic.TrainingEntry;
 import de.skubware.opentraining.basic.Workout;
 import de.skubware.opentraining.db.DataProvider;
 import de.skubware.opentraining.db.IDataProvider;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 
 /**
  * Dialog Fragment for choosing a {@link Workout} before starting training.

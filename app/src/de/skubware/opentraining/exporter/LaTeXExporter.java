@@ -20,11 +20,13 @@
 
 package de.skubware.opentraining.exporter;
 
-import java.io.*;
-
-import de.skubware.opentraining.basic.*;
-
 import android.content.Context;
+
+import java.io.FileNotFoundException;
+
+import de.skubware.opentraining.basic.FSet;
+import de.skubware.opentraining.basic.FitnessExercise;
+import de.skubware.opentraining.basic.Workout;
 
 /**
  * A LaTeX Exporter class.

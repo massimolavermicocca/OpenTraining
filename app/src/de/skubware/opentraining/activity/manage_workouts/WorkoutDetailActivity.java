@@ -20,12 +20,13 @@
 
 package de.skubware.opentraining.activity.manage_workouts;
 
-import de.skubware.opentraining.R;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
+
+import de.skubware.opentraining.R;
 
 /**
  * An activity representing a single Workout detail screen. This activity is

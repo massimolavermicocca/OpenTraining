@@ -20,16 +20,6 @@
 
 package de.skubware.opentraining.activity.create_workout;
 
-import java.io.File;
-import java.io.FilenameFilter;
-import java.util.HashSet;
-import java.util.Set;
-
-import de.skubware.opentraining.R;
-import de.skubware.opentraining.basic.FitnessExercise;
-import de.skubware.opentraining.basic.Workout;
-import de.skubware.opentraining.db.DataProvider;
-import de.skubware.opentraining.db.IDataProvider;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -46,6 +36,17 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import java.io.File;
+import java.io.FilenameFilter;
+import java.util.HashSet;
+import java.util.Set;
+
+import de.skubware.opentraining.R;
+import de.skubware.opentraining.basic.FitnessExercise;
+import de.skubware.opentraining.basic.Workout;
+import de.skubware.opentraining.db.DataProvider;
+import de.skubware.opentraining.db.IDataProvider;
 
 /**
  * Dialog Fragment that shows dialog when a {@link Workout} should be saved.

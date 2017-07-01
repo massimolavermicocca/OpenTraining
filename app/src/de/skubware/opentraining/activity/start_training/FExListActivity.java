@@ -21,15 +21,16 @@ package de.skubware.opentraining.activity.start_training;
  */
 
 
-import de.skubware.opentraining.R;
-import de.skubware.opentraining.basic.FitnessExercise;
-import de.skubware.opentraining.basic.Workout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.MenuItem;
+
+import de.skubware.opentraining.R;
+import de.skubware.opentraining.basic.FitnessExercise;
+import de.skubware.opentraining.basic.Workout;
 
 /**
  * An activity representing a list of Exercise. This activity has different

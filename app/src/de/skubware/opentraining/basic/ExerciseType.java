@@ -20,13 +20,24 @@
 
 package de.skubware.opentraining.basic;
 
+import android.util.Log;
+
 import java.io.File;
 import java.io.Serializable;
 import java.net.URL;
-import java.util.*;
-import de.skubware.opentraining.Exceptions.ErrorException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
-import android.util.Log;
+import de.skubware.opentraining.Exceptions.ErrorException;
 
 /**
  * An instance of this class represents a certain type of (fitness) exercise.

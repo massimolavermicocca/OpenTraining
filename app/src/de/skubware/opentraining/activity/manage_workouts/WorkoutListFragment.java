@@ -20,9 +20,6 @@
 
 package de.skubware.opentraining.activity.manage_workouts;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -33,6 +30,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import de.skubware.opentraining.R;
 import de.skubware.opentraining.basic.Workout;

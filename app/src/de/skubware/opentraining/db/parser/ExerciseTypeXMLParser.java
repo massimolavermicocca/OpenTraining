@@ -21,21 +21,15 @@
 
 package de.skubware.opentraining.db.parser;
 
-import javax.xml.parsers.*;
-
-import org.xml.sax.*;
-import org.xml.sax.helpers.*;
-
 import android.content.Context;
 import android.util.Log;
 
-import de.skubware.opentraining.basic.*;
-import de.skubware.opentraining.basic.ExerciseType.ExerciseSource;
-import de.skubware.opentraining.basic.License.LicenseType;
-import de.skubware.opentraining.db.DataProvider;
-import de.skubware.opentraining.db.IDataProvider;
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
 
-import java.io.*;
+import java.io.File;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -45,6 +39,20 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
+
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+import de.skubware.opentraining.basic.ActivationLevel;
+import de.skubware.opentraining.basic.ExerciseTag;
+import de.skubware.opentraining.basic.ExerciseType;
+import de.skubware.opentraining.basic.ExerciseType.ExerciseSource;
+import de.skubware.opentraining.basic.License;
+import de.skubware.opentraining.basic.License.LicenseType;
+import de.skubware.opentraining.basic.Muscle;
+import de.skubware.opentraining.basic.SportsEquipment;
+import de.skubware.opentraining.db.DataProvider;
+import de.skubware.opentraining.db.IDataProvider;
 
 /**
  * An implementation of a SaxParser for parsing .xml files to a ExerciseType

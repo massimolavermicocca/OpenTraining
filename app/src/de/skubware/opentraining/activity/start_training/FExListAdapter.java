@@ -20,17 +20,6 @@
 
 package de.skubware.opentraining.activity.start_training;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
-import de.skubware.opentraining.R;
-import de.skubware.opentraining.basic.FSet;
-import de.skubware.opentraining.basic.FitnessExercise;
-import de.skubware.opentraining.basic.TrainingEntry;
-import de.skubware.opentraining.basic.Workout;
-import de.skubware.opentraining.db.DataHelper;
-
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.v4.app.FragmentActivity;
@@ -41,6 +30,16 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TextView.BufferType;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import de.skubware.opentraining.R;
+import de.skubware.opentraining.basic.FSet;
+import de.skubware.opentraining.basic.FitnessExercise;
+import de.skubware.opentraining.basic.TrainingEntry;
+import de.skubware.opentraining.basic.Workout;
+import de.skubware.opentraining.db.DataHelper;
 
 /**
  * @class FExListAdapter

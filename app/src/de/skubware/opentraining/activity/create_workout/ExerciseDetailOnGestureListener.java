@@ -20,14 +20,15 @@
 
 package de.skubware.opentraining.activity.create_workout;
 
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.GestureDetector.OnGestureListener;
+import android.view.MotionEvent;
+import android.widget.ImageView;
+
 import java.io.File;
 import java.util.List;
 
-import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.MotionEvent;
-import android.view.GestureDetector.OnGestureListener;
-import android.widget.ImageView;
 import de.skubware.opentraining.basic.IExercise;
 import de.skubware.opentraining.db.DataHelper;
 

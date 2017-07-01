@@ -20,15 +20,6 @@
 
 package de.skubware.opentraining.activity.start_training;
 
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.List;
-
-import de.skubware.opentraining.R;
-import de.skubware.opentraining.basic.FSet;
-import de.skubware.opentraining.basic.FSet.SetParameter;
-import de.skubware.opentraining.basic.FitnessExercise;
-import de.skubware.opentraining.basic.TrainingEntry;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -44,6 +35,16 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ListAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.List;
+
+import de.skubware.opentraining.R;
+import de.skubware.opentraining.basic.FSet;
+import de.skubware.opentraining.basic.FSet.SetParameter;
+import de.skubware.opentraining.basic.FitnessExercise;
+import de.skubware.opentraining.basic.TrainingEntry;
 
 /**
  * Dialog Fragment that adds or edits an {@link TrainingEntry}/ of an

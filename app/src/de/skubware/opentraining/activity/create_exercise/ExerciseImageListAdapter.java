@@ -20,13 +20,6 @@
 
 package de.skubware.opentraining.activity.create_exercise;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import de.skubware.opentraining.R;
-import de.skubware.opentraining.basic.License;
-import de.skubware.opentraining.db.DataProvider;
-import de.skubware.opentraining.db.IDataProvider;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -39,6 +32,14 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import de.skubware.opentraining.R;
+import de.skubware.opentraining.basic.License;
+import de.skubware.opentraining.db.DataProvider;
+import de.skubware.opentraining.db.IDataProvider;
 
 
 /**

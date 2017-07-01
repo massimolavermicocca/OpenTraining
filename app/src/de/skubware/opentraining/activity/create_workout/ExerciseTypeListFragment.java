@@ -20,10 +20,6 @@
 
 package de.skubware.opentraining.activity.create_workout;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
@@ -34,6 +30,11 @@ import android.support.v7.widget.SearchView.OnQueryTextListener;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
 import de.skubware.opentraining.basic.ExerciseType;
 import de.skubware.opentraining.basic.Muscle;
 import de.skubware.opentraining.basic.SportsEquipment;

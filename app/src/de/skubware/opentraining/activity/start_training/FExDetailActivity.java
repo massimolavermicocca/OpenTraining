@@ -20,9 +20,10 @@
 
 package de.skubware.opentraining.activity.start_training;
 
-import de.skubware.opentraining.R;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+
+import de.skubware.opentraining.R;
 
 /**
  * An activity representing a single Exercise detail screen. This activity is

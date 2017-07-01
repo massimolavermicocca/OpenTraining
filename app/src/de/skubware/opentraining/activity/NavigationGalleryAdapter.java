@@ -20,11 +20,6 @@
 
 package de.skubware.opentraining.activity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import de.skubware.opentraining.R;
-
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -34,9 +29,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import at.technikum.mti.fancycoverflow.FancyCoverFlow;
 import at.technikum.mti.fancycoverflow.FancyCoverFlow.LayoutParams;
 import at.technikum.mti.fancycoverflow.FancyCoverFlowAdapter;
+import de.skubware.opentraining.R;
 
 /**
  * @class NavigationGalleryAdapter

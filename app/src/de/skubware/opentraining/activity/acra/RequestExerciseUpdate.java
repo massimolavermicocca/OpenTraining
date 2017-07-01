@@ -20,9 +20,9 @@
 
 package de.skubware.opentraining.activity.acra;
 
-import org.acra.ACRA;
-
 import android.content.Context;
+
+import org.acra.ACRA;
 
 import de.skubware.opentraining.R;
 import de.skubware.opentraining.basic.ExerciseType;
