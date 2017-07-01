@@ -89,6 +89,9 @@ public class WgerJSONParser {
 		JSONObject mainObject = new JSONObject(exerciseJSONString);
 		Log.d(TAG, mainObject.toString());
 		JSONArray exerciseArray = mainObject.getJSONArray("objects");
+		Map<Locale, String> translationMap = new HashMap<Locale, String>();
+		SortedSet<Muscle> muscleSet = new TreeSet<Muscle>();
+		List<File> imageList= new ArrayList<File>();
 
 		// parse each exercise of the JSON Array
 		for (int i = 0; i < exerciseArray.length(); i++) {
@@ -124,7 +127,7 @@ public class WgerJSONParser {
 			String language = jsonExercise.getString("language");
 			int languageNumber = getLastNumberOfJson(language);
 			
-			Map<Locale, String> translationMap = new HashMap<Locale, String>();
+
 			translationMap.put(localeSparseArray.get(languageNumber), name);
 			builder.translationMap(translationMap);
 			
@@ -133,7 +136,7 @@ public class WgerJSONParser {
 			
 
 			// muscles
-			SortedSet<Muscle> muscleSet = new TreeSet<Muscle>();
+
 			JSONArray muscleArray = jsonExercise.getJSONArray("muscles");
 			for (int l = 0; l < muscleArray.length(); l++) {
 				String muscleString = muscleArray.getString(l);
@@ -168,7 +171,7 @@ public class WgerJSONParser {
 			
 			builder.activatedMuscles(muscleSet);
 			// images
-			List<File> imageList= new ArrayList<File>();
+
 			JSONArray imageArray = jsonExercise.getJSONArray("images");
 			for (int l = 0; l < imageArray.length(); l++) {
 				String imageString = imageArray.getString(l);
@@ -179,6 +182,9 @@ public class WgerJSONParser {
 			
 			mNewExerciseList.add(builder.build());
 			mNewExerciseBuilderList.add(builder);
+			translationMap.clear();
+			muscleSet.clear();
+			imageList.clear();
 		}
 
 	}

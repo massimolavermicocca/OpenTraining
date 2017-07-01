@@ -69,6 +69,7 @@ public class SportsEquipmentJSONParser extends AbstractJSONParser<List<SportsEqu
 		JSONArray jsonArray;
 		try {
 			jsonArray = new JSONArray(jsonString);
+            List<String> nameList = new ArrayList<String>();
 
 			for (int i = 0; i < jsonArray.length(); i++) {
 				JSONObject SportsEquipmentObject = jsonArray.getJSONObject(i);
@@ -83,7 +84,7 @@ public class SportsEquipmentJSONParser extends AbstractJSONParser<List<SportsEqu
 						String name = languageObject.getString(TAG_NAME);
 
 						// first name is primary name, all other names are alternative names
-						List<String> nameList = new ArrayList<String>();
+
 						nameList.add(name);
 
 						// alternative names	
@@ -104,6 +105,7 @@ public class SportsEquipmentJSONParser extends AbstractJSONParser<List<SportsEqu
 							m.addNames(new Locale(locale), nameList);
 						}
 					}
+					nameList.clear();
 				}
 
 				// Log.d(TAG, "Finished parsing SportsEquipment: \n" + m.toDebugString());

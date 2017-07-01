@@ -45,6 +45,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import de.skubware.opentraining.Exceptions.ErrorException;
 import de.skubware.opentraining.basic.ExerciseTag;
 import de.skubware.opentraining.basic.ExerciseType;
 import de.skubware.opentraining.basic.FSet;
@@ -103,6 +104,7 @@ public class XMLSaver {
 			wE.setAttribute("name", w.getName());
 			wE.setAttribute("rows", Integer.toString(w.getEmptyRows()));
 
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 			for (FitnessExercise fEx : w.getFitnessExercises()) {
 				// create element for FitnessExercise
 				Element fE = doc.createElement("FitnessExercise");
@@ -137,7 +139,6 @@ public class XMLSaver {
 					
 					// save date
 					if(entry.getDate()!=null){
-						SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 						entryE.setAttribute("date", format.format(entry.getDate()));
 					}else{
 						entryE.setAttribute("date", "null");
@@ -199,6 +200,8 @@ public class XMLSaver {
 		} catch (TransformerException e) {
 			success = false;
 			Log.e(TAG, "Error during parsing Workout xml file.",e);
+		} catch (ErrorException e) {
+
 		}
 
 		return success;
@@ -283,13 +286,13 @@ public class XMLSaver {
 				exE.appendChild(urlE);
 			}
 
+			License license = new License();
 			for (File im : ex.getImagePaths()) {
 				Element imgE = doc.createElement("Image");
 				imgE.setAttribute("path", im.toString());
-				
-				License license = ex.getImageLicenseMap().get(im);
-				if(license == null){
-					license = new License();
+
+				if(ex.getImageLicenseMap().get(im) != null) {
+					license = ex.getImageLicenseMap().get(im);
 				}
 				
 				imgE.setAttribute("author", license.getAuthor());

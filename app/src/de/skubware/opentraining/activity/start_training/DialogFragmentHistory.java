@@ -40,6 +40,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import de.skubware.opentraining.Exceptions.ErrorException;
 import de.skubware.opentraining.R;
 import de.skubware.opentraining.basic.FSet;
 import de.skubware.opentraining.basic.FSet.SetParameter;
@@ -133,17 +134,20 @@ public class DialogFragmentHistory extends DialogFragment {
         ArrayList<String> xVals = new ArrayList<String>();
 
         int setParameterNumber = 0;
+        DateFormat dateformat = new SimpleDateFormat( "dd.MM" );
         for(TrainingEntry entry:mFex.getTrainingEntryList()){
             int setNumber = 0;
             for(FSet fset:entry.getFSetList()){
 
                 // skip sets that haven't been done
-                if(!entry.hasBeenDone(fset))
-                    continue;
+                try {
+                    if(!entry.hasBeenDone(fset))
+                        continue;
+                } catch (ErrorException e) {
 
-
+                }
                 // x value: date
-                DateFormat dateformat = new SimpleDateFormat( "dd.MM" );
+
                 xVals.add(dateformat.format(entry.getDate()) + " ("  + setNumber + ")");
 
                 // y values: weight, rep, duration

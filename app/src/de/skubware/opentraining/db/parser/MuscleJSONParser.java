@@ -69,6 +69,7 @@ public class MuscleJSONParser extends AbstractJSONParser<List<Muscle>> {
 		JSONArray jsonArray;
 		try {
 			jsonArray = new JSONArray(jsonString);
+			List<String> nameList = new ArrayList<String>();
 
 			for (int i = 0; i < jsonArray.length(); i++) {
 				JSONObject muscleObject = jsonArray.getJSONObject(i);
@@ -83,7 +84,7 @@ public class MuscleJSONParser extends AbstractJSONParser<List<Muscle>> {
 						String name = languageObject.getString(TAG_NAME);
 
 						// first name is primary name, all other names are alternative names
-						List<String> nameList = new ArrayList<String>();
+
 						nameList.add(name);
 
 						// alternative names	
@@ -104,6 +105,7 @@ public class MuscleJSONParser extends AbstractJSONParser<List<Muscle>> {
 							m.addNames(new Locale(locale), nameList);
 						}
 					}
+					nameList.clear();
 				}
 
 				// Log.d(TAG, "Finished parsing Muscle: \n" + m.toDebugString());

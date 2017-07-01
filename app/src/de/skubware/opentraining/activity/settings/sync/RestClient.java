@@ -130,7 +130,7 @@ class RestClient {
 		// javax.net.ssl.SSLException: hostname in certificate didn't match: <wger.de> != <vela.uberspace.de> OR <vela.uberspace.de> OR <uberspace.de> OR <*.vela.uberspace.de>
 		// issue is not too serious as no user data is exchanged at the moment
 		Log.w(TAG, "OpenTraining will accept all SSL-certificates. This issue has to be fixed before exchanging real user data.");
-		HostnameVerifier hostnameVerifier = org.apache.http.conn.ssl.SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER;
+		HostnameVerifier hostnameVerifier = SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER;
      
 		DefaultHttpClient client = new DefaultHttpClient();
 

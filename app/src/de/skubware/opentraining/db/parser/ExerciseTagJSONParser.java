@@ -63,6 +63,7 @@ public class ExerciseTagJSONParser extends AbstractJSONParser<List<ExerciseTag>>
 		JSONArray jsonArray;
 		try {
 			jsonArray = new JSONArray(jsonString);
+			List<String> nameList = new ArrayList<String>();
 
 			for (int i = 0; i < jsonArray.length(); i++) {
 				JSONObject SportsEquipmentObject = jsonArray.getJSONObject(i);
@@ -75,7 +76,7 @@ public class ExerciseTagJSONParser extends AbstractJSONParser<List<ExerciseTag>>
 
 						// name
 						String name = languageObject.getString(TAG_NAME);
-						List<String> nameList = new ArrayList<String>();
+
 						nameList.add(name);
 
 						String description = null;
@@ -96,6 +97,7 @@ public class ExerciseTagJSONParser extends AbstractJSONParser<List<ExerciseTag>>
 							exerciseTag.addNames(new Locale(locale), nameList, description);
 						}
 					}
+					nameList.clear();
 				}
 
 				// Log.d(TAG, "Finished parsing ExerciseTag: \n" + exerciseTag.toDebugString());
