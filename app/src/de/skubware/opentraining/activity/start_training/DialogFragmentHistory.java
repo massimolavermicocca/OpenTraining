@@ -135,44 +135,41 @@ public class DialogFragmentHistory extends DialogFragment {
 
         int setParameterNumber = 0;
         DateFormat dateformat = new SimpleDateFormat( "dd.MM" );
-        for(TrainingEntry entry:mFex.getTrainingEntryList()){
-            int setNumber = 0;
-            try {
-            for(FSet fset:entry.getFSetList()){
+        try {
+            for(TrainingEntry entry:mFex.getTrainingEntryList()){
+                int setNumber = 0;
 
-                // skip sets that haven't been done
+                    for(FSet fset:entry.getFSetList()){
+                        // skip sets that haven't been done
+                        if(!entry.hasBeenDone(fset))
+                            continue;
 
-                    if(!entry.hasBeenDone(fset))
-                        continue;
+                        // x value: date
+                        xVals.add(dateformat.format(entry.getDate()) + " ("  + setNumber + ")");
 
-                // x value: date
+                        // y values: weight, rep, duration
+                        for(SetParameter parameter:fset.getSetParameters()){
+                            Entry e = new Entry(parameter.getValue(), setParameterNumber);
 
-                xVals.add(dateformat.format(entry.getDate()) + " ("  + setNumber + ")");
+                            if(parameter instanceof SetParameter.Duration){
+                                durationList.add(e);
+                            }else if(parameter instanceof SetParameter.Repetition){
+                                repList.add(e);
+                            }else if(parameter instanceof SetParameter.Weight){
+                                e = new Entry(parameter.getValue()/1000, setParameterNumber);
+                                weightList.add(e);
+                            }else{
+                                Log.e(TAG, "Unknown Parameter Type!");
+                            }
+                        }
 
-                // y values: weight, rep, duration
-                for(SetParameter parameter:fset.getSetParameters()){
-                    Entry e = new Entry(parameter.getValue(), setParameterNumber);
-
-                    if(parameter instanceof SetParameter.Duration){
-                        durationList.add(e);
-                    }else if(parameter instanceof SetParameter.Repetition){
-                        repList.add(e);
-                    }else if(parameter instanceof SetParameter.Weight){
-                        e = new Entry(parameter.getValue()/1000, setParameterNumber);
-                        weightList.add(e);
-                    }else{
-                        Log.e(TAG, "Unknown Parameter Type!");
+                        setParameterNumber++;
+                        setNumber++;
                     }
-                }
-
-                setParameterNumber++;
-                setNumber++;
             }
-            } catch (ErrorException e) {
+        } catch (ErrorException e) {
 
-            }
         }
-
 
         LineDataSet dataSetWeight = new LineDataSet(weightList, getString(R.string.weight));
         dataSetWeight.setColors(new int[] { android.R.color.holo_blue_light }, getActivity());
