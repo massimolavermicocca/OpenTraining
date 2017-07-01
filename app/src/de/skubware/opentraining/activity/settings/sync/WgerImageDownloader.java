@@ -75,15 +75,17 @@ public class WgerImageDownloader {
 		List<File> newImagePathList = new ArrayList<File>();
 		Map<File, License> newImageLicenseMap = new HashMap<File, License>();
 		String imageName;
+		DataHelper dataHelper = new DataHelper(mContext);
+		JSONObject imageJSONObject = new JSONObject();
 
 		for (ExerciseType.Builder exBuilder : exerciseBuilderList) {
-
 			ExerciseType ex = exBuilder.build();
 			for (File img : ex.getImagePaths()) {
 				String imageAsJSON = mClient.get(img.getPath() + "/");
 				
 				// get image name
-				JSONObject imageJSONObject = new JSONObject(imageAsJSON);
+				//JSONObject imageJSONObject = new JSONObject(imageAsJSON);
+				imageJSONObject = imageJSONObject.getJSONObject(imageAsJSON);
 				String imageDownloadPath = imageJSONObject.getString("image");
 				
 				
@@ -100,7 +102,6 @@ public class WgerImageDownloader {
 
 				
 				// skip exercise (and image download) if there's already one with the same name
-				DataHelper dataHelper = new DataHelper(mContext);
 				imageName = (new File(imageDownloadPath)).getName();
 				if(dataHelper.drawableExist(imageName)){
 					Log.d(TAG, "There's already an image with the same name as: " + imageDownloadPath + ". The exercise: " + ex.getLocalizedName() + " is propably duplicate, it will not be added.");
