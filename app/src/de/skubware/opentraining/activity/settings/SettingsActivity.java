@@ -472,21 +472,11 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
             
             // make sure to dismiss progress dialog
 			mProgressDialog.dismiss();
-			
-        	if(allExercises.size() <= 0){
-        		// show notification: no new exercises
-            	AlertDialog.Builder finishedDialogBuilder = new AlertDialog.Builder(this);
-            	finishedDialogBuilder.setTitle(getString(R.string.sync_finished));
-            	finishedDialogBuilder.setMessage(getString(R.string.sync_finished_no_new_exercises));
-            	finishedDialogBuilder.create().show();
-        	}else{
-        		// let user choose which exercises should be saved
-    			AlertDialog.Builder dialogBuilder = new SyncFinishedDialog(this, allExercises);
-    			dialogBuilder.create().show();
-    	    }
 
-        		
-            break;
+			checkSizeExercises(allExercises);
+
+
+			break;
         case OpenTrainingSyncService.STATUS_ERROR:
         	Log.v(TAG, "Sync status: STATUS_ERROR");
 
@@ -515,8 +505,21 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 			break;
         }     
     }
-	
-	
+
+	private void checkSizeExercises(ArrayList<ExerciseType> allExercises) {
+		if(allExercises.size() <= 0){
+            // show notification: no new exercises
+            AlertDialog.Builder finishedDialogBuilder = new AlertDialog.Builder(this);
+            finishedDialogBuilder.setTitle(getString(R.string.sync_finished));
+            finishedDialogBuilder.setMessage(getString(R.string.sync_finished_no_new_exercises));
+            finishedDialogBuilder.create().show();
+        }else{
+            // let user choose which exercises should be saved
+            AlertDialog.Builder dialogBuilder = new SyncFinishedDialog(this, allExercises);
+            dialogBuilder.create().show();
+        }
+	}
+
 
 	public void startExerciseDownload() {
 		Log.d(TAG, "startExerciseDownload()");
