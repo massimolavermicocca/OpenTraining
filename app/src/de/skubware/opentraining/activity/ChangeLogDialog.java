@@ -27,6 +27,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
+import android.support.annotation.NonNull;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.webkit.WebView;
@@ -140,15 +141,7 @@ public class ChangeLogDialog {
         try {
             int eventType = xml.getEventType();
             while (eventType != XmlPullParser.END_DOCUMENT) {
-                if ((eventType == XmlPullParser.START_TAG) && (xml.getName().equals("release"))) {
-                    //Check if the version matches the release tag.
-                    //When version is 0 every release tag is parsed.
-                    final int versioncode = Integer.parseInt(xml.getAttributeValue(null, "versioncode"));
-                    if ((version == 0) || (versioncode == version)) {
-                        parseReleaseTag(changelogBuilder, xml);
-                        releaseFound = true; //At lease one release tag has been parsed.
-                    }
-                }
+                releaseFound = checkElement(version, releaseFound, changelogBuilder, xml, eventType);
                 eventType = xml.next();
             }
         } catch (XmlPullParserException e) {
@@ -163,6 +156,24 @@ public class ChangeLogDialog {
         changelogBuilder.append("</body></html>");
 
         //Check if there was a release tag parsed, if not return an empty string.
+        return getString(releaseFound, changelogBuilder);
+    }
+
+    private boolean checkElement(int version, boolean releaseFound, StringBuilder changelogBuilder, XmlResourceParser xml, int eventType) throws XmlPullParserException, IOException {
+        if ((eventType == XmlPullParser.START_TAG) && (xml.getName().equals("release"))) {
+            //Check if the version matches the release tag.
+            //When version is 0 every release tag is parsed.
+            final int versioncode = Integer.parseInt(xml.getAttributeValue(null, "versioncode"));
+            if ((version == 0) || (versioncode == version)) {
+                parseReleaseTag(changelogBuilder, xml);
+                releaseFound = true; //At lease one release tag has been parsed.
+            }
+        }
+        return releaseFound;
+    }
+
+    @NonNull
+    private String getString(boolean releaseFound, StringBuilder changelogBuilder) {
         if (releaseFound) {
             return changelogBuilder.toString();
         } else {
