@@ -68,7 +68,7 @@ public final class ExerciseType implements Comparable<ExerciseType>, IExercise, 
 	private SortedSet<ExerciseTag> exerciseTag; // optional
 	private List<URL> relatedURL; // optional
 	private List<String> hints; // optional
-	private File iconPath; // optional
+	private transient File iconPath; // optional
 
 	
 	/**
