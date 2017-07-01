@@ -224,10 +224,6 @@ public class WgerJSONParser {
 		return parse(licenseJSONString, LicenseType.class);
 	}
 	
-	private SparseArray<SportsEquipment> parseEquipment(String equipmentJSONString) throws JSONException{
-		return parse(equipmentJSONString, SportsEquipment.class);
-	}
-	
 	/**
 	 * A generic parsing method for parsing JSON to SportsEquipment, Muscle or Locale.
 	 */
