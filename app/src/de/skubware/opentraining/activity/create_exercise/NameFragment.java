@@ -1,21 +1,21 @@
 /**
- * 
+ *
  * This is OpenTraining, an Android application for planning your your fitness training.
  * Copyright (C) 2012-2014 Christian Skubich
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  */
 
 package de.skubware.opentraining.activity.create_exercise;
@@ -57,30 +57,33 @@ import de.skubware.opentraining.basic.Translatable;
 import de.skubware.opentraining.db.DataProvider;
 import de.skubware.opentraining.db.IDataProvider;
 
+/**
+ * @class NameFragment
+ */
 public class NameFragment extends SpinnerDataFragment<NameFragment.NameTranslation>{
 	/** Tag for logging*/
 	private final String TAG = "NameFragment";
 
 	private HashMap<String,String> mLanguageCodeMap;
-	
+
 	private EditText mEditTextExerciseName;
-	
+
 	public NameFragment() {
 		super(R.layout.fragment_create_exercise_name);
 
 		// set up language c spinnner
 		mLanguageCodeMap = new HashMap<String,String>();
-			Set<String> localeStringSet = new TreeSet<String>();
-			for(Locale l:Locale.getAvailableLocales()){
-				if(localeStringSet.add(l.getDisplayLanguage())){
-					mLanguageCodeMap.put(l.getDisplayLanguage(), l.getLanguage());
-				}
+		Set<String> localeStringSet = new TreeSet<String>();
+		for(Locale l:Locale.getAvailableLocales()){
+			if(localeStringSet.add(l.getDisplayLanguage())){
+				mLanguageCodeMap.put(l.getDisplayLanguage(), l.getLanguage());
 			}
-			
+		}
+
 		mSpinnerDataList = new ArrayList<String>(localeStringSet);
 	}
 
-	
+
 	@Override
 	public void onStart(){
 		super.onStart();
@@ -90,45 +93,45 @@ public class NameFragment extends SpinnerDataFragment<NameFragment.NameTranslati
 			if(Locale.getDefault().getDisplayLanguage().equals(o)){
 				mSpinner.setSelection(i);
 				break;
-			}			
+			}
 		}
-		
+
 	}
-	
-	
+
+
 	@Override
 	protected String checkObjectConstraints(int position) {
-		
+
 		if(mEditTextExerciseName.getText().toString().equals("")){
 			return getActivity().getString(R.string.exercise_name_empty);
 		}
-		
+
 		// two or more names for the same language are ok (will be saved as alternative name)
-		
+
 		return null;
 	}
-	
-	
+
+
 	@Override
 	protected NameTranslation buildObject(int position) {
 		((CreateExerciseActivity) getActivity()).swipeToDismissAdvise();
 		// get locale
 		Locale locale = new Locale(mLanguageCodeMap.get((String)mSpinner.getItemAtPosition(position)));
-		
+
 		return new NameTranslation(locale, mEditTextExerciseName.getText().toString());
 	}
-	
-	
+
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		
+							 Bundle savedInstanceState) {
+
 		View layout = super.onCreateView(inflater, container, savedInstanceState);
 
 		mEditTextExerciseName = (EditText) layout.findViewById(R.id.edittext_exercise_name);
 		mEditTextExerciseName.addTextChangedListener(new ExerciseNameTextWatcher(mEditTextExerciseName));
 
-		
+
 		ImageButton buttonAddName = (ImageButton) layout.findViewById(R.id.button_add_name);
 		buttonAddName.setOnClickListener(new OnClickListener(){
 			@Override
@@ -136,12 +139,12 @@ public class NameFragment extends SpinnerDataFragment<NameFragment.NameTranslati
 				addObject(mSpinner.getSelectedItemPosition());
 			}
 		});
-		
+
 		return layout;
 	}
-	
 
-	
+
+
 	public Map<Locale, String> getTranslationMap(){
 		Map<Locale, String> translationMap = new HashMap<Locale, String>();
 		for(NameTranslation t:this.getChosenObjects()){
@@ -152,35 +155,36 @@ public class NameFragment extends SpinnerDataFragment<NameFragment.NameTranslati
 
 
 
-	
+
 	private class ExerciseNameTextWatcher implements TextWatcher {
-	    private EditText mEditText;
+		private EditText mEditText;
 		IDataProvider mDataProvider = new DataProvider(getActivity());
 
-	    
-	    public ExerciseNameTextWatcher(EditText e) { 
-	        mEditText = e;
-	    }
 
-	    public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+		public ExerciseNameTextWatcher(EditText e) {
+			mEditText = e;
+		}
 
-	    public void onTextChanged(CharSequence s, int start, int before, int count) {
+		public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+		public void onTextChanged(CharSequence s, int start, int before, int count) {
 			if(mDataProvider.getExerciseByName(s.toString()) != null ){
-				mEditText.setError(getString(R.string.name_already_used));	
+				mEditText.setError(getString(R.string.name_already_used));
 			}else{
 				mEditText.setError(null);
 			}
-	    }
+		}
 
-	    public void afterTextChanged(Editable s) { }
+		public void afterTextChanged(Editable s) { }
 	}
-	
-	
-	
-	
+
+
+	/**
+	 * @class NameTranslation
+	 */
 	public static class NameTranslation extends Translatable{
 		private static final long serialVersionUID = 1L;
-		
+
 		Locale mLocale;
 		String mName;
 		NameTranslation(Locale locale, String name){
@@ -188,13 +192,13 @@ public class NameFragment extends SpinnerDataFragment<NameFragment.NameTranslati
 			mLocale = locale;
 			mName = name;
 		}
-		
+
 		private static List<String> wrapNameInList(String name){
 			List<String> list = new ArrayList<String>();
 			list.add(name);
 			return list;
 		}
-		
+
 		@Override
 		public String toString(){
 			return super.toString() + " ("+ mLocale.getDisplayName() +")";
@@ -207,5 +211,5 @@ public class NameFragment extends SpinnerDataFragment<NameFragment.NameTranslati
 	@Override
 	public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
 	}
-	
+
 }

@@ -1,21 +1,21 @@
 /**
- * 
+ *
  * This is OpenTraining, an Android application for planning your your fitness training.
  * Copyright (C) 2012-2014 Christian Skubich
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  */
 
 package de.skubware.opentraining.activity.create_workout.upload_exercise;
@@ -63,6 +63,9 @@ import de.skubware.opentraining.db.rest.ServerModel.Equipment;
 import de.skubware.opentraining.db.rest.ServerModel.Language;
 import de.skubware.opentraining.db.rest.ServerModel.MuscleCategory;
 
+/**
+ * @class UploadExerciseAsyncTask
+ */
 public class UploadExerciseAsyncTask extends AsyncTask<ExerciseType, Void, Throwable> {
 	private final Context mContext;
 	private final ProgressDialog mDialog;
@@ -77,14 +80,14 @@ public class UploadExerciseAsyncTask extends AsyncTask<ExerciseType, Void, Throw
 	}
 
 
-	  
-	  
-	  protected void onPreExecute() {
-		     this.mDialog.setMessage("Uploading exercise ...");
-		     this.mDialog.show();
-		  }
-	  
-	
+
+
+	protected void onPreExecute() {
+		this.mDialog.setMessage("Uploading exercise ...");
+		this.mDialog.show();
+	}
+
+
 	/**
 	 * @return Null if everything went fine, the original exception otherwise.
 	 */
@@ -115,14 +118,14 @@ public class UploadExerciseAsyncTask extends AsyncTask<ExerciseType, Void, Throw
 		ExerciseTypeGSONSerializer.setLanguageMap(languageMap);
 
 		try {
-			service.createExercise(exercise[0]);		
+			service.createExercise(exercise[0]);
 		} catch (RetrofitError retEr) {
 			if(retEr.getCause() != null)
 				return retEr.getCause();
 			else
 				return retEr;
 		}
-		
+
 		return null;
 	}
 
@@ -146,7 +149,7 @@ public class UploadExerciseAsyncTask extends AsyncTask<ExerciseType, Void, Throw
 			}else{
 				// show custom error message if problem is known
 				msg = ex.getMessage();
-			}	
+			}
 		}
 		alertDialog.setMessage(msg);
 		alertDialog.setTitle(title);
@@ -156,8 +159,8 @@ public class UploadExerciseAsyncTask extends AsyncTask<ExerciseType, Void, Throw
 	@Override
 	protected void onProgressUpdate(Void... values) {
 	}
-	
-	
+
+
 	/* Helper method for parsing the response body */
 	public static String getBodyString(Response response) {
 
@@ -183,7 +186,7 @@ public class UploadExerciseAsyncTask extends AsyncTask<ExerciseType, Void, Throw
 		return null;
 
 	}
-	
+
 	public static RestAdapter getRestAdapter(Context c, JsonSerializer serializer){
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.registerTypeAdapter(ExerciseType.class, serializer);
@@ -214,8 +217,8 @@ public class UploadExerciseAsyncTask extends AsyncTask<ExerciseType, Void, Throw
 					c.getString(R.string.pref_default_exercise_sync_url));
 		}
 		builder.setEndpoint(baseURL + "/api/v2/");
-		
+
 		return builder.build();
 	}
-	
+
 }

@@ -21,7 +21,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-
+/**
+ * @class FancyCoverFlowAdapter
+ */
 public abstract class FancyCoverFlowAdapter extends BaseAdapter {
 
     // =============================================================================
@@ -46,7 +48,7 @@ public abstract class FancyCoverFlowAdapter extends BaseAdapter {
         wrappedView = this.getCoverFlowItem(i, wrappedView, viewGroup);
 
         if (wrappedView == null) {
-            throw new IllegalArgumentException("getCoverFlowItem() was expected to return a view, but null was returned.");
+            throw new NullPointerException("getCoverFlowItem() was expected to return a view, but null was returned.");
         }
 
         final boolean isReflectionEnabled = coverFlow.isReflectionEnabled();
