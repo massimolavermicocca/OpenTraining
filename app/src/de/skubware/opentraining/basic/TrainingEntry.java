@@ -208,27 +208,16 @@ public class TrainingEntry implements Comparable<TrainingEntry>, Serializable {
 	/** Auto-generated equals() implementation. */
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
 		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
 		TrainingEntry other = (TrainingEntry) obj;
-		if (mDate == null) {
-			if (other.mDate != null)
-				return false;
-		} else if (!mDate.equals(other.mDate))
+		if (!mDate.equals(other.mDate))
 			return false;
-		if (mFSetList == null) {
-			if (other.mFSetList != null)
-				return false;
-		} else if (!mFSetList.equals(other.mFSetList))
+		if (!mFSetList.equals(other.mFSetList))
 			return false;
-		if (mSetBeenDoneMap == null) {
-			if (other.mSetBeenDoneMap != null)
-				return false;
-		} else if (!mSetBeenDoneMap.equals(other.mSetBeenDoneMap))
+		if (!mSetBeenDoneMap.equals(other.mSetBeenDoneMap))
 			return false;
 		return true;
 	}
