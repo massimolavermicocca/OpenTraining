@@ -185,7 +185,7 @@ public class WgerImageDownloader {
 
 			return imageName;
 		} catch (IOException e) {
-			e.printStackTrace();
+
 		}
 
 		return null;

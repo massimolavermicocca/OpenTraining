@@ -199,7 +199,7 @@ public class ExerciseTypeDetailFragment extends Fragment {
 					try {
 						mWorkout = new Workout(defaultWorkoutName, new FitnessExercise(mExercise));
 					} catch (ErrorException e) {
-						e.printStackTrace();
+
 					}
 				} else {
 
@@ -215,7 +215,7 @@ public class ExerciseTypeDetailFragment extends Fragment {
 					try {
 						mWorkout.addFitnessExercise(new FitnessExercise(mExercise));
 					} catch (ErrorException e) {
-						e.printStackTrace();
+
 					}
 				}
 

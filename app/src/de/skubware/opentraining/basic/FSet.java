@@ -400,7 +400,7 @@ public class FSet implements Serializable, Cloneable {
 			
 			return cloned;
 		} catch(CloneNotSupportedException e){
-			e.printStackTrace();
+
 			throw new AssertionError("Clone not supported: " + e.toString());
 		}
 	}

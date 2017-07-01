@@ -99,7 +99,7 @@ public class ExerciseTypeXMLParser extends DefaultHandler {
 			SAXParserFactory fac = SAXParserFactory.newInstance();
 			parser = fac.newSAXParser();
 		} catch (Exception e) {
-			e.printStackTrace();
+
 		}
 
 	}
@@ -117,10 +117,10 @@ public class ExerciseTypeXMLParser extends DefaultHandler {
 			return this.exType;
 		} catch (SAXException e) {
 			Log.e(TAG, "Error parsing file: " + f.toString() + "\n" + e.getMessage());
-			e.printStackTrace();
+
 		} catch (Exception e) {
 			Log.e(TAG, "Error parsing file: " + f.toString() + "\n" + e.getMessage());
-			e.printStackTrace();
+
 		}
 
 		return null;
@@ -209,8 +209,6 @@ public class ExerciseTypeXMLParser extends DefaultHandler {
 				level = Integer.parseInt(attributes.getValue("level"));
 			} catch (Throwable t) {
 				Log.e(TAG, "Error parsing ActivationLevel: " + attributes.getValue("level"));
-
-				t.printStackTrace();
 			}
 			ActivationLevel actLevel = ActivationLevel.getByLevel(level);
 			this.activationMap.put(muscle, actLevel);
@@ -277,7 +275,7 @@ public class ExerciseTypeXMLParser extends DefaultHandler {
                         .exerciseTags(this.exerciseTag).imagePath(this.imagePaths).neededTools(this.requiredEquipment).relatedURL(this.relatedURL)
                         .imageLicenseMap(this.imageLicenseMap).hints(hints).iconPath(iconPath).build();
 			} catch (ErrorException e) {
-				e.printStackTrace();
+
 			}
 
 			this.name = null;

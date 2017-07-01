@@ -63,7 +63,7 @@ public class ExerciseImageGSONSerializer implements JsonSerializer<ExerciseImage
 				fis = new FileInputStream(ex.getRealImagePath());
 			} catch (FileNotFoundException e) {
 				Log.i(TAG, "File not found: " + ex.getRealImagePath());
-				e.printStackTrace();
+
 			}
 			
 			Bitmap bm = BitmapFactory.decodeStream(fis);

@@ -229,17 +229,7 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener {
 
                 mVelocityTracker.addMovement(motionEvent);
                 float deltaX = motionEvent.getRawX() - mDownX;
-                if (Math.abs(deltaX) > mSlop) {
-                    mSwiping = true;
-                    mListView.requestDisallowInterceptTouchEvent(true);
-
-                    // Cancel ListView's touch (un-highlighting the item)
-                    MotionEvent cancelEvent = MotionEvent.obtain(motionEvent);
-                    cancelEvent.setAction(MotionEvent.ACTION_CANCEL |
-                            (motionEvent.getActionIndex()
-                                    << MotionEvent.ACTION_POINTER_INDEX_SHIFT));
-                    mListView.onTouchEvent(cancelEvent);
-                }
+                checkCancelTouch(motionEvent, deltaX);
 
                 if (mSwiping) {
                     setTranslationX(mDownView, deltaX);
@@ -251,6 +241,20 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener {
             }
         }
         return false;
+    }
+
+    private void checkCancelTouch(MotionEvent motionEvent, float deltaX) {
+        if (Math.abs(deltaX) > mSlop) {
+            mSwiping = true;
+            mListView.requestDisallowInterceptTouchEvent(true);
+
+            // Cancel ListView's touch (un-highlighting the item)
+            MotionEvent cancelEvent = MotionEvent.obtain(motionEvent);
+            cancelEvent.setAction(MotionEvent.ACTION_CANCEL |
+                    (motionEvent.getActionIndex()
+                            << MotionEvent.ACTION_POINTER_INDEX_SHIFT));
+            mListView.onTouchEvent(cancelEvent);
+        }
     }
 
     private void checkMDownView(MotionEvent motionEvent) {

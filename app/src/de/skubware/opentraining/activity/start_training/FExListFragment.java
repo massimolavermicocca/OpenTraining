@@ -123,7 +123,7 @@ public class FExListFragment extends ListFragment {
 			try {
 				setWorkout(mWorkout);
 			} catch (ErrorException e) {
-				e.printStackTrace();
+
 			}
 		}
 

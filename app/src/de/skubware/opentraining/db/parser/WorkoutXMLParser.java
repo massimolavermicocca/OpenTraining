@@ -152,7 +152,7 @@ public class WorkoutXMLParser extends DefaultHandler {
 			SAXParserFactory fac = SAXParserFactory.newInstance();
 			mParser = fac.newSAXParser();
 		} catch (Exception e) {
-			e.printStackTrace();
+
 		}
 
 	}
