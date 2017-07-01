@@ -8,9 +8,14 @@ $email = "opentraining@skubware.de";
 //IMPLEMENTATION
 $key = $_GET['key'];
 $token = $_GET['token'];
-if ($key != hash("md5", "{$shared_secret}+{$token}")) {
-	header('HTTP/1.0 403 Forbidden');
-	die('403 Forbidden: You are not allowed to access this file.');
+
+try{
+    if ($key != hash("md5", "{$shared_secret}+{$token}")) {
+        header('HTTP/1.0 403 Forbidden');
+    	throw new Exception ('403 Forbidden: You are not allowed to access this file.');
+    } catch (Exception $e) {
+        echo 'Caught exception: ',  $e->getMessage(), "\n";
+    }
 }
 
 ob_start();
