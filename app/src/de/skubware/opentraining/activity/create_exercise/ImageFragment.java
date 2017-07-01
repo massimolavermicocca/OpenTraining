@@ -235,15 +235,7 @@ public class ImageFragment extends Fragment{
 
 				break;
 			case CreateExerciseActivity.TAKE_PICTURE:
-				if(mTempImageUri == null){
-					Toast.makeText(getActivity(), getString(R.string.error_did_not_return_image),
-							Toast.LENGTH_SHORT).show();
-
-					Log.e(TAG, getString(R.string.error_did_not_return_image));
-					return;
-				}
-
-				bitmap = BitmapFactory.decodeFile(mTempImageUri.getPath());
+				bitmap = checkImageUri(mTempImageUri, getActivity());
 				break;
 			default:
 				Log.e(TAG, "Unknown return code");
@@ -303,7 +295,17 @@ public class ImageFragment extends Fragment{
 		return Collections.unmodifiableList(mImageList);
 	}
 
+	private static Bitmap checkImageUri(Uri mTempImageUri, Activity activity) {
+		if(mTempImageUri == null){
+			Toast.makeText(activity, activity.getString(R.string.error_did_not_return_image),
+					Toast.LENGTH_SHORT).show();
 
+			//Log.e(TAG, activity.getString(R.string.error_did_not_return_image));
+			return null;
+		} else {
+			return BitmapFactory.decodeFile(mTempImageUri.getPath());
+		}
+	}
 
 
 }
