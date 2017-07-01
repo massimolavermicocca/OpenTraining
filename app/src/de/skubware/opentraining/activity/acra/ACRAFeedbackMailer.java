@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.security.SecureRandom;
+import java.util.Random;
 
 /** 
  * Based on acra-mailer(https://github.com/d-a-n/acra-mailer) of d-a-n. 
@@ -80,11 +81,13 @@ public class ACRAFeedbackMailer implements ReportSender {
 	}
 
 	private String getKey(String token) {
-		return makeSha(String.format("%s+%s", new BigInteger(100, random).toString(), token));
+		Random randgen = new Random();
+		return makeSha(String.format("%s+%s", new BigInteger(randgen.nextInt(), random).toString(), token));
 	}
 
 	private String getToken() {
-		return makeSha(new BigInteger(100, random).toString());
+		Random randgen = new Random();
+		return makeSha(new BigInteger(randgen.nextInt(), random).toString());
 	}
 
 	public static String makeSha(String s) {

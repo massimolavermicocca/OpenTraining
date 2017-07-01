@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.security.SecureRandom;
+import java.util.Random;
 
 
 /** 
@@ -108,11 +109,13 @@ public class ACRACrashReportMailer implements ReportSender {
 	}
 
 	private String getKey(String token) {
-		return makeSha(String.format("%s+%s", new BigInteger(100, random).toString(), token));
+        Random randgen = new Random();
+        return makeSha(String.format("%s+%s", new BigInteger(randgen.nextInt(), random).toString(), token));
 	}
 
 	private String getToken() {
-		return makeSha(new BigInteger(100, random).toString());
+        Random randgen = new Random();
+		return makeSha(new BigInteger(randgen.nextInt(), random).toString());
 	}
 
 	public static String makeSha(String s) {
