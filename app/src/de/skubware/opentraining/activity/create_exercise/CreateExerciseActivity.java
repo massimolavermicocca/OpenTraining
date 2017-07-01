@@ -47,6 +47,7 @@ import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import de.skubware.opentraining.Exceptions.ErrorException;
 import de.skubware.opentraining.R;
 import de.skubware.opentraining.activity.create_exercise.ExerciseImageListAdapter.ImageData;
 import de.skubware.opentraining.basic.ExerciseType;
@@ -201,7 +202,7 @@ public class CreateExerciseActivity extends ActionBarActivity implements
 	
 	/** Saves the created exercise. */
 	@SuppressWarnings("unchecked")
-	private void saveExercise(){
+	private void saveExercise() throws ErrorException {
 		NameFragment nameFragment = (NameFragment)  getSupportFragmentManager().findFragmentByTag(makeFragmentName(R.id.pager,0));//  mSectionsPagerAdapter.getItem(0);
 		DescriptionFragment descriptionFragment = (DescriptionFragment) getSupportFragmentManager().findFragmentByTag(makeFragmentName(R.id.pager,1));
 		ImageFragment imageFragment = (ImageFragment) getSupportFragmentManager().findFragmentByTag(makeFragmentName(R.id.pager,2));

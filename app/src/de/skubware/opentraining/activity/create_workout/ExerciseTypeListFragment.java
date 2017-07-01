@@ -215,25 +215,29 @@ public class ExerciseTypeListFragment extends ListFragment implements OnQueryTex
 				if (ex.getActivatedMuscles().contains(m))
 					accepted = true;
 			}
-			
-			if(ex.getActivatedMuscles().isEmpty())
-				accepted = true;
 
-			if (!accepted) {
-				// Log.d(TAG, "Exercise: " + ex.toString() + " will not be shown. Muscles do not fit.");
-				mExerciseList.remove(ex);
-				continue;
-			}
-
-			if (!acceptedEquipment.containsAll(ex.getRequiredEquipment())) {
-				// Log.d(TAG, "Exercise: " + ex.toString() + " will not be shown. Equipment does not fit");
-				mExerciseList.remove(ex);
-				continue;
-			}
+			checkAccepted(acceptedEquipment, ex, accepted);
 		}
 
 		setListAdapter(new ExerciseTypeListAdapter(getActivity(), android.R.layout.simple_list_item_single_choice, android.R.id.text1,
 				mExerciseList));	
+	}
+
+	private void checkAccepted(List<SportsEquipment> acceptedEquipment, ExerciseType ex, boolean accepted) {
+		if(ex.getActivatedMuscles().isEmpty())
+            accepted = true;
+
+		if (!accepted) {
+            // Log.d(TAG, "Exercise: " + ex.toString() + " will not be shown. Muscles do not fit.");
+            mExerciseList.remove(ex);
+			return;
+        }
+
+		if (!acceptedEquipment.containsAll(ex.getRequiredEquipment())) {
+            // Log.d(TAG, "Exercise: " + ex.toString() + " will not be shown. Equipment does not fit");
+            mExerciseList.remove(ex);
+			return;
+        }
 	}
 
 	/**
