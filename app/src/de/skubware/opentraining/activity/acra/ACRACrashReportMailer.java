@@ -12,7 +12,6 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
-
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -21,14 +20,15 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
+import java.security.SecureRandom;
+import java.util.Random;
 
 /** 
  * Based on acra-mailer(https://github.com/d-a-n/acra-mailer) of d-a-n. 
  */
 public class ACRACrashReportMailer implements ReportSender {
 	private final static String BASE_URL = "http://skubware.de/opentraining/acra_crash.php";
-	private final static String SHARED_SECRET = "my_on_github_with_everyone_shared_secret";
+
 	private Map<String, String> custom_data = null;
 
 	public ACRACrashReportMailer() {
@@ -40,8 +40,14 @@ public class ACRACrashReportMailer implements ReportSender {
 
 	@Override
 	public void send(CrashReportData report) throws ReportSenderException {
+        String url;
+        try{
+            String my_url = getUrl();
+            url = my_url;
+        } catch (NoSuchAlgorithmException e){
+            throw new ReportSenderException("");
+        }
 
-		String url = getUrl();
 		Log.e("xenim", url);
 
 		try {
@@ -101,18 +107,20 @@ public class ACRACrashReportMailer implements ReportSender {
 		}
 	}
 
-	private String getUrl() {
+	private String getUrl() throws  NoSuchAlgorithmException {
 		String token = getToken();
 		String key = getKey(token);
 		return String.format("%s?token=%s&key=%s&", BASE_URL, token, key);
 	}
 
-	private String getKey(String token) {
-		return makeSha(String.format("%s+%s", SHARED_SECRET, token));
+	private String getKey(String token) throws NoSuchAlgorithmException {
+        final SecureRandom random = new SecureRandom().getInstance("SHA1PRNG");
+        return makeSha(String.format("%s+%s", random.nextInt(Integer.MAX_VALUE), token));
 	}
 
-	private String getToken() {
-		return makeSha(UUID.randomUUID().toString());
+	private String getToken()throws NoSuchAlgorithmException{
+        final SecureRandom random = new SecureRandom().getInstance("SHA1PRNG");
+		return makeSha(String.valueOf(random.nextInt(Integer.MAX_VALUE)));
 	}
 
 	public static String makeSha(String s) {
