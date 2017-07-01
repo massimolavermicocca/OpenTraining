@@ -20,7 +20,6 @@
 
 package de.skubware.opentraining.activity.create_workout;
 
-import java.util.HashMap;
 import org.acra.ACRA;
 
 import android.app.AlertDialog;
@@ -49,7 +48,7 @@ public class SendExerciseFeedbackDialogFragment  extends DialogFragment{
 
 	// key for bundle (save/restore instance state)
 	private final String KEY_EXERCISE = "key_exercise";
-	private final String KEY_USER_MESSAGE = "key_user_message";
+	private final String KEY_US_MESSAGE = "key_user_message";
 	private final String KEY_EXERCISE_UPDATE_REASON = "key_exercise_update_reason";
 
 	private ExerciseType mExercise;
@@ -57,7 +56,7 @@ public class SendExerciseFeedbackDialogFragment  extends DialogFragment{
 	private Spinner mReasonSpinner;
 	private EditText mEditText;
 
-	private String mUserMessage = "";
+	private String mUsMessage = "";
 	private int mReasonSelected = -1;
 
 	/**
@@ -84,7 +83,7 @@ public class SendExerciseFeedbackDialogFragment  extends DialogFragment{
 		super.onCreate(savedInstanceState);
 		if(savedInstanceState != null){
 			mExercise = (ExerciseType) savedInstanceState.getSerializable(KEY_EXERCISE);
-			mUserMessage = savedInstanceState.getString(KEY_USER_MESSAGE);
+			mUsMessage = savedInstanceState.getString(KEY_US_MESSAGE);
 			mReasonSelected = savedInstanceState.getInt(KEY_EXERCISE_UPDATE_REASON);
 		}
 	}
@@ -94,10 +93,10 @@ public class SendExerciseFeedbackDialogFragment  extends DialogFragment{
 		bundle.putSerializable(KEY_EXERCISE, mExercise);
 
 		if(mEditText != null && mReasonSpinner != null){
-			mUserMessage = mEditText.getEditableText().toString();
+			mUsMessage = mEditText.getEditableText().toString();
 			mReasonSelected = mReasonSpinner.getSelectedItemPosition();
 
-			bundle.putString(KEY_USER_MESSAGE, mUserMessage);
+			bundle.putString(KEY_US_MESSAGE, mUsMessage);
 			bundle.putInt(KEY_EXERCISE_UPDATE_REASON, mReasonSelected);
 		}
 	}
@@ -114,7 +113,7 @@ public class SendExerciseFeedbackDialogFragment  extends DialogFragment{
 
 		// edit text
 		mEditText = (EditText) v.findViewById(R.id.edittext_user_suggestion);
-		mEditText.setText(mUserMessage);
+		mEditText.setText(mUsMessage);
 
 		// title
 		builder.setTitle(getActivity().getString(R.string.send_feedback_for_exercise, mExercise.getLocalizedName()));
