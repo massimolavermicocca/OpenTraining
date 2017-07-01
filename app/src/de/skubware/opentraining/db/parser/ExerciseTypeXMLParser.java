@@ -99,7 +99,7 @@ public class ExerciseTypeXMLParser extends DefaultHandler {
 			SAXParserFactory fac = SAXParserFactory.newInstance();
 			parser = fac.newSAXParser();
 		} catch (Exception e) {
-
+			Log.v("ExerciseTypeXMLParser", e.getMessage().toString());
 		}
 
 	}
