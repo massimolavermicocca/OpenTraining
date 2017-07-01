@@ -275,7 +275,7 @@ public class ExerciseTypeXMLParser extends DefaultHandler {
                         .exerciseTags(this.exerciseTag).imagePath(this.imagePaths).neededTools(this.requiredEquipment).relatedURL(this.relatedURL)
                         .imageLicenseMap(this.imageLicenseMap).hints(hints).iconPath(iconPath).build();
 			} catch (ErrorException e) {
-
+				Log.v("ExerciseTypeXMLParser", e.getMessage().toString());
 			}
 
 			this.name = null;

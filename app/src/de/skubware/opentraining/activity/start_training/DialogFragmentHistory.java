@@ -151,7 +151,7 @@ public class DialogFragmentHistory extends DialogFragment {
                     }
             }
         } catch (ErrorException e) {
-
+            Log.v("DialogFragmentHistory", e.getMessage().toString());
         }
 
         LineDataSet dataSetWeight = new LineDataSet(weightList, getString(R.string.weight));

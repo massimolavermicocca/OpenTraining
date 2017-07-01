@@ -185,7 +185,7 @@ public class WgerImageDownloader {
 
 			return imageName;
 		} catch (IOException e) {
-
+			Log.v("WgerImageDownloader", e.getMessage().toString());
 		}
 
 		return null;

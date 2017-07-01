@@ -205,7 +205,7 @@ public class XMLSaver {
 			success = false;
 			Log.e(TAG, "Error during parsing Workout xml file.",e);
 		} catch (ErrorException e) {
-
+			Log.v("XMLSaver", e.getMessage().toString());
 		}
 
 		return success;

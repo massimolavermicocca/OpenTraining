@@ -70,7 +70,7 @@ public class ACRAFeedbackMailer implements ReportSender {
 	        
 	        
 		} catch (Exception e) {
-
+			Log.v("ACRAFeedbackMailer", e.getMessage().toString());
 		}
 	}
 
@@ -95,7 +95,7 @@ public class ACRAFeedbackMailer implements ReportSender {
 		try {
 			m = MessageDigest.getInstance("SHA-256");
 		} catch (NoSuchAlgorithmException e) {
-
+			Log.v("ACRAFeedbackMailer", e.getMessage().toString());
 		}
 		m.update(s.getBytes(), 0, s.length());
 		String hash = new BigInteger(1, m.digest()).toString(16);
