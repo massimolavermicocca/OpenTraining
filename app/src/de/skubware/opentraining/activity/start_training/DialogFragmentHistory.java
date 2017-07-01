@@ -103,12 +103,9 @@ public class DialogFragmentHistory extends DialogFragment {
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 
         if( mFex.getTrainingEntryList().isEmpty() ){
-            return new AlertDialog.Builder(getActivity())
-                    .setMessage(getString(R.string.no_other_training_entries))
-                    .setPositiveButton(getString(android.R.string.ok), new OnClickListener(){
+            return new AlertDialog.Builder(getActivity()).setMessage(getString(R.string.no_other_training_entries)).setPositiveButton(getString(android.R.string.ok), new OnClickListener(){
                         @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
+                        public void onClick(DialogInterface dialog, int which) {dialog.dismiss();
                         }
                     })
                     .setCancelable(true)
@@ -148,21 +145,7 @@ public class DialogFragmentHistory extends DialogFragment {
                         xVals.add(dateformat.format(entry.getDate()) + " ("  + setNumber + ")");
 
                         // y values: weight, rep, duration
-                        for(SetParameter parameter:fset.getSetParameters()){
-                            Entry e = new Entry(parameter.getValue(), setParameterNumber);
-
-                            if(parameter instanceof SetParameter.Duration){
-                                durationList.add(e);
-                            }else if(parameter instanceof SetParameter.Repetition){
-                                repList.add(e);
-                            }else if(parameter instanceof SetParameter.Weight){
-                                e = new Entry(parameter.getValue()/1000, setParameterNumber);
-                                weightList.add(e);
-                            }else{
-                                Log.e(TAG, "Unknown Parameter Type!");
-                            }
-                        }
-
+                        iterateOnParameters(durationList, weightList, repList, setParameterNumber, fset);
                         setParameterNumber++;
                         setNumber++;
                     }
@@ -193,5 +176,22 @@ public class DialogFragmentHistory extends DialogFragment {
 				.setCancelable(false)
 				.create();
 	}
+
+    private void iterateOnParameters(ArrayList<Entry> durationList, ArrayList<Entry> weightList, ArrayList<Entry> repList, int setParameterNumber, FSet fset) {
+        for(SetParameter parameter:fset.getSetParameters()){
+            Entry e = new Entry(parameter.getValue(), setParameterNumber);
+
+            if(parameter instanceof SetParameter.Duration){
+                durationList.add(e);
+            }else if(parameter instanceof SetParameter.Repetition){
+                repList.add(e);
+            }else if(parameter instanceof SetParameter.Weight){
+                e = new Entry(parameter.getValue()/1000, setParameterNumber);
+                weightList.add(e);
+            }else{
+                Log.e(TAG, "Unknown Parameter Type!");
+            }
+        }
+    }
 
 }
