@@ -253,7 +253,8 @@ public class ExerciseTypeListFragment extends ListFragment implements OnQueryTex
 		if (mSearchQuery.equals("") || mSearchQuery.replaceAll(" ", "").equals(""))
 			return;
 
-		for (ExerciseType ex : new ArrayList<ExerciseType>(mExerciseList)) {
+		ArrayList<ExerciseType> listExercise = new ArrayList<>(mExerciseList);
+		for (ExerciseType ex : listExercise) {
 			boolean accepted = false;
 
 			for (String name : ex.getAlternativeNames()) {
@@ -284,7 +285,8 @@ public class ExerciseTypeListFragment extends ListFragment implements OnQueryTex
 		boolean showSyncedExercises = sharedPrefs.getBoolean(PREF_KEY_SHOW_SYNCED_EXERCISES, true);
 		boolean showCustomExercises = sharedPrefs.getBoolean(PREF_KEY_SHOW_CUSTOM_EXERCISES, true);
 
-		for (ExerciseType ex : new ArrayList<ExerciseType>(mExerciseList)) {
+		ArrayList<ExerciseType> listExercise = new ArrayList<>(mExerciseList);
+		for (ExerciseType ex : listExercise) {
 			switch(ex.getExerciseSource()){
 				case DEFAULT:
 					if(!showDefaultExercises)

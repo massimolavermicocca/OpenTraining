@@ -31,6 +31,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -93,10 +94,10 @@ public class DataProvider implements IDataProvider {
 
 		try {
 			String[] files = mContext.getAssets().list(IDataProvider.EXERCISE_FOLDER);
+			ExerciseTypeXMLParser parser = new ExerciseTypeXMLParser(mContext, ExerciseSource.DEFAULT);
 
 			for (String f : files) {
 				if (f.endsWith(".xml")) {
-					ExerciseTypeXMLParser parser = new ExerciseTypeXMLParser(mContext, ExerciseSource.DEFAULT);
 					ExerciseType ex = parser.read(mContext.getAssets().open(IDataProvider.EXERCISE_FOLDER + "/" + f));
 					list.add(ex);
 				}
@@ -135,10 +136,10 @@ public class DataProvider implements IDataProvider {
 		}
 		
 		String[] customFiles = customExerciseFolder.list();
+		ExerciseTypeXMLParser parser = new ExerciseTypeXMLParser(mContext, ExerciseSource.CUSTOM);
 
 		for (String f : customFiles) {
 			if (f.endsWith(".xml")) {
-				ExerciseTypeXMLParser parser = new ExerciseTypeXMLParser(mContext, ExerciseSource.CUSTOM);
 				ExerciseType ex = parser.read(new File(customExerciseFolder + "/" + f));
 				if(ex != null){
 					list.add(ex);
@@ -166,10 +167,10 @@ public class DataProvider implements IDataProvider {
 		}
 		
 		String[] syncedFiles = syncedExerciseFolder.list();
+		ExerciseTypeXMLParser parser = new ExerciseTypeXMLParser(mContext, ExerciseSource.SYNCED);
 
 		for (String f : syncedFiles) {
 			if (f.endsWith(".xml")) {
-				ExerciseTypeXMLParser parser = new ExerciseTypeXMLParser(mContext, ExerciseSource.SYNCED);
 				ExerciseType ex = parser.read(new File(syncedExerciseFolder + "/" + f));
 				if(ex != null){
 					list.add(ex);
@@ -190,11 +191,11 @@ public class DataProvider implements IDataProvider {
 
 		if(exerciseList == null || exerciseList.isEmpty())
 			return unsavedExercises;
-		
+		File destination = new File(mContext.getFilesDir().toString() + "/"
+				+ IDataProvider.SYNCED_EXERCISE_FOLDER);
+
 		for (ExerciseType exercise : exerciseList) {
 			Log.d(TAG, "Trying to save exercise: " + exercise.toString());
-			File destination = new File(mContext.getFilesDir().toString() + "/"
-					+ IDataProvider.SYNCED_EXERCISE_FOLDER);
 
 			boolean succ = XMLSaver.writeExerciseType(exercise, destination);
 
@@ -202,7 +203,6 @@ public class DataProvider implements IDataProvider {
 				Log.e(TAG, "The exercise " + exercise.toString() + " could not be saved.");
 				unsavedExercises.add(exercise);
 			}
-
 		}
 
 		// update Cache, as an Exercise has changed
@@ -526,20 +526,21 @@ public class DataProvider implements IDataProvider {
 		try {
 			String[] exampleWorkouts = mContext.getAssets().list(
 					IDataProvider.EXAMPLE_WORKOUT_FOLDER);
+			byte[] buffer = new byte[1024];
 			for (String file : exampleWorkouts) {
 				InputStream in = null;
-				OutputStream out = null;
+				OutputStream out;
 				try {
 					in = mContext.getAssets().open(IDataProvider.EXAMPLE_WORKOUT_FOLDER + "/" + file);
 					out = new FileOutputStream(mContext.getFilesDir().toString() + "/" + file);
 
 					// copy file
-					byte[] buffer = new byte[1024];
 					int read;
 					while ((read = in.read(buffer)) != -1) {
 						out.write(buffer, 0, read);
 					}
 
+					buffer = null;
 					in.close();
 					in = null;
 					out.flush();

@@ -72,10 +72,11 @@ public class WgerImageDownloader {
 	public ArrayList<ExerciseType> downloadImages(List<ExerciseType.Builder> exerciseBuilderList) throws IOException, JSONException {
 		ArrayList<ExerciseType> newExerciseList = new ArrayList<ExerciseType>();
 		boolean imageWithName = false;
+		List<File> newImagePathList = new ArrayList<File>();
+		Map<File, License> newImageLicenseMap = new HashMap<File, License>();
+		String imageName;
 
 		for (ExerciseType.Builder exBuilder : exerciseBuilderList) {
-			List<File> newImagePathList = new ArrayList<File>();
-			Map<File, License> newImageLicenseMap = new HashMap<File, License>();
 
 			ExerciseType ex = exBuilder.build();
 			for (File img : ex.getImagePaths()) {
@@ -100,7 +101,7 @@ public class WgerImageDownloader {
 				
 				// skip exercise (and image download) if there's already one with the same name
 				DataHelper dataHelper = new DataHelper(mContext);
-				String imageName = (new File(imageDownloadPath)).getName();
+				imageName = (new File(imageDownloadPath)).getName();
 				if(dataHelper.drawableExist(imageName)){
 					Log.d(TAG, "There's already an image with the same name as: " + imageDownloadPath + ". The exercise: " + ex.getLocalizedName() + " is propably duplicate, it will not be added.");
 					imageWithName = true;
@@ -114,6 +115,7 @@ public class WgerImageDownloader {
 					newImageLicenseMap.put(imageFile, license);
 				}
 
+				imageName = "";
 			}
 
 			if(!imageWithName) {
@@ -123,6 +125,9 @@ public class WgerImageDownloader {
 
 				newExerciseList.add(exBuilder.build());
 			}
+
+			newImagePathList.clear();
+			newImageLicenseMap.clear();
 		}
 
 		return newExerciseList;
@@ -167,8 +172,8 @@ public class WgerImageDownloader {
 			while ((count = input.read(data)) != -1) {
 				total += count;
 				// publishing the progress....
-				Bundle resultData = new Bundle();
-				resultData.putInt("progress", (int) (total * 100 / fileLength));
+				//Bundle resultData = new Bundle();
+				//resultData.putInt("progress", (int) (total * 100 / fileLength));
 				// receiver.send(UPDATE_PROGRESS, resultData);
 				output.write(data, 0, count);
 			}
