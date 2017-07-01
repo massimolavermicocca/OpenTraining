@@ -18,7 +18,6 @@
 package at.technikum.mti.fancycoverflow;
 
 import android.*;
-import android.R;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;

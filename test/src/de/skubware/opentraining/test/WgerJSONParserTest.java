@@ -35,7 +35,6 @@ import android.util.Log;
 import de.skubware.opentraining.activity.settings.sync.WgerJSONParser;
 import de.skubware.opentraining.basic.ExerciseType;
 import de.skubware.opentraining.basic.Muscle;
-import de.skubware.opentraining.basic.SportsEquipment;
 import de.skubware.opentraining.basic.Workout;
 import de.skubware.opentraining.basic.ExerciseType.ExerciseSource;
 import de.skubware.opentraining.db.DataProvider;

@@ -47,7 +47,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import at.technikum.mti.fancycoverflow.FancyCoverFlow;
 import de.skubware.opentraining.R;
 import de.skubware.opentraining.activity.create_workout.upload_exercise.UploadExerciseImagesAsyncTask;
 import de.skubware.opentraining.basic.ExerciseType;

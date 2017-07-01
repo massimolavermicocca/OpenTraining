@@ -31,7 +31,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import de.skubware.opentraining.R;
-import de.skubware.opentraining.basic.Muscle;
 import de.skubware.opentraining.basic.Translatable;
 
 /**

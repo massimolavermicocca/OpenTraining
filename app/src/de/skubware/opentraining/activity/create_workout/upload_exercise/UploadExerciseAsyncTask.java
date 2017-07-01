@@ -53,7 +53,6 @@ import de.skubware.opentraining.activity.create_workout.ExerciseTypeDetailFragme
 import de.skubware.opentraining.basic.ExerciseType;
 import de.skubware.opentraining.basic.Muscle;
 import de.skubware.opentraining.basic.SportsEquipment;
-import de.skubware.opentraining.db.rest.ExerciseImageGSONSerializer;
 import de.skubware.opentraining.db.rest.ExerciseTypeGSONSerializer;
 import de.skubware.opentraining.db.rest.LanguageGSONDeserializer;
 import de.skubware.opentraining.db.rest.MuscleGSONDeserializer;

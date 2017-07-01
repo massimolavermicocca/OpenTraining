@@ -20,7 +20,6 @@
 
 package de.skubware.opentraining.activity.start_training;
 
-import java.util.Timer;
 import java.util.TimerTask;
 
 import de.skubware.opentraining.R;
