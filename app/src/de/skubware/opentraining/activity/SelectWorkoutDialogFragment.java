@@ -33,6 +33,7 @@ import android.widget.Button;
 import java.util.Calendar;
 import java.util.List;
 
+import de.skubware.opentraining.Exceptions.ErrorException;
 import de.skubware.opentraining.R;
 import de.skubware.opentraining.activity.start_training.FExListActivity;
 import de.skubware.opentraining.basic.FSet;
@@ -135,34 +136,19 @@ public class SelectWorkoutDialogFragment extends DialogFragment {
 		
 	}
 
-	private void startTraining(boolean startNewTraining) {
+	private void startTraining(boolean startNewTraining) throws ErrorException {
 		this.dismiss();
 		
 		// add TrainingEntry(==start new training) if user choose this
 		// or it is necessary because there are no old training entries
-		if (startNewTraining || mWorkout.getFitnessExercises().get(0).getTrainingEntryList().isEmpty()) {
+		if (isNewTraining(startNewTraining)) {
 			mWorkout.addTrainingEntry(Calendar.getInstance().getTime());
 			
 			// add the FSets the user probably wants to do
 			// but set them to notDone
 			for(FitnessExercise fEx:mWorkout.getFitnessExercises()){
 				TrainingEntry latestEntry = fEx.getTrainingEntryList().get(fEx.getTrainingEntryList().size() -1);
-				if(fEx.getFSetList() != null && !fEx.getFSetList().isEmpty()){
-					for(FSet set: fEx.getFSetList()){
-						FSet newSet = (FSet) set.clone();
-						latestEntry.add(newSet);
-						latestEntry.setHasBeenDone(newSet, false);
-					}
-				}else{
-					if(fEx.getTrainingEntryList().size() != 1){
-						TrainingEntry prevEntry = fEx.getTrainingEntryList().get(fEx.getTrainingEntryList().size() -2);
-						for(FSet set:prevEntry.getFSetList()){
-							FSet newSet = (FSet) set.clone();
-							latestEntry.add(newSet);
-							latestEntry.setHasBeenDone(newSet, false);
-						}
-					}
-				}
+				addEntry(fEx, latestEntry);
 			}
 		}
 
@@ -173,8 +159,31 @@ public class SelectWorkoutDialogFragment extends DialogFragment {
 		getActivity().startActivity(intent);
 		
 	}
-	
-	
+
+	private void addEntry(FitnessExercise fEx, TrainingEntry latestEntry) throws ErrorException {
+		if(fEx.getFSetList() != null && !fEx.getFSetList().isEmpty()){
+            for(FSet set: fEx.getFSetList()){
+                FSet newSet = (FSet) set.clone();
+                latestEntry.add(newSet);
+                latestEntry.setHasBeenDone(newSet, false);
+            }
+        }else{
+            if(fEx.getTrainingEntryList().size() != 1){
+                TrainingEntry prevEntry = fEx.getTrainingEntryList().get(fEx.getTrainingEntryList().size() -2);
+                for(FSet set:prevEntry.getFSetList()){
+                    FSet newSet = (FSet) set.clone();
+                    latestEntry.add(newSet);
+                    latestEntry.setHasBeenDone(newSet, false);
+                }
+            }
+        }
+	}
+
+	private boolean isNewTraining(boolean startNewTraining) {
+		return startNewTraining || mWorkout.getFitnessExercises().get(0).getTrainingEntryList().isEmpty();
+	}
+
+
 	private void disableButton() {
 		Button button = mCreatedDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
 		button.setEnabled(false);		
