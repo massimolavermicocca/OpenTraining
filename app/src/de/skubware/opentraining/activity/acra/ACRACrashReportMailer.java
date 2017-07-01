@@ -23,13 +23,12 @@ import java.util.Map;
 import java.security.SecureRandom;
 import java.util.Random;
 
-
 /** 
  * Based on acra-mailer(https://github.com/d-a-n/acra-mailer) of d-a-n. 
  */
 public class ACRACrashReportMailer implements ReportSender {
 	private final static String BASE_URL = "http://skubware.de/opentraining/acra_crash.php";
-	private final static SecureRandom random = new SecureRandom();
+
 	private Map<String, String> custom_data = null;
 
 	public ACRACrashReportMailer() {
@@ -41,8 +40,14 @@ public class ACRACrashReportMailer implements ReportSender {
 
 	@Override
 	public void send(CrashReportData report) throws ReportSenderException {
+        String url;
+        try{
+            String my_url = getUrl();
+            url = my_url;
+        } catch (NoSuchAlgorithmException e){
+            throw new ReportSenderException("");
+        }
 
-		String url = getUrl();
 		Log.e("xenim", url);
 
 		try {
@@ -102,20 +107,20 @@ public class ACRACrashReportMailer implements ReportSender {
 		}
 	}
 
-	private String getUrl() {
+	private String getUrl() throws  NoSuchAlgorithmException {
 		String token = getToken();
 		String key = getKey(token);
 		return String.format("%s?token=%s&key=%s&", BASE_URL, token, key);
 	}
 
-	private String getKey(String token) {
-        Random randgen = new Random();
-        return makeSha(String.format("%s+%s", new BigInteger(randgen.nextInt(), random).toString(), token));
+	private String getKey(String token) throws NoSuchAlgorithmException {
+        final SecureRandom random = new SecureRandom().getInstance("SHA1PRNG");
+        return makeSha(String.format("%s+%s", random.nextInt(Integer.MAX_VALUE), token));
 	}
 
-	private String getToken() {
-        Random randgen = new Random();
-		return makeSha(new BigInteger(randgen.nextInt(), random).toString());
+	private String getToken()throws NoSuchAlgorithmException{
+        final SecureRandom random = new SecureRandom().getInstance("SHA1PRNG");
+		return makeSha(String.valueOf(random.nextInt(Integer.MAX_VALUE)));
 	}
 
 	public static String makeSha(String s) {
