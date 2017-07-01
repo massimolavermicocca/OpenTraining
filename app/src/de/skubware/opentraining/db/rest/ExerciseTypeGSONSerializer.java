@@ -60,9 +60,9 @@ public class ExerciseTypeGSONSerializer implements JsonSerializer<ExerciseType>{
 	@Override
 	public JsonElement serialize(ExerciseType ex, Type typeOfSrc, JsonSerializationContext context) {
 		
-		if(sMuscleMap == null || sLanguageMap == null || sEquipmentMap == null) 
-			throw new IllegalArgumentException("At least one map in " + TAG + " has not been initialized");
 		
+		if(sMuscleMap == null || sLanguageMap == null || sEquipmentMap == null)
+			throw new IllegalArgumentException("At least one map in " + TAG + " has not been initialized")
 
 		JsonObject mainObject = new JsonObject();
 
@@ -91,12 +91,7 @@ public class ExerciseTypeGSONSerializer implements JsonSerializer<ExerciseType>{
 		// language
 		Map<Locale,String> translationMap = ex.getTranslationMap();
 		Locale chosenLocale = null;
-		for(Locale l:translationMap.keySet()){
-			if(translationMap.get(l).equals(ex.getLocalizedName())){
-				chosenLocale = l;
-				break;
-			}
-		}
+		chosenLocale = iterateOnKeySet(ex, translationMap, chosenLocale);
 		Language l = sLanguageMap.get(chosenLocale);
 		if(l == null){
 			Log.e(TAG, "Could not find any fitting locale. Will use English.");
@@ -122,9 +117,18 @@ public class ExerciseTypeGSONSerializer implements JsonSerializer<ExerciseType>{
 
 		return mainObject;
 	}
-	
-	
-	
+
+	private Locale iterateOnKeySet(ExerciseType ex, Map<Locale, String> translationMap, Locale chosenLocale) {
+		for(Locale l:translationMap.keySet()){
+			if(translationMap.get(l).equals(ex.getLocalizedName())){
+				chosenLocale = l;
+				break;
+			}
+		}
+		return chosenLocale;
+	}
+
+
 	public static void setMuscleMap(Map<Muscle,MuscleCategory> muscleMap){
 		sMuscleMap = new HashMap<Muscle,MuscleCategory>(muscleMap);
 	}
