@@ -105,15 +105,7 @@ public class TrainingEntryListAdapter extends BaseAdapter {
 		TextView textview_duration = (TextView) vi.findViewById(R.id.textview_duration);
 
 		for (SetParameter para : set.getSetParameters()) {
-			if (para instanceof SetParameter.Weight) {
-				textview_weight.setText(para.toString());
-			}
-			if (para instanceof SetParameter.Duration) {
-				textview_duration.setText(para.toString());
-			}
-			if (para instanceof SetParameter.Repetition) {
-				textview_rep.setText(para.toString());
-			}
+			analizeParameter(textview_weight, textview_rep, textview_duration, para);
 		}
 
 		// set button icons
@@ -149,10 +141,6 @@ public class TrainingEntryListAdapter extends BaseAdapter {
 				}
 			}
 		});
-
-
-
-
 		// add lister for changing values
 		final ImageView imageview_weight = (ImageView) vi.findViewById(R.id.imageview_weight);
 		final ImageView imageview_rep = (ImageView) vi.findViewById(R.id.imageview_rep);
@@ -169,6 +157,18 @@ public class TrainingEntryListAdapter extends BaseAdapter {
 		imageview_duration.setOnClickListener(changeSetValuesListener);
 
 		return vi;
+	}
+
+	private void analizeParameter(TextView textview_weight, TextView textview_rep, TextView textview_duration, SetParameter para) {
+		if (para instanceof SetParameter.Weight) {
+            textview_weight.setText(para.toString());
+        }
+		if (para instanceof SetParameter.Duration) {
+            textview_duration.setText(para.toString());
+        }
+		if (para instanceof SetParameter.Repetition) {
+            textview_rep.setText(para.toString());
+        }
 	}
 
 	public void remove(int position) {
