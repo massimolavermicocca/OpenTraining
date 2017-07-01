@@ -144,7 +144,7 @@ public class WorkoutListActivity extends ActionBarActivity implements WorkoutLis
 			// adding or replacing the detail fragment using a
 			// fragment transaction.
 			Bundle arguments = new Bundle();
-			arguments.putSerializable(WorkoutDetailFragment.ARG_WORKOUT, identifier);
+			arguments.putSerializable(WorkoutDetailFragment.ARG_WORKOUT, workout);
 			WorkoutDetailFragment fragment = new WorkoutDetailFragment();
 			fragment.setArguments(arguments);
 			getSupportFragmentManager().beginTransaction().replace(R.id.workout_detail_container, fragment).commit();
@@ -153,7 +153,7 @@ public class WorkoutListActivity extends ActionBarActivity implements WorkoutLis
 			// In single-pane mode, simply start the detail activity
 			// for the selected item ID.
 			Intent detailIntent = new Intent(this, WorkoutDetailActivity.class);
-			detailIntent.putExtra(WorkoutDetailFragment.ARG_WORKOUT, identifier);
+			detailIntent.putExtra(WorkoutDetailFragment.ARG_WORKOUT, workout);
 			startActivityForResult(detailIntent, RESULT_WORKOUT);
 		}
 	}
@@ -174,13 +174,11 @@ public class WorkoutListActivity extends ActionBarActivity implements WorkoutLis
 				return;
 			}
 			if (resultCode == REQUEST_EXIT) {
-				Log.d(TAG, "Requested exit. Will finish acitivty.");
+				Log.d(TAG, "Requested exit. Will finish activity.");
 
 				finish();
 				return;
 			}
-			
-			
 
 		}
 		
@@ -191,31 +189,35 @@ public class WorkoutListActivity extends ActionBarActivity implements WorkoutLis
                 File workoutFile = new File(filePath);
                 WorkoutXMLParser parser = new WorkoutXMLParser();
                 Workout w = parser.read(workoutFile, this);
-                
-                if(w == null){
-                	Toast.makeText(this, getString(R.string.no_valid_workout, workoutFile.getName()), Toast.LENGTH_LONG).show();
-                }else{
-                	IDataProvider dataProvider = new DataProvider(this);
-                	Set<String> exisitingWorkoutNames = new HashSet<String>();
-                	for(Workout workout:dataProvider.getWorkouts()){
-                		exisitingWorkoutNames.add(workout.getName());
-                	}
-                		
-                	while(exisitingWorkoutNames.contains(w.getName())){
-                		Log.e(TAG, "Already a workout with the same name, will rename it");
-                		w.setName(w.getName() + "0");
-                	}
-                	
-                	dataProvider.saveWorkout(w);
-                	Toast.makeText(this, getString(R.string.workout_has_been_imported, workoutFile.getName()), Toast.LENGTH_LONG).show();
-                	this.onWorkoutChanged(w);
-                }
-            }else{
+
+				analizeWorkout(workoutFile, w);
+			}else{
             	// show error: no filepath returned
             	Toast.makeText(this, getString(R.string.no_workout_passed), Toast.LENGTH_LONG).show();
             }
             
 		}
+	}
+
+	private void analizeWorkout(File workoutFile, Workout w) {
+		if(w == null){
+            Toast.makeText(this, getString(R.string.no_valid_workout, workoutFile.getName()), Toast.LENGTH_LONG).show();
+        }else{
+            IDataProvider dataProvider = new DataProvider(this);
+            Set<String> exisitingWorkoutNames = new HashSet<String>();
+            for(Workout workout:dataProvider.getWorkouts()){
+                exisitingWorkoutNames.add(workout.getName());
+            }
+
+            while(exisitingWorkoutNames.contains(w.getName())){
+                Log.e(TAG, "Already a workout with the same name, will rename it");
+                w.setName(w.getName() + "0");
+            }
+
+            dataProvider.saveWorkout(w);
+            Toast.makeText(this, getString(R.string.workout_has_been_imported, workoutFile.getName()), Toast.LENGTH_LONG).show();
+            this.onWorkoutChanged(w);
+        }
 	}
 
 	/**
