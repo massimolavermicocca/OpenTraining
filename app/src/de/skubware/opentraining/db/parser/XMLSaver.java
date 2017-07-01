@@ -83,7 +83,8 @@ public class XMLSaver {
 		// check arguments
 		if (destination.isDirectory()) {
 			String filename = w.getName();
-			if(filename == null || filename.equals("")){
+			boolean empty = isFileNameEmpty(filename);
+			if(empty){
 				filename = "plan";
 				Log.w(TAG, "Warning: Trying to save Workout, but did not find a name. Workout: " + w.toDebugString());
 			}
@@ -210,26 +211,35 @@ public class XMLSaver {
 		return success;
 	}
 
+	private static boolean isFileNameEmpty(String filename) {
+		return filename == null || filename.equals("");
+	}
+
 	private static Element addFitnessExercise(FitnessExercise fEx, Document doc, Element fE) {
 		for (FSet set : fEx.getFSetList()) {
 			Element fSetE = doc.createElement("FSet");
-
-			for (SetParameter c : set.getSetParameters()) {
-				Element catE = doc.createElement("SetParameter");
-				catE.setAttribute("name", c.getName());
-				if(! (c instanceof FSet.SetParameter.FreeField) ){
-					catE.setAttribute("value", Integer.toString(c.getValue()));
-				}else{
-					catE.setAttribute("value",c.toString());
-				}
-				fSetE.appendChild(catE);
-			}
+			fSetE = addFitnessParameters(set, doc, fSetE);
 
 			// append FitnessExercise
 			fE.appendChild(fSetE);
 		}
 
 		return fE;
+	}
+
+	private static Element addFitnessParameters(FSet set, Document doc, Element fSetE) {
+		for (SetParameter c : set.getSetParameters()) {
+			Element catE = doc.createElement("SetParameter");
+			catE.setAttribute("name", c.getName());
+			if(! (c instanceof FSet.SetParameter.FreeField) ){
+				catE.setAttribute("value", Integer.toString(c.getValue()));
+			}else{
+				catE.setAttribute("value",c.toString());
+			}
+			fSetE.appendChild(catE);
+		}
+
+		return fSetE;
 	}
 
 	private static Element addTrainingEntry(FitnessExercise fEx, Document doc, Element fE, SimpleDateFormat format) throws ErrorException {
@@ -244,13 +254,7 @@ public class XMLSaver {
 			}
 
 			//TODO refactor
-			for (FSet set: entry.getFSetList()) {
-				Element fSetE = doc.createElement("FSet");
-				fSetE.setAttribute("hasBeenDone", Boolean.toString(entry.hasBeenDone(set)) );
-				fSetE = setParameterEntry(set, doc, fSetE);
-
-				entryE.appendChild(fSetE);
-			}
+			entryE = setTrainingEntry(entry, doc, entryE);
 
 			// append TrainingEntry
 			fE.appendChild(entryE);
@@ -259,7 +263,19 @@ public class XMLSaver {
 		return fE;
 	}
 
-	private static Element setParameterEntry(FSet set, Document doc, Element fSetE) {
+	private static Element setTrainingEntry(TrainingEntry entry, Document doc, Element entryE) throws ErrorException {
+		for (FSet set: entry.getFSetList()) {
+			Element fSetE = doc.createElement("FSet");
+			fSetE.setAttribute("hasBeenDone", Boolean.toString(entry.hasBeenDone(set)) );
+			fSetE = addEntryParameter(set, doc, fSetE);
+
+			entryE.appendChild(fSetE);
+		}
+
+		return entryE;
+	}
+
+	private static Element addEntryParameter(FSet set, Document doc, Element fSetE) {
 		for (SetParameter c : set.getSetParameters()) {
 			Element catE = doc.createElement("SetParameter");
 			catE.setAttribute("name", c.getName());
