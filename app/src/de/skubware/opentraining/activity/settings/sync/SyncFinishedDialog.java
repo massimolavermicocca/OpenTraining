@@ -165,30 +165,31 @@ public class SyncFinishedDialog extends AlertDialog.Builder {
 	 * Updates the list with exercises that should be saved. Also updates the
 	 * number of exercises displayed on the GUI.
 	 */
+
+	public void analizeExercise(ExerciseType exercise, boolean  withImagesOnly){
+		if (withImagesOnly && exercise.getImagePaths().isEmpty()) {
+			mExerciseToSaveList.remove(exercise);
+		}
+
+		if(withDescriptionOnly && (exercise.getDescription()==null || exercise.getDescription().equals(""))){
+			mExerciseToSaveList.remove(exercise);
+		}
+	}
+
 	private void updateExercisesToSave() {
 		Log.v(TAG, "updateExercisesToSave(); withImagesOnly=" + withImagesOnly + ", withDescriptionOnly=" + withDescriptionOnly);
 		mExerciseToSaveList = new ArrayList<ExerciseType>(mAllExercisesList);
 
 		for (ExerciseType exercise : mAllExercisesList) {
 			// remove exercises without images
-			if (withImagesOnly && exercise.getImagePaths().isEmpty()) {
-				mExerciseToSaveList.remove(exercise);
-				continue;
-			}
-			
-			if(withDescriptionOnly && (exercise.getDescription()==null || exercise.getDescription().equals(""))){
-				mExerciseToSaveList.remove(exercise);
-				continue;
-			}
+			analizeExercise(exercise, withImagesOnly);
 
 			// remove exercises with wrong localization
 			boolean keepExercise = false;
 			for (Locale localeToSave : localesToSave) {
-				for (Locale exerciseLocale : exercise.getTranslationMap()
-						.keySet()) {
+				for (Locale exerciseLocale : exercise.getTranslationMap().keySet()) {
 					// only language needs to be compared
-					if (localeToSave.getLanguage().equals(
-							exerciseLocale.getLanguage())) {
+					if (localeToSave.getLanguage().equals(exerciseLocale.getLanguage())) {
 						keepExercise = true;
 					}
 				}
@@ -199,10 +200,8 @@ public class SyncFinishedDialog extends AlertDialog.Builder {
 			}
 		}
 
-		mExerciseCountTextView.setText(Integer.toString(mExerciseToSaveList
-				.size()));
-		Log.v(TAG, "There are " + mExerciseToSaveList
-				.size() + " exercises that should be saved.");
+		mExerciseCountTextView.setText(Integer.toString(mExerciseToSaveList.size()));
+		Log.v(TAG, "There are " + mExerciseToSaveList.size() + " exercises that should be saved.");
 	}
 	
 	private void saveExercises(){
