@@ -208,31 +208,30 @@ public class FitnessExercise implements IExercise, Serializable {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
+
 		if (obj == null) {
 			return false;
 		}
 		if (!(obj instanceof FitnessExercise)) {
 			return false;
-		}
-		FitnessExercise other = (FitnessExercise) obj;
-		if (mExerciseType == null) {
-			if (other.mExerciseType != null) {
+		} else {
+			FitnessExercise other = (FitnessExercise) obj;
+			if (mExerciseType == null || ) {
+				if (other.mExerciseType != null) {
+					return false;
+				}
+			} else if (!mExerciseType.equals(other.mExerciseType)) {
 				return false;
 			}
-		} else if (!mExerciseType.equals(other.mExerciseType)) {
-			return false;
-		}
-		if (mFSetList == null) {
-			if (other.mFSetList != null) {
+			if (mFSetList == null) {
+				if (other.mFSetList != null) {
+					return false;
+				}
+			} else if (!mFSetList.equals(other.mFSetList)) {
 				return false;
 			}
-		} else if (!mFSetList.equals(other.mFSetList)) {
-			return false;
 		}
-		return true;
+		
 	}
 
 	@Override
