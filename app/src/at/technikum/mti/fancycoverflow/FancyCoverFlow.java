@@ -39,6 +39,9 @@ public class FancyCoverFlow extends Gallery {
     // Constants
     // =============================================================================
 
+    /**
+     * @field ACTION_DISTANCE_AUTO
+     */
     public static final int ACTION_DISTANCE_AUTO = Integer.MAX_VALUE;
 
     public static final float SCALEDOWN_GRAVITY_TOP = 0.0f;
