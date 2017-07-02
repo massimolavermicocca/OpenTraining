@@ -238,8 +238,6 @@ class FancyCoverFlowItemWrapper extends ViewGroup {
 
     /**
      * Creates the reflected images.
-     *
-     * @return true, if successful
      */
     private void createReflectedImages() {
 
