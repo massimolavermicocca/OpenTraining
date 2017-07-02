@@ -136,10 +136,9 @@ public class ExerciseTypeListFragment extends ListFragment implements OnQueryTex
 	 */
 	private static Callbacks sDummyCallbacks = new Callbacks() {
 		@Override
-		public void onItemSelected(ExerciseType qwerty) {
+		public void onItemSelected(ExerciseType nothing) {
 		}
 	};
-
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
 	 * fragment (e.g. upon screen orientation changes).
