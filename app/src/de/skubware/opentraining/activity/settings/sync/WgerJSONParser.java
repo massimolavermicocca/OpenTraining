@@ -252,24 +252,22 @@ public class WgerJSONParser {
 				// handle Muscles
 				String name = singleObject.getString("name");
 				parsedObject = mDataProvider.getMuscleByName(name);
-				
-				if(parsedObject == null)
-					Log.e(TAG, "Could not find Muscle: " + name);
-				
+
+				checkParsedObject(parsedObject, "Could not find Muscle: " + name);
+
 			}else if(c.equals(SportsEquipment.class)){
 				// handle SportsEquipment
 				String name = singleObject.getString("name");
 				parsedObject = mDataProvider.getEquipmentByName(name);
-				
-				if(parsedObject == null)
-					Log.e(TAG, "Could not find SportsEquipment: " + name);
-				
+
+				checkParsedObject(parsedObject, "Could not find SportsEquipment: " + name);
+
 			}else if(c.equals(Locale.class)){
 				// handle Locales
 				String short_name = singleObject.getString("short_name");
 				parsedObject = new Locale(short_name);	
 				
-				if(short_name == null || short_name.equals(""))
+				if(isShortNameEmpty(short_name))
 					Log.e(TAG, "Error, no short_name=" + short_name);
 				
 			}else if(c.equals(LicenseType.class)){
@@ -279,7 +277,7 @@ public class WgerJSONParser {
 				parsedObject = mDataProvider.getLicenseTypeByName(short_name);	
 				
 				
-				if(short_name == null || short_name.equals(""))
+				if(isShortNameEmpty(short_name))
 					Log.e(TAG, "Error, no short_name=" + short_name);
 				
 			}else{
@@ -294,7 +292,16 @@ public class WgerJSONParser {
 		return sparseArray;
 	}
 
-	
+	private static void checkParsedObject(Object parsedObject, String msg) {
+		if (parsedObject == null)
+			Log.e(TAG, msg);
+	}
+
+	private static boolean isShortNameEmpty(String short_name) {
+		return short_name == null || short_name.equals("");
+	}
+
+
 	/**
 	 * Returns the list with the new exercises.
 	 * 
