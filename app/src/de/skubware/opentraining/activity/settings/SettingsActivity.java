@@ -258,8 +258,8 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 	 */
 	private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
 		@Override
-		public boolean onPreferenceChange(Preference newone, Object simple) {
-			newone.setSummary(simple.toString());
+		public boolean onPreferenceChange(Preference nw, Object obj) {
+			nw.setSummary(obj.toString());
 			return true;
 		}
 	};

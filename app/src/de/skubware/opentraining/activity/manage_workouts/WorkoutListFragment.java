@@ -92,7 +92,7 @@ public class WorkoutListFragment extends ListFragment {
 	 */
 	private static Callbacks sDummyCallbacks = new Callbacks() {
 		@Override
-		public void onItemSelected(Workout todo) {
+		public void onItemSelected(Workout mine) {
 		}
 	};
 
