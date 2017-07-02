@@ -52,7 +52,7 @@ import de.skubware.opentraining.db.IDataProvider;
  */
 public class ExerciseTypeListFragment extends ListFragment implements OnQueryTextListener {
 	/** Tag for logging */
-	public static final String TAG = "ExerciseTypeListFragment";
+	public static final String TAG = "ExerciseTypeListFrag";
 
 	/** Currently display exercises */
 	private List<ExerciseType> mExerciseList;
@@ -136,7 +136,7 @@ public class ExerciseTypeListFragment extends ListFragment implements OnQueryTex
 	 */
 	private static Callbacks sDummyCallbacks = new Callbacks() {
 		@Override
-		public void onItemSelected(ExerciseType ex) {
+		public void onItemSelected(ExerciseType item) {
 		}
 	};
 
@@ -234,19 +234,19 @@ public class ExerciseTypeListFragment extends ListFragment implements OnQueryTex
 				mExerciseList));	
 	}
 
-	private void checkAccepted(List<SportsEquipment> acceptedEquipment, ExerciseType ex, boolean accepted) {
-		if(ex.getActivatedMuscles().isEmpty())
+	private void checkAccepted(List<SportsEquipment> acceptedEquipment, ExerciseType obj, boolean accepted) {
+		if(obj.getActivatedMuscles().isEmpty())
             accepted = true;
 
 		if (!accepted) {
             // Log.d(TAG, "Exercise: " + ex.toString() + " will not be shown. Muscles do not fit.");
-            mExerciseList.remove(ex);
+            mExerciseList.remove(obj);
 			return;
         }
 
-		if (!acceptedEquipment.containsAll(ex.getRequiredEquipment())) {
+		if (!acceptedEquipment.containsAll(obj.getRequiredEquipment())) {
             // Log.d(TAG, "Exercise: " + ex.toString() + " will not be shown. Equipment does not fit");
-            mExerciseList.remove(ex);
+            mExerciseList.remove(obj);
 			return;
         }
 	}
@@ -259,7 +259,7 @@ public class ExerciseTypeListFragment extends ListFragment implements OnQueryTex
 	 * 
 	 */
 	private void filterExercisesForSearchQuery() {
-		Log.d(TAG, "filterExercisesForSearchQuery() mSearchEquery=" + mSearchQuery);
+		Log.d("ExerciseTypeListFrag", "filterExercisesForSearchQuery() mSearchEquery=" + mSearchQuery);
 
 		if (mSearchQuery == null)
 			mSearchQuery = "";
