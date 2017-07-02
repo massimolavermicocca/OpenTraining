@@ -216,7 +216,7 @@ public class FitnessExercise implements IExercise, Serializable {
 			return false;
 		} else {
 			FitnessExercise other = (FitnessExercise) obj;
-			if (mExerciseType == null || ) {
+			if (mExerciseType == null) {
 				if (other.mExerciseType != null) {
 					return false;
 				}
@@ -231,7 +231,7 @@ public class FitnessExercise implements IExercise, Serializable {
 				return false;
 			}
 		}
-		
+		return true;
 	}
 
 	@Override
