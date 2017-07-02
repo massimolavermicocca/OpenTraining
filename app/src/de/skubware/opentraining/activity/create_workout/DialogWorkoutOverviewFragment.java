@@ -258,10 +258,11 @@ public class DialogWorkoutOverviewFragment extends DialogFragment {
 		String files[] = getActivity().getFilesDir().list(new FilenameFilter() {
 			@Override
 			public boolean accept(File dir, String filename) {
-				if (filename.endsWith(".xml"))
+				if (filename.endsWith(".xml")) {
 					return true;
-				else
+				} else {
 					return false;
+				}
 			}
 		});
 		Set<String> workout_names = new HashSet<String>();

@@ -40,8 +40,9 @@ public class CustomSpinner extends Spinner {
 	@Override
 	public void setSelection(int position) {
 	    super.setSelection(position);
-	    if (listener != null)
-	        listener.onItemSelected(null, null, position, 0);
+	    if (listener != null) {
+			listener.onItemSelected(null, null, position, 0);
+		}
 	}
 
 	public void setOnItemSelectedEvenIfUnchangedListener(

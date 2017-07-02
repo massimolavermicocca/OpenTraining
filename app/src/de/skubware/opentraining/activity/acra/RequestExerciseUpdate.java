@@ -59,10 +59,11 @@ public class RequestExerciseUpdate extends Exception{
 		
 		@Override
 		public String toString(){
-			if(mTranslatedName == null)
+			if(mTranslatedName == null) {
 				return mLongName;
-			else
+			} else {
 				return mTranslatedName;
+			}
 		}
 		
 		public String getUnlocalizedName(){

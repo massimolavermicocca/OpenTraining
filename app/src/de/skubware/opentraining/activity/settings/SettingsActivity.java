@@ -212,8 +212,9 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 		validFragmentNames.add(SyncPreferenceFragment.class.getName());
 		validFragmentNames.add(MiscellaneousPreferenceFragment.class.getName());
 
-		if(validFragmentNames.contains(fragmentName))
+		if(validFragmentNames.contains(fragmentName)) {
 			return true;
+		}
 
 		return false;
 	}
@@ -531,8 +532,9 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 		// get host from preferences
 		SharedPreferences settings = PreferenceManager
 				.getDefaultSharedPreferences(this);
-		if (!settings.contains("exercise_sync_url"))
+		if (!settings.contains("exercise_sync_url")) {
 			Log.e(TAG, "Could not find preference 'string exercise_sync_url'");
+		}
 		String host = settings.getString(
 				"exercise_sync_url",
 				getApplicationContext().getString(

@@ -100,8 +100,9 @@ public class WgerJSONParser {
 			JSONObject jsonExercise = exerciseArray.getJSONObject(i);
 			// get name and check if exercise already exists
 			String name = jsonExercise.getString("name");
-			if(dataProvider.exerciseExists(name))
+			if(dataProvider.exerciseExists(name)) {
 				continue;
+			}
 			
 			ExerciseType.Builder builder = new ExerciseType.Builder(name, ExerciseSource.SYNCED);
 			
@@ -274,13 +275,15 @@ public class WgerJSONParser {
 	}
 
 	private static void checkShortName(String short_name) {
-		if(isShortNameEmpty(short_name))
-            Log.e(TAG, "Error, no short_name=" + short_name);
+		if(isShortNameEmpty(short_name)) {
+			Log.e(TAG, "Error, no short_name=" + short_name);
+		}
 	}
 
 	private static void checkParsedObject(Object parsedObject, String msg) {
-		if (parsedObject == null)
+		if (parsedObject == null) {
 			Log.e(TAG, msg);
+		}
 	}
 
 	private static boolean isShortNameEmpty(String short_name) {

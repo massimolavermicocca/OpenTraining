@@ -167,20 +167,22 @@ public class ExerciseTypeListActivity extends ActionBarActivity implements Exerc
 		return super.onOptionsItemSelected(item);
 	}
 
-	private void isNull(Workout check){
-		if (check != null)
+	private void isNull(Workout mWorkout){
+		if (mWorkout != null) {
 			showDialog();
-		else
+		} else {
 			finish();
+		}
 	}
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			if (mWorkout != null)
+			if (mWorkout != null) {
 				showDialog();
-			else
+			} else {
 				finish();
+			}
 			return true;
 		}
 		return super.onKeyDown(keyCode, event);
