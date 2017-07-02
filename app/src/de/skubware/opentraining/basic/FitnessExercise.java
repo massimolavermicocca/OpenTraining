@@ -186,7 +186,7 @@ public class FitnessExercise implements IExercise, Serializable {
 
 		this.mCustomName = newName;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
