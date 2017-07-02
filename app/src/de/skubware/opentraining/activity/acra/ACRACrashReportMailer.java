@@ -21,7 +21,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.security.SecureRandom;
-import java.util.Random;
 
 /** 
  * Based on acra-mailer(https://github.com/d-a-n/acra-mailer) of d-a-n. 
