@@ -70,8 +70,9 @@ public abstract class SpinnerDataFragment<T extends Translatable> extends Simple
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View layout = inflater.inflate(mLayoutID, container, false);
 	
-		if(mSpinnerDataList == null)
+		if(mSpinnerDataList == null) {
 			throw new AssertionError("Sub class of SpinnerDataFragment<T> did not set mObjectList.");
+		}
 		
 		ArrayAdapter<T> mSpinnerAdapter = new ArrayAdapter<T>(getActivity(), android.R.layout.simple_spinner_dropdown_item, android.R.id.text1, mSpinnerDataList);
 	

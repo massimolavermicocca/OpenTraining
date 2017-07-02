@@ -236,12 +236,15 @@ public class SelectMuscleDialog extends AlertDialog implements OnTouchListener {
 	public boolean colorMatch(int color1, int color2) {
 		int tolerance = 25;
 		
-		if ((int) Math.abs(Color.red(color1) - Color.red(color2)) > tolerance)
+		if ((int) Math.abs(Color.red(color1) - Color.red(color2)) > tolerance) {
 			return false;
-		if ((int) Math.abs(Color.green(color1) - Color.green(color2)) > tolerance)
+		}
+		if ((int) Math.abs(Color.green(color1) - Color.green(color2)) > tolerance) {
 			return false;
-		if ((int) Math.abs(Color.blue(color1) - Color.blue(color2)) > tolerance)
+		}
+		if ((int) Math.abs(Color.blue(color1) - Color.blue(color2)) > tolerance) {
 			return false;
+		}
 		
 		Log.v(TAG, "Colors match");
 		return true;

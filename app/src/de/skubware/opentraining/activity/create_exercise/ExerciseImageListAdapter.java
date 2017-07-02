@@ -193,8 +193,9 @@ public class ExerciseImageListAdapter extends BaseAdapter{
 			return;
 		}
 
-		if(newPosition == oldPosition)
+		if(newPosition == oldPosition) {
 			return;
+		}
 
 		ImageData movedItem = mImageList.remove(oldPosition);
 		// list size changed, so adapt newPosition  if necessary

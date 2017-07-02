@@ -68,8 +68,9 @@ public class ExerciseDetailOnGestureListener implements OnGestureListener {
 
 		List<File> paths = mExercise.getImagePaths();
 		// ignore, if there is no other image to show
-		if (paths.size() < 2)
+		if (paths.size() < 2) {
 			return true;
+		}
 
 		imageIndex--;
 		if (imageIndex < 0) {

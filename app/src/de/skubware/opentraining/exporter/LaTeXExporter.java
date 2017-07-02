@@ -189,8 +189,9 @@ public class LaTeXExporter extends WorkoutExporter {
 
 	private int getMaxset(Workout w, int maxset) {
 		for (FitnessExercise fEx : w.getFitnessExercises()) {
-			if (fEx.getFSetList().size() > maxset)
+			if (fEx.getFSetList().size() > maxset) {
 				maxset = fEx.getFSetList().size();
+			}
 		}
 		return maxset;
 	}
@@ -253,8 +254,9 @@ public class LaTeXExporter extends WorkoutExporter {
 		 *             if the argument is negative
 		 */
 		public void setColumnWidth(int columnWidth) {
-			if (columnWidth < 0)
+			if (columnWidth < 0) {
 				throw new IllegalArgumentException("No negative values allowed");
+			}
 			this.columnWidth = columnWidth;
 		}
 
@@ -277,8 +279,9 @@ public class LaTeXExporter extends WorkoutExporter {
 		 *             if the argument is negative
 		 */
 		public void setRowCount(int rowCount) {
-			if (rowCount < 0)
+			if (rowCount < 0) {
 				throw new IllegalArgumentException("No negative values allowed");
+			}
 			this.rowCount = rowCount;
 		}
 

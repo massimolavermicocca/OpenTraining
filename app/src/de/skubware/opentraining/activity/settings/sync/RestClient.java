@@ -195,8 +195,9 @@ class RestClient {
 	 * @throws IOException
 	 */
 	public String get(String path) throws IOException {
-		if (path == null)
+		if (path == null) {
 			throw new IllegalArgumentException("path cannot be null");
+		}
 		HttpResponse resp = execute(new HttpGet(createUri(path)));
 		return readResponseBody(resp);
 	}
@@ -213,10 +214,12 @@ class RestClient {
 	 * @throws IOException
 	 */
 	public String put(String path, String data) throws IOException {
-		if (path == null)
+		if (path == null) {
 			throw new IllegalArgumentException("path cannot be null");
-		if (data == null)
+		}
+		if (data == null) {
 			throw new IllegalArgumentException("data cannot be null");
+		}
 		HttpPut req = new HttpPut(createUri(path));
 		req.setEntity(new StringEntity(data));
 		HttpResponse resp = execute(req);
@@ -235,10 +238,12 @@ class RestClient {
 	 * @throws IOException
 	 */
 	public String post(String path, String data) throws IOException {
-		if (path == null)
+		if (path == null) {
 			throw new IllegalArgumentException("path cannot be null");
-		if (data == null)
+		}
+		if (data == null) {
 			throw new IllegalArgumentException("data cannot be null");
+		}
 		HttpPost req = new HttpPost(createUri(path));
 		req.setEntity(new StringEntity(data));
 		HttpResponse resp = execute(req);
@@ -253,8 +258,9 @@ class RestClient {
 	 * @throws IOException
 	 */
 	public void delete(String path) throws IOException {
-		if (path == null)
+		if (path == null) {
 			throw new IllegalArgumentException("path cannot be null");
+		}
 		execute(new HttpDelete(createUri(path)));
 	}
 
