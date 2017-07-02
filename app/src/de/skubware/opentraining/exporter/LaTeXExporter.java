@@ -201,7 +201,6 @@ public class LaTeXExporter extends WorkoutExporter {
 			for (int k = 0; k < colums; k++) {
 				if (set[k][i] != null) {
 					tex.append(" & " + set[k][i]);
-				} else {
 				}
 			}
 			tex.append("\\\\");

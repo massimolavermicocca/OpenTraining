@@ -332,10 +332,10 @@ public class FancyCoverFlow extends Gallery {
         final int childCenter = item.getLeft() + childWidth / 2;
 
         // Use coverflow width when its defined as automatic.
-        final int actionDistance = (this.actionDistance == ACTION_DISTANCE_AUTO) ? (int) ((coverFlowWidth + childWidth) / 2.0f) : this.actionDistance;
+        final int actDis = (this.actionDistance == ACTION_DISTANCE_AUTO) ? (int) ((coverFlowWidth + childWidth) / 2.0f) : this.actionDistance;
 
         // Calculate the abstract amount for all effects.
-        final float effectsAmount = Math.min(1.0f, Math.max(-1.0f, (1.0f / actionDistance) * (childCenter - coverFlowCenter)));
+        final float effectsAmount = Math.min(1.0f, Math.max(-1.0f, (1.0f / actDis) * (childCenter - coverFlowCenter)));
 
         // Clear previous transformations and set transformation type (matrix + alpha).
         t.clear();

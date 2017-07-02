@@ -235,9 +235,6 @@ RecoveryTimerManager.INSTANCE.startSetRecoveryTimer(mActivity);
 			public void onClick(DialogInterface dialog, int which) {
 				if(mActivity instanceof FExDetailActivity){
 					mActivity.finish();
-				}else{
-					//TODO switch to next exercise?
-					//((FExListActivity)mActivity).showNextExercise();
 				}
 			}
 		});
