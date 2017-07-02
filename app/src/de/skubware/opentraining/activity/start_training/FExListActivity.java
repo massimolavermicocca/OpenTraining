@@ -112,6 +112,8 @@ public class FExListActivity extends ActionBarActivity implements FExListFragmen
 		case android.R.id.home:
 			NavUtils.navigateUpFromSameTask(this);
 			return true;
+		default:
+			break;
 		}
 		return super.onOptionsItemSelected(item);
 	}

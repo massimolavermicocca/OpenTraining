@@ -80,6 +80,8 @@ public class WorkoutDetailActivity extends ActionBarActivity {
 			//
 			NavUtils.navigateUpTo(this, new Intent(this, WorkoutListActivity.class));
 			return true;
+		default:
+			break;
 		}
 		return super.onOptionsItemSelected(item);
 	}

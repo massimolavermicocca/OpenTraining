@@ -154,6 +154,8 @@ public class ExerciseTypeListActivity extends ActionBarActivity implements Exerc
 				item.setChecked(!item.isChecked());
 				sharedPrefs.putBoolean(ExerciseTypeListFragment.PREF_KEY_SHOW_CUSTOM_EXERCISES, item.isChecked());
 				break;
+			default:
+				break;
 		}
 		
 		sharedPrefs.commit();
@@ -232,6 +234,8 @@ public class ExerciseTypeListActivity extends ActionBarActivity implements Exerc
 				hasSyncedExercises = true;
 				break;
 			case DEFAULT:
+				break;
+			default:
 				break;
 			}
 		}

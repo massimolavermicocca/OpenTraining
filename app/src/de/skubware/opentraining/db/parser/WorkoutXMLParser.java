@@ -243,6 +243,8 @@ public class WorkoutXMLParser extends DefaultHandler {
 				}
 				this.mTrainingEntry = new TrainingEntry(trainingEntryDate);
 				break;
+			default:
+				break;
 		}
 	}
 
@@ -314,6 +316,8 @@ public class WorkoutXMLParser extends DefaultHandler {
 				this.mTrainingEntryFSetList = new ArrayList<FSet>();
 				this.mSetHasBeenDoneMap = new HashMap<FSet, Boolean>();
 				parsingTrainingEntry = false;
+				break;
+			default:
 				break;
 		}
 	}

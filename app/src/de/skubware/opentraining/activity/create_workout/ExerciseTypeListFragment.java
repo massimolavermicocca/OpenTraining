@@ -304,6 +304,8 @@ public class ExerciseTypeListFragment extends ListFragment implements OnQueryTex
 					if(!showCustomExercises)
 						mExerciseList.remove(ex);
 					break;
+				default:
+					break;
 			}
 			
 		}

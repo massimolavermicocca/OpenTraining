@@ -461,6 +461,8 @@ public class DialogFragmentAddEntry extends DialogFragment {
 					checkbox_weight.setChecked(true);
 					setWeightValue(value);
 					break;
+				default:
+					break;
 			}
 		}
 

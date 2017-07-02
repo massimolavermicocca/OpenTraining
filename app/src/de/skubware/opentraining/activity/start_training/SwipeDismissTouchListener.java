@@ -205,6 +205,8 @@ public class SwipeDismissTouchListener implements View.OnTouchListener {
                 }
                 break;
             }
+            default:
+                break;
         }
         return false;
     }

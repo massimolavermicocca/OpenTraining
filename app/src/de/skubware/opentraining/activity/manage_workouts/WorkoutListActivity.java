@@ -128,6 +128,8 @@ public class WorkoutListActivity extends ActionBarActivity implements WorkoutLis
 		case android.R.id.home:
 			NavUtils.navigateUpFromSameTask(this);
 			return true;
+		default:
+			break;
 		}
 		return super.onOptionsItemSelected(item);
 	}

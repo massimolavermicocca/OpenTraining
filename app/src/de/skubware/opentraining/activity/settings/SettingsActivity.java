@@ -503,6 +503,8 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 					});
 			alertDialogBuilder.create().show();
 			break;
+		default:
+			break;
         }     
     }
 
