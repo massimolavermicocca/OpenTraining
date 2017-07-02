@@ -70,6 +70,9 @@ public class ExerciseTypeXMLParser extends DefaultHandler {
 	private Context mContext;
 	
 	private IDataProvider mDataProvider;
+	private static final String message = "Error parsing file: ";
+	private static final String sel_name = "selected_name";
+	private static final String url = "url";
 
 
 	private ExerciseType exType;
@@ -117,10 +120,10 @@ public class ExerciseTypeXMLParser extends DefaultHandler {
 
 			return this.exType;
 		} catch (SAXException e) {
-			Log.e(TAG, "Error parsing file: " + f.toString() + "\n" + e.getMessage());
+			Log.e(TAG, message + f.toString() + "\n" + e.getMessage());
 
 		} catch (Exception e) {
-			Log.e(TAG, "Error parsing file: " + f.toString() + "\n" + e.getMessage());
+			Log.e(TAG, message + f.toString() + "\n" + e.getMessage());
 
 		}
 
@@ -138,9 +141,9 @@ public class ExerciseTypeXMLParser extends DefaultHandler {
 
 			return this.exType;
 		} catch (SAXException e) {
-			Log.e(TAG, "Error parsing file: " + f.toString() + "\n" + e.getMessage(), e);
+			Log.e(TAG, message + f.toString() + "\n" + e.getMessage(), e);
 		} catch (Exception e) {
-			Log.e(TAG, "Error parsing file: " + f.toString() + "\n" + e.getMessage(), e);
+			Log.e(TAG, message + f.toString() + "\n" + e.getMessage(), e);
 		}
 
 		return null;
@@ -165,19 +168,19 @@ public class ExerciseTypeXMLParser extends DefaultHandler {
 	@Override
 	public void startElement(String uri, String selected_name, String qname, Attributes attributes) throws SAXException {
 		if (qname.equals("ExerciseType")) {
-			this.name = attributes.getValue("selected_name");
+			this.name = attributes.getValue(sel_name);
 			String language = attributes.getValue("language");
 			checkLanguage(attributes, language);
 		}
 		if(qname.equals("Locale")){
 			String language = attributes.getValue("language");
 			checkLocaleLanguage(attributes, language);
-			String translatedname = attributes.getValue("selected_name");
+			String translatedname = attributes.getValue(sel_name);
 			checkTranslatedName(attributes, translatedname);
 			this.translationMap.put(new Locale(language), translatedname);
 		}
 		if (qname.equals("SportsEquipment")) {
-			SportsEquipment eq = mDataProvider.getEquipmentByName(attributes.getValue("selected_name"));
+			SportsEquipment eq = mDataProvider.getEquipmentByName(attributes.getValue(sel_name));
 			checkSportsEquipment(attributes, eq);
 			this.requiredEquipment.add(eq);
 		}
@@ -209,7 +212,7 @@ public class ExerciseTypeXMLParser extends DefaultHandler {
 		if (qname.equals("RelatedURL")) {
 			addRelatedURL(attributes);
 		} else if(qname.equals("Tag")) {
-			ExerciseTag tag = mDataProvider.getExerciseTagByName(attributes.getValue("selected_name"));
+			ExerciseTag tag = mDataProvider.getExerciseTagByName(attributes.getValue(sel_name));
 			checkTag(attributes, tag);
 			this.exerciseTag.add(tag);
 		}
@@ -228,9 +231,9 @@ public class ExerciseTypeXMLParser extends DefaultHandler {
 	void setMuscle(Attributes attributes) {
 		Muscle muscle = null;
 		try{
-            muscle = mDataProvider.getMuscleByName(attributes.getValue("selected_name"));
+            muscle = mDataProvider.getMuscleByName(attributes.getValue(sel_name));
         }catch(IllegalArgumentException illEx){
-            Log.e(TAG, "The Muscle: " + attributes.getValue("selected_name") + " couldn't be found. Ex: " + this.name);
+            Log.e(TAG, "The Muscle: " + attributes.getValue(sel_name) + " couldn't be found. Ex: " + this.name);
         }
 		checkMuscle(attributes, muscle);
 
@@ -248,27 +251,27 @@ public class ExerciseTypeXMLParser extends DefaultHandler {
 
 	void addRelatedURL(Attributes attributes) {
 		try {
-            this.relatedURL.add(new URL(attributes.getValue("url")));
+            this.relatedURL.add(new URL(attributes.getValue(url)));
         } catch (MalformedURLException e) {
-            Log.e(TAG, "Error, URL: " + attributes.getValue("url") + " is not valid/is malformed \n" + e.getMessage());
+            Log.e(TAG, "Error, URL: " + attributes.getValue(url) + " is not valid/is malformed \n" + e.getMessage());
         }
 	}
 
 	void checkMuscle(Attributes attributes, Muscle muscle) {
 		if (muscle == null) {
-            Log.e(TAG, "The Muscle: " + attributes.getValue("selected_name") + " couldn't be found. Ex: " + this.name);
+            Log.e(TAG, "The Muscle: " + attributes.getValue(sel_name) + " couldn't be found. Ex: " + this.name);
         }
 	}
 
 	void checkSportsEquipment(Attributes attributes, SportsEquipment eq) {
 		if (eq == null) {
-            Log.e(TAG, "The SportsEquipment: " + attributes.getValue("selected_name") + " couldn't be found.");
+            Log.e(TAG, "The SportsEquipment: " + attributes.getValue(sel_name) + " couldn't be found.");
         }
 	}
 
 	private void checkTag(Attributes attributes, ExerciseTag tag) {
 		if (tag == null) {
-            Log.e(TAG, "The Tag: " + attributes.getValue("selected_name") + " couldn't be found.");
+            Log.e(TAG, "The Tag: " + attributes.getValue(sel_name) + " couldn't be found.");
         }
 	}
 
@@ -285,19 +288,19 @@ public class ExerciseTypeXMLParser extends DefaultHandler {
 
 	private void checkTranslatedName(Attributes attributes, String translatedname) {
 		if (translatedname == null) {
-            Log.e(TAG, "Locale without translatedname" + attributes.getValue("selected_name"));
+            Log.e(TAG, "Locale without translatedname" + attributes.getValue(sel_name));
         }
 	}
 
 	private void checkLocaleLanguage(Attributes attributes, String language) {
 		if (language == null) {
-            Log.e(TAG, "Locale without language" + attributes.getValue("selected_name"));
+            Log.e(TAG, "Locale without language" + attributes.getValue(sel_name));
         }
 	}
 
 	private void checkLanguage(Attributes attributes, String language) {
 		if (language == null) {
-            Log.i(TAG, "Default name without language " + attributes.getValue("selected_name"));
+            Log.i(TAG, "Default name without language " + attributes.getValue(sel_name));
         }else{
             this.translationMap.put(new Locale(language), this.name);
         }

@@ -52,6 +52,10 @@ import de.skubware.opentraining.basic.*;
 public class XMLSaver {
 	/** Tag for logging */
 	public static final String TAG = "XMLSaver";
+
+	private static final String name = "name";
+	private static final String message1 = "Error during parsing Workout xml file.";
+	private static final String message2 = "Error during parsing ExerciseType xml file.";
 	
 	
 	/**
@@ -85,7 +89,7 @@ public class XMLSaver {
 
 			// create root element
 			Element wE = doc.createElement("Workout");
-			wE.setAttribute("name", w.getName());
+			wE.setAttribute(name, w.getName());
 			wE.setAttribute("rows", Integer.toString(w.getEmptyRows()));
 
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
@@ -96,7 +100,7 @@ public class XMLSaver {
 
 				// create element for ExerciseType
 				Element exTypeE = doc.createElement("ExerciseType");
-				exTypeE.setAttribute("name", fEx.getExType().getUnlocalizedName());
+				exTypeE.setAttribute(name, fEx.getExType().getUnlocalizedName());
 				// append ExerciseType
 				fE.appendChild(exTypeE);
 
@@ -128,16 +132,16 @@ public class XMLSaver {
 
 		} catch (ParserConfigurationException e1) {
 			success = false;
-			Log.e(TAG, "Error during parsing Workout xml file.",e1);
+			Log.e(TAG, message1,e1);
 		} catch (TransformerConfigurationException e) {
 			success = false;
-			Log.e(TAG, "Error during parsing Workout xml file.",e);
+			Log.e(TAG, message1,e);
 		} catch (IOException e) {
 			success = false;
-			Log.e(TAG, "Error during parsing Workout xml file.",e);
+			Log.e(TAG, message1,e);
 		} catch (TransformerException e) {
 			success = false;
-			Log.e(TAG, "Error during parsing Workout xml file.",e);
+			Log.e(TAG, message1,e);
 		} catch (ErrorException e) {
 			Log.v("XMLSaver", e.getMessage().toString());
 		}
@@ -151,7 +155,7 @@ public class XMLSaver {
 
             for (SetParameter c : set.getSetParameters()) {
                 Element catE = doc.createElement("SetParameter");
-                catE.setAttribute("name", c.getName());
+                catE.setAttribute(name, c.getName());
                 setCategoryAttribute(c, catE);
                 fSetE.appendChild(catE);
             }
@@ -174,7 +178,7 @@ public class XMLSaver {
                 fSetE.setAttribute("hasBeenDone", Boolean.toString(entry.hasBeenDone(set)) );
                 for (SetParameter c : set.getSetParameters()) {
                     Element catE = doc.createElement("SetParameter");
-                    catE.setAttribute("name", c.getName());
+                    catE.setAttribute(name, c.getName());
                     setCategoryAttribute(c, catE);
                     fSetE.appendChild(catE);
                 }
@@ -241,7 +245,7 @@ public class XMLSaver {
 			
 			// create root element 
 			Element	exE = doc.createElement("ExerciseType");
-			exE.setAttribute("name", ex.getLocalizedName());
+			exE.setAttribute(name, ex.getLocalizedName());
 			exE.setAttribute("language", Locale.getDefault().getDisplayLanguage());
 			
 			// add root element 
@@ -300,16 +304,16 @@ public class XMLSaver {
 
 		} catch (ParserConfigurationException e1) {
 			success = false;
-			Log.e(TAG, "Error during parsing ExerciseType xml file.",e1);
+			Log.e(TAG, message2,e1);
 		} catch (TransformerConfigurationException e) {
 			success = false;
-			Log.e(TAG, "Error during parsing ExerciseType xml file.",e);
+			Log.e(TAG, message2,e);
 		} catch (IOException e) {
 			success = false;
-			Log.e(TAG, "Error during parsing ExerciseType xml file.",e);
+			Log.e(TAG, message2,e);
 		} catch (TransformerException e) {
 			success = false;
-			Log.e(TAG, "Error during parsing ExerciseType xml file.",e);
+			Log.e(TAG, message2,e);
 		}
 		return success;
 	}
@@ -321,7 +325,7 @@ public class XMLSaver {
 
             Element localeE = doc.createElement("Locale");
             localeE.setAttribute("language", locale.getDisplayLanguage().toString());
-            localeE.setAttribute("name", translationMap.get(locale));
+            localeE.setAttribute(name, translationMap.get(locale));
             exE.appendChild(localeE);
         }
 	}
@@ -338,7 +342,7 @@ public class XMLSaver {
 		for (ExerciseTag t : ex.getTags()) {
             Element tagE = doc.createElement("Tag");
 
-            tagE.setAttribute("name", t.toString());
+            tagE.setAttribute(name, t.toString());
             exE.appendChild(tagE);
         }
 	}
@@ -346,7 +350,7 @@ public class XMLSaver {
 	private static void addMuscle(ExerciseType ex, Document doc, Element exE) {
 		for (Muscle m : ex.getActivatedMuscles()) {
             Element mE = doc.createElement("Muscle");
-            mE.setAttribute("name", m.toString());
+            mE.setAttribute(name, m.toString());
             mE.setAttribute(
                     "level",
                     Integer.toString(ex.getActivationMap().get(m)
@@ -358,7 +362,7 @@ public class XMLSaver {
 	private static void addSportsEquipment(ExerciseType ex, Document doc, Element exE) {
 		for (SportsEquipment eq : ex.getRequiredEquipment()) {
             Element wE = doc.createElement("SportsEquipment");
-            wE.setAttribute("name", eq.toString());
+            wE.setAttribute(name, eq.toString());
             exE.appendChild(wE);
         }
 	}

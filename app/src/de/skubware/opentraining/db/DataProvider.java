@@ -58,6 +58,7 @@ import de.skubware.opentraining.db.parser.XMLSaver;
 public class DataProvider implements IDataProvider {
 	/** Tag for logging */
 	public static final String TAG = "DataProvider";
+	public static final String format = ".xml";
 
 	private Context mContext;
 
@@ -97,7 +98,7 @@ public class DataProvider implements IDataProvider {
 			ExerciseTypeXMLParser parser = new ExerciseTypeXMLParser(mContext, ExerciseSource.DEFAULT);
 
 			for (String f : files) {
-				if (f.endsWith(".xml")) {
+				if (f.endsWith(format)) {
 					ExerciseType ex = parser.read(mContext.getAssets().open(IDataProvider.EXERCISE_FOLDER + "/" + f));
 					list.add(ex);
 				}
@@ -139,7 +140,7 @@ public class DataProvider implements IDataProvider {
 		ExerciseTypeXMLParser parser = new ExerciseTypeXMLParser(mContext, ExerciseSource.CUSTOM);
 
 		for (String f : customFiles) {
-			if (f.endsWith(".xml")) {
+			if (f.endsWith(format)) {
 				ExerciseType ex = parser.read(new File(customExerciseFolder + "/" + f));
 				if(ex != null){
 					list.add(ex);
@@ -170,7 +171,7 @@ public class DataProvider implements IDataProvider {
 		ExerciseTypeXMLParser parser = new ExerciseTypeXMLParser(mContext, ExerciseSource.SYNCED);
 
 		for (String f : syncedFiles) {
-			if (f.endsWith(".xml")) {
+			if (f.endsWith(format)) {
 				ExerciseType ex = parser.read(new File(syncedExerciseFolder + "/" + f));
 				if(ex != null){
 					list.add(ex);
@@ -260,7 +261,7 @@ public class DataProvider implements IDataProvider {
 		File destination = new File(mContext.getFilesDir().toString() + "/"
 				+ IDataProvider.CUSTOM_EXERCISE_FOLDER);	
 	
-		File exerciseXML = new File(destination + "/" + ex.getUnlocalizedName() + ".xml");
+		File exerciseXML = new File(destination + "/" + ex.getUnlocalizedName() + format);
 		if(!exerciseXML.exists()){
 			Log.e(TAG, "The exercise " + ex.toString() + " could not be deleted because the file: " + exerciseXML.getAbsolutePath() + " does not exist.");
 			return false;
@@ -497,11 +498,11 @@ public class DataProvider implements IDataProvider {
 	public List<Workout> loadWorkouts() {
 		List<Workout> workoutList = new ArrayList<Workout>();
 
-		// list files in directory that end with ".xml"
+		// list files in directory that end with format
 		String files[] = mContext.getFilesDir().list(new FilenameFilter() {
 			@Override
 			public boolean accept(File dir, String filename) {
-				if (filename.endsWith(".xml") && !filename.equals(ShareActionProvider.DEFAULT_SHARE_HISTORY_FILE_NAME)) {
+				if (filename.endsWith(format) && !filename.equals(ShareActionProvider.DEFAULT_SHARE_HISTORY_FILE_NAME)) {
 					return true;
 				} else {
 					return false;
@@ -656,7 +657,7 @@ public class DataProvider implements IDataProvider {
 	@Override
 	public synchronized boolean deleteWorkout(Workout w) {
 		File directory = mContext.getFilesDir();
-		File workout_file = new File(directory.toString() + "/" + w.getName() + ".xml");
+		File workout_file = new File(directory.toString() + "/" + w.getName() + format);
 		
 		if(!workout_file.exists()){
 			Log.e(TAG, "The workout " + w.toDebugString() + " that should be deleted does not exist.");

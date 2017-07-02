@@ -58,6 +58,7 @@ class RestClient {
 	public static final String TAG = "RestClient";
 
 	private static final String CONTENT_TYPE = "Content-Type";
+	private static final String path_not_null = "path cannot be null";
 
 	private final String mBaseUri;
 	private final String mHostName;
@@ -185,7 +186,7 @@ class RestClient {
 	 */
 	public String get(String path) throws IOException {
 		if (path == null) {
-			throw new IllegalArgumentException("path cannot be null");
+			throw new IllegalArgumentException(path_not_null);
 		}
 		HttpResponse resp = execute(new HttpGet(createUri(path)));
 		return readResponseBody(resp);
@@ -204,7 +205,7 @@ class RestClient {
 	 */
 	public String put(String path, String data) throws IOException {
 		if (path == null) {
-			throw new IllegalArgumentException("path cannot be null");
+			throw new IllegalArgumentException(path_not_null);
 		}
 		if (data == null) {
 			throw new IllegalArgumentException("data cannot be null");
@@ -228,7 +229,7 @@ class RestClient {
 	 */
 	public String post(String path, String data) throws IOException {
 		if (path == null) {
-			throw new IllegalArgumentException("path cannot be null");
+			throw new IllegalArgumentException(path_not_null);
 		}
 		if (data == null) {
 			throw new IllegalArgumentException("data cannot be null");
@@ -248,7 +249,7 @@ class RestClient {
 	 */
 	public void delete(String path) throws IOException {
 		if (path == null) {
-			throw new IllegalArgumentException("path cannot be null");
+			throw new IllegalArgumentException(path_not_null);
 		}
 		execute(new HttpDelete(createUri(path)));
 	}

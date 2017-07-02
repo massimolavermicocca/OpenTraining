@@ -59,6 +59,8 @@ public class DialogFragmentAddEntry extends DialogFragment {
 	/** Currently displayed {@link FitnessExercise}. */
 	private FitnessExercise mFex;
 
+	private static final String TAG = "DialogFragAddEntry";
+
 	/** Currently edited {@link TrainingEntry} */
 	private TrainingEntry mTrainingEntry;
 
@@ -145,10 +147,10 @@ public class DialogFragmentAddEntry extends DialogFragment {
 		}
 
 		if(mFSet==null){
-			Log.v("DialogFragAddEntry", "Argument for mFSet was null.");
+			Log.v(TAG, "Argument for mFSet was null.");
 			mState = EntryAction.CREATING_ENTRY;
 		}else{
-			Log.v("DialogFragAddEntry", "Argument for mFSet was: " + mTrainingEntry.toDebugString());
+			Log.v(TAG, "Argument for mFSet was: " + mTrainingEntry.toDebugString());
 			mState = EntryAction.EDITING_ENTRY;
 		}
 
@@ -250,7 +252,7 @@ public class DialogFragmentAddEntry extends DialogFragment {
 
 	private void checkSuccess(boolean success) {
 		if(!success)
-			Log.e("DialogFragAddEntry", "Could not delete FSet:\n " + mFSet.toString() + "\n in TrainingEntry:\n " + mTrainingEntry.toDebugString());
+			Log.e(TAG, "Could not delete FSet:\n " + mFSet.toString() + "\n in TrainingEntry:\n " + mTrainingEntry.toDebugString());
 	}
 
 	private void analyze(List<SetParameter> setParameters) {
@@ -280,7 +282,7 @@ public class DialogFragmentAddEntry extends DialogFragment {
 				val = 60 * val;
 				break;
 			default:
-				Log.e("DialogFragAddEntry", "Unknown choice.");
+				Log.e(TAG, "Unknown choice.");
 				break;
 		}
 		return val;
@@ -329,7 +331,7 @@ public class DialogFragmentAddEntry extends DialogFragment {
 			}
 		}
 
-		Log.e("DialogFragAddEntry", "Could not set weight value: " + value);
+		Log.e(TAG, "Could not set weight value: " + value);
 
 	}
 
@@ -367,24 +369,25 @@ public class DialogFragmentAddEntry extends DialogFragment {
 		spinner_repetitions.setAdapter(repetitionAdapter);
 
 		List<String> weightList = new ArrayList<String>();
+		int thousand = 100;
 		for (int i = 250; i <= 1000; i += 250) {
-			weightList.add(i / 1000 + "," + i % 1000 + " kg");
+			weightList.add(i / 1000 + "," + i % thousand + " kg");
 		}
 
 		for (int i = 1500; i <= 5000; i += 500) {
-			weightList.add(i / 1000 + "," + i % 1000 + " kg");
+			weightList.add(i / 1000 + "," + i % thousand + " kg");
 		}
 
 		for (int i = 6000; i <= 200000; i += 1000) {
-			weightList.add(i / 1000 + "," + i % 1000 + " kg");
+			weightList.add(i / 1000 + "," + i % thousand + " kg");
 		}
 
 		for (int i = 205000; i <= 400000; i += 5000) {
-			weightList.add(i / 1000 + "," + i % 1000 + " kg");
+			weightList.add(i / 1000 + "," + i % thousand + " kg");
 		}
 
 		for (int i = 410000; i <= 500000; i += 10000) {
-			weightList.add(i / 1000 + "," + i % 1000 + " kg");
+			weightList.add(i / 1000 + "," + i % thousand + " kg");
 		}
 
 		ArrayAdapter<String> weightAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, weightList);
@@ -430,7 +433,7 @@ public class DialogFragmentAddEntry extends DialogFragment {
 		}
 
 		if (setToSet == null) {
-			Log.w("DialogFragAddEntry", "Did not find any old TrainingEntry for loading spinner settings.");
+			Log.w(TAG, "Did not find any old TrainingEntry for loading spinner settings.");
 			return;
 		}
 
@@ -461,7 +464,7 @@ public class DialogFragmentAddEntry extends DialogFragment {
 	}
 
 	private FSet searchOldTrainingEntry(FSet setToSet) {
-		Log.v("DialogFragAddEntry", "Trying to find old TrainingEntry for loading spinner settings.");
+		Log.v(TAG, "Trying to find old TrainingEntry for loading spinner settings.");
 
 		List<TrainingEntry> entryList = mFex.getTrainingEntryList();
 		TrainingEntry previousEntry;

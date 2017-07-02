@@ -66,6 +66,7 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 
 	/** Tag for logging */
 	public static final String TAG = "SettingsActivity";
+	private static final String exercise_sync_url = "exercise_sync_url";
 
 	/** Handles syncing with wger */
 	public OpenTrainingSyncResultReceiver mReceiver;
@@ -195,7 +196,7 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 		// their values. When their values change, their summaries are updated
 		// to reflect the new value, per the Android Design guidelines.
 		bindPreferenceSummaryToValue(findPreference("default_workout_name"));
-		bindPreferenceSummaryToValue(findPreference("exercise_sync_url"));
+		bindPreferenceSummaryToValue(findPreference(exercise_sync_url));
 	}
 
 	/**
@@ -351,7 +352,7 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 				}
 			});
 
-			bindPreferenceSummaryToValue(findPreference("exercise_sync_url"));
+			bindPreferenceSummaryToValue(findPreference(exercise_sync_url));
 
 
 		}
@@ -532,11 +533,11 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 		// get host from preferences
 		SharedPreferences settings = PreferenceManager
 				.getDefaultSharedPreferences(this);
-		if (!settings.contains("exercise_sync_url")) {
+		if (!settings.contains(exercise_sync_url)) {
 			Log.e(TAG, "Could not find preference 'string exercise_sync_url'");
 		}
 		String host = settings.getString(
-				"exercise_sync_url",
+				exercise_sync_url,
 				getApplicationContext().getString(
 						R.string.pref_default_exercise_sync_url));
 
