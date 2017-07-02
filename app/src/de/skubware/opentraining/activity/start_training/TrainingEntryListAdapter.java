@@ -27,6 +27,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -36,6 +37,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import de.skubware.opentraining.Exceptions.ErrorException;
 import de.skubware.opentraining.R;
 import de.skubware.opentraining.basic.FSet;
 import de.skubware.opentraining.basic.FSet.SetParameter;
@@ -47,6 +49,7 @@ import de.skubware.opentraining.basic.TrainingEntry;
  */
 public class TrainingEntryListAdapter extends BaseAdapter {
 
+	private static final String TAG = "TrainingEntryLis";
 	private FragmentActivity mActivity;
 	private static LayoutInflater mInflater = null;
 
@@ -110,10 +113,14 @@ public class TrainingEntryListAdapter extends BaseAdapter {
 
 		// set button icons
 		final ImageButton imagebutton_check = (ImageButton) vi.findViewById(R.id.imagebutton_check);
-		if(mTrainingEntry.hasBeenDone(set)){
-			imagebutton_check.setImageResource(R.drawable.icon_check_green);
-		}else{
-			imagebutton_check.setImageResource(R.drawable.icon_check_white);
+		try {
+			if(mTrainingEntry.hasBeenDone(set)){
+                imagebutton_check.setImageResource(R.drawable.icon_check_green);
+            }else{
+                imagebutton_check.setImageResource(R.drawable.icon_check_white);
+            }
+		} catch (ErrorException e) {
+			Log.v("FExListAdapter", e.getMessage());
 		}
 
 
@@ -123,22 +130,19 @@ public class TrainingEntryListAdapter extends BaseAdapter {
 			@Override
 			public void onClick(View view) {
 				// ignore event is TrainingEntry already has been checked
-				if(mTrainingEntry.hasBeenDone(set)){
-					return;
+				try {
+					if(mTrainingEntry.hasBeenDone(set)){
+                        return;
+                    }
+				} catch (ErrorException e) {
+					Log.v("FExListAdapter", e.getMessage());
 				}
 
 				imagebutton_check.setImageResource(R.drawable.icon_check_green);
 				mTrainingEntry.setHasBeenDone(set, true);
 				trainingEntryEdited();
 
-				if(mFEx.isTrainingEntryFinished(mTrainingEntry)){
-					// start recovery timer
-					RecoveryTimerManager.INSTANCE.startExerciseRecoveryTimer(mActivity);
-					showExerciseFinishedDialog();
-				}else{
-					// start recovery timer
-					RecoveryTimerManager.INSTANCE.startSetRecoveryTimer(mActivity);
-				}
+				startTimer();
 			}
 		});
 		// add lister for changing values
@@ -159,6 +163,21 @@ public class TrainingEntryListAdapter extends BaseAdapter {
 		return vi;
 	}
 
+	private void startTimer() {
+		try {
+            if(mFEx.isTrainingEntryFinished(mTrainingEntry)){
+// start recovery timer
+RecoveryTimerManager.INSTANCE.startExerciseRecoveryTimer(mActivity);
+showExerciseFinishedDialog();
+}else{
+// start recovery timer
+RecoveryTimerManager.INSTANCE.startSetRecoveryTimer(mActivity);
+}
+        } catch (ErrorException e) {
+            Log.v("FExListAdapter", e.getMessage());
+        }
+	}
+
 	private void analizeParameter(TextView textview_weight, TextView textview_rep, TextView textview_duration, SetParameter para) {
 		if (para.getClass().getSimpleName().equals("Weight")) {
             textview_weight.setText(para.toString());
@@ -171,7 +190,7 @@ public class TrainingEntryListAdapter extends BaseAdapter {
         }
 	}
 
-	public void remove(int position) {
+	public void remove(int position) throws ErrorException {
 		mTrainingEntry.getFSetList().remove(position);
 		trainingEntryEdited();
 

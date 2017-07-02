@@ -142,7 +142,11 @@ public class FExDetailFragment extends Fragment implements DialogFragmentAddEntr
 					public void onDismiss(ListView listView,
 							int[] reverseSortedPositions) {
 						for (int position : reverseSortedPositions) {
-							mAdapter.remove(position);
+							try {
+								mAdapter.remove(position);
+							} catch (ErrorException e) {
+								Log.v("FExListAdapter", e.getMessage());
+							}
 						}
 						mAdapter.notifyDataSetChanged();
 					}

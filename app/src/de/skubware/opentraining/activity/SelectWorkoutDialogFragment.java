@@ -27,6 +27,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 
@@ -49,7 +50,7 @@ import de.skubware.opentraining.db.IDataProvider;
  */
 public class SelectWorkoutDialogFragment extends DialogFragment {
 	/** Tag for logging */
-	public static final String TAG = "SelectWorkoutFragment";
+	public static final String TAG = "SelectWorkoutFra";
 	
 	/** Currently selected Workout */
 	private Workout mWorkout;
@@ -107,12 +108,20 @@ public class SelectWorkoutDialogFragment extends DialogFragment {
 		}).setPositiveButton(getString(R.string.start_new_training), new OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				startTraining(true);
+				try {
+					startTraining(true);
+				} catch (ErrorException e) {
+					Log.v(TAG, e.getMessage());
+				}
 			}
 		}).setNegativeButton(getString(R.string.load_old_training), new OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				startTraining(false);
+				try {
+					startTraining(false);
+				} catch (ErrorException e) {
+					Log.v(TAG, e.getMessage());
+				}
 			}
 		}).create();
 		

@@ -31,6 +31,7 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import de.skubware.opentraining.Exceptions.ErrorException;
 import de.skubware.opentraining.basic.ExerciseType;
 import de.skubware.opentraining.db.DataProvider;
 import de.skubware.opentraining.db.IDataProvider;
@@ -139,7 +140,7 @@ public class OpenTrainingSyncService extends IntentService {
 	 * @throws IOException
 	 * @throws JSONException
 	 */
-	private ArrayList<ExerciseType> downloadAndParseExercises() throws IOException, JSONException{
+	private ArrayList<ExerciseType> downloadAndParseExercises() throws IOException, JSONException, ErrorException {
 		Log.d(TAG, "getExercisesAsJSON()");
 		IDataProvider dataProvider = new DataProvider(this.getApplicationContext());
 

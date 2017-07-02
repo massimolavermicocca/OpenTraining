@@ -23,6 +23,7 @@ package de.skubware.opentraining.activity.start_training;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ import android.widget.TextView.BufferType;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.skubware.opentraining.Exceptions.ErrorException;
 import de.skubware.opentraining.R;
 import de.skubware.opentraining.basic.FSet;
 import de.skubware.opentraining.basic.FitnessExercise;
@@ -88,14 +90,18 @@ public class FExListAdapter extends BaseAdapter {
 		View vi = convertView;
 		FitnessExercise fEx = (FitnessExercise) getItem(position);
 
-		if(fEx.isTrainingEntryFinished(fEx.getLastTrainingEntry())){
-			vi = mInflater.inflate(R.layout.list_row_fex_done, null);
-		}else{
-			vi = mInflater.inflate(R.layout.list_row_fex, null);
-			int unfinished = calculateUnfinishedTrainingEntries(fEx);
+		try {
+			if(fEx.isTrainingEntryFinished(fEx.getLastTrainingEntry())){
+                vi = mInflater.inflate(R.layout.list_row_fex_done, null);
+            }else{
+                vi = mInflater.inflate(R.layout.list_row_fex, null);
+                int unfinished = calculateUnfinishedTrainingEntries(fEx);
 
-			TextView textview_remaining_sets =(TextView) vi.findViewById(R.id.textview_remaining_sets);
-			textview_remaining_sets.setText(mActivity.getString(R.string.remaining_sets) + " "+ unfinished);
+                TextView textview_remaining_sets =(TextView) vi.findViewById(R.id.textview_remaining_sets);
+                textview_remaining_sets.setText(mActivity.getString(R.string.remaining_sets) + " "+ unfinished);
+            }
+		} catch (ErrorException e) {
+			Log.v("FExListAdapter", e.getMessage());
 		}
 
 		final ImageView imageview_ex_image = (ImageView) vi.findViewById(R.id.imageview_ex_image);
@@ -124,7 +130,7 @@ public class FExListAdapter extends BaseAdapter {
 		return vi;
 	}
 
-	private int calculateUnfinishedTrainingEntries(FitnessExercise fEx){
+	private int calculateUnfinishedTrainingEntries(FitnessExercise fEx) throws ErrorException {
 		int unfinished = 0;
 		TrainingEntry lastEntry = fEx.getLastTrainingEntry();
 		for(FSet set:lastEntry.getFSetList()){

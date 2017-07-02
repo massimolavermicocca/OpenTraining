@@ -47,7 +47,7 @@ import de.skubware.opentraining.db.IDataProvider;
  */
 public class ExerciseImageListAdapter extends BaseAdapter{
 	/** Tag for logging*/
-	private final String TAG = "ExerciseImageListAdapter";
+	private final String TAG = "ExerciseImageListAd";
 
 	private Context mContext;
 	private static LayoutInflater mInflater = null;

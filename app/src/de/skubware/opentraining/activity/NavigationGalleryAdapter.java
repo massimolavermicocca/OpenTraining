@@ -46,7 +46,7 @@ public class NavigationGalleryAdapter extends FancyCoverFlowAdapter {
 	private List<String> mNameList = new ArrayList<String>();
 	private Context mContext;
 
-	private static String TAG = "NavigationGalleryAdapter";
+	private static String TAG = "NavigationGalleryAd";
 
 	public NavigationGalleryAdapter(Context context) {
 		mContext = context;

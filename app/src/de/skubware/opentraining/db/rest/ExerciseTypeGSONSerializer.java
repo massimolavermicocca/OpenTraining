@@ -62,7 +62,7 @@ public class ExerciseTypeGSONSerializer implements JsonSerializer<ExerciseType>{
 		
 		
 		if(sMuscleMap == null || sLanguageMap == null || sEquipmentMap == null)
-			throw new IllegalArgumentException("At least one map in " + TAG + " has not been initialized")
+			throw new IllegalArgumentException("At least one map in " + TAG + " has not been initialized");
 
 		JsonObject mainObject = new JsonObject();
 

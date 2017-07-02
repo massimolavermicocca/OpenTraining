@@ -386,7 +386,7 @@ public class FancyCoverFlow extends Gallery {
     /**
      * @class LayoutParams
      */
-    private static class LayoutParams extends Gallery.LayoutParams {
+    public static class LayoutParams extends Gallery.LayoutParams {
         public LayoutParams(Context c, AttributeSet attrs) {
             super(c, attrs);
         }

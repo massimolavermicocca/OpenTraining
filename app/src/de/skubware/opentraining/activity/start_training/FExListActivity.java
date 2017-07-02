@@ -28,6 +28,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.MenuItem;
 
+import de.skubware.opentraining.Exceptions.ErrorException;
 import de.skubware.opentraining.R;
 import de.skubware.opentraining.basic.FitnessExercise;
 import de.skubware.opentraining.basic.Workout;
@@ -79,7 +80,11 @@ public class FExListActivity extends ActionBarActivity implements FExListFragmen
 		}
 		
 		FExListFragment fragment = (FExListFragment) getSupportFragmentManager().findFragmentById(R.id.exercise_list);
-		fragment.setWorkout(mWorkout);
+		try {
+			fragment.setWorkout(mWorkout);
+		} catch (ErrorException e) {
+			Log.v(TAG, e.getMessage());
+		}
 
 		// Show the Up button in the action bar.
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -159,7 +164,11 @@ public class FExListActivity extends ActionBarActivity implements FExListFragmen
 				if (fragment != null) {
 					Log.d(TAG, "updating FExListFragment");
 					// either notify list fragment if it's there (on tablets)
-					fragment.setWorkout(mWorkout);
+					try {
+						fragment.setWorkout(mWorkout);
+					} catch (ErrorException e) {
+						Log.v(TAG, e.getMessage());
+					}
 				} else {
 					Log.e(TAG, "Did not find FExListFragment");
 				}
