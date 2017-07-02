@@ -268,43 +268,15 @@ public class XMLSaver {
 
 			// add translated names
 			Map<Locale, String> translationMap = ex.getTranslationMap();
-			for(Locale locale:translationMap.keySet()){
-				if(locale.getDisplayLanguage().equals(Locale.getDefault().getDisplayLanguage()))
-					continue;
+			addLocale(doc, exE, translationMap);
 
-				Element localeE = doc.createElement("Locale");
-				localeE.setAttribute("language", locale.getDisplayLanguage().toString());
-				localeE.setAttribute("name", translationMap.get(locale));
-				exE.appendChild(localeE);
-			}
-			
-			for (SportsEquipment eq : ex.getRequiredEquipment()) {
-				Element wE = doc.createElement("SportsEquipment");
-				wE.setAttribute("name", eq.toString());
-				exE.appendChild(wE);
-			}
+			addSportsEquipment(ex, doc, exE);
 
-			for (Muscle m : ex.getActivatedMuscles()) {
-				Element mE = doc.createElement("Muscle");
-				mE.setAttribute("name", m.toString());
-				mE.setAttribute(
-						"level",
-						Integer.toString(ex.getActivationMap().get(m)
-								.getLevel()));
-				exE.appendChild(mE);
-			}
+			addMuscle(ex, doc, exE);
 
-			for (ExerciseTag t : ex.getTags()) {
-				Element tagE = doc.createElement("Tag");
-			
-				tagE.setAttribute("name", t.toString());
-				exE.appendChild(tagE);
-			}
-			for (URL url : ex.getURLs()) {
-				Element urlE = doc.createElement("URL");
-				urlE.setAttribute("url", url.toString());
-				exE.appendChild(urlE);
-			}
+			addExerciseTag(ex, doc, exE);
+
+			addUrl(ex, doc, exE);
 
 			License license = new License();
 			for (File im : ex.getImagePaths()) {
@@ -355,5 +327,54 @@ public class XMLSaver {
 		}
 		return success;
 	}
-	 
+
+	private static void addLocale(Document doc, Element exE, Map<Locale, String> translationMap) {
+		for(Locale locale : translationMap.keySet()){
+            if(locale.getDisplayLanguage().equals(Locale.getDefault().getDisplayLanguage()))
+                continue;
+
+            Element localeE = doc.createElement("Locale");
+            localeE.setAttribute("language", locale.getDisplayLanguage().toString());
+            localeE.setAttribute("name", translationMap.get(locale));
+            exE.appendChild(localeE);
+        }
+	}
+
+	private static void addUrl(ExerciseType ex, Document doc, Element exE) {
+		for (URL url : ex.getURLs()) {
+            Element urlE = doc.createElement("URL");
+            urlE.setAttribute("url", url.toString());
+            exE.appendChild(urlE);
+        }
+	}
+
+	private static void addExerciseTag(ExerciseType ex, Document doc, Element exE) {
+		for (ExerciseTag t : ex.getTags()) {
+            Element tagE = doc.createElement("Tag");
+
+            tagE.setAttribute("name", t.toString());
+            exE.appendChild(tagE);
+        }
+	}
+
+	private static void addMuscle(ExerciseType ex, Document doc, Element exE) {
+		for (Muscle m : ex.getActivatedMuscles()) {
+            Element mE = doc.createElement("Muscle");
+            mE.setAttribute("name", m.toString());
+            mE.setAttribute(
+                    "level",
+                    Integer.toString(ex.getActivationMap().get(m)
+                            .getLevel()));
+            exE.appendChild(mE);
+        }
+	}
+
+	private static void addSportsEquipment(ExerciseType ex, Document doc, Element exE) {
+		for (SportsEquipment eq : ex.getRequiredEquipment()) {
+            Element wE = doc.createElement("SportsEquipment");
+            wE.setAttribute("name", eq.toString());
+            exE.appendChild(wE);
+        }
+	}
+
 }
