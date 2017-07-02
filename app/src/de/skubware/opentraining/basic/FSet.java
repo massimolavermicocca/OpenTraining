@@ -223,7 +223,7 @@ public class FSet implements Serializable, Cloneable {
 		/**
 		 * @class FreeField
 		 */
-		private static class FreeField extends SetParameter {
+		public static class FreeField extends SetParameter {
 			/**
 			 * 
 			 */
