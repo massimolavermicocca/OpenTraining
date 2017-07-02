@@ -135,7 +135,7 @@ public class DialogFragmentAddEntry extends DialogFragment {
 		return f;
 	}
 
-	/** @see #newInstance(FitnessExercise, FSet, TrainingEntry) */
+
 	static DialogFragmentAddEntry newInstance(FitnessExercise fEx, FSet set, int setPosition) {
 		return newInstance(fEx, set, setPosition, null);
 	}
