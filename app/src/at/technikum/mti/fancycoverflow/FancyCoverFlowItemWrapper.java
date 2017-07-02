@@ -197,19 +197,23 @@ class FancyCoverFlowItemWrapper extends ViewGroup {
         if (childView != null) {
             // If on honeycomb or newer, cache the view.
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-                if (childView.isDirty()) {
-                    childView.draw(this.wrappedViewDrawingCanvas);
-
-                    if (this.isReflectionEnabled) {
-                        this.createReflectedImages();
-                    }
-                }
+                checkType(childView);
             } else {
                 childView.draw(this.wrappedViewDrawingCanvas);
             }
         }
 
         canvas.drawBitmap(this.wrappedViewBitmap, (this.getWidth() - childView.getWidth()) / 2, 0, paint);
+    }
+
+    private void checkType(View childView) {
+        if (childView.isDirty()) {
+            childView.draw(this.wrappedViewDrawingCanvas);
+
+            if (this.isReflectionEnabled) {
+                this.createReflectedImages();
+            }
+        }
     }
 
     // =============================================================================
