@@ -304,7 +304,7 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 	 * activity is showing a two-pane settings UI.
 	 */
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-	public static class LicensePreferenceFragment extends PreferenceFragment {
+	private static class LicensePreferenceFragment extends PreferenceFragment {
 		@Override
 		public void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
@@ -328,7 +328,7 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 	 * activity is showing a two-pane settings UI.
 	 */
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-	public static class SyncPreferenceFragment extends PreferenceFragment {
+	private static class SyncPreferenceFragment extends PreferenceFragment {
 		@Override
 		public void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
@@ -376,7 +376,7 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 	 * activity is showing a two-pane settings UI.
 	 */
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-	public static class MiscellaneousPreferenceFragment extends PreferenceFragment {
+	private static class MiscellaneousPreferenceFragment extends PreferenceFragment {
 		@Override
 		public void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
@@ -407,7 +407,7 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 	 * activity is showing a two-pane settings UI.
 	 */
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-	public static class TrainingTimerPreferenceFragment extends PreferenceFragment {
+	private static class TrainingTimerPreferenceFragment extends PreferenceFragment {
 		@Override
 		public void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);

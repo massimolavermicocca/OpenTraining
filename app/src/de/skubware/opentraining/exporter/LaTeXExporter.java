@@ -219,7 +219,7 @@ public class LaTeXExporter extends WorkoutExporter {
 	 * 
 	 * @author Christian Skubich
 	 */
-	public class Settings {
+	private class Settings {
 
 		// PDF settings
 		/** How many mm each column of the pdf should be */

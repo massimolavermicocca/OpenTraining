@@ -42,7 +42,7 @@ public class ServerModel {
 	/**
 	 * Server equivalent to {@link Equipment}.
 	 */
-	public static class Equipment{
+	private static class Equipment{
 
 		public int id;
 		public String name;
@@ -86,7 +86,7 @@ public class ServerModel {
 	/**
 	 * Server equivalent to {@link Muscle}.
 	 */
-	public static class MuscleCategory{
+	private static class MuscleCategory{
 
 		public int id;
 		public String name;
@@ -132,7 +132,7 @@ public class ServerModel {
 	/**
 	 * Server equivalent to {@link Locale}.
 	 */
-	public static class Language{
+	private static class Language{
 
 
 
