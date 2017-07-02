@@ -167,8 +167,8 @@ public class ExerciseTypeListActivity extends ActionBarActivity implements Exerc
 		return super.onOptionsItemSelected(item);
 	}
 
-	private void isNull(Workout mWorkout){
-		if (mWorkout != null)
+	private void isNull(Workout check){
+		if (check != null)
 			showDialog();
 		else
 			finish();
