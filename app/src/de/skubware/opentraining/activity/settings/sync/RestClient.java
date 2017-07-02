@@ -69,7 +69,7 @@ class RestClient {
 
 	private final static RedirectHandler sRedirectHandler = new RedirectHandler() {
 		@Override
-		public boolean isRedirectRequested(HttpResponse noner, HttpContext nonec) {
+		public boolean isRedirectRequested(HttpResponse obj, HttpContext c) {
 			return false;
 		}
 
