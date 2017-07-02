@@ -168,21 +168,26 @@ public class ExerciseTypeXMLParser extends DefaultHandler {
 			this.name = attributes.getValue("selected_name");
 			String language = attributes.getValue("language");
 			checkLanguage(attributes, language);
-		}else if(qname.equals("Locale")){
+		}
+		if(qname.equals("Locale")){
 			String language = attributes.getValue("language");
 			checkLocaleLanguage(attributes, language);
 			String translatedname = attributes.getValue("selected_name");
 			checkTranslatedName(attributes, translatedname);
 			this.translationMap.put(new Locale(language), translatedname);
-		}else if (qname.equals("SportsEquipment")) {
+		}
+		if (qname.equals("SportsEquipment")) {
 			SportsEquipment eq = mDataProvider.getEquipmentByName(attributes.getValue("selected_name"));
 			checkSportsEquipment(attributes, eq);
 			this.requiredEquipment.add(eq);
-		}else if (qname.equals("Muscle")) {
+		}
+		if (qname.equals("Muscle")) {
 			setMuscle(attributes);
-		}else if (qname.equals("Description")) {
+		}
+		if (qname.equals("Description")) {
 			this.description = attributes.getValue("text");
-		}else if (qname.equals("Image")) {
+		}
+		if (qname.equals("Image")) {
 			File im = new File(attributes.getValue("path"));
 			this.imagePaths.add(im);
 
@@ -194,14 +199,19 @@ public class ExerciseTypeXMLParser extends DefaultHandler {
 			license = checkLicense(author, licenseType);
 
 			this.imageLicenseMap.put(im, license);
-		}else if (qname.equals("RelatedURL")) {
+		}
+
+		urlOrTag(qname, attributes);
+		hintOrIcon(qname, attributes);
+	}
+
+	void urlOrTag(String qname, Attributes attributes) {
+		if (qname.equals("RelatedURL")) {
 			addRelatedURL(attributes);
-		}else if (qname.equals("Tag")) {
+		} else if(qname.equals("Tag")) {
 			ExerciseTag tag = mDataProvider.getExerciseTagByName(attributes.getValue("selected_name"));
 			checkTag(attributes, tag);
 			this.exerciseTag.add(tag);
-		}else {
-			hintOrIcon(qname, attributes);
 		}
 	}
 
@@ -209,7 +219,7 @@ public class ExerciseTypeXMLParser extends DefaultHandler {
 		if (qname.equals("Hint")) {
 			String hint = attributes.getValue("text");
 			this.hints.add(hint);
-		}else{
+		}else if(qname.equals("Icon")){
 			File iconpath = new File(attributes.getValue("path"));
 			this.iconPath = iconpath;
 		}
