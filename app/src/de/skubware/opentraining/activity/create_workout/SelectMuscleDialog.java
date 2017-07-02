@@ -83,8 +83,10 @@ public class SelectMuscleDialog extends AlertDialog implements OnTouchListener {
 	
 	/** A map for caching the drawables. */
 	public HashMap<Integer, Drawable> mColorMap = new HashMap<Integer, Drawable>();
-	
-	
+
+	/**
+	 * @field mMuscleMap
+	 */
 	public HashMap<Integer, Muscle> mMuscleMap = new HashMap<Integer, Muscle>();
 
 	
