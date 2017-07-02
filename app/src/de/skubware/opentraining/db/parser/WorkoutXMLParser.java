@@ -42,6 +42,7 @@ import java.util.Map;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import de.skubware.opentraining.Exceptions.ErrorException;
 import de.skubware.opentraining.basic.ExerciseType;
 import de.skubware.opentraining.basic.ExerciseType.ExerciseSource;
 import de.skubware.opentraining.basic.FSet;
@@ -194,73 +195,89 @@ public class WorkoutXMLParser extends DefaultHandler {
 	public void startElement(String uri, String name, String qname, Attributes attributes) throws SAXException {
 		switch (qname) {
 			case "Workout":
-				mWorkoutName = attributes.getValue("name");
-				String r = attributes.getValue("rows");
-				if (r != null) {
-					this.mRowCount = Integer.parseInt(r);
-				}
+				workOutActionsStart(attributes);
 				break;
 			case "FitnessExcercise":
 				this.mCustomName = attributes.getValue("customname");
 				break;
 			case "ExcerciseType":
-				String exName = attributes.getValue("name");
-				IDataProvider dataProvider = new DataProvider(mContext);
-				this.mExerciseType = dataProvider.getExerciseByName(exName);
-
-				// if exercise can't be found, create and save it
-				// this may happen if a custom(or synced) exercise has been deleted
-				if (mExerciseType == null) {
-					Log.e(TAG, "Could not find exercise, will create new custom exercise with the name " + exName, new NullPointerException("The exercise '" + exName + "' of the TrainingPlan couldn't be found in the database."));
-					mExerciseType = (new ExerciseType.Builder(exName, ExerciseSource.CUSTOM)).build();
-					dataProvider.saveCustomExercise(mExerciseType);
+				try {
+					exerciseTypeActionsStart(attributes);
+				} catch (ErrorException e) {
+					Log.v("WorkoutXMLParser", e.getMessage());
 				}
 				break;
 			case "Fset":
-				if (attributes.getValue("hasBeenDone") != null)
-					mSetHasBeenDone = Boolean.parseBoolean(attributes.getValue("hasBeenDone"));
+				fSetActionsStart(attributes);
 				break;
 			case "SetParameter":
 				this.mSetParameterName = attributes.getValue("name");
 				this.mSetParameterValue = attributes.getValue("value");
 				break;
 			case "TrainingEntry":
-				parsingTrainingEntry = true;
-				String dateString = attributes.getValue("date");
-
-				Date trainingEntryDate;
-				if (dateString == null || dateString.equals("") || dateString.equals("null")) {
-					trainingEntryDate = null;
-				} else {
-					SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-
-					try {
-						trainingEntryDate = format.parse(dateString);
-					} catch (ParseException e) {
-						Log.e(TAG, "Error parsing date: " + dateString, e);
-						trainingEntryDate = null;
-					}
-				}
-				this.mTrainingEntry = new TrainingEntry(trainingEntryDate);
+				trainingEntryActionsStart(attributes);
 				break;
 			default:
 				break;
 		}
 	}
 
+	private void exerciseTypeActionsStart(Attributes attributes) throws ErrorException {
+		String exName = attributes.getValue("name");
+		IDataProvider dataProvider = new DataProvider(mContext);
+		this.mExerciseType = dataProvider.getExerciseByName(exName);
+
+		// if exercise can't be found, create and save it
+		// this may happen if a custom(or synced) exercise has been deleted
+		if (mExerciseType == null) {
+            Log.e(TAG, "Could not find exercise, will create new custom exercise with the name " + exName, new NullPointerException("The exercise '" + exName + "' of the TrainingPlan couldn't be found in the database."));
+            mExerciseType = (new ExerciseType.Builder(exName, ExerciseSource.CUSTOM)).build();
+            dataProvider.saveCustomExercise(mExerciseType);
+        }
+	}
+
+	private void workOutActionsStart(Attributes attributes) {
+		mWorkoutName = attributes.getValue("name");
+		String r = attributes.getValue("rows");
+		if (r != null) {
+            this.mRowCount = Integer.parseInt(r);
+        }
+	}
+
+	private void trainingEntryActionsStart(Attributes attributes) {
+		parsingTrainingEntry = true;
+		String dateString = attributes.getValue("date");
+
+		Date trainingEntryDate;
+		if (dateString == null || dateString.equals("") || dateString.equals("null")) {
+            trainingEntryDate = null;
+        } else {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+
+            try {
+                trainingEntryDate = format.parse(dateString);
+            } catch (ParseException e) {
+                Log.e(TAG, "Error parsing date: " + dateString, e);
+                trainingEntryDate = null;
+            }
+        }
+		this.mTrainingEntry = new TrainingEntry(trainingEntryDate);
+	}
+
+	private void fSetActionsStart(Attributes attributes) {
+		if (attributes.getValue("hasBeenDone") != null)
+            mSetHasBeenDone = Boolean.parseBoolean(attributes.getValue("hasBeenDone"));
+	}
+
 	@Override
 	public void endElement(String uri, String localName, String qName) {
 		switch (qName) {
 			case "Workout":
-				this.mWorkout = new Workout(this.mWorkoutName, this.mFExList.toArray(new FitnessExercise[0]));
-				if (this.mRowCount != null) {
-					this.mWorkout.setEmptyRows(this.mRowCount);
-				} else {
-					Log.d(TAG, "No rows were set");
+				try {
+					workoutActionEnd();
+				} catch (ErrorException e) {
+					Log.v("Workout", e.getMessage());
 				}
-
-				this.mRowCount = null;
-				this.mWorkoutName = null;
 				break;
 			case "FitnessExercise":
 				FitnessExercise fEx = new FitnessExercise(this.mExerciseType, this.mFSetList.toArray(new FSet[0]));
@@ -320,6 +337,18 @@ public class WorkoutXMLParser extends DefaultHandler {
 			default:
 				break;
 		}
+	}
+
+	private void workoutActionEnd() throws ErrorException {
+		this.mWorkout = new Workout(this.mWorkoutName, this.mFExList.toArray(new FitnessExercise[0]));
+		if (this.mRowCount != null) {
+            this.mWorkout.setEmptyRows(this.mRowCount);
+        } else {
+            Log.d(TAG, "No rows were set");
+        }
+
+		this.mRowCount = null;
+		this.mWorkoutName = null;
 	}
 
 	private boolean setParameterName() {
