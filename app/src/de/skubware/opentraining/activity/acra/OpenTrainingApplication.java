@@ -19,8 +19,7 @@ import de.skubware.opentraining.R;
 )
 
 /**
- * @class OpenTrainingApplication
- * @extends Application
+ * Class OpenTrainingApplication
  */
 public class OpenTrainingApplication extends Application{
 
