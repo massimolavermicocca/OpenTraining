@@ -58,6 +58,9 @@ import de.skubware.opentraining.db.parser.XMLSaver;
 public class DataProvider implements IDataProvider {
 	/** Tag for logging */
 	public static final String TAG = "DataProvider";
+	/**
+	 *  format String
+	 */
 	public static final String format = ".xml";
 
 	private Context mContext;
