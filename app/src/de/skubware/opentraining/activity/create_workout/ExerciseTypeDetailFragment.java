@@ -228,12 +228,8 @@ public class ExerciseTypeDetailFragment extends Fragment {
 				
 				String license = "";
 
-				if (mExercise.getImageLicenseMap().values().iterator().hasNext()) {
-					license = mExercise.getImageLicenseMap().values().iterator().next().toString();
-				} else {
-					license = getString(R.string.no_license_available);
-				}
-				
+				license = setLicense();
+
 				builder.setMessage(license);
 				builder.create().show();
 
@@ -245,7 +241,7 @@ public class ExerciseTypeDetailFragment extends Fragment {
 		MenuItem menu_item_description = (MenuItem) menu.findItem(R.id.menu_item_description);
 		menu_item_description.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 			public boolean onMenuItemClick(MenuItem item) {
-				if(mExercise.getDescription() == null || mExercise.getDescription().equals("")){
+				if(isExerciseNull()){
 					Toast.makeText(getActivity(), getString(R.string.no_description_available), Toast.LENGTH_LONG).show();
 					return true;
 				}
@@ -262,7 +258,7 @@ public class ExerciseTypeDetailFragment extends Fragment {
 		});
 	
 		// configure menu_item_delete_exercise
-		if(mExercise != null  && mExercise.getExerciseSource() == ExerciseSource.CUSTOM){
+		if(exerciseNotNull()){
 			MenuItem menu_item_delete_exercise = (MenuItem) menu.findItem(R.id.menu_item_delete_exercise);
 			menu_item_delete_exercise.setVisible(true);
 			menu_item_delete_exercise.setOnMenuItemClickListener(new OnMenuItemClickListener(){
@@ -315,9 +311,7 @@ public class ExerciseTypeDetailFragment extends Fragment {
 					
 					FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
 					Fragment prev = getActivity().getSupportFragmentManager().findFragmentByTag("dialog");
-					if (prev != null) {
-						ft.remove(prev);
-					}
+					checkFragment(ft, prev);
 					ft.addToBackStack(null);
 
 					// Create and show the dialog.
@@ -327,6 +321,30 @@ public class ExerciseTypeDetailFragment extends Fragment {
 					return false;
 				}
 			});
+	}
+
+	void checkFragment(FragmentTransaction ft, Fragment prev) {
+		if (prev != null) {
+            ft.remove(prev);
+        }
+	}
+
+	boolean exerciseNotNull() {
+		return mExercise != null  && mExercise.getExerciseSource() == ExerciseSource.CUSTOM;
+	}
+
+	String setLicense() {
+		String license;
+		if (mExercise.getImageLicenseMap().values().iterator().hasNext()) {
+            license = mExercise.getImageLicenseMap().values().iterator().next().toString();
+        } else {
+            license = getString(R.string.no_license_available);
+        }
+		return license;
+	}
+
+	boolean isExerciseNull() {
+		return mExercise.getDescription() == null || mExercise.getDescription().equals("");
 	}
 
 	private boolean allWorkoutAreAllowed() {
