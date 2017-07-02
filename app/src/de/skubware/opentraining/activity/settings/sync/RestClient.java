@@ -22,12 +22,16 @@ package de.skubware.opentraining.activity.settings.sync;
 
 import android.util.Log;
 
-
-import org.apache.http.*;
-
+import org.apache.http.HttpResponse;
+import org.apache.http.ProtocolException;
+import org.apache.http.StatusLine;
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.RedirectHandler;
-import org.apache.http.client.methods.*;
+import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.conn.ClientConnectionManager;
 import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.scheme.SchemeRegistry;
@@ -44,13 +48,20 @@ import org.apache.http.protocol.HttpContext;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URI;
 import java.util.List;
 
-import javax.net.ssl.*;
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
 
-import static org.apache.http.HttpStatus.*;
+import static org.apache.http.HttpStatus.SC_ACCEPTED;
+import static org.apache.http.HttpStatus.SC_CREATED;
+import static org.apache.http.HttpStatus.SC_OK;
+import static org.apache.http.HttpStatus.SC_UNPROCESSABLE_ENTITY;
 
 /**
  * REST-Client for communicating with REST-server-API. This class has been
@@ -72,7 +83,7 @@ class RestClient {
 	private static final String MIMETYPE_JSON = "application/json";
 	private static String USER_AGENT;
 
-	private final static RedirectHandler sHandler = new RedirectHandler() {
+	private final static RedirectHandler sRedirectHandler = new RedirectHandler() {
 		@Override
 		public boolean isRedirectRequested(HttpResponse redirect_resp, HttpContext redirect_cont) {
 			return false;
@@ -129,7 +140,7 @@ class RestClient {
 		mClient = new DefaultHttpClient(mgr, client.getParams());
 
 		
-		mClient.setRedirectHandler(sHandler);
+		mClient.setRedirectHandler(sRedirectHandler);
 		mClient.getParams().setParameter(CoreProtocolPNames.USER_AGENT,
 				USER_AGENT);
 		
