@@ -166,7 +166,7 @@ public class SyncFinishedDialog extends AlertDialog.Builder {
 	 * number of exercises displayed on the GUI.
 	 */
 
-	public void analizeExercise(ExerciseType exercise, boolean  withImagesOnly){
+	public void analizeExercise(ExerciseType exercise, boolean  noText){
 		if (withImagesOnly && exercise.getImagePaths().isEmpty()) {
 			mExerciseToSaveList.remove(exercise);
 		}

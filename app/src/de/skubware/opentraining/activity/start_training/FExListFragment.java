@@ -107,7 +107,7 @@ public class FExListFragment extends ListFragment {
 	 */
 	private static Callbacks sDummyCallbacks = new Callbacks() {
 		@Override
-		public void onItemSelected(FitnessExercise identifier) {
+		public void onItemSelected(FitnessExercise fx) {
 		}
 	};
 
