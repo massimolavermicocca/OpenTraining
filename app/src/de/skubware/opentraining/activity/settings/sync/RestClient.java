@@ -72,7 +72,7 @@ class RestClient {
 	private static final String MIMETYPE_JSON = "application/json";
 	private static String USER_AGENT;
 
-	private final static RedirectHandler sRedirectHandler = new RedirectHandler() {
+	private final static RedirectHandler sHandler = new RedirectHandler() {
 		@Override
 		public boolean isRedirectRequested(HttpResponse redirect_resp, HttpContext redirect_cont) {
 			return false;
@@ -129,7 +129,7 @@ class RestClient {
 		mClient = new DefaultHttpClient(mgr, client.getParams());
 
 		
-		mClient.setRedirectHandler(sRedirectHandler);
+		mClient.setRedirectHandler(sHandler);
 		mClient.getParams().setParameter(CoreProtocolPNames.USER_AGENT,
 				USER_AGENT);
 		
