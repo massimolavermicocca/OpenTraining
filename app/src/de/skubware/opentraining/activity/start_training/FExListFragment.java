@@ -61,6 +61,18 @@ public class FExListFragment extends ListFragment {
 	private Workout mWorkout;
 
 	/**
+	 * The fragment's current callback object, which is notified of list item
+	 * clicks.
+	 */
+	private Callbacks mCallbacks = sDummyCallbacks;
+
+	/**
+	 * The current activated item position. Only used on tablets.
+	 */
+	private int mActivatedPosition = ListView.INVALID_POSITION;
+
+
+	/**
 	 * Create a new instance of MyDialogFragment, providing "num" as an
 	 * argument.
 	 * 
@@ -86,16 +98,6 @@ public class FExListFragment extends ListFragment {
 		}
 	};
 
-	/**
-	 * The fragment's current callback object, which is notified of list item
-	 * clicks.
-	 */
-	private Callbacks mCallbacks = sDummyCallbacks;
-
-	/**
-	 * The current activated item position. Only used on tablets.
-	 */
-	private int mActivatedPosition = ListView.INVALID_POSITION;
 
 	/**
 	 * A callback interface that all activities containing this fragment must

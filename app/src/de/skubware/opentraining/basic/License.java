@@ -40,6 +40,8 @@ public class License implements Serializable {
 
 	/** The author */
 	private String author;
+	/** The general type of this license */
+	private LicenseType type;
 
 	/**
 	 * Enumeration for the general type of the license. Each license type
@@ -86,10 +88,6 @@ public class License implements Serializable {
 			return mShortName;
 		}
 	}
-
-	/** The general type of this license */
-	private LicenseType type;
-
 
 
 	/**
