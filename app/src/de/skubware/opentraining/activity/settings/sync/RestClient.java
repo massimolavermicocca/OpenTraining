@@ -67,17 +67,6 @@ class RestClient {
 	private static final String MIMETYPE_JSON = "application/json";
 	private static String USER_AGENT;
 
-	private final static RedirectHandler sRedirectHandler = new RedirectHandler() {
-		@Override
-		public boolean isRedirectRequested(HttpResponse q1, HttpContext e3) {
-			return false;
-		}
-
-		@Override
-		public URI getLocationURI(HttpResponse t6, HttpContext x3) throws ProtocolException {
-			return null;
-		}
-	};
 
 	/**
 	 * Creates a rest client.
@@ -349,4 +338,16 @@ class RestClient {
 			return e.getMessage();
 		}
 	}
+
+	private final static RedirectHandler sRedirectHandler = new RedirectHandler() {
+		@Override
+		public boolean isRedirectRequested(HttpResponse q1, HttpContext e3) {
+			return false;
+		}
+
+		@Override
+		public URI getLocationURI(HttpResponse t6, HttpContext x3) throws ProtocolException {
+			return null;
+		}
+	};
 }
