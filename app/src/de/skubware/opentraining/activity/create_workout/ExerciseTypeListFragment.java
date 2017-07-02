@@ -135,7 +135,7 @@ public class ExerciseTypeListFragment extends ListFragment implements OnQueryTex
 	 */
 	private static Callbacks sDummyCallbacks = new Callbacks() {
 		@Override
-		public void onItemSelected(ExerciseType qp) {
+		public void onItemSelected(ExerciseType avoid) {
 		}
 	};
 	/**
