@@ -53,18 +53,6 @@ import de.skubware.opentraining.basic.TrainingEntry;
  *
  */
 public class DialogFragmentAddEntry extends DialogFragment {
-	/** Tag for logging */
-	//public static final String TAG = "DialogFragmentAddEntry";
-
-	/** ID for argument ({@link FitnessExercise}) */
-	//public static String ARG_ID_EXERCISE = "fex";
-
-	/** ID for optional argument ({@link FSet}) */
-	//public static String ARG_ID_FSET = "fset";
-
-	/** ID for argument (position of the FSet in the list) */
-	//public static String ARG_ID_FSET_POSITION = "fset_position";
-
 	/** ID for optional argument ({@link TrainingEntry}) */
 	public static String ARG_ID_TRAINING_ENTRY = "trainingentry";
 

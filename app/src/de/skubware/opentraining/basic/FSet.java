@@ -383,7 +383,7 @@ public class FSet implements Serializable, Cloneable {
 			
 			for(SetParameter para:mSetParameterList){
 				SetParameter newPara = null;
-				if(para instanceof SetParameter.Weight){
+				/*if(para instanceof SetParameter.Weight){
 					newPara = new SetParameter.Weight((SetParameter.Weight) para);
 				}
 				if(para instanceof SetParameter.Duration){
@@ -393,6 +393,18 @@ public class FSet implements Serializable, Cloneable {
 					newPara = new SetParameter.Repetition((SetParameter.Repetition) para);
 				}
 				if(para instanceof SetParameter.FreeField){
+					newPara = new SetParameter.FreeField((SetParameter.FreeField) para);
+				}*/
+				if(para.getClass().getSimpleName().equals("Weight")) {
+					newPara = new SetParameter.Weight((SetParameter.Weight) para);
+				}
+				if(para.getClass().getSimpleName().equals("Duration")){
+					newPara = new SetParameter.Duration((SetParameter.Duration) para);
+				}
+				if(para.getClass().getSimpleName().equals("Repetition")){
+					newPara = new SetParameter.Repetition((SetParameter.Repetition) para);
+				}
+				if(para.getClass().getSimpleName().equals("FreeField")){
 					newPara = new SetParameter.FreeField((SetParameter.FreeField) para);
 				}
 				cloned.mSetParameterList.add(newPara);
