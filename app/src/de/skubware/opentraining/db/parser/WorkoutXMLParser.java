@@ -273,19 +273,11 @@ public class WorkoutXMLParser extends DefaultHandler {
 	public void endElement(String uri, String localName, String qName) {
 		switch (qName) {
 			case "Workout":
-				try {
-					workoutActionEnd();
-				} catch (ErrorException e) {
-					Log.v("Workout", e.getMessage());
-				}
+                workoutActionEnd();
 				break;
 			case "FitnessExercise":
-                try {
-                    fitnessExerciseEnd();
-                } catch (ErrorException e) {
-                    Log.v("WorkoutXMLParser", e.getMessage().toString());
-                }
-                break;
+                fitnessExerciseEnd();
+				break;
 			case "Fset":
                 try {
                     fSetActionsEnd();
@@ -297,20 +289,20 @@ public class WorkoutXMLParser extends DefaultHandler {
                 setParamenterActionsEnd();
 				break;
 			case "TrainingEntry":
-                try {
-                    trainingEntryActionsEnd();
-                } catch (ErrorException e) {
-                    Log.v("WorkoutXMLParser", e.getMessage().toString());
-                }
+                trainingEntryActionsEnd();
                 break;
 			default:
 				break;
 		}
 	}
 
-    private void trainingEntryActionsEnd() throws ErrorException {
+    private void trainingEntryActionsEnd() {
         for (FSet set : this.mTrainingEntryFSetList) {
-            mTrainingEntry.add(set);
+            try {
+                mTrainingEntry.add(set);
+            } catch (ErrorException e) {
+                Log.v("WorkoutXMLParser", e.getMessage());
+            }
             mTrainingEntry.setHasBeenDone(set, mSetHasBeenDoneMap.get(set));
         }
 
@@ -344,12 +336,21 @@ public class WorkoutXMLParser extends DefaultHandler {
         this.mSetParameter = new ArrayList<SetParameter>();
     }
 
-    private void fitnessExerciseEnd() throws ErrorException {
-        FitnessExercise fEx = new FitnessExercise(this.mExerciseType, this.mFSetList.toArray(new FSet[0]));
+    private void fitnessExerciseEnd()  {
+        FitnessExercise fEx = null;
+        try {
+            fEx = new FitnessExercise(this.mExerciseType, this.mFSetList.toArray(new FSet[0]));
+        } catch (ErrorException e) {
+            Log.v("WorkoutXMLParser", e.getMessage());
+        }
 
         // set custom name
         if (this.mCustomName != null) {
-            fEx.setCustomName(mCustomName);
+            try {
+                fEx.setCustomName(mCustomName);
+            } catch (ErrorException e) {
+                Log.v("WorkoutXMLParser", e.getMessage());
+            }
             Log.d(TAG, "customName=" + mCustomName);
         } else {
             Log.d(TAG, "No customName");
@@ -367,9 +368,13 @@ public class WorkoutXMLParser extends DefaultHandler {
         this.mTrainingEntryList = new ArrayList<TrainingEntry>();
     }
 
-    private void workoutActionEnd() throws ErrorException {
-		this.mWorkout = new Workout(this.mWorkoutName, this.mFExList.toArray(new FitnessExercise[0]));
-		if (this.mRowCount != null) {
+    private void workoutActionEnd() {
+        try {
+            this.mWorkout = new Workout(this.mWorkoutName, this.mFExList.toArray(new FitnessExercise[0]));
+        } catch (ErrorException e) {
+            Log.v("WorkoutXMLParser", e.getMessage());
+        }
+        if (this.mRowCount != null) {
             this.mWorkout.setEmptyRows(this.mRowCount);
         } else {
             Log.d(TAG, "No rows were set");
