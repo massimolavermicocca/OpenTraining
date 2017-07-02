@@ -311,6 +311,8 @@ public class CreateExerciseActivity extends ActionBarActivity implements
 				return new MuscleDataFragment();
 			case 4:
 				return new EquipmentDataFragment();
+			default:
+				break;
 			}
 			
 			throw new IllegalStateException("No fragment for position: " + position);
@@ -334,6 +336,8 @@ public class CreateExerciseActivity extends ActionBarActivity implements
 				return getString(R.string.title_muscle_data_fragment).toUpperCase(Locale.GERMANY);
 			case 4:
 				return getString(R.string.title_equipment_data_fragment).toUpperCase(Locale.GERMANY);
+			default:
+				break;
 			}	
 			return null;
 		}
