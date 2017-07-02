@@ -108,12 +108,6 @@ public class ExerciseTypeGSONSerializer implements JsonSerializer<ExerciseType>{
 		// mainObject.add("equipment", equipmentJsonArray);
 
 		mainObject.addProperty("license", 3);
-		/*
-		 * mainObject.addProperty("license_author", "me ;)");
-		 * mainObject.addProperty("muscles", "[]");
-		 * mainObject.addProperty("secondary", "[]");
-		 */
-
 
 		return mainObject;
 	}
