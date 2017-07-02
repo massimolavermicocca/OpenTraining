@@ -82,6 +82,7 @@ public class ExerciseImageListAdapter extends BaseAdapter{
 			dest.writeSerializable(imageLicense);
 		}
 
+		
 		static final Parcelable.Creator<ImageData> CREATOR
 				= new Parcelable.Creator<ImageData>() {
 

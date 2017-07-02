@@ -129,7 +129,6 @@ public class ExerciseTypeListFragment extends ListFragment implements OnQueryTex
 		 */
 		public void onItemSelected(ExerciseType sel);
 	}
-
 	/**
 	 * A dummy implementation of the {@link Callbacks} interface that does
 	 * nothing. Used only when this fragment is not attached to an activity.

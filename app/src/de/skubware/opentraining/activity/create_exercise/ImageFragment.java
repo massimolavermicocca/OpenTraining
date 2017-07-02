@@ -280,15 +280,15 @@ public class ImageFragment extends Fragment{
 		return Collections.unmodifiableList(mImageList);
 	}
 
-	private static Bitmap checkImageUri(Uri mTempImageUri, Activity activity) {
-		if(mTempImageUri == null){
-			Toast.makeText(activity, activity.getString(R.string.error_did_not_return_image),
+	private static Bitmap checkImageUri(Uri temp, Activity on) {
+		if(temp == null){
+			Toast.makeText(on, on.getString(R.string.error_did_not_return_image),
 					Toast.LENGTH_SHORT).show();
 
 			//Log.e(TAG, activity.getString(R.string.error_did_not_return_image));
 			return null;
 		} else {
-			return BitmapFactory.decodeFile(mTempImageUri.getPath());
+			return BitmapFactory.decodeFile(temp.getPath());
 		}
 	}
 
