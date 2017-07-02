@@ -43,7 +43,6 @@ import de.skubware.opentraining.activity.ChangeLogDialog;
 import de.skubware.opentraining.activity.settings.sync.*;
 import de.skubware.opentraining.basic.ExerciseType;
 import de.skubware.opentraining.db.*;
-import de.skubware.opentraining.db.IDataProvider;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On
