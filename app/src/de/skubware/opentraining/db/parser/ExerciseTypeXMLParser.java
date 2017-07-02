@@ -316,9 +316,9 @@ public class ExerciseTypeXMLParser extends DefaultHandler {
 
 			// let the builder do its job :)
 			try {
-				this.exType = new ExerciseType.Builder(this.name, this.mExerciseSource).translationMap(this.translationMap).activatedMuscles(this.activatedMuscles).activationMap(this.activationMap).description(this.description)
-                        .exerciseTags(this.exerciseTag).imagePath(this.imagePaths).neededTools(this.requiredEquipment).relatedURL(this.relatedURL)
-                        .imageLicenseMap(this.imageLicenseMap).hints(hints).iconPath(iconPath).build();
+				this.exType = new ExerciseType.Builder(this.name, this.mExerciseSource).translateMap(this.translationMap).activatedMuscles(this.activatedMuscles).activationMap(this.activationMap).description(this.description)
+                        .exerciseTags(this.exerciseTag).imagePath(this.imagePaths).neededTools(this.requiredEquipment).modifyRelatedURL(this.relatedURL)
+                        .setImageLicenseMap(this.imageLicenseMap).modifyHints(hints).modifyIconPath(iconPath).build();
 			} catch (ErrorException e) {
 				Log.v("ExerciseTypeXMLParser", e.getMessage().toString());
 			}

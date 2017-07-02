@@ -131,7 +131,7 @@ public class WgerJSONParser {
 			
 
 			translationMap.put(localeSparseArray.get(languageNumber), name);
-			builder.translationMap(translationMap);
+			builder.translateMap(translationMap);
 			
 			// resource_uri (unused)
 			//String resource_uri = jsonExercise.getString("resource_uri");

@@ -122,7 +122,7 @@ public final class ExerciseType implements Comparable<ExerciseType>, IExercise, 
 			this.mExerciseSource = exerciseSource;
 		}
 
-		public Builder translationMap(Map<Locale, String> my_translationMap) {
+		public Builder translateMap(Map<Locale, String> my_translationMap) {
 			if (translationMap != null) {
 				this.translationMap = my_translationMap;
 			}
@@ -143,21 +143,21 @@ public final class ExerciseType implements Comparable<ExerciseType>, IExercise, 
 			return this;
 		}
 
-		public Builder imageLicenseMap(Map<File, License> my_imageLicenseMap) {
+		public Builder setImageLicenseMap(Map<File, License> my_imageLicenseMap) {
 			if (imageLicenseMap.size() > 0) {
 				this.imageLicenseMap = my_imageLicenseMap;
 			}
 			return this;
 		}
 
-		public Builder imageWidth(int new_imageWidth) {
+		public Builder setImageWidth(int new_imageWidth) {
 			if (imageWidth > 0) {
 				this.imageWidth = new_imageWidth;
 			}
 			return this;
 		}
 
-		public Builder imageHeigth(int new_imageHeight) {
+		public Builder setImageHeigth(int new_imageHeight) {
 			if (imageHeight > 0) {
 				this.imageHeight = new_imageHeight;
 			}
@@ -192,21 +192,21 @@ public final class ExerciseType implements Comparable<ExerciseType>, IExercise, 
 			return this;
 		}
 
-		public Builder relatedURL(List<URL> my_relatedURL) {
+		public Builder modifyRelatedURL(List<URL> my_relatedURL) {
 			if (relatedURL.size() > 0) {
 				this.relatedURL = my_relatedURL;
 			}
 			return this;
 		}
 
-		public Builder hints(List<String> my_hints) {
+		public Builder modifyHints(List<String> my_hints) {
 			if (hints.size() > 0) {
 				this.hints = my_hints;
 			}
 			return this;
 		}
 
-		public Builder iconPath(File new_iconPath) {
+		public Builder modifyIconPath(File new_iconPath) {
 			if (iconPath != null) {
 				this.iconPath = new_iconPath;
 			}

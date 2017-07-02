@@ -121,7 +121,7 @@ public class WgerImageDownloader {
 			if(!imageWithName) {
 				// set collected values for builder, add new object to exercise list
 				exBuilder.imagePath(newImagePathList);
-				exBuilder.imageLicenseMap(newImageLicenseMap);
+				exBuilder.setImageLicenseMap(newImageLicenseMap);
 
 				newExerciseList.add(exBuilder.build());
 			}

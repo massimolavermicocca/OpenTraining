@@ -233,7 +233,7 @@ public class CreateExerciseActivity extends ActionBarActivity implements
 		}
 
 		
-		ExerciseType.Builder exerciseBuilder = new ExerciseType.Builder(translationMap.values().iterator().next(), ExerciseSource.CUSTOM).description(description).translationMap(translationMap).activatedMuscles(muscleList).neededTools(equipmentList).imagePath(imageList).imageLicenseMap(imageLicenseMap);
+		ExerciseType.Builder exerciseBuilder = new ExerciseType.Builder(translationMap.values().iterator().next(), ExerciseSource.CUSTOM).description(description).translateMap(translationMap).activatedMuscles(muscleList).neededTools(equipmentList).imagePath(imageList).setImageLicenseMap(imageLicenseMap);
 		ExerciseType ex = exerciseBuilder.build();
 		
 		// save exercise

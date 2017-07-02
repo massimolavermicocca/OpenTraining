@@ -57,6 +57,7 @@ class RestClient {
 	/** Tag for logging */
 	public static final String TAG = "RestClient";
 
+
 	private static final String CONTENT_TYPE = "Content-Type";
 	private static final String path_not_null = "path cannot be null";
 
