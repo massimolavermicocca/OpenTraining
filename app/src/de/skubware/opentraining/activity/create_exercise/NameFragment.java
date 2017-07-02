@@ -169,7 +169,7 @@ public class NameFragment extends SpinnerDataFragment<NameFragment.NameTranslati
 	/**
 	 * @class NameTranslation
 	 */
-	public static class NameTranslation extends Translatable{
+	private static class NameTranslation extends Translatable{
 		private static final long serialVersionUID = 1L;
 
 		Locale mLocale;

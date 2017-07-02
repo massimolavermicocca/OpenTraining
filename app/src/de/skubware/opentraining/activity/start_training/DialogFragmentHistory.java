@@ -92,7 +92,7 @@ public class DialogFragmentHistory extends DialogFragment {
 
 
 
-    class RepetitionsWrapper{
+    private class RepetitionsWrapper{
 
     }
 

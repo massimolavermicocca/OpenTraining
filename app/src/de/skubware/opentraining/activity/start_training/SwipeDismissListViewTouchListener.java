@@ -316,7 +316,7 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener {
                 && velocityY < velocityX;
     }
 
-    class PendingDismissData implements Comparable<PendingDismissData> {
+    private class PendingDismissData implements Comparable<PendingDismissData> {
         public int position;
         public View view;
 

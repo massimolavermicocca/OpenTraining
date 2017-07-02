@@ -63,7 +63,7 @@ public class FSet implements Serializable, Cloneable {
 	 * Each SetParameter has a name() and an integer value.
 	 * 
 	 */
-	public static abstract class SetParameter implements Serializable {
+	private static abstract class SetParameter implements Serializable {
 		
 		/** Default serialVersionUID */
 		private static final long serialVersionUID = 1L;
@@ -140,7 +140,7 @@ public class FSet implements Serializable, Cloneable {
 		/**
 		 * @class Repetition
 		 */
-		public static class Repetition extends SetParameter {
+		private static class Repetition extends SetParameter {
 
 			/**
 			 * 
@@ -164,7 +164,7 @@ public class FSet implements Serializable, Cloneable {
 		/**
 		 * @class Weight
 		 */
-		public static class Weight extends SetParameter {
+		private static class Weight extends SetParameter {
 
 			/**
 			 * 
@@ -195,7 +195,7 @@ public class FSet implements Serializable, Cloneable {
 		/**
 		 * @class Duration
 		 */
-		public static class Duration extends SetParameter {
+		private static class Duration extends SetParameter {
 
 			/**
 			 * 
@@ -223,7 +223,7 @@ public class FSet implements Serializable, Cloneable {
 		/**
 		 * @class FreeField
 		 */
-		public static class FreeField extends SetParameter {
+		private static class FreeField extends SetParameter {
 			/**
 			 * 
 			 */
