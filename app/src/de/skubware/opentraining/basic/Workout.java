@@ -50,6 +50,9 @@ public class Workout implements Iterable<FitnessExercise>, Serializable {
 	/** Tag for logging */
 	static final String TAG = "Workout";
 
+	/**
+	 * @field DEFAULT_EMPTYROWS
+	 */
 	public static int DEFAULT_EMPTYROWS = 8;
 
 	private String name;

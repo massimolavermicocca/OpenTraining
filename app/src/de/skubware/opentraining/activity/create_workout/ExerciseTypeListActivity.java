@@ -77,6 +77,10 @@ public class ExerciseTypeListActivity extends ActionBarActivity implements Exerc
 
 	// some constants for arguments
 	static final int RESULT_WORKOUT = 23;
+
+	/**
+	 * @field ARG_WORKOUT
+	 */
 	public static final String ARG_WORKOUT = "workout";
 
 	/** Current {@link Workout} */

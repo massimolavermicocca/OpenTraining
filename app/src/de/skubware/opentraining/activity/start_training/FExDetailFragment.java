@@ -65,8 +65,14 @@ public class FExDetailFragment extends Fragment implements DialogFragmentAddEntr
 	/** Tag for logging */
 	public static final String TAG = "FExDetailFragment";
 
+	/**
+	 * @field ARG_FEX
+	 */
 	public static final String ARG_FEX = "f_ex";
 
+	/**
+	 * @field ARG_WORKOUT
+	 */
 	public static final String ARG_WORKOUT = "workout";
 
 	/**

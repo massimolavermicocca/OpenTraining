@@ -53,6 +53,9 @@ public class FExListFragment extends ListFragment {
 	 */
 	private static final String STATE_ACTIVATED_POSITION = "activated_position";
 
+	/**
+	 * @field ARG_WORKOUT
+	 */
 	public static final String ARG_WORKOUT = "workout";
 
 	private Workout mWorkout;

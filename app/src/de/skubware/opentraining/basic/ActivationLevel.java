@@ -26,7 +26,15 @@ public enum ActivationLevel implements Serializable {
 	LOW(1), MEDIUM(3), ENORMOUS(5);
 
 	private final int level;
+
+	/**
+	 * @field MIN_LEVEL
+	 */
 	public static final int MIN_LEVEL = 1;
+
+	/**
+	 * @field MAX_LEVEL
+	 */
 	public static final int MAX_LEVEL = 5;
 
 	/**

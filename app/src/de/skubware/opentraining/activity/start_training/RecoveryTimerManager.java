@@ -65,10 +65,30 @@ public enum RecoveryTimerManager {
 		
 		// not using getter/setter to avoid the boilerplate code
 		// as this is a private enum this should not be a problem
+
+		/**
+		 * @field timerDurationInSec
+		 */
 		public int timerDurationInSec = 0;
+
+		/**
+		 * @field tickerRunning
+		 */
 		public String tickerRunning = "Erholungsphase ...";
+
+		/**
+		 * @field contentTitleRunning
+		 */
 		public String contentTitleRunning = "Erholungsphase ...";
+
+		/**
+		 * @field tickerFinished
+		 */
 		public String tickerFinished = "Ende Erholungsphase";
+
+		/**
+		 * @field contentTitleFinished
+		 */
 		public String contentTitleFinished = "Erholungsphase beendet";
 	};
 

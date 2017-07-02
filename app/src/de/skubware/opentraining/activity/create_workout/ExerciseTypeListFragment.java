@@ -101,9 +101,20 @@ public class ExerciseTypeListFragment extends ListFragment implements OnQueryTex
 	 * The current activated item position. Only used on tablets.
 	 */
 	private int mActivatedPosition = ListView.INVALID_POSITION;
-	
+
+	/**
+	 * @field PREF_KEY_SHOWN_DEFAULT_EXERCISES
+	 */
 	public static final String PREF_KEY_SHOW_DEFAULT_EXERCISES = "PREF_KEY_SHOW_DEFAULT_EXERCISES";
+
+	/**
+	 * @field PREF_KEY_SHOW_SYNCED_EXERCISES
+	 */
 	public static final String PREF_KEY_SHOW_SYNCED_EXERCISES = "PREF_KEY_SHOW_SYNCED_EXERCISES";
+
+	/**
+	 *@field PREF_KEY_SHOW_CUSTOM_EXERCISES
+	 */
 	public static final String PREF_KEY_SHOW_CUSTOM_EXERCISES = "PREF_KEY_SHOW_CUSTOM_EXERCISES";
 
 	

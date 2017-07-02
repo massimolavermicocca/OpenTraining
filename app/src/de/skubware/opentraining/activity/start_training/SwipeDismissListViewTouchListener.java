@@ -317,7 +317,14 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener {
     }
 
     private class PendingDismissData implements Comparable<PendingDismissData> {
+        /**
+         * @field position
+         */
         public int position;
+
+        /**
+         * @field view
+         */
         public View view;
 
         public PendingDismissData(int position, View view) {

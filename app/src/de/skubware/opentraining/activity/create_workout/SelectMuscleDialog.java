@@ -63,8 +63,11 @@ public class SelectMuscleDialog extends AlertDialog implements OnTouchListener {
 	/** The ImageView (hidden) with the hotspot map */
 	private ImageView mHotSpotImageview;
 
-	Bitmap mHotspots;	
-	
+	Bitmap mHotspots;
+
+	/**
+	 * @field sColorMap
+	 */
 	public final static HashMap<Integer, Integer> sColorMap = new HashMap<Integer, Integer>();
 	static {
 		sColorMap.put(0Xff00ff, R.drawable.muscle_triceps);

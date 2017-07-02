@@ -43,8 +43,14 @@ public class ServerModel {
 	 * Server equivalent to {@link Equipment}.
 	 */
 	private static class Equipment{
-
+		/**
+		 * @field id
+		 */
 		public int id;
+
+		/**
+		 * @field name
+		 */
 		public String name;
 
 		public SportsEquipment asSportsEquipment(Context context){

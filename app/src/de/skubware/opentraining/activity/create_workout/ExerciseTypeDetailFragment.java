@@ -73,6 +73,9 @@ public class ExerciseTypeDetailFragment extends Fragment {
 	 */
 	public static final String ARG_EXERCISE = "exercise";
 
+	/**
+	 * @field ARG_WORKOUT
+	 */
 	public static final String ARG_WORKOUT = "workout";
 
 	/** Result-Code when the exercises changed (e.g. one has been deleted) */
@@ -349,11 +352,6 @@ public class ExerciseTypeDetailFragment extends Fragment {
 					return false;
 				}
 			});
-		
-		
-		
-
-		
 	}
 
 }

@@ -44,10 +44,19 @@ public class FancyCoverFlow extends Gallery {
      */
     public static final int ACTION_DISTANCE_AUTO = Integer.MAX_VALUE;
 
+    /**
+     * @field SCALEDOWN_GRAVITY_TOP
+     */
     public static final float SCALEDOWN_GRAVITY_TOP = 0.0f;
 
+    /**
+     * @field SCALEDOWN_GRAVITY_CENTER
+     */
     public static final float SCALEDOWN_GRAVITY_CENTER = 0.5f;
 
+    /**
+     * @field SCALEDOWN_GRAVITY_BOTTOM
+     */
     public static final float SCALEDOWN_GRAVITY_BOTTOM = 1.0f;
 
     // =============================================================================
