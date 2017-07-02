@@ -69,12 +69,12 @@ class RestClient {
 
 	private final static RedirectHandler sRedirectHandler = new RedirectHandler() {
 		@Override
-		public boolean isRedirectRequested(HttpResponse hp, HttpContext hc) {
+		public boolean isRedirectRequested(HttpResponse q1, HttpContext e3) {
 			return false;
 		}
 
 		@Override
-		public URI getLocationURI(HttpResponse dgbhaflvbdfljgbdja, HttpContext pouoihykjbvhj) throws ProtocolException {
+		public URI getLocationURI(HttpResponse t6, HttpContext x3) throws ProtocolException {
 			return null;
 		}
 	};
