@@ -22,6 +22,7 @@
 package de.skubware.opentraining.db.parser;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.xml.sax.Attributes;
@@ -163,104 +164,135 @@ public class ExerciseTypeXMLParser extends DefaultHandler {
 	 */
 	@Override
 	public void startElement(String uri, String selected_name, String qname, Attributes attributes) throws SAXException {
-		
 		if (qname.equals("ExerciseType")) {
 			this.name = attributes.getValue("selected_name");
 			String language = attributes.getValue("language");
-			if (language == null) {
-				Log.i(TAG, "Default name without language " + attributes.getValue("selected_name"));
-			}else{
-				this.translationMap.put(new Locale(language), this.name);
-			}
-		}
-		if(qname.equals("Locale")){
+			checkLanguage(attributes, language);
+		}else if(qname.equals("Locale")){
 			String language = attributes.getValue("language");
-			if (language == null) {
-				Log.e(TAG, "Locale without language" + attributes.getValue("selected_name"));
-			}
+			checkLocaleLanguage(attributes, language);
 			String translatedname = attributes.getValue("selected_name");
-			if (translatedname == null) {
-				Log.e(TAG, "Locale without translatedname" + attributes.getValue("selected_name"));
-			}
+			checkTranslatedName(attributes, translatedname);
 			this.translationMap.put(new Locale(language), translatedname);
-		}
-		if (qname.equals("SportsEquipment")) {
+		}else if (qname.equals("SportsEquipment")) {
 			SportsEquipment eq = mDataProvider.getEquipmentByName(attributes.getValue("selected_name"));
-			if (eq == null) {
-				Log.e(TAG, "The SportsEquipment: " + attributes.getValue("selected_name") + " couldn't be found.");
-			}
+			checkSportsEquipment(attributes, eq);
 			this.requiredEquipment.add(eq);
-		}
-		if (qname.equals("Muscle")) {
-			Muscle muscle = null;
-			try{
-				muscle = mDataProvider.getMuscleByName(attributes.getValue("selected_name"));
-			}catch(IllegalArgumentException illEx){
-				Log.e(TAG, "The Muscle: " + attributes.getValue("selected_name") + " couldn't be found. Ex: " + this.name);
-			}
-			if (muscle == null) {
-				Log.e(TAG, "The Muscle: " + attributes.getValue("selected_name") + " couldn't be found. Ex: " + this.name);
-			}
-
-			this.activatedMuscles.add(muscle);
-
-			int level = ActivationLevel.MEDIUM.getLevel();
-			try {
-				level = Integer.parseInt(attributes.getValue("level"));
-			} catch (Throwable t) {
-				Log.e(TAG, "Error parsing ActivationLevel: " + attributes.getValue("level"));
-			}
-			ActivationLevel actLevel = ActivationLevel.getByLevel(level);
-			this.activationMap.put(muscle, actLevel);
-		}
-		if (qname.equals("Description")) {
+		}else if (qname.equals("Muscle")) {
+			setMuscle(attributes);
+		}else if (qname.equals("Description")) {
 			this.description = attributes.getValue("text");
-
-		}
-		if (qname.equals("Image")) {
+		}else if (qname.equals("Image")) {
 			File im = new File(attributes.getValue("path"));
 			this.imagePaths.add(im);
-			
+
 			String author = attributes.getValue("author");
 			String licenseTypeShortName = attributes.getValue("license");
 			LicenseType licenseType = mDataProvider.getLicenseTypeByName(licenseTypeShortName);
 			License license = null;
-			
-			if(author != null){ // licenseType cannot be null
-				license = new License(licenseType, author);
-			}else{
-				license = new License(); // has LicenseType Unknown
-			}
-			
+
+			license = checkLicense(author, licenseType);
+
 			this.imageLicenseMap.put(im, license);
-		}
-		if (qname.equals("RelatedURL")) {
-			try {
-				this.relatedURL.add(new URL(attributes.getValue("url")));
-			} catch (MalformedURLException e) {
-				Log.e(TAG, "Error, URL: " + attributes.getValue("url") + " is not valid/is malformed \n" + e.getMessage());
-			}
-		}
-		if (qname.equals("Tag")) {
+		}else if (qname.equals("RelatedURL")) {
+			addRelatedURL(attributes);
+		}else if (qname.equals("Tag")) {
 			ExerciseTag tag = mDataProvider.getExerciseTagByName(attributes.getValue("selected_name"));
-			if (tag == null) {
-				Log.e(TAG, "The Tag: " + attributes.getValue("selected_name") + " couldn't be found.");
-			}
+			checkTag(attributes, tag);
 			this.exerciseTag.add(tag);
+		}else {
+			hintOrIcon(qname, attributes);
 		}
+	}
+
+	void hintOrIcon(String qname, Attributes attributes) {
 		if (qname.equals("Hint")) {
 			String hint = attributes.getValue("text");
-
 			this.hints.add(hint);
-		}
-		if (qname.equals("Icon")) {
+		}else{
 			File iconpath = new File(attributes.getValue("path"));
-
 			this.iconPath = iconpath;
 		}
-
 	}
-	
+
+	void setMuscle(Attributes attributes) {
+		Muscle muscle = null;
+		try{
+            muscle = mDataProvider.getMuscleByName(attributes.getValue("selected_name"));
+        }catch(IllegalArgumentException illEx){
+            Log.e(TAG, "The Muscle: " + attributes.getValue("selected_name") + " couldn't be found. Ex: " + this.name);
+        }
+		checkMuscle(attributes, muscle);
+
+		this.activatedMuscles.add(muscle);
+
+		int level = ActivationLevel.MEDIUM.getLevel();
+		try {
+            level = Integer.parseInt(attributes.getValue("level"));
+        } catch (Throwable t) {
+            Log.e(TAG, "Error parsing ActivationLevel: " + attributes.getValue("level"));
+        }
+		ActivationLevel actLevel = ActivationLevel.getByLevel(level);
+		this.activationMap.put(muscle, actLevel);
+	}
+
+	void addRelatedURL(Attributes attributes) {
+		try {
+            this.relatedURL.add(new URL(attributes.getValue("url")));
+        } catch (MalformedURLException e) {
+            Log.e(TAG, "Error, URL: " + attributes.getValue("url") + " is not valid/is malformed \n" + e.getMessage());
+        }
+	}
+
+	void checkMuscle(Attributes attributes, Muscle muscle) {
+		if (muscle == null) {
+            Log.e(TAG, "The Muscle: " + attributes.getValue("selected_name") + " couldn't be found. Ex: " + this.name);
+        }
+	}
+
+	void checkSportsEquipment(Attributes attributes, SportsEquipment eq) {
+		if (eq == null) {
+            Log.e(TAG, "The SportsEquipment: " + attributes.getValue("selected_name") + " couldn't be found.");
+        }
+	}
+
+	private void checkTag(Attributes attributes, ExerciseTag tag) {
+		if (tag == null) {
+            Log.e(TAG, "The Tag: " + attributes.getValue("selected_name") + " couldn't be found.");
+        }
+	}
+
+	@NonNull
+	private License checkLicense(String author, LicenseType licenseType) {
+		License license;
+		if(author != null){ // licenseType cannot be null
+            license = new License(licenseType, author);
+        }else{
+            license = new License(); // has LicenseType Unknown
+        }
+		return license;
+	}
+
+	private void checkTranslatedName(Attributes attributes, String translatedname) {
+		if (translatedname == null) {
+            Log.e(TAG, "Locale without translatedname" + attributes.getValue("selected_name"));
+        }
+	}
+
+	private void checkLocaleLanguage(Attributes attributes, String language) {
+		if (language == null) {
+            Log.e(TAG, "Locale without language" + attributes.getValue("selected_name"));
+        }
+	}
+
+	private void checkLanguage(Attributes attributes, String language) {
+		if (language == null) {
+            Log.i(TAG, "Default name without language " + attributes.getValue("selected_name"));
+        }else{
+            this.translationMap.put(new Locale(language), this.name);
+        }
+	}
+
 
 	/**
 	 * When {@code </ExerciseType>} is reached, the parsing is finished.
