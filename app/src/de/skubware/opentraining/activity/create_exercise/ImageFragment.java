@@ -268,13 +268,9 @@ public class ImageFragment extends Fragment{
 				Log.e(TAG, "Stream closing failed", ex);
 			}
 		}
-
-
-
-
-
+        
 		// continue processing bitmap
-		String imageName = (new File(mTempImageUri.getPath())).getName();
+		String imageName = (getActivity().getFilesDir().toString() + "/" + IDataProvider.CUSTOM_IMAGES_FOLDER);
 		Log.v(TAG, "Added image " + imageName);
 
 		ImageData image = new ImageData();
