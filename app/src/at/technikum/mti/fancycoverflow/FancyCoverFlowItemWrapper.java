@@ -256,10 +256,10 @@ class FancyCoverFlowItemWrapper extends ViewGroup {
 
         this.wrappedViewDrawingCanvas.drawBitmap(invertedBitmap, 0, scaledDownHeight + reflectionGap, null);
 
-        final Paint paint = new Paint();
+        final Paint draw = new Paint();
         final LinearGradient shader = new LinearGradient(0, height * imageReflectionRatio + reflectionGap, 0, height, 0x70ffffff, 0x00ffffff, Shader.TileMode.CLAMP);
-        paint.setShader(shader);
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
-        this.wrappedViewDrawingCanvas.drawRect(0, height * (1 - imageReflectionRatio), width, height, paint);
+        draw.setShader(shader);
+        draw.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
+        this.wrappedViewDrawingCanvas.drawRect(0, height * (1 - imageReflectionRatio), width, height, draw);
     }
 }

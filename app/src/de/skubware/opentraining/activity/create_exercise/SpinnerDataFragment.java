@@ -74,16 +74,16 @@ public abstract class SpinnerDataFragment<T extends Translatable> extends Simple
 			throw new AssertionError("Sub class of SpinnerDataFragment<T> did not set mObjectList.");
 		}
 		
-		ArrayAdapter<T> mSpinnerAdapter = new ArrayAdapter<T>(getActivity(), android.R.layout.simple_spinner_dropdown_item, android.R.id.text1, mSpinnerDataList);
+		ArrayAdapter<T> mSpinner = new ArrayAdapter<T>(getActivity(), android.R.layout.simple_spinner_dropdown_item, android.R.id.text1, mSpinnerDataList);
 	
 		
-		mSpinner = (CustomSpinner) layout.findViewById(R.id.spinner);
-		mSpinner.setAdapter(mSpinnerAdapter);
+		this.mSpinner = (CustomSpinner) layout.findViewById(R.id.spinner);
+		this.mSpinner.setAdapter(mSpinner);
 
 		// if you dont post a runnable, the first item will be added to the mListAdapter on activity start
-		mSpinner.post(new Runnable() {
+		this.mSpinner.post(new Runnable() {
 			public void run() {
-				mSpinner.setOnItemSelectedEvenIfUnchangedListener(SpinnerDataFragment.this);
+				SpinnerDataFragment.this.mSpinner.setOnItemSelectedEvenIfUnchangedListener(SpinnerDataFragment.this);
 			}
 		});
 

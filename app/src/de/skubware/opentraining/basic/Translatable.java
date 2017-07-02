@@ -92,9 +92,9 @@ public abstract class Translatable implements Comparable<Translatable>, Serializ
 		}
 
 		Set<String> nameSet = nameMap.get(locale);
-		for (String name : names) {
-			nameSet.add(name);
-			nameSet.add(name.toLowerCase(Locale.GERMANY));
+		for (String item : names) {
+			nameSet.add(item);
+			nameSet.add(item.toLowerCase(Locale.GERMANY));
 		}
 
 	}
@@ -139,8 +139,8 @@ public abstract class Translatable implements Comparable<Translatable>, Serializ
 		builder.append("Primary name: " + name + "\n");
 		for (Locale locale : nameMap.keySet()) {
 			builder.append("\n Locale/language: " + locale.getLanguage().toString());
-			for (String name : nameMap.get(locale)) {
-				builder.append("\n  - " + name);
+			for (String item : nameMap.get(locale)) {
+				builder.append("\n  - " + item);
 			}
 		}
 

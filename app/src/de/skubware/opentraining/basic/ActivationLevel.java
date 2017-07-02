@@ -59,7 +59,7 @@ public enum ActivationLevel implements Serializable {
 	/**
 	 * Gets an ActivationLevel by the int value of it's level.
 	 * 
-	 * @param level
+	 * @param l
 	 *            The level of the ActivationLevel
 	 * 
 	 * @return The corresponding ActivationLevel
@@ -67,14 +67,14 @@ public enum ActivationLevel implements Serializable {
 	 * @throws IllegalArgumentException
 	 *             if there is no such ActivationLevel
 	 */
-	public static ActivationLevel getByLevel(int level) {
+	public static ActivationLevel getByLevel(int l) {
 		for (ActivationLevel a : ActivationLevel.values()) {
-			if (a.level == level) {
+			if (a.level == l) {
 				return a;
 			}
 		}
 
-		throw new IllegalArgumentException("An ActivationLevel with the level " + level + " does not exist");
+		throw new IllegalArgumentException("An ActivationLevel with the level " + l + " does not exist");
 	}
 
 }
