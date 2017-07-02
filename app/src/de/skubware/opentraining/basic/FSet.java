@@ -376,7 +376,7 @@ public class FSet implements Serializable, Cloneable {
 	}
 	
 	@Override
-	public Object clone(){
+	final public Object clone(){
 		try{
 			FSet cloned = (FSet) super.clone();
 			cloned.mSetParameterList = new ArrayList<SetParameter>();
