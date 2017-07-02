@@ -249,11 +249,6 @@ public final class ExerciseType implements Comparable<ExerciseType>, IExercise, 
 		// this copy is necessary, because builder.neededTools may be a
 		// unmodifiable collection
 		TreeSet<SportsEquipment> tools = new TreeSet<SportsEquipment>(builder.neededTools);
-		/*
-		 * if (tools.size() > 1) {
-		 * tools.remove(SportsEquipment.getByName("None")); } if (tools.size()
-		 * == 0) { tools.add(SportsEquipment.getByName("None")); }
-		 */
 		this.requiredEquipment = tools;
 
 		// activationMap and activatedMuscles must be in sync
@@ -276,111 +271,58 @@ public final class ExerciseType implements Comparable<ExerciseType>, IExercise, 
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.skubware.opentraining.basic.IExercise#getUnlocalizedName()
-	 */
 	@Override
 	public String getUnlocalizedName() {
 		return this.name;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.skubware.opentraining.basic.IExercise#getLocalizedName()
-	 */
 	@Override
 	public String getLocalizedName() {
 		return localizedName;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.skubware.opentraining.basic.IExercise#getDescription()
-	 */
 	@Override
 	public String getDescription() {
 		return this.description;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.skubware.opentraining.basic.IExercise#getImagePaths()
-	 */
 	@Override
 	public List<File> getImagePaths() {
 		return java.util.Collections.unmodifiableList(this.imagePaths);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.skubware.opentraining.basic.IExercise#getIconPath()
-	 */
 	@Override
 	public File getIconPath() {
 		return new File(this.iconPath.toString());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.skubware.opentraining.basic.IExercise#getImageLicenseMap()
-	 */
 	@Override
 	public Map<File, License> getImageLicenseMap() {
 		return java.util.Collections.unmodifiableMap(this.imageLicenseMap);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.skubware.opentraining.basic.IExercise#getImageWidth()
-	 */
 	@Override
 	public int getImageWidth() {
 		return this.imageWidth;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.skubware.opentraining.basic.IExercise#getImageHeight()
-	 */
+
 	@Override
 	public int getImageHeight() {
 		return this.imageHeight;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.skubware.opentraining.basic.IExercise#getRequiredEquipment()
-	 */
+
 	@Override
 	public SortedSet<SportsEquipment> getRequiredEquipment() {
 		return java.util.Collections.unmodifiableSortedSet(requiredEquipment);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.skubware.opentraining.basic.IExercise#getActivatedMuscles()
-	 */
 	@Override
 	public SortedSet<Muscle> getActivatedMuscles() {
 		return java.util.Collections.unmodifiableSortedSet(activatedMuscles);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.skubware.opentraining.basic.IExercise#getActivationMap()
-	 */
 	@Override
 	public Map<Muscle, ActivationLevel> getActivationMap() {
 		if (activationMap.isEmpty()) {
@@ -389,31 +331,16 @@ public final class ExerciseType implements Comparable<ExerciseType>, IExercise, 
 		return java.util.Collections.unmodifiableMap(activationMap);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.skubware.opentraining.basic.IExercise#getTags()
-	 */
 	@Override
 	public SortedSet<ExerciseTag> getTags() {
 		return java.util.Collections.unmodifiableSortedSet(this.exerciseTag);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.skubware.opentraining.basic.IExercise#getURLs()
-	 */
 	@Override
 	public List<URL> getURLs() {
 		return java.util.Collections.unmodifiableList(this.relatedURL);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.skubware.opentraining.basic.IExercise#getHints()
-	 */
 	@Override
 	public List<String> getHints() {
 		return java.util.Collections.unmodifiableList(this.hints);

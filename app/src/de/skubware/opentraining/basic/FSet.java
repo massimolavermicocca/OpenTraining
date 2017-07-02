@@ -111,19 +111,12 @@ public class FSet implements Serializable, Cloneable {
 		public String toString() {
 			return name + " : " + value;
 		}
-		
 
-		/* (non-Javadoc)
-		 * @see java.lang.Object#hashCode()
-		 */
 		@Override
 		public int hashCode() {
 			return this.name.hashCode();
 		}
 
-		/* (non-Javadoc)
-		 * @see java.lang.Object#equals(java.lang.Object)
-		 */
 		@Override
 		public boolean equals(Object obj) {
 			if (this == obj)
@@ -247,11 +240,7 @@ public class FSet implements Serializable, Cloneable {
 				Log.e(TAG, "getVale() should not be used for instances of FreeField.");
 				return super.getValue();
 			}
-			
 
-			/* (non-Javadoc)
-			 * @see java.lang.Object#equals(java.lang.Object)
-			 */
 			@Override
 			public boolean equals(Object obj) {
 				if (this == obj)
@@ -341,12 +330,7 @@ public class FSet implements Serializable, Cloneable {
 	public List<SetParameter> getSetParameters() {
 		return Collections.unmodifiableList(this.mSetParameterList);
 	}
-	
-	
-	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -355,9 +339,6 @@ public class FSet implements Serializable, Cloneable {
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -383,18 +364,6 @@ public class FSet implements Serializable, Cloneable {
 			
 			for(SetParameter para:mSetParameterList){
 				SetParameter newPara = null;
-				/*if(para instanceof SetParameter.Weight){
-					newPara = new SetParameter.Weight((SetParameter.Weight) para);
-				}
-				if(para instanceof SetParameter.Duration){
-					newPara = new SetParameter.Duration((SetParameter.Duration) para);
-				}
-				if(para instanceof SetParameter.Repetition){
-					newPara = new SetParameter.Repetition((SetParameter.Repetition) para);
-				}
-				if(para instanceof SetParameter.FreeField){
-					newPara = new SetParameter.FreeField((SetParameter.FreeField) para);
-				}*/
 				if(para.getClass().getSimpleName().equals("Weight")) {
 					newPara = new SetParameter.Weight((SetParameter.Weight) para);
 				}

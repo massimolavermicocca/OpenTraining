@@ -127,18 +127,6 @@ public class Workout implements Iterable<FitnessExercise>, Serializable {
 	 * 
 	 * @return A set of dates, for which training entries do exist.
 	 */
-	/*
-	 * public Set<Date> getTrainingEntryDates(){ List<Date> dateList = new
-	 * ArrayList<Date>(); for(FitnessExercise fEx:this.fitnessExercises){
-	 * for(TrainingEntry e:fEx.getTrainingEntryList()){
-	 * dateList.add(e.getDate()); } }
-	 * 
-	 * // assert that number dates is correct Set<Date> dateSet = new
-	 * HashSet<Date>(dateList); if( dateList.size() != (dateSet.size() *
-	 * this.fitnessExercises.size()) ){ throw new
-	 * AssertionError("Incorrect number of TrainingEntries. This should not happen."
-	 * ); } return dateSet; }
-	 */
 
 	/**
 	 * Checks if there are TrainingEntries for the FitnessExercises.

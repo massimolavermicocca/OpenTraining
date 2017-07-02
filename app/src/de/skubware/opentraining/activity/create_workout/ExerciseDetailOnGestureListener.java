@@ -86,23 +86,6 @@ public class ExerciseDetailOnGestureListener implements OnGestureListener {
 	/** Not used */
 	public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
 		return false;
-
-		/*
-		 * final ViewConfiguration vc = ViewConfiguration.get(activity); final
-		 * int swipeMinDistance = vc.getScaledTouchSlop(); final int
-		 * swipeMaxDistance = vc.getScaledMaximumFlingVelocity(); final int
-		 * swipeThresholdVelocity = vc.getScaledMinimumFlingVelocity();
-		 * 
-		 * if (Math.abs(e1.getY() - e2.getY()) > swipeMaxDistance) return false;
-		 * 
-		 * // right to left swipe if (e1.getX() - e2.getX() > swipeMinDistance
-		 * && Math.abs(velocityX) > swipeThresholdVelocity) { Log.i(TAG,
-		 * "Swiped forward"); } else if (e2.getX() - e1.getX() >
-		 * swipeMinDistance && Math.abs(velocityX) > swipeThresholdVelocity) {
-		 * Log.i(TAG, "Swiped backwards"); }
-		 * 
-		 * return true;
-		 */
 	}
 
 	/** Not used */

@@ -36,6 +36,7 @@ import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import de.skubware.opentraining.Exceptions.ErrorException;
 import de.skubware.opentraining.basic.ExerciseType;
 import de.skubware.opentraining.basic.ExerciseType.ExerciseSource;
 import de.skubware.opentraining.basic.License.LicenseType;
@@ -71,7 +72,7 @@ public class WgerJSONParser {
 	 * @param dataProvider
 	 * @throws JSONException
 	 */
-	public WgerJSONParser(String exerciseJSONString, String languageJSONString, String muscleJSONString, String equipmentJSONString, String licenseJSONString, IDataProvider dataProvider) throws JSONException{
+	public WgerJSONParser(String exerciseJSONString, String languageJSONString, String muscleJSONString, String equipmentJSONString, String licenseJSONString, IDataProvider dataProvider) throws JSONException, ErrorException {
 		mDataProvider = dataProvider;
 		
 		// parse languages
@@ -156,19 +157,7 @@ public class WgerJSONParser {
 				String license_author = jsonExercise.getString("license_author");
 				Log.v(TAG, "license=" + licenseType + " license_author=" + license_author);
 			}
-			
-			
-			// equipment
-			// not yet supported by REST-API
-			/*SortedSet<SportsEquipment> equipmentSet = new TreeSet<SportsEquipment>();
-			JSONArray equipmentArray = jsonExercise.getJSONArray("equipment");
-			for (int l = 0; l < equipmentArray.length(); l++) {
-				String equipmentString = equipmentArray.getString(l);
-				SportsEquipment equipment = equipmentSparseArray.get(getLastNumberOfJson(equipmentString));
-				equipmentSet.add(equipment);
-			}*/
-			
-			
+
 			builder.activatedMuscles(muscleSet);
 			// images
 
@@ -273,23 +262,21 @@ public class WgerJSONParser {
 			}else if(c.equals(LicenseType.class)){
 				// handle licenses
 				String short_name = singleObject.getString("short_name");
-				
-				parsedObject = mDataProvider.getLicenseTypeByName(short_name);	
-				
-				
-				if(isShortNameEmpty(short_name))
-					Log.e(TAG, "Error, no short_name=" + short_name);
-				
+				parsedObject = mDataProvider.getLicenseTypeByName(short_name);
+				checkShortName(short_name);
 			}else{
 				throw new IllegalStateException("parse(String, Class<T>) cannot be applied for class: " + c.toString());
 			}
 
 			sparseArray.put(id, (T) parsedObject);
-
-			
 		}
 		
 		return sparseArray;
+	}
+
+	private static void checkShortName(String short_name) {
+		if(isShortNameEmpty(short_name))
+            Log.e(TAG, "Error, no short_name=" + short_name);
 	}
 
 	private static void checkParsedObject(Object parsedObject, String msg) {

@@ -225,51 +225,6 @@ public class WorkoutDetailFragment extends Fragment {
 				return false;
 			}
 		});
-		
-
-	   /* // Fetch and store ShareActionProvider
-	    mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(menu_item_share);
-	    
-	    if (mShareActionProvider != null) {
-	    	Intent shareIntent = new Intent();
-	    	shareIntent.setAction(Intent.ACTION_SEND);
-	    	
-	    	// write workout (without history) to tmp file
-	    	Workout w = mWorkout.getWorkoutWithoutHistory();
-	    	File cacheDir = getActivity().getExternalCacheDir();
-	    	XMLSaver.writeTrainingPlan(w, cacheDir);
-	    	File tmpFile = new File(cacheDir + "/"  + w.getName() + ".xml");
-	    	
-	    	if(!tmpFile.exists()){
-	    		Log.e(TAG, "Temporary Workout file does not exist");
-	    	}
-	    	
-	    	// read file
-	    	StringBuilder text = new StringBuilder();
-	    	try {
-	    	    BufferedReader br = new BufferedReader(new FileReader(tmpFile));
-	    	    String line;
-
-	    	    while ((line = br.readLine()) != null) {
-	    	        text.append(line);
-	    	        text.append('\n');
-	    	    }
-	    	    br.close();
-	    	}
-	    	catch(IOException e) {
-	    		Log.e(TAG, "Could not read workout", e);
-	    	}
-	    	Log.e(TAG, "Finished reading file: " + text.toString());
-	    	
-	    	
-	    	shareIntent.putExtra(Intent.EXTRA_TEXT, text.toString());
-	    	shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(tmpFile));
-	    	shareIntent.setType("text/plain");
-
-	        mShareActionProvider.setShareIntent(shareIntent);
-	    }*/
-
-
 	}
 	
 	private Intent getShareIntent(Workout w){

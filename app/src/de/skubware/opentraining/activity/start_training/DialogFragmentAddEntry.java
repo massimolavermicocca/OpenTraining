@@ -440,20 +440,6 @@ public class DialogFragmentAddEntry extends DialogFragment {
 
 		for (SetParameter param : setToSet.getSetParameters()) {
 			int value = param.getValue();
-
-			/*if (param instanceof SetParameter.Duration) {
-				checkbox_duration.setChecked(true);
-				setDurationValue(value);
-			}
-			if (param instanceof SetParameter.Repetition) {
-				checkbox_repetitions.setChecked(true);
-				setRepetitionValue(value);
-			}
-			if (param instanceof SetParameter.Weight) {
-				checkbox_weight.setChecked(true);
-				setWeightValue(value);
-			}*/
-
 			switch(param.getClass().getSimpleName()) {
 				case "Duration":
 					checkbox_duration.setChecked(true);
