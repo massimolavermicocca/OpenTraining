@@ -42,7 +42,7 @@ public class ServerModel {
 	/**
 	 * Server equivalent to {@link Equipment}.
 	 */
-	private static class Equipment{
+	public static class Equipment{
 		/**
 		 * @field id
 		 */
@@ -92,7 +92,7 @@ public class ServerModel {
 	/**
 	 * Server equivalent to {@link Muscle}.
 	 */
-	private static class MuscleCategory{
+	public static class MuscleCategory{
 		/**
 		 * @field id
 		 */
@@ -144,7 +144,7 @@ public class ServerModel {
 	/**
 	 * Server equivalent to {@link Locale}.
 	 */
-	private static class Language{
+	public static class Language{
 		/**
 		 * @field id
 		 */

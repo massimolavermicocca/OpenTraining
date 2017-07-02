@@ -25,34 +25,22 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.*;
+
 import android.text.Html;
 import android.util.Log;
-import android.view.GestureDetector;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.view.*;
 import android.view.MenuItem.OnMenuItemClickListener;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.Toast;
+
+import android.widget.*;
 
 import java.util.Collections;
 import java.util.List;
 
+import de.skubware.opentraining.Exceptions.ErrorException;
 import de.skubware.opentraining.R;
 import de.skubware.opentraining.activity.create_workout.ExerciseDetailOnGestureListener;
-import de.skubware.opentraining.basic.FSet;
-import de.skubware.opentraining.basic.FitnessExercise;
-import de.skubware.opentraining.basic.TrainingEntry;
-import de.skubware.opentraining.basic.Workout;
+import de.skubware.opentraining.basic.*;
 import de.skubware.opentraining.db.DataHelper;
 import de.skubware.opentraining.db.DataProvider;
 
@@ -301,7 +289,11 @@ public class FExDetailFragment extends Fragment implements DialogFragmentAddEntr
 		if (fragment != null) {
 			Log.d(TAG, "updating FExListFragment");
 			// either notify list fragment if it's there (on tablets)
-			fragment.setWorkout(mWorkout);
+			try {
+				fragment.setWorkout(mWorkout);
+			} catch (ErrorException e) {
+				Log.v("FExDetailFragment", e.getMessage());
+			}
 		} else {
 			Log.d(TAG, "setting Intent for FExListActivity");
 			// or return intent if list fragment is not visible (on small

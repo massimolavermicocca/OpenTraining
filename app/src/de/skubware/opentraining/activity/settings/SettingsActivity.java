@@ -23,40 +23,28 @@ package de.skubware.opentraining.activity.settings;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.DialogInterface;
+import android.content.*;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnClickListener;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Handler;
-import android.preference.Preference;
+import android.os.*;
+import android.preference.*;
 import android.preference.Preference.OnPreferenceClickListener;
-import android.preference.PreferenceActivity;
-import android.preference.PreferenceCategory;
-import android.preference.PreferenceFragment;
-import android.preference.PreferenceManager;
+import android.preference.Preference;
 import android.util.Log;
 import android.widget.Toast;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
 import de.skubware.opentraining.R;
 import de.skubware.opentraining.activity.ChangeLogDialog;
-import de.skubware.opentraining.activity.settings.sync.OpenTrainingSyncResultReceiver;
-import de.skubware.opentraining.activity.settings.sync.OpenTrainingSyncService;
-import de.skubware.opentraining.activity.settings.sync.SyncFinishedDialog;
+import de.skubware.opentraining.activity.settings.sync.*;
 import de.skubware.opentraining.basic.ExerciseType;
-import de.skubware.opentraining.db.Cache;
-import de.skubware.opentraining.db.IDataProvider;
+import de.skubware.opentraining.db.*;
+
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On
@@ -304,7 +292,7 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 	 * activity is showing a two-pane settings UI.
 	 */
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-	private static class LicensePreferenceFragment extends PreferenceFragment {
+	public static class LicensePreferenceFragment extends PreferenceFragment {
 		@Override
 		public void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
@@ -328,7 +316,7 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 	 * activity is showing a two-pane settings UI.
 	 */
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-	private static class SyncPreferenceFragment extends PreferenceFragment {
+	public static class SyncPreferenceFragment extends PreferenceFragment {
 		@Override
 		public void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
@@ -376,7 +364,7 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 	 * activity is showing a two-pane settings UI.
 	 */
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-	private static class MiscellaneousPreferenceFragment extends PreferenceFragment {
+	public static class MiscellaneousPreferenceFragment extends PreferenceFragment {
 		@Override
 		public void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
@@ -407,7 +395,7 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 	 * activity is showing a two-pane settings UI.
 	 */
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-	private static class TrainingTimerPreferenceFragment extends PreferenceFragment {
+	public static class TrainingTimerPreferenceFragment extends PreferenceFragment {
 		@Override
 		public void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);

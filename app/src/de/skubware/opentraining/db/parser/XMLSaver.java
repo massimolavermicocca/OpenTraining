@@ -26,36 +26,22 @@ import android.util.Log;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+
+import java.io.*;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.Map;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
+import javax.xml.parsers.*;
+import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import de.skubware.opentraining.Exceptions.ErrorException;
-import de.skubware.opentraining.basic.ExerciseTag;
-import de.skubware.opentraining.basic.ExerciseType;
-import de.skubware.opentraining.basic.FSet;
 import de.skubware.opentraining.basic.FSet.SetParameter;
-import de.skubware.opentraining.basic.FitnessExercise;
-import de.skubware.opentraining.basic.License;
-import de.skubware.opentraining.basic.Muscle;
-import de.skubware.opentraining.basic.SportsEquipment;
-import de.skubware.opentraining.basic.TrainingEntry;
-import de.skubware.opentraining.basic.Workout;
+import de.skubware.opentraining.basic.*;
+
 
 
 /**
