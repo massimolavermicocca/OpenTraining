@@ -36,8 +36,8 @@ import org.acra.ACRA;
 
 import de.skubware.opentraining.R;
 import de.skubware.opentraining.activity.acra.ACRAFeedbackMailer;
-import de.skubware.opentraining.activity.acra.RequestExerciseUpdate;
-import de.skubware.opentraining.activity.acra.RequestExerciseUpdate.ExerciseUpdateReason;
+import de.skubware.opentraining.activity.acra.RequestExerciseUpdateException;
+import de.skubware.opentraining.activity.acra.RequestExerciseUpdateException.ExerciseUpdateReason;
 import de.skubware.opentraining.basic.ExerciseType;
 
 /**
@@ -144,7 +144,7 @@ public class SendExerciseFeedbackDialogFragment  extends DialogFragment{
 				// send feedback
 				ACRA.getErrorReporter().setReportSender(new ACRAFeedbackMailer());
 				// silentException prevents that the dialog for crash reports pops up
-				ACRA.getErrorReporter().handleSilentException(new RequestExerciseUpdate(mExercise, reason, userMsg));
+				ACRA.getErrorReporter().handleSilentException(new RequestExerciseUpdateException(mExercise, reason, userMsg));
 
 
 				dialog.dismiss();

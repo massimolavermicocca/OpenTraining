@@ -32,11 +32,11 @@ import de.skubware.opentraining.basic.ExerciseType;
  * This class adds an easy way to get user feedback.
  * 
  * The user can simply enter a short feedback text and
- * a call of 'ACRA.getErrorReporter().handleException(new RequestExerciseUpdate(...));'
+ * a call of 'ACRA.getErrorReporter().handleException(new RequestExerciseUpdateException(...));'
  * will send the report to the developer.
  * 
  */
-public class RequestExerciseUpdate extends Exception{
+public class RequestExerciseUpdateException extends Exception{
 	
 	private static final long serialVersionUID = -4382910029697955724L;
 
@@ -78,7 +78,7 @@ public class RequestExerciseUpdate extends Exception{
 	}
 	
 	
-	public RequestExerciseUpdate(ExerciseType ex, ExerciseUpdateReason reason, String userMsg){
+	public RequestExerciseUpdateException(ExerciseType ex, ExerciseUpdateReason reason, String userMsg){
         ACRA.getErrorReporter().putCustomData("Exercise ", ex.getUnlocalizedName());
         ACRA.getErrorReporter().putCustomData("Reason ", reason.getUnlocalizedName());
         ACRA.getErrorReporter().putCustomData("User message ", userMsg);
