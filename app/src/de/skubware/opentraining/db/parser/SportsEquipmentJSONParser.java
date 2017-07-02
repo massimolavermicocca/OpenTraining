@@ -99,11 +99,7 @@ public class SportsEquipmentJSONParser extends AbstractJSONParser<List<SportsEqu
 						}
 
 
-						if(m == null){
-							m = new SportsEquipment(new Locale(locale), nameList);
-						}else{
-							m.addNames(new Locale(locale), nameList);
-						}
+						m = getM(nameList, m, locale);
 					}
 					nameList.clear();
 				}
@@ -121,6 +117,15 @@ public class SportsEquipmentJSONParser extends AbstractJSONParser<List<SportsEqu
 		if(sportsEquipmentList.isEmpty())
 			throw new AssertionError("JSON parsing failed: no SportsEquipments parsed.");
 		return sportsEquipmentList;
+	}
+
+	private SportsEquipment getM(List<String> nameList, SportsEquipment m, String locale) {
+		if(m == null){
+            m = new SportsEquipment(new Locale(locale), nameList);
+        }else{
+            m.addNames(new Locale(locale), nameList);
+        }
+		return m;
 	}
 
 
