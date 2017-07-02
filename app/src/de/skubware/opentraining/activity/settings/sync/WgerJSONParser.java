@@ -256,8 +256,7 @@ public class WgerJSONParser {
 				String short_name = singleObject.getString("short_name");
 				parsedObject = new Locale(short_name);	
 				
-				if(isShortNameEmpty(short_name))
-					Log.e(TAG, "Error, no short_name=" + short_name);
+				checkShortName(short_name);
 				
 			}else if(c.equals(LicenseType.class)){
 				// handle licenses
