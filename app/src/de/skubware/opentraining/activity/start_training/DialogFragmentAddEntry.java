@@ -276,6 +276,7 @@ public class DialogFragmentAddEntry extends DialogFragment {
 				break;
 			default:
 				Log.e(TAG, "Unknown choice.");
+				break;
 		}
 		return val;
 	}

@@ -111,9 +111,7 @@ public class LaTeXExporter extends WorkoutExporter {
 		tex.append("%Ab hier beginnt die eigentliche Tabelle");
 		tex.append(NEW);
 		tex.append("\\begin{tabular}{ |l||");
-		for (int i = 0; i < colums; i++) {
-			tex.append("C{" + columnWidth + "mm}|");
-		}
+		writeEachColumn(colums, tex, "C{" + columnWidth + "mm}|");
 		tex.append("}");
 		tex.append(NEW);
 		tex.append(NEW);
@@ -131,10 +129,7 @@ public class LaTeXExporter extends WorkoutExporter {
 
 		// S�tze
 		int maxset = 0;
-		for (FitnessExercise fEx : w.getFitnessExercises()) {
-			if (fEx.getFSetList().size() > maxset)
-				maxset = fEx.getFSetList().size();
-		}
+		maxset = getMaxset(w, maxset);
 		tex.append("\\hline");
 		tex.append(NEW);
 		tex.append("\\hline");
@@ -154,17 +149,7 @@ public class LaTeXExporter extends WorkoutExporter {
 			colum++;
 		}
 
-		for (int i = 0; i < maxset; i++) {
-			for (int k = 0; k < colums; k++) {
-				if (set[k][i] != null) {
-					tex.append(" & " + set[k][i]);
-				} else {
-				}
-			}
-			tex.append("\\\\");
-			tex.append(NEW);
-
-		}
+		generateSetOfStrings(NEW, colums, tex, maxset, set);
 		// if(maxset>0){
 		tex.append("\\hline");
 		tex.append(NEW);
@@ -172,9 +157,7 @@ public class LaTeXExporter extends WorkoutExporter {
 
 		// Freie Zeilen
 		StringBuilder b = new StringBuilder();
-		for (int i = 0; i < colums; i++) {
-			b.append("& ");
-		}
+		writeEachColumn(colums, b, "& ");
 		b.append("\\\\");
 		b.append(NEW);
 
@@ -187,9 +170,7 @@ public class LaTeXExporter extends WorkoutExporter {
 
 		String NEWCOLUM = b.toString();
 
-		for (int i = 0; i < rowCount; i++) {
-			tex.append(NEWCOLUM);
-		}
+		writeEachColumn(rowCount, tex, NEWCOLUM);
 
 		tex.append("\\end{tabular}");
 		tex.append("% Tabellen Ende");
@@ -205,6 +186,33 @@ public class LaTeXExporter extends WorkoutExporter {
 
 		return tex.toString();
 	} // end create()
+
+	private int getMaxset(Workout w, int maxset) {
+		for (FitnessExercise fEx : w.getFitnessExercises()) {
+			if (fEx.getFSetList().size() > maxset)
+				maxset = fEx.getFSetList().size();
+		}
+		return maxset;
+	}
+
+	private void generateSetOfStrings(String NEW, int colums, StringBuilder tex, int maxset, String[][] set) {
+		for (int i = 0; i < maxset; i++) {
+			for (int k = 0; k < colums; k++) {
+				if (set[k][i] != null) {
+					tex.append(" & " + set[k][i]);
+				} else {
+				}
+			}
+			tex.append("\\\\");
+			tex.append(NEW);
+		}
+	}
+
+	private void writeEachColumn(int colums, StringBuilder tex, String str) {
+		for (int i = 0; i < colums; i++) {
+			tex.append(str);
+		}
+	}
 
 	/**
 	 * A class for the BestandsDaten of the OSTS

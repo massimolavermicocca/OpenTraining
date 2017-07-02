@@ -114,6 +114,7 @@ public class MainActivity extends ActionBarActivity {
 						break;
 					default:
 						Log.wtf(TAG, "This item should not exist.");
+						break;
 				}
 			}
 		});
@@ -146,6 +147,7 @@ public class MainActivity extends ActionBarActivity {
 				// Create and show the dialog.
 				DialogFragment newFragment = SelectWorkoutDialogFragment.newInstance();
 				newFragment.show(ft, "dialog");
+				break;
 		}
 
 	}
