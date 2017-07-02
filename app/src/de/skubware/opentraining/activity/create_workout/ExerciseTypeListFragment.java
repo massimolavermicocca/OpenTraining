@@ -259,12 +259,14 @@ public class ExerciseTypeListFragment extends ListFragment implements OnQueryTex
 	private void filterExercisesForSearchQuery() {
 		Log.d("ExerciseTypeListFrag", "filterExercisesForSearchQuery() mSearchEquery=" + mSearchQuery);
 
-		if (mSearchQuery == null)
+		if (mSearchQuery == null) {
 			mSearchQuery = "";
+		}
 
 		// quit if the user did not search for anything
-		if (mSearchQuery.equals("") || mSearchQuery.replaceAll(" ", "").equals(""))
+		if (mSearchQuery.equals("") || mSearchQuery.replaceAll(" ", "").equals("")) {
 			return;
+		}
 
 		ArrayList<ExerciseType> listExercise = new ArrayList<>(mExerciseList);
 		for (ExerciseType ex : listExercise) {
@@ -302,16 +304,19 @@ public class ExerciseTypeListFragment extends ListFragment implements OnQueryTex
 		for (ExerciseType ex : listExercise) {
 			switch(ex.getExerciseSource()){
 				case DEFAULT:
-					if(!showDefaultExercises)
+					if(!showDefaultExercises) {
 						mExerciseList.remove(ex);
+					}
 					break;
 				case SYNCED:
-					if(!showSyncedExercises)
+					if(!showSyncedExercises) {
 						mExerciseList.remove(ex);
+					}
 					break;
 				case CUSTOM:
-					if(!showCustomExercises)
+					if(!showCustomExercises) {
 						mExerciseList.remove(ex);
+					}
 					break;
 				default:
 					break;
@@ -334,8 +339,9 @@ public class ExerciseTypeListFragment extends ListFragment implements OnQueryTex
 		// Restore the previously serialized values
 		if (savedInstanceState != null) {
 			// restore activated item position
-			if(savedInstanceState.containsKey(STATE_ACTIVATED_POSITION))
+			if(savedInstanceState.containsKey(STATE_ACTIVATED_POSITION)) {
 				setActivatedPosition(savedInstanceState.getInt(STATE_ACTIVATED_POSITION));
+			}
 
 			// restore search query
 			if(savedInstanceState.containsKey(STATE_QUERY)){

@@ -123,80 +123,93 @@ public final class ExerciseType implements Comparable<ExerciseType>, IExercise, 
 		}
 
 		public Builder translationMap(Map<Locale, String> my_translationMap) {
-			if (translationMap != null)
+			if (translationMap != null) {
 				this.translationMap = my_translationMap;
+			}
 			return this;
 		}
 
 		public Builder description(String my_description) {
-			if (description != null)
+			if (description != null) {
 				this.description = my_description;
+			}
 			return this;
 		}
 
 		public Builder imagePath(List<File> my_imagePaths) {
-			if (imagePaths.size() > 0)
+			if (imagePaths.size() > 0) {
 				this.imagePaths = my_imagePaths;
+			}
 			return this;
 		}
 
 		public Builder imageLicenseMap(Map<File, License> my_imageLicenseMap) {
-			if (imageLicenseMap.size() > 0)
+			if (imageLicenseMap.size() > 0) {
 				this.imageLicenseMap = my_imageLicenseMap;
+			}
 			return this;
 		}
 
 		public Builder imageWidth(int new_imageWidth) {
-			if (imageWidth > 0)
+			if (imageWidth > 0) {
 				this.imageWidth = new_imageWidth;
+			}
 			return this;
 		}
 
 		public Builder imageHeigth(int new_imageHeight) {
-			if (imageHeight > 0)
+			if (imageHeight > 0) {
 				this.imageHeight = new_imageHeight;
+			}
 			return this;
 		}
 
 		public Builder neededTools(SortedSet<SportsEquipment> my_neededTools) {
-			if (neededTools.size() > 0)
+			if (neededTools.size() > 0) {
 				this.neededTools = my_neededTools;
+			}
 			return this;
 		}
 
 		public Builder activatedMuscles(SortedSet<Muscle> my_activatedMuscles) {
-			if (activatedMuscles.size() > 0)
+			if (activatedMuscles.size() > 0) {
 				this.activatedMuscles = my_activatedMuscles;
+			}
 			return this;
 		}
 
 		public Builder activationMap(Map<Muscle, ActivationLevel> my_activationMap) {
-			if (activationMap.size() > 0)
+			if (activationMap.size() > 0) {
 				this.activationMap = my_activationMap;
+			}
 			return this;
 		}
 
 		public Builder exerciseTags(SortedSet<ExerciseTag> my_exerciseTag) {
-			if (exerciseTag.size() > 0)
+			if (exerciseTag.size() > 0) {
 				this.exerciseTag = my_exerciseTag;
+			}
 			return this;
 		}
 
 		public Builder relatedURL(List<URL> my_relatedURL) {
-			if (relatedURL.size() > 0)
+			if (relatedURL.size() > 0) {
 				this.relatedURL = my_relatedURL;
+			}
 			return this;
 		}
 
 		public Builder hints(List<String> my_hints) {
-			if (hints.size() > 0)
+			if (hints.size() > 0) {
 				this.hints = my_hints;
+			}
 			return this;
 		}
 
 		public Builder iconPath(File new_iconPath) {
-			if (iconPath != null)
+			if (iconPath != null) {
 				this.iconPath = new_iconPath;
+			}
 			return this;
 		}
 

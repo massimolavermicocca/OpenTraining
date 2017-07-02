@@ -178,8 +178,9 @@ public class Workout implements Iterable<FitnessExercise>, Serializable {
 	public void addFitnessExercise(FitnessExercise fEx) {
 		ExerciseType exType = fEx.getExType();
 		for (FitnessExercise ex : this.getFitnessExercises()) {
-			if (ex.getExType().equals(exType))
+			if (ex.getExType().equals(exType)) {
 				throw new IllegalArgumentException("There is already an Exercise with the ExerciseType: " + exType.toString());
+			}
 		}
 
 		this.fitnessExercises.add(fEx);
@@ -229,23 +230,28 @@ public class Workout implements Iterable<FitnessExercise>, Serializable {
 	/** {@inheritDoc} */
 	@Override
 	public boolean equals(Object o) {
-		if (!(o instanceof Workout))
+		if (!(o instanceof Workout)) {
 			return false;
+		}
 		Workout w = (Workout) o;
 
 		// hashCode() check
-		if (this.hashCode() != w.hashCode())
+		if (this.hashCode() != w.hashCode()) {
 			return false;
+		}
 
 		// name check
-		if (!w.getName().equals(this.getName()))
+		if (!w.getName().equals(this.getName())) {
 			return false;
+		}
 
 		// FitnessExercise check
-		if (!w.getFitnessExercises().containsAll(this.fitnessExercises))
+		if (!w.getFitnessExercises().containsAll(this.fitnessExercises)) {
 			return false;
-		if (!this.fitnessExercises.containsAll(w.getFitnessExercises()))
+		}
+		if (!this.fitnessExercises.containsAll(w.getFitnessExercises())) {
 			return false;
+		}
 
 		return true;
 	}
@@ -311,10 +317,11 @@ public class Workout implements Iterable<FitnessExercise>, Serializable {
 	 *             if argument is below 0
 	 */
 	public void setEmptyRows(int emptyRows) {
-		if (emptyRows > 0)
+		if (emptyRows > 0) {
 			this.emptyRows = emptyRows;
-		else
+		} else {
 			throw new IllegalArgumentException("There must be more than 0 empty rows");
+		}
 
 		Log.d(TAG, "setEmptyRows() to " + this.emptyRows);
 	}

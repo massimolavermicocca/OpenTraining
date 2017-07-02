@@ -86,8 +86,9 @@ public class FSet implements Serializable, Cloneable {
 		 *             if value is below 0
 		 */
 		SetParameter(String name, int value) {
-			if(value < 0)
+			if(value < 0) {
 				throw new IllegalArgumentException("value must be >= 0 , was: " + value);
+			}
 			
 			this.name = name;
 			this.value = value;
@@ -119,12 +120,15 @@ public class FSet implements Serializable, Cloneable {
 
 		@Override
 		public boolean equals(Object obj) {
-			if (this == obj)
+			if (this == obj) {
 				return true;
-			if (obj == null)
+			}
+			if (obj == null) {
 				return false;
-			if (getClass() != obj.getClass())
+			}
+			if (getClass() != obj.getClass()) {
 				return false;
+			}
 			SetParameter other = (SetParameter) obj;
 			return other.name.equals(this.name) && other.value == this.value;
 		}
@@ -243,12 +247,15 @@ public class FSet implements Serializable, Cloneable {
 
 			@Override
 			public boolean equals(Object obj) {
-				if (this == obj)
+				if (this == obj) {
 					return true;
-				if (!super.equals(obj))
+				}
+				if (!super.equals(obj)) {
 					return false;
-				if (getClass() != obj.getClass())
+				}
+				if (getClass() != obj.getClass()) {
 					return false;
+				}
 				FreeField other = (FreeField) obj;
 				return other.name.equals(this.name) && other.mContent.equals(this.mContent);
 			}
@@ -275,8 +282,9 @@ public class FSet implements Serializable, Cloneable {
 	 *             if any argument is null
 	 */
 	public FSet(SetParameter... cats) throws ErrorException {
-		if(cats.length < 1)
+		if(cats.length < 1) {
 			throw new IllegalArgumentException("cats must not be empty");
+		}
 		
 		for (SetParameter c : cats) {
 			if (c == null) {
@@ -341,16 +349,20 @@ public class FSet implements Serializable, Cloneable {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		FSet other = (FSet) obj;
 		if (mSetParameterList == null) {
-			if (other.mSetParameterList != null)
+			if (other.mSetParameterList != null) {
 				return false;
+			}
 		} else if (!mSetParameterList.equals(other.mSetParameterList))
 			return false;
 		return true;

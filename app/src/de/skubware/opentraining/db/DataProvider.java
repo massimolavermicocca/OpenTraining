@@ -74,8 +74,9 @@ public class DataProvider implements IDataProvider {
 
 	@Override
 	public List<ExerciseType> getExercises() {
-		if (Cache.INSTANCE.getExercises() == null)
+		if (Cache.INSTANCE.getExercises() == null) {
 			Cache.INSTANCE.updateCache(mContext);
+		}
 
 		return new ArrayList<ExerciseType>(Cache.INSTANCE.getExercises());
 	}
@@ -188,8 +189,9 @@ public class DataProvider implements IDataProvider {
 			List<ExerciseType> exerciseList) {		
 		List<ExerciseType> unsavedExercises = new ArrayList<ExerciseType>();
 
-		if(exerciseList == null || exerciseList.isEmpty())
+		if(exerciseList == null || exerciseList.isEmpty()) {
 			return unsavedExercises;
+		}
 		File destination = new File(mContext.getFilesDir().toString() + "/"
 				+ IDataProvider.SYNCED_EXERCISE_FOLDER);
 
@@ -325,8 +327,9 @@ public class DataProvider implements IDataProvider {
 	@Override
 	public ExerciseType getExerciseByName(String name) {
 		for (ExerciseType ex : this.getExercises()) {
-			if(ex.getAlternativeNames().contains(name))
+			if(ex.getAlternativeNames().contains(name)) {
 				return ex;
+			}
 		}
 
 		Log.w(TAG, "Could not find the requested exercise: " + name);
@@ -336,8 +339,9 @@ public class DataProvider implements IDataProvider {
 	@Override
 	public boolean exerciseExists(String name) {
 		for (ExerciseType ex : this.getExercises()) {
-			if(ex.getAlternativeNames().contains(name))
+			if(ex.getAlternativeNames().contains(name)) {
 				return true;
+			}
 		}
 		
 		return false;
@@ -345,8 +349,9 @@ public class DataProvider implements IDataProvider {
 
 	@Override
 	public List<Muscle> getMuscles() {
-		if (Cache.INSTANCE.getMuscles() == null)
+		if (Cache.INSTANCE.getMuscles() == null) {
 			Cache.INSTANCE.updateCache(mContext);
+		}
 
 		return new ArrayList<Muscle>(Cache.INSTANCE.getMuscles());
 	}
@@ -373,8 +378,9 @@ public class DataProvider implements IDataProvider {
 	@Override
 	public Muscle getMuscleByName(String name) {
 		for (Muscle m : getMuscles()) {
-			if (m.isAlternativeName(name))
+			if (m.isAlternativeName(name)) {
 				return m;
+			}
 		}
 
 		return null;
@@ -382,8 +388,9 @@ public class DataProvider implements IDataProvider {
 
 	@Override
 	public List<SportsEquipment> getEquipment() {
-		if (Cache.INSTANCE.getEquipment() == null)
+		if (Cache.INSTANCE.getEquipment() == null) {
 			Cache.INSTANCE.updateCache(mContext);
+		}
 
 		return new ArrayList<SportsEquipment>(Cache.INSTANCE.getEquipment());
 	}
@@ -410,8 +417,9 @@ public class DataProvider implements IDataProvider {
 	@Override
 	public SportsEquipment getEquipmentByName(String name) {
 		for (SportsEquipment m : getEquipment()) {
-			if (m.isAlternativeName(name))
+			if (m.isAlternativeName(name)) {
 				return m;
+			}
 		}
 
 		return null;
@@ -419,8 +427,9 @@ public class DataProvider implements IDataProvider {
 	
 	@Override
 	public List<ExerciseTag> getExerciseTags() {
-		if (Cache.INSTANCE.getExerciseTags() == null)
+		if (Cache.INSTANCE.getExerciseTags() == null) {
 			Cache.INSTANCE.updateCache(mContext);
+		}
 
 		return new ArrayList<ExerciseTag>(Cache.INSTANCE.getExerciseTags());
 	}
@@ -447,8 +456,9 @@ public class DataProvider implements IDataProvider {
 	@Override
 	public ExerciseTag getExerciseTagByName(String name) {
 		for (ExerciseTag m : getExerciseTags()) {
-			if (m.isAlternativeName(name))
+			if (m.isAlternativeName(name)) {
 				return m;
+			}
 		}
 		
 		Log.w(TAG, "Did not find ExerciseTag: " + name + ".\n Will create new ExerciseTag.");
@@ -465,8 +475,9 @@ public class DataProvider implements IDataProvider {
 	@Override
 	public LicenseType getLicenseTypeByName(String name){
 		for(LicenseType license:getLicenseTypes()){
-			if(license.getShortName().equals(name))
+			if(license.getShortName().equals(name)) {
 				return license;
+			}
 		}
 		
 		return LicenseType.UNKNOWN;
@@ -475,8 +486,9 @@ public class DataProvider implements IDataProvider {
 	
 	@Override
 	public List<Workout> getWorkouts() {
-		if (Cache.INSTANCE.getWorkouts() == null)
+		if (Cache.INSTANCE.getWorkouts() == null) {
 			Cache.INSTANCE.updateCache(mContext);
+		}
 
 		return new ArrayList<Workout>(Cache.INSTANCE.getWorkouts());
 	}
@@ -489,10 +501,11 @@ public class DataProvider implements IDataProvider {
 		String files[] = mContext.getFilesDir().list(new FilenameFilter() {
 			@Override
 			public boolean accept(File dir, String filename) {
-				if (filename.endsWith(".xml") && !filename.equals(ShareActionProvider.DEFAULT_SHARE_HISTORY_FILE_NAME))
+				if (filename.endsWith(".xml") && !filename.equals(ShareActionProvider.DEFAULT_SHARE_HISTORY_FILE_NAME)) {
 					return true;
-				else
+				} else {
 					return false;
+				}
 			}
 		});
 		
