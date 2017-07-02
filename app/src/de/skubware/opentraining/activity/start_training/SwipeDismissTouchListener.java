@@ -115,10 +115,7 @@ public class SwipeDismissTouchListener implements View.OnTouchListener {
     public boolean onTouch(View view, MotionEvent motionEvent) {
         // offset because the view is translated during swipe
         motionEvent.offsetLocation(mTranslationX, 0);
-
-        if (mViewWidth < 2) {
-            mViewWidth = mView.getWidth();
-        }
+        setWidth();
 
         switch (motionEvent.getActionMasked()) {
             case MotionEvent.ACTION_DOWN: {
@@ -135,45 +132,7 @@ public class SwipeDismissTouchListener implements View.OnTouchListener {
                     break;
                 }
 
-                float deltaX = motionEvent.getRawX() - mDownX;
-                mVelocityTracker.addMovement(motionEvent);
-                mVelocityTracker.computeCurrentVelocity(1000);
-                float velocityX = Math.abs(mVelocityTracker.getXVelocity());
-                float velocityY = Math.abs(mVelocityTracker.getYVelocity());
-                boolean dismiss = false;
-                boolean dismissRight = false;
-                if (Math.abs(deltaX) > mViewWidth / 2) {
-                    dismiss = true;
-                    dismissRight = deltaX > 0;
-                } else if (mMinFlingVelocity <= velocityX && velocityX <= mMaxFlingVelocity
-                        && velocityY < velocityX) {
-                    dismiss = true;
-                    dismissRight = mVelocityTracker.getXVelocity() > 0;
-                }
-                if (dismiss) {
-                    // dismiss
-                    animate(mView)
-                            .translationX(dismissRight ? mViewWidth : -mViewWidth)
-                            .alpha(0)
-                            .setDuration(mAnimationTime)
-                            .setListener(new AnimatorListenerAdapter() {
-                                @Override
-                                public void onAnimationEnd(Animator animation) {
-                                    performDismiss();
-                                }
-                            });
-                } else {
-                    // cancel
-                    animate(mView)
-                            .translationX(0)
-                            .alpha(1)
-                            .setDuration(mAnimationTime)
-                            .setListener(null);
-                }
-                mVelocityTracker = null;
-                mTranslationX = 0;
-                mDownX = 0;
-                mSwiping = false;
+                actionUpActions(motionEvent);
                 break;
             }
 
@@ -182,18 +141,7 @@ public class SwipeDismissTouchListener implements View.OnTouchListener {
                     break;
                 }
 
-                mVelocityTracker.addMovement(motionEvent);
-                float deltaX = motionEvent.getRawX() - mDownX;
-                if (Math.abs(deltaX) > mSlop) {
-                    mSwiping = true;
-                    mView.getParent().requestDisallowInterceptTouchEvent(true);
-
-                    // Cancel listview's touch
-                    MotionEvent cancelEvent = MotionEvent.obtain(motionEvent);
-                    cancelEvent.setAction(MotionEvent.ACTION_CANCEL |
-                        (motionEvent.getActionIndex() << MotionEvent.ACTION_POINTER_INDEX_SHIFT));
-                    mView.onTouchEvent(cancelEvent);
-                }
+                float deltaX = actionMoveActions(motionEvent);
 
                 if (mSwiping) {
                     mTranslationX = deltaX;
@@ -209,6 +157,76 @@ public class SwipeDismissTouchListener implements View.OnTouchListener {
                 break;
         }
         return false;
+    }
+
+    private void actionUpActions(MotionEvent motionEvent) {
+        float deltaX = motionEvent.getRawX() - mDownX;
+        mVelocityTracker.addMovement(motionEvent);
+        mVelocityTracker.computeCurrentVelocity(1000);
+        float velocityX = Math.abs(mVelocityTracker.getXVelocity());
+        float velocityY = Math.abs(mVelocityTracker.getYVelocity());
+        boolean dismiss = false;
+        boolean dismissRight = false;
+        if (Math.abs(deltaX) > mViewWidth / 2) {
+            dismiss = true;
+            dismissRight = deltaX > 0;
+        } else if (checkVelocities(velocityX, velocityY)) {
+            dismiss = true;
+            dismissRight = mVelocityTracker.getXVelocity() > 0;
+        }
+        dismissOrCancel(dismiss, dismissRight);
+        mVelocityTracker = null;
+        mTranslationX = 0;
+        mDownX = 0;
+        mSwiping = false;
+    }
+
+    private boolean checkVelocities(float velocityX, float velocityY) {
+        return mMinFlingVelocity <= velocityX && velocityX <= mMaxFlingVelocity && velocityY < velocityX;
+    }
+
+    private void setWidth() {
+        if (mViewWidth < 2) {
+            mViewWidth = mView.getWidth();
+        }
+    }
+
+    private float actionMoveActions(MotionEvent motionEvent) {
+        mVelocityTracker.addMovement(motionEvent);
+        float deltaX = motionEvent.getRawX() - mDownX;
+        if (Math.abs(deltaX) > mSlop) {
+            mSwiping = true;
+            mView.getParent().requestDisallowInterceptTouchEvent(true);
+            // Cancel listview's touch
+            MotionEvent cancelEvent = MotionEvent.obtain(motionEvent);
+            cancelEvent.setAction(MotionEvent.ACTION_CANCEL |
+                (motionEvent.getActionIndex() << MotionEvent.ACTION_POINTER_INDEX_SHIFT));
+            mView.onTouchEvent(cancelEvent);
+        }
+        return deltaX;
+    }
+
+    private void dismissOrCancel(boolean dismiss, boolean dismissRight) {
+        if (dismiss) {
+            // dismiss
+            animate(mView)
+                    .translationX(dismissRight ? mViewWidth : -mViewWidth)
+                    .alpha(0)
+                    .setDuration(mAnimationTime)
+                    .setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            performDismiss();
+                        }
+                    });
+        } else {
+            // cancel
+            animate(mView)
+                    .translationX(0)
+                    .alpha(1)
+                    .setDuration(mAnimationTime)
+                    .setListener(null);
+        }
     }
 
     private void performDismiss() {
