@@ -74,6 +74,13 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 	/** Shows sync progress */
 	ProgressDialog mProgressDialog;
 
+	private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
+		@Override
+		public boolean onPreferenceChange(Preference pref1, Object me) {
+			pref1.setSummary(me.toString());
+			return true;
+		}
+	};
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -258,13 +265,7 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 	 * A preference value change listener that updates the preference's summary
 	 * to reflect its new value.
 	 */
-	private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
-		@Override
-		public boolean onPreferenceChange(Preference pref1, Object me) {
-			pref1.setSummary(me.toString());
-			return true;
-		}
-	};
+
 
 	/**
 	 * Binds a preference's summary to its value. More specifically, when the

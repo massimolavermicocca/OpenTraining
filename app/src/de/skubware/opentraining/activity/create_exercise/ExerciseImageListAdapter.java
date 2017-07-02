@@ -57,6 +57,19 @@ public class ExerciseImageListAdapter extends BaseAdapter{
 	/** Container-class for the data that belongs to an image */
 	protected static class ImageData implements Parcelable{
 
+		static final Parcelable.Creator<ImageData> CREATOR = new Parcelable.Creator<ImageData>() {
+
+			@Override
+			public ImageData createFromParcel(Parcel parc) {
+				return new ImageData(parc);
+			}
+
+			@Override
+			public ImageData[] newArray(int lit) {
+				return new ImageData[lit];
+			}
+		};
+
 		Bitmap bitmap;
 		String name;
 		License imageLicense;
@@ -81,21 +94,6 @@ public class ExerciseImageListAdapter extends BaseAdapter{
 			dest.writeString(name);
 			dest.writeSerializable(imageLicense);
 		}
-
-
-		static final Parcelable.Creator<ImageData> CREATOR
-				= new Parcelable.Creator<ImageData>() {
-
-			@Override
-			public ImageData createFromParcel(Parcel parc) {
-				return new ImageData(parc);
-			}
-
-			@Override
-			public ImageData[] newArray(int lit) {
-				return new ImageData[lit];
-			}
-		};
 
 	}
 

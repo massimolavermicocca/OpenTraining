@@ -38,6 +38,9 @@ public class License implements Serializable {
 	/** Tag for logging */
 	static final String TAG = "License";
 
+	/** The author */
+	private String author;
+
 	/**
 	 * Enumeration for the general type of the license. Each license type
 	 * contains an URL to the license text.
@@ -87,8 +90,7 @@ public class License implements Serializable {
 	/** The general type of this license */
 	private LicenseType type;
 
-	/** The author */
-	private String author;
+
 
 	/**
 	 * Default constructor without parameters. LicenseType is set to

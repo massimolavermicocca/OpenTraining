@@ -75,7 +75,16 @@ public class FExListFragment extends ListFragment {
 
 		return f;
 	}
-	
+
+	/**
+	 * A dummy implementation of the {@link Callbacks} interface that does
+	 * nothing. Used only when this fragment is not attached to an activity.
+	 */
+	private static Callbacks sDummyCallbacks = new Callbacks() {
+		@Override
+		public void onItemSelected(FitnessExercise onMe) {
+		}
+	};
 
 	/**
 	 * The fragment's current callback object, which is notified of list item
@@ -101,15 +110,7 @@ public class FExListFragment extends ListFragment {
 		public void onItemSelected(FitnessExercise fitnessExercise);
 	}
 
-	/**
-	 * A dummy implementation of the {@link Callbacks} interface that does
-	 * nothing. Used only when this fragment is not attached to an activity.
-	 */
-	private static Callbacks sDummyCallbacks = new Callbacks() {
-		@Override
-		public void onItemSelected(FitnessExercise onMe) {
-		}
-	};
+
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
