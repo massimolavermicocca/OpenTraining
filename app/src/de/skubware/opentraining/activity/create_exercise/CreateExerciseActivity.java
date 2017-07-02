@@ -39,25 +39,15 @@ import android.view.MenuItem.OnMenuItemClickListener;
 import android.widget.Toast;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
 
 import de.skubware.opentraining.Exceptions.ErrorException;
 import de.skubware.opentraining.R;
 import de.skubware.opentraining.activity.create_exercise.ExerciseImageListAdapter.ImageData;
-import de.skubware.opentraining.basic.ExerciseType;
+import de.skubware.opentraining.basic.*;
 import de.skubware.opentraining.basic.ExerciseType.ExerciseSource;
-import de.skubware.opentraining.basic.License;
-import de.skubware.opentraining.basic.Muscle;
-import de.skubware.opentraining.basic.SportsEquipment;
-import de.skubware.opentraining.db.Cache;
-import de.skubware.opentraining.db.DataProvider;
-import de.skubware.opentraining.db.IDataProvider;
+import de.skubware.opentraining.db.*;
+
 
 
 /**
