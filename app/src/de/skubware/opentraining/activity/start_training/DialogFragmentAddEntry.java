@@ -54,16 +54,16 @@ import de.skubware.opentraining.basic.TrainingEntry;
  */
 public class DialogFragmentAddEntry extends DialogFragment {
 	/** Tag for logging */
-	public static final String TAG = "DialogFragmentAddEntry";
+	//public static final String TAG = "DialogFragmentAddEntry";
 
 	/** ID for argument ({@link FitnessExercise}) */
-	public static String ARG_ID_EXERCISE = "fex";
+	//public static String ARG_ID_EXERCISE = "fex";
 
 	/** ID for optional argument ({@link FSet}) */
-	public static String ARG_ID_FSET = "fset";
+	//public static String ARG_ID_FSET = "fset";
 
 	/** ID for argument (position of the FSet in the list) */
-	public static String ARG_ID_FSET_POSITION = "fset_position";
+	//public static String ARG_ID_FSET_POSITION = "fset_position";
 
 	/** ID for optional argument ({@link TrainingEntry}) */
 	public static String ARG_ID_TRAINING_ENTRY = "trainingentry";
@@ -125,9 +125,9 @@ public class DialogFragmentAddEntry extends DialogFragment {
 		DialogFragmentAddEntry f = new DialogFragmentAddEntry();
 
 		Bundle args = new Bundle();
-		args.putSerializable(ARG_ID_EXERCISE, fEx);
-		args.putSerializable(ARG_ID_FSET, set);
-		args.putInt(ARG_ID_FSET_POSITION, setPosition);
+		args.putSerializable("fex", fEx);
+		args.putSerializable("fset", set);
+		args.putInt("fset_position", setPosition);
 		args.putSerializable(ARG_ID_TRAINING_ENTRY, trainingEntry);
 
 		f.setArguments(args);
@@ -143,9 +143,9 @@ public class DialogFragmentAddEntry extends DialogFragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		mFex = (FitnessExercise) getArguments().getSerializable(ARG_ID_EXERCISE);
-		mFSet = (FSet) getArguments().getSerializable(ARG_ID_FSET);
-		mFSetPosition = getArguments().getInt(ARG_ID_FSET_POSITION);
+		mFex = (FitnessExercise) getArguments().getSerializable("fex");
+		mFSet = (FSet) getArguments().getSerializable("fset");
+		mFSetPosition = getArguments().getInt("fset_position");
 		mTrainingEntry = (TrainingEntry) getArguments().getSerializable(ARG_ID_TRAINING_ENTRY);
 
 		// select latest TrainingEntry if argument was null
@@ -157,10 +157,10 @@ public class DialogFragmentAddEntry extends DialogFragment {
 		}
 
 		if(mFSet==null){
-			Log.v(TAG, "Argument for mFSet was null.");
+			Log.v("DialogFragAddEntry", "Argument for mFSet was null.");
 			mState = EntryAction.CREATING_ENTRY;
 		}else{
-			Log.v(TAG, "Argument for mFSet was: " + mTrainingEntry.toDebugString());
+			Log.v("DialogFragAddEntry", "Argument for mFSet was: " + mTrainingEntry.toDebugString());
 			mState = EntryAction.EDITING_ENTRY;
 		}
 
@@ -262,7 +262,7 @@ public class DialogFragmentAddEntry extends DialogFragment {
 
 	private void checkSuccess(boolean success) {
 		if(!success)
-			Log.e(TAG, "Could not delete FSet:\n " + mFSet.toString() + "\n in TrainingEntry:\n " + mTrainingEntry.toDebugString());
+			Log.e("DialogFragAddEntry", "Could not delete FSet:\n " + mFSet.toString() + "\n in TrainingEntry:\n " + mTrainingEntry.toDebugString());
 	}
 
 	private void analyze(List<SetParameter> setParameters) {
@@ -292,7 +292,7 @@ public class DialogFragmentAddEntry extends DialogFragment {
 				val = 60 * val;
 				break;
 			default:
-				Log.e(TAG, "Unknown choice.");
+				Log.e("DialogFragAddEntry", "Unknown choice.");
 				break;
 		}
 		return val;
@@ -341,7 +341,7 @@ public class DialogFragmentAddEntry extends DialogFragment {
 			}
 		}
 
-		Log.e(TAG, "Could not set weight value: " + value);
+		Log.e("DialogFragAddEntry", "Could not set weight value: " + value);
 
 	}
 
@@ -442,7 +442,7 @@ public class DialogFragmentAddEntry extends DialogFragment {
 		}
 
 		if (setToSet == null) {
-			Log.w(TAG, "Did not find any old TrainingEntry for loading spinner settings.");
+			Log.w("DialogFragAddEntry", "Did not find any old TrainingEntry for loading spinner settings.");
 			return;
 		}
 
@@ -487,7 +487,7 @@ public class DialogFragmentAddEntry extends DialogFragment {
 	}
 
 	private FSet searchOldTrainingEntry(FSet setToSet) {
-		Log.v(TAG, "Trying to find old TrainingEntry for loading spinner settings.");
+		Log.v("DialogFragAddEntry", "Trying to find old TrainingEntry for loading spinner settings.");
 
 		List<TrainingEntry> entryList = mFex.getTrainingEntryList();
 		TrainingEntry previousEntry;
