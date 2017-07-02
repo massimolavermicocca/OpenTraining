@@ -132,25 +132,7 @@ public class SwipeDismissTouchListener implements View.OnTouchListener {
                     break;
                 }
 
-                float deltaX = motionEvent.getRawX() - mDownX;
-                mVelocityTracker.addMovement(motionEvent);
-                mVelocityTracker.computeCurrentVelocity(1000);
-                float velocityX = Math.abs(mVelocityTracker.getXVelocity());
-                float velocityY = Math.abs(mVelocityTracker.getYVelocity());
-                boolean dismiss = false;
-                boolean dismissRight = false;
-                if (Math.abs(deltaX) > mViewWidth / 2) {
-                    dismiss = true;
-                    dismissRight = deltaX > 0;
-                } else if (checkVelocities(velocityX, velocityY)) {
-                    dismiss = true;
-                    dismissRight = mVelocityTracker.getXVelocity() > 0;
-                }
-                dismissOrCancel(dismiss, dismissRight);
-                mVelocityTracker = null;
-                mTranslationX = 0;
-                mDownX = 0;
-                mSwiping = false;
+                actionUpActions(motionEvent);
                 break;
             }
 
@@ -175,6 +157,28 @@ public class SwipeDismissTouchListener implements View.OnTouchListener {
                 break;
         }
         return false;
+    }
+
+    private void actionUpActions(MotionEvent motionEvent) {
+        float deltaX = motionEvent.getRawX() - mDownX;
+        mVelocityTracker.addMovement(motionEvent);
+        mVelocityTracker.computeCurrentVelocity(1000);
+        float velocityX = Math.abs(mVelocityTracker.getXVelocity());
+        float velocityY = Math.abs(mVelocityTracker.getYVelocity());
+        boolean dismiss = false;
+        boolean dismissRight = false;
+        if (Math.abs(deltaX) > mViewWidth / 2) {
+            dismiss = true;
+            dismissRight = deltaX > 0;
+        } else if (checkVelocities(velocityX, velocityY)) {
+            dismiss = true;
+            dismissRight = mVelocityTracker.getXVelocity() > 0;
+        }
+        dismissOrCancel(dismiss, dismissRight);
+        mVelocityTracker = null;
+        mTranslationX = 0;
+        mDownX = 0;
+        mSwiping = false;
     }
 
     private boolean checkVelocities(float velocityX, float velocityY) {
