@@ -254,8 +254,7 @@ public class ImageFragment extends Fragment{
 		FileOutputStream out = null;
 		try {
 			mTempImageUri = createImageFile(true);
-
-			out = new FileOutputStream(mTempImageUri.getEncodedPath());
+			out = new FileOutputStream(getActivity().getFilesDir().toString() + "/" + IDataProvider.CUSTOM_IMAGES_FOLDER);
 			bitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
 		} catch (FileNotFoundException fnf) {
 			Log.e(TAG, "Copying image failed, file not found", fnf);
