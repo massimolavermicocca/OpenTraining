@@ -198,7 +198,6 @@ public class ExerciseTypeDetailFragment extends Fragment {
 				if (mWorkout == null) {
 					SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getActivity());
 					String defaultWorkoutName =  settings.getString("default_workout_name", "Workout");
-
 					try {
 						mWorkout = new Workout(defaultWorkoutName, new FitnessExercise(mExercise));
 					} catch (ErrorException e) {
@@ -208,36 +207,12 @@ public class ExerciseTypeDetailFragment extends Fragment {
 
 					// assert that there is not already such an exercise in the
 					// workout
-					for (FitnessExercise fEx : mWorkout.getFitnessExercises()) {
-						if (fEx.getExType().equals(mExercise)) {
-							Toast.makeText(getActivity(), getString(R.string.exercise_already_in_workout), Toast.LENGTH_LONG).show();
-							return true;
-						}
-					}
-
-					try {
-						mWorkout.addFitnessExercise(new FitnessExercise(mExercise));
-					} catch (ErrorException e) {
-						Log.v("ExerciseTypeDetailFragment", e.getMessage().toString());
-					}
+					if (allWorkoutAreAllowed()) return true;
 				}
 
 				// update Workout in Activity
-				if (getActivity() instanceof Callbacks) {
-					// was launched by ExerciseTypeListActivity
-					((Callbacks) getActivity()).onWorkoutChanged(mWorkout);
-				} else {
-					// was launched by ExerciseTypeDetailActivity
-					Intent i = new Intent();
-					i.putExtra(ExerciseTypeListActivity.ARG_WORKOUT, mWorkout);
-					getActivity().setResult(Activity.RESULT_OK, i);
-					getActivity().finish();
-				}
-
-				Toast.makeText(getActivity(),
-						getString(R.string.exercise) + " " + mExercise.getLocalizedName() + " " + getString(R.string.has_been_added),
-						Toast.LENGTH_SHORT).show();
-
+				updateActivityInWorkout();
+				Toast.makeText(getActivity(),getString(R.string.exercise) + " " + mExercise.getLocalizedName() + " " + getString(R.string.has_been_added),	Toast.LENGTH_SHORT).show();
 				return true;
 			}
 		});
@@ -352,6 +327,35 @@ public class ExerciseTypeDetailFragment extends Fragment {
 					return false;
 				}
 			});
+	}
+
+	private boolean allWorkoutAreAllowed() {
+		for (FitnessExercise fEx : mWorkout.getFitnessExercises()) {
+            if (fEx.getExType().equals(mExercise)) {
+                Toast.makeText(getActivity(), getString(R.string.exercise_already_in_workout), Toast.LENGTH_LONG).show();
+				return true;
+            }
+        }
+
+		try {
+            mWorkout.addFitnessExercise(new FitnessExercise(mExercise));
+        } catch (ErrorException e) {
+            Log.v("ExerciseTypeDetailFragment", e.getMessage().toString());
+        }
+		return false;
+	}
+
+	private void updateActivityInWorkout() {
+		if (getActivity() instanceof Callbacks) {
+            // was launched by ExerciseTypeListActivity
+            ((Callbacks) getActivity()).onWorkoutChanged(mWorkout);
+        } else {
+            // was launched by ExerciseTypeDetailActivity
+            Intent i = new Intent();
+            i.putExtra(ExerciseTypeListActivity.ARG_WORKOUT, mWorkout);
+            getActivity().setResult(Activity.RESULT_OK, i);
+            getActivity().finish();
+        }
 	}
 
 }
