@@ -87,7 +87,7 @@ public final class ExerciseType implements Comparable<ExerciseType>, IExercise, 
 	 * Inner builder class for creating new instances of {@link ExerciseType}.
 	 * 
 	 */
-	private static class Builder {
+	public static class Builder {
 
 		// Required parameters
 		private final String name;

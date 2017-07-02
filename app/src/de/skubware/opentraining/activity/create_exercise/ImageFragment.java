@@ -55,6 +55,7 @@ import de.skubware.opentraining.R;
 import de.skubware.opentraining.activity.create_exercise.ExerciseImageListAdapter.ImageData;
 import de.skubware.opentraining.basic.License;
 import de.skubware.opentraining.db.IDataProvider;
+import retrofit.http.EncodedPath;
 
 /**
  * @class ImageFragment

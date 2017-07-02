@@ -55,7 +55,7 @@ public class ExerciseImageListAdapter extends BaseAdapter{
 	private List<ImageData> mImageList = new ArrayList<ImageData>();
 
 	/** Container-class for the data that belongs to an image */
-	private static class ImageData implements Parcelable{
+	protected static class ImageData implements Parcelable{
 
 		Bitmap bitmap;
 		String name;
