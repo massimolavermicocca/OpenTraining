@@ -216,22 +216,13 @@ public class FitnessExercise implements IExercise, Serializable {
 			return false;
 		} else {
 			FitnessExercise other = (FitnessExercise) obj;
-			if (mExerciseType == null || ) {
-				if (other.mExerciseType != null) {
-					return false;
-				}
-			} else if (!mExerciseType.equals(other.mExerciseType)) {
+			if (!mExerciseType.equals(other.mExerciseType)) {
 				return false;
-			}
-			if (mFSetList == null) {
-				if (other.mFSetList != null) {
-					return false;
-				}
 			} else if (!mFSetList.equals(other.mFSetList)) {
 				return false;
 			}
 		}
-		
+		return true;
 	}
 
 	@Override
