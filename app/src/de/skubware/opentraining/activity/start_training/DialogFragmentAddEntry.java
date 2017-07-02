@@ -40,6 +40,7 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.skubware.opentraining.Exceptions.ErrorException;
 import de.skubware.opentraining.R;
 import de.skubware.opentraining.basic.FSet;
 import de.skubware.opentraining.basic.FSet.SetParameter;
@@ -215,15 +216,7 @@ public class DialogFragmentAddEntry extends DialogFragment {
 							// if SetParameters have been chosen, either the old
 							// FSet has to be updated or a new FSet has to be
 							// added
-							if (mFSet == null) {
-								// add new FSet
-								mFSet = new FSet(setParameters.toArray(new SetParameter[setParameters.size()]));
-								mTrainingEntry.add(mFSet);
-							} else {
-								// replace old FSet
-								mFSet = new FSet(setParameters.toArray(new SetParameter[setParameters.size()]));
-								mTrainingEntry.getFSetList().set(mFSetPosition, mFSet);
-							}
+							addOrReplace(setParameters);
 							mTrainingEntry.setHasBeenDone(mFSet, false);
 
 						}
@@ -243,24 +236,48 @@ public class DialogFragmentAddEntry extends DialogFragment {
 				}).create();
 	}
 
+	private void addOrReplace(List<SetParameter> setParameters) {
+		if (mFSet == null) {
+			// add new FSet
+			try {
+				mFSet = new FSet(setParameters.toArray(new SetParameter[setParameters.size()]));
+			} catch (ErrorException e) {
+				Log.v("DialogFragmentAddEntry", e.getMessage());
+			}
+			try {
+				mTrainingEntry.add(mFSet);
+			} catch (ErrorException e) {
+				Log.v("DialogFragmentAddEntry", e.getMessage());
+			}
+		} else {
+			// replace old FSet
+			try {
+				mFSet = new FSet(setParameters.toArray(new SetParameter[setParameters.size()]));
+			} catch (ErrorException e) {
+				Log.v("DialogFragmentAddEntry", e.getMessage());
+			}
+			mTrainingEntry.getFSetList().set(mFSetPosition, mFSet);
+		}
+	}
+
 	private void checkSuccess(boolean success) {
 		if(!success)
-            Log.e(TAG, "Could not delete FSet:\n " + mFSet.toString() + "\n in TrainingEntry:\n " + mTrainingEntry.toDebugString());
+			Log.e(TAG, "Could not delete FSet:\n " + mFSet.toString() + "\n in TrainingEntry:\n " + mTrainingEntry.toDebugString());
 	}
 
 	private void analyze(List<SetParameter> setParameters) {
 		if (checkbox_duration.isChecked()) {
-            SetParameter.Duration duration = new SetParameter.Duration(getDurationValue());
-            setParameters.add(duration);
-        }
+			SetParameter.Duration duration = new SetParameter.Duration(getDurationValue());
+			setParameters.add(duration);
+		}
 		if (checkbox_weight.isChecked()) {
-            SetParameter.Weight weight = new SetParameter.Weight(getWeightValue());
-            setParameters.add(weight);
-        }
+			SetParameter.Weight weight = new SetParameter.Weight(getWeightValue());
+			setParameters.add(weight);
+		}
 		if (checkbox_repetitions.isChecked()) {
-            SetParameter.Repetition repetition = new SetParameter.Repetition(getRepetitionValue());
-            setParameters.add(repetition);
-        }
+			SetParameter.Repetition repetition = new SetParameter.Repetition(getRepetitionValue());
+			setParameters.add(repetition);
+		}
 	}
 
 	private int getDurationValue() {
