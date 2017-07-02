@@ -267,8 +267,12 @@ public class CreateExerciseActivity extends ActionBarActivity implements
 			.setPositiveButton(getString(R.string.save), new OnClickListener(){
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
-					saveExercise();
-				}
+                    try {
+                        saveExercise();
+                    } catch (ErrorException e) {
+                        Log.v("CreateExerciseActivity", e.getMessage());
+                    }
+                }
 			}).create().show();			
 		}
 		return super.onKeyDown(keyCode, event);

@@ -20,43 +20,32 @@
 
 package de.skubware.opentraining.activity.create_workout.upload_exercise;
 
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
+import android.app.*;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonSerializer;
+import com.google.gson.*;
 
 import java.io.UnsupportedEncodingException;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 import de.skubware.opentraining.BuildConfig;
 import de.skubware.opentraining.R;
 import de.skubware.opentraining.activity.create_workout.ExerciseTypeDetailFragment;
-import de.skubware.opentraining.basic.ExerciseType;
-import de.skubware.opentraining.basic.Muscle;
-import de.skubware.opentraining.basic.SportsEquipment;
-import de.skubware.opentraining.db.rest.ExerciseTypeGSONSerializer;
-import de.skubware.opentraining.db.rest.ServerModel;
-import de.skubware.opentraining.db.rest.ServerModel.Equipment;
-import de.skubware.opentraining.db.rest.ServerModel.Language;
-import de.skubware.opentraining.db.rest.ServerModel.MuscleCategory;
-import retrofit.RequestInterceptor;
-import retrofit.RestAdapter;
+import de.skubware.opentraining.basic.*;
+import de.skubware.opentraining.db.rest.*;
+import de.skubware.opentraining.db.rest.ServerModel.*;
+
+import retrofit.*;
 import retrofit.RestAdapter.LogLevel;
-import retrofit.RetrofitError;
 import retrofit.android.AndroidLog;
 import retrofit.client.Response;
 import retrofit.converter.GsonConverter;
-import retrofit.mime.MimeUtil;
-import retrofit.mime.TypedByteArray;
-import retrofit.mime.TypedInput;
+import retrofit.mime.*;
+
 
 /**
  * @class UploadExerciseAsyncTask

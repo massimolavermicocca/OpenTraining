@@ -28,35 +28,19 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.*;
 import android.text.Html;
 import android.util.Log;
-import android.view.GestureDetector;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.view.*;
 import android.view.MenuItem.OnMenuItemClickListener;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
+import android.widget.*;
 import de.skubware.opentraining.Exceptions.ErrorException;
 import de.skubware.opentraining.R;
 import de.skubware.opentraining.activity.create_workout.upload_exercise.UploadExerciseImagesAsyncTask;
-import de.skubware.opentraining.basic.ExerciseType;
+import de.skubware.opentraining.basic.*;
 import de.skubware.opentraining.basic.ExerciseType.ExerciseSource;
-import de.skubware.opentraining.basic.FitnessExercise;
-import de.skubware.opentraining.basic.Workout;
-import de.skubware.opentraining.db.DataHelper;
-import de.skubware.opentraining.db.DataProvider;
-import de.skubware.opentraining.db.IDataProvider;
+import de.skubware.opentraining.db.*;
+
 
 /**
  * A fragment representing a single ExerciseType detail screen. This fragment is
@@ -201,7 +185,7 @@ public class ExerciseTypeDetailFragment extends Fragment {
 					try {
 						mWorkout = new Workout(defaultWorkoutName, new FitnessExercise(mExercise));
 					} catch (ErrorException e) {
-						Log.v("ExerciseTypeDetailFragment", e.getMessage().toString());
+						Log.v("ExerciseTypeDetailFrag", e.getMessage());
 					}
 				} else {
 
@@ -358,7 +342,7 @@ public class ExerciseTypeDetailFragment extends Fragment {
 		try {
             mWorkout.addFitnessExercise(new FitnessExercise(mExercise));
         } catch (ErrorException e) {
-            Log.v("ExerciseTypeDetailFragment", e.getMessage().toString());
+            Log.v("ExerciseTypeDetailFrag", e.getMessage());
         }
 		return false;
 	}
