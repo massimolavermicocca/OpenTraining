@@ -166,10 +166,7 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener {
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
-        if (mViewWidth < 2) {
-            mViewWidth = mListView.getWidth();
-        }
-
+        getmViewWidth();
         switch (motionEvent.getActionMasked()) {
             case MotionEvent.ACTION_DOWN: {
                 if (mPaused) {
@@ -198,27 +195,7 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener {
                 if (mVelocityTracker == null) {
                     break;
                 }
-
-                float deltaX = motionEvent.getRawX() - mDownX;
-                mVelocityTracker.addMovement(motionEvent);
-                mVelocityTracker.computeCurrentVelocity(1000);
-                float velocityX = Math.abs(mVelocityTracker.getXVelocity());
-                float velocityY = Math.abs(mVelocityTracker.getYVelocity());
-                boolean dismiss = false;
-                boolean dismissRight = false;
-                if (Math.abs(deltaX) > mViewWidth / 2) {
-                    dismiss = true;
-                    dismissRight = deltaX > 0;
-                } else if (checkVelocity(velocityX, velocityY)) {
-                    dismiss = true;
-                    dismissRight = mVelocityTracker.getXVelocity() > 0;
-                }
-                checkDismiss(dismiss, dismissRight);
-                mVelocityTracker = null;
-                mDownX = 0;
-                mDownView = null;
-                mDownPosition = ListView.INVALID_POSITION;
-                mSwiping = false;
+                actionUpActions(motionEvent);
                 break;
             }
 
@@ -230,7 +207,6 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener {
                 mVelocityTracker.addMovement(motionEvent);
                 float deltaX = motionEvent.getRawX() - mDownX;
                 checkCancelTouch(motionEvent, deltaX);
-
                 if (mSwiping) {
                     setTranslationX(mDownView, deltaX);
                     setAlpha(mDownView, Math.max(0f, Math.min(1f,
@@ -243,6 +219,35 @@ public class SwipeDismissListViewTouchListener implements View.OnTouchListener {
                 break;
         }
         return false;
+    }
+
+    private void actionUpActions(MotionEvent motionEvent) {
+        float deltaX = motionEvent.getRawX() - mDownX;
+        mVelocityTracker.addMovement(motionEvent);
+        mVelocityTracker.computeCurrentVelocity(1000);
+        float velocityX = Math.abs(mVelocityTracker.getXVelocity());
+        float velocityY = Math.abs(mVelocityTracker.getYVelocity());
+        boolean dismiss = false;
+        boolean dismissRight = false;
+        if (Math.abs(deltaX) > mViewWidth / 2) {
+            dismiss = true;
+            dismissRight = deltaX > 0;
+        } else if (checkVelocity(velocityX, velocityY)) {
+            dismiss = true;
+            dismissRight = mVelocityTracker.getXVelocity() > 0;
+        }
+        checkDismiss(dismiss, dismissRight);
+        mVelocityTracker = null;
+        mDownX = 0;
+        mDownView = null;
+        mDownPosition = ListView.INVALID_POSITION;
+        mSwiping = false;
+    }
+
+    private void getmViewWidth() {
+        if (mViewWidth < 2) {
+            mViewWidth = mListView.getWidth();
+        }
     }
 
     private void checkCancelTouch(MotionEvent motionEvent, float deltaX) {
