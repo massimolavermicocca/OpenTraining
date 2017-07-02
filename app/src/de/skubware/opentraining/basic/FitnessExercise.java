@@ -1,21 +1,21 @@
 /**
- * 
+ *
  * This is OpenTraining, an Android application for planning your your fitness training.
  * Copyright (C) 2012-2014 Christian Skubich
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  */
 
 package de.skubware.opentraining.basic;
@@ -35,14 +35,14 @@ import de.skubware.opentraining.Exceptions.ErrorException;
 /**
  * A FitnessExercise needs an ExerciseType and may have FSets and
  * TrainingEntries.
- * 
+ *
  * The differcence between an {@link ExerciseType} and an
  * {@link FitnessExercise} is that the ExerciseType is more abstract. A
  * FitnessExercise is a concrete Exercise the user wants to do, an ExerciseType
  * is a general exercise with a name, description, ...
- * 
+ *
  * @author Christian Skubich
- * 
+ *
  */
 public class FitnessExercise implements IExercise, Serializable {
 	/** Default serialVersionUID */
@@ -62,12 +62,12 @@ public class FitnessExercise implements IExercise, Serializable {
 
 	/**
 	 * Constructor of this class
-	 * 
+	 *
 	 * @param exType
 	 *            The ExerciseType of the new object
 	 * @param set
 	 *            The FitnessSets for this FitnessExercise, may be emtpy
-	 * 
+	 *
 	 * @throws ErrorException
 	 *             if exType is null
 	 */
@@ -92,7 +92,7 @@ public class FitnessExercise implements IExercise, Serializable {
 
 	/**
 	 * Getter for the list with TrainingEntries.
-	 * 
+	 *
 	 * @return A list with TrainingEntries
 	 */
 	public List<TrainingEntry> getTrainingEntryList() {
@@ -108,7 +108,7 @@ public class FitnessExercise implements IExercise, Serializable {
 
 	/**
 	 * Removes the given TrainingEntry
-	 * 
+	 *
 	 * @param entry
 	 *            The {@link TrainingEntry} to remove
 	 * @return true if successful, false otherwise
@@ -119,7 +119,7 @@ public class FitnessExercise implements IExercise, Serializable {
 
 	/**
 	 * Getter for exType
-	 * 
+	 *
 	 * @return The type of Exercise
 	 */
 	public ExerciseType getExType() {
@@ -128,7 +128,7 @@ public class FitnessExercise implements IExercise, Serializable {
 
 	/**
 	 * Getter for the FitnessSets
-	 * 
+	 *
 	 * @return An unmodifiable List with FitnessSets
 	 */
 	public List<FSet> getFSetList() {
@@ -142,7 +142,7 @@ public class FitnessExercise implements IExercise, Serializable {
 	/**
 	 * Returns a String representation of this object. This is identical to the
 	 * {@code customName}.
-	 * 
+	 *
 	 * @return The custumName
 	 */
 	@Override
@@ -153,7 +153,7 @@ public class FitnessExercise implements IExercise, Serializable {
 	/**
 	 * Returns a String that represents this object. Should only be used for
 	 * debugging.
-	 * 
+	 *
 	 * @return A String that represents this object.
 	 */
 	public String toDebugString() {
@@ -173,10 +173,10 @@ public class FitnessExercise implements IExercise, Serializable {
 
 	/**
 	 * Setter for {@code customName}
-	 * 
+	 *
 	 * @param newName
 	 *            The new custom name for this FitnessExercise.
-	 * 
+	 *
 	 * @throws ErrorException
 	 *             if argument is null
 	 */
@@ -188,10 +188,10 @@ public class FitnessExercise implements IExercise, Serializable {
 	}
 
 	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
-	 */
+     * (non-Javadoc)
+     *
+     * @see java.lang.Object#hashCode()
+     */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -204,7 +204,7 @@ public class FitnessExercise implements IExercise, Serializable {
 	/**
 	 * Compares two FitnessExercises. Important: a different customName does not
 	 * change the result of equals()
-	 * 
+	 *
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -294,42 +294,42 @@ public class FitnessExercise implements IExercise, Serializable {
 	public List<String> getHints() {
 		return this.mExerciseType.getHints();
 	}
-	
+
 	/**
 	 * Returns the last TrainingEntry.
-	 * 
+	 *
 	 * @return The last TrainingEntry
 	 */
 	public TrainingEntry getLastTrainingEntry(){
 		if(mTrainingEntryList.isEmpty())
 			return null;
-		
+
 		return mTrainingEntryList.get(mTrainingEntryList.size() -1);
 	}
-		
+
 	/**
 	 * Checks if a Training has been finished. That means that all FSets of the
 	 * TrainingEntry have been set to the status done. Will also return false if
 	 * there are no TrainingEntrys.
-	 * 
+	 *
 	 * @param entry
 	 *            The {@link TrainingEntry} to check
-	 * 
+	 *
 	 * @return true if all FSets of the TrainingEntry have been set to the
 	 *         status done. Will also return false if there are no
 	 *         TrainingEntrys.
 	 */
 	public boolean isTrainingEntryFinished(TrainingEntry entry) throws ErrorException {
 		if(!mTrainingEntryList.contains(entry))
-				throw new IllegalArgumentException("Entry not contained.");
+			throw new IllegalArgumentException("Entry not contained.");
 		if(entry.getFSetList().isEmpty())
 			return false;
-		
+
 		for(FSet set:entry.getFSetList()){
 			if(!entry.hasBeenDone(set))
 				return false;
 		}
-		
+
 		return true;
 	}
 

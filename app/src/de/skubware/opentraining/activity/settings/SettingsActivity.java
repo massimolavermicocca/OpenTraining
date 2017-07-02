@@ -1,21 +1,21 @@
 /**
- * 
+ *
  * This is OpenTraining, an Android application for planning your your fitness training.
  * Copyright (C) 2012 Christian Skubich
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  */
 
 package de.skubware.opentraining.activity.settings;
@@ -33,18 +33,17 @@ import android.net.NetworkInfo;
 import android.os.*;
 import android.preference.*;
 import android.preference.Preference.OnPreferenceClickListener;
-import android.preference.Preference;
 import android.util.Log;
 import android.widget.Toast;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+
 import de.skubware.opentraining.R;
 import de.skubware.opentraining.activity.ChangeLogDialog;
 import de.skubware.opentraining.activity.settings.sync.*;
 import de.skubware.opentraining.basic.ExerciseType;
 import de.skubware.opentraining.db.*;
-
+import de.skubware.opentraining.db.IDataProvider;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On
@@ -68,22 +67,22 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 
 	/** Tag for logging */
 	public static final String TAG = "SettingsActivity";
-	
-	/** Handles syncing with wger */
-    public OpenTrainingSyncResultReceiver mReceiver;
 
-    /** Shows sync progress */
+	/** Handles syncing with wger */
+	public OpenTrainingSyncResultReceiver mReceiver;
+
+	/** Shows sync progress */
 	ProgressDialog mProgressDialog;
 
 
-    public void onCreate(Bundle savedInstanceState) {
-    	super.onCreate(savedInstanceState);
-        mReceiver = new OpenTrainingSyncResultReceiver(new Handler());
-        mReceiver.setReceiver(this);
-    }
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		mReceiver = new OpenTrainingSyncResultReceiver(new Handler());
+		mReceiver.setReceiver(this);
+	}
 
-    
-    
+
+
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
 		super.onPostCreate(savedInstanceState);
@@ -105,11 +104,11 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 		// In the simplified UI, fragments are not used at all and we instead
 		// use the older PreferenceActivity APIs.
 
-		
+
 		// Add 'training-timer' preferences, and a corresponding header.
 		addPreferencesFromResource(R.xml.pref_trainingtimer);
-		
-		
+
+
 		// Bind the summaries of EditText preferences to
 		// their values. When their values change, their summaries are updated
 		// to reflect the new value, per the Android Design guidelines.
@@ -122,7 +121,7 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 		fakeHeader.setTitle(R.string.pref_header_licenses);
 		getPreferenceScreen().addPreference(fakeHeader);
 		addPreferencesFromResource(R.xml.pref_licenses);
-		
+
 		// add dialog for showing license info
 		Preference open_source = this.findPreference("open_source");
 		open_source.setOnPreferenceClickListener(new OnPreferenceClickListener(){
@@ -132,15 +131,15 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 				return false;
 			}
 		});
-		
-		
+
+
 		// Add 'exercise download' preferences
 		PreferenceCategory fakeHeaderExerciseDownload = new PreferenceCategory(this);
 		fakeHeaderExerciseDownload.setTitle(R.string.pref_header_sync_settings);
 		getPreferenceScreen().addPreference(fakeHeaderExerciseDownload);
 		addPreferencesFromResource(R.xml.pref_sync);
 
-		
+
 		// add sync action
 		Preference start_sync = this.findPreference("start_sync");
 		start_sync.setOnPreferenceClickListener(new OnPreferenceClickListener(){
@@ -150,29 +149,29 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 				return false;
 			}
 		});
-		
-		
+
+
 		// add dialog with information about syncing with wger
 		Preference about_wger_sync = this.findPreference("about_wger_sync");
 		about_wger_sync.setOnPreferenceClickListener(new OnPreferenceClickListener(){
 			@Override
 			public boolean onPreferenceClick(Preference arg0) {
-				showInfoAboutSyncing();					
+				showInfoAboutSyncing();
 				return false;
 			}
 		});
-		
+
 		// add delete-synced-exercises button
 		Preference wipe_synced_exercises = this.findPreference("wipe_synced_exercises");
 		wipe_synced_exercises.setOnPreferenceClickListener(new OnPreferenceClickListener(){
 			@Override
 			public boolean onPreferenceClick(Preference arg0) {
-				deleteSyncedExercises();					
+				deleteSyncedExercises();
 				return false;
 			}
 		});
-		
-		
+
+
 		// Add 'miscellaneous' preferences, and a corresponding header.
 		PreferenceCategory changelogFakeHeader = new PreferenceCategory(this);
 		changelogFakeHeader.setTitle(R.string.miscellaneous);
@@ -186,37 +185,37 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 			public boolean onPreferenceClick(Preference arg0) {
 				//Launch change log dialog
 				ChangeLogDialog  changelogDialog = new ChangeLogDialog(SettingsActivity.this);
-				changelogDialog.show();  
+				changelogDialog.show();
 				return false;
 			}
 		});
-		
 
-		
+
+
 		// Bind the summaries of EditText preferences to
 		// their values. When their values change, their summaries are updated
 		// to reflect the new value, per the Android Design guidelines.
 		bindPreferenceSummaryToValue(findPreference("default_workout_name"));
 		bindPreferenceSummaryToValue(findPreference("exercise_sync_url"));
 	}
-	
-	/** 
-	 *  Bugfix for newer Android Versions. Due to a security 
+
+	/**
+	 *  Bugfix for newer Android Versions. Due to a security
 	 *  issue (http://securityintelligence.com/new-vulnerability-android-framework-fragment-injection#.U-jNndame5k)
-	 *  this method HAS to be overwritten. Otherwise the app will crash (reproduced on Nexus 10 4.4.2 simulator). 
+	 *  this method HAS to be overwritten. Otherwise the app will crash (reproduced on Nexus 10 4.4.2 simulator).
 	 */
 	@Override
 	protected boolean isValidFragment(String fragmentName){
 		List<String> validFragmentNames = new ArrayList<String>();
-		
+
 		validFragmentNames.add(LicensePreferenceFragment.class.getName());
 		validFragmentNames.add(TrainingTimerPreferenceFragment.class.getName());
 		validFragmentNames.add(SyncPreferenceFragment.class.getName());
 		validFragmentNames.add(MiscellaneousPreferenceFragment.class.getName());
 
 		if(validFragmentNames.contains(fragmentName))
-	    	return true;
-	  
+			return true;
+
 		return false;
 	}
 
@@ -272,7 +271,7 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 	 * preference title) is updated to reflect the value. The summary is also
 	 * immediately updated upon calling this method. The exact display format is
 	 * dependent on the type of preference.
-	 * 
+	 *
 	 * @see #sBindPreferenceSummaryToValueListener
 	 */
 	private static void bindPreferenceSummaryToValue(Preference summary_preference) {
@@ -297,8 +296,8 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 		public void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 			addPreferencesFromResource(R.xml.pref_licenses);
-			
-			// add dialog 
+
+			// add dialog
 			Preference open_source = this.findPreference("open_source");
 			open_source.setOnPreferenceClickListener(new OnPreferenceClickListener(){
 				@Override
@@ -310,7 +309,7 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 
 		}
 	}
-	
+
 	/**
 	 * This fragment shows sync preferences only. It is used when the
 	 * activity is showing a two-pane settings UI.
@@ -321,8 +320,8 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 		public void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 			addPreferencesFromResource(R.xml.pref_sync);
-			
-			// add sync action 
+
+			// add sync action
 			Preference start_sync = this.findPreference("start_sync");
 			start_sync.setOnPreferenceClickListener(new OnPreferenceClickListener(){
 				@Override
@@ -331,34 +330,34 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 					return false;
 				}
 			});
-			
+
 			// add dialog with information about syncing with wger
 			Preference about_wger_sync = this.findPreference("about_wger_sync");
 			about_wger_sync.setOnPreferenceClickListener(new OnPreferenceClickListener(){
 				@Override
 				public boolean onPreferenceClick(Preference arg0) {
-					((SettingsActivity) getActivity()).showInfoAboutSyncing();					
+					((SettingsActivity) getActivity()).showInfoAboutSyncing();
 					return false;
 				}
 			});
-			
+
 			// add delete-synced-exercises button
 			Preference wipe_synced_exercises = this.findPreference("wipe_synced_exercises");
 			wipe_synced_exercises.setOnPreferenceClickListener(new OnPreferenceClickListener(){
 				@Override
 				public boolean onPreferenceClick(Preference arg0) {
-					((SettingsActivity) getActivity()).deleteSyncedExercises();					
+					((SettingsActivity) getActivity()).deleteSyncedExercises();
 					return false;
 				}
 			});
-			
+
 			bindPreferenceSummaryToValue(findPreference("exercise_sync_url"));
 
 
 		}
 	}
-	
-	
+
+
 	/**
 	 * This fragment shows sync preferences only. It is used when the
 	 * activity is showing a two-pane settings UI.
@@ -369,27 +368,27 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 		public void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 			addPreferencesFromResource(R.xml.pref_miscellaneous);
-			
-			
+
+
 			// add changelog button
 			Preference changelog = this.findPreference("view_changelog");
 			changelog.setOnPreferenceClickListener(new OnPreferenceClickListener() {
-						@Override
-						public boolean onPreferenceClick(Preference arg0) {
-							// Launch change log dialog
-							ChangeLogDialog changelogDialog = new ChangeLogDialog(
-									getActivity());
-							changelogDialog.show();
-							return false;
-						}
-					});
+				@Override
+				public boolean onPreferenceClick(Preference arg0) {
+					// Launch change log dialog
+					ChangeLogDialog changelogDialog = new ChangeLogDialog(
+							getActivity());
+					changelogDialog.show();
+					return false;
+				}
+			});
 
-		bindPreferenceSummaryToValue(findPreference("default_workout_name"));
+			bindPreferenceSummaryToValue(findPreference("default_workout_name"));
 
 
 		}
 	}
-	
+
 	/**
 	 * This fragment shows training-timer preferences only. It is used when the
 	 * activity is showing a two-pane settings UI.
@@ -400,15 +399,15 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 		public void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 			addPreferencesFromResource(R.xml.pref_trainingtimer);
-			
+
 			bindPreferenceSummaryToValue(findPreference("training_timer_exercise_recovery_time"));
 			bindPreferenceSummaryToValue(findPreference("training_timer_set_recovery_time"));
 
 		}
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Shows a dialog with information about syncing with wger.
 	 */
@@ -422,92 +421,92 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 	// Handling exercise download comes here
 	// will be moved to an own class somewhen
 
-	
+
 
 	@Override
-    public void onPause() {
-    	super.onPause();
-        mReceiver.setReceiver(null); // clear receiver so no leaks.
-    }
+	public void onPause() {
+		super.onPause();
+		mReceiver.setReceiver(null); // clear receiver so no leaks.
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-    public void onReceiveResult(int resultCode, Bundle resultData) {
-        switch (resultCode) {
-        case OpenTrainingSyncService.STATUS_RUNNING_DOWNLOAD_EXERCISES:
-        	Log.v(TAG, "Sync status: STATUS_RUNNING_DOWNLOAD_EXERCISES");		
-            break;
-        case OpenTrainingSyncService.STATUS_RUNNING_DOWNLOAD_LANGUAGE_FILES:
-        	Log.v(TAG, "Sync status: STATUS_RUNNING_DOWNLOAD_LANGUAGE_FILES");
-    		mProgressDialog.setMessage(getString(R.string.downloading_language_files));
-            break;      
-        case OpenTrainingSyncService.STATUS_RUNNING_DOWNLOAD_MUSCLE_FILES:
-        	Log.v(TAG, "Sync status: STATUS_RUNNING_DOWNLOAD_MUSCLE_FILES");
-    		mProgressDialog.setMessage(getString(R.string.downloading_muscle_files));
-            break;                  
-        case OpenTrainingSyncService.STATUS_RUNNING_CHECKING_EXERCISES:
-        	Log.v(TAG, "Sync status: STATUS_RUNNING_CHECKING_EXERCISES");
-    		mProgressDialog.setMessage(getString(R.string.verifying_exercises));
-            break;
-        case OpenTrainingSyncService.STATUS_RUNNING_DOWNLOADING_IMAGES:
-        	Log.v(TAG, "Sync status: STATUS_RUNNING_DOWNLOADING_IMAGES");
-    		mProgressDialog.setMessage(getString(R.string.downloading_images));
-            break;    
-        case OpenTrainingSyncService.STATUS_FINISHED:
-        	Log.v(TAG, "Sync status: STATUS_FINISHED");
-            
-            ArrayList<ExerciseType> allExercises = (ArrayList<ExerciseType>) resultData.getSerializable("all_exercises");
-            
-            // make sure to dismiss progress dialog
-			mProgressDialog.dismiss();
+	public void onReceiveResult(int resultCode, Bundle resultData) {
+		switch (resultCode) {
+			case OpenTrainingSyncService.STATUS_RUNNING_DOWNLOAD_EXERCISES:
+				Log.v(TAG, "Sync status: STATUS_RUNNING_DOWNLOAD_EXERCISES");
+				break;
+			case OpenTrainingSyncService.STATUS_RUNNING_DOWNLOAD_LANGUAGE_FILES:
+				Log.v(TAG, "Sync status: STATUS_RUNNING_DOWNLOAD_LANGUAGE_FILES");
+				mProgressDialog.setMessage(getString(R.string.downloading_language_files));
+				break;
+			case OpenTrainingSyncService.STATUS_RUNNING_DOWNLOAD_MUSCLE_FILES:
+				Log.v(TAG, "Sync status: STATUS_RUNNING_DOWNLOAD_MUSCLE_FILES");
+				mProgressDialog.setMessage(getString(R.string.downloading_muscle_files));
+				break;
+			case OpenTrainingSyncService.STATUS_RUNNING_CHECKING_EXERCISES:
+				Log.v(TAG, "Sync status: STATUS_RUNNING_CHECKING_EXERCISES");
+				mProgressDialog.setMessage(getString(R.string.verifying_exercises));
+				break;
+			case OpenTrainingSyncService.STATUS_RUNNING_DOWNLOADING_IMAGES:
+				Log.v(TAG, "Sync status: STATUS_RUNNING_DOWNLOADING_IMAGES");
+				mProgressDialog.setMessage(getString(R.string.downloading_images));
+				break;
+			case OpenTrainingSyncService.STATUS_FINISHED:
+				Log.v(TAG, "Sync status: STATUS_FINISHED");
 
-			checkSizeExercises(allExercises);
+				ArrayList<ExerciseType> allExercises = (ArrayList<ExerciseType>) resultData.getSerializable("all_exercises");
+
+				// make sure to dismiss progress dialog
+				mProgressDialog.dismiss();
+
+				checkSizeExercises(allExercises);
 
 
-			break;
-        case OpenTrainingSyncService.STATUS_ERROR:
-        	Log.v(TAG, "Sync status: STATUS_ERROR");
+				break;
+			case OpenTrainingSyncService.STATUS_ERROR:
+				Log.v(TAG, "Sync status: STATUS_ERROR");
 
-            // make sure to dismiss progress dialog
-			mProgressDialog.dismiss();
-			// show error dialog
-			final String errorMsg = resultData.getString(Intent.EXTRA_TEXT);
-			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-					this);
-			alertDialogBuilder.setTitle(getString(R.string.sync_error));
-			alertDialogBuilder.setMessage(getString(R.string.sync_error_msg));
-			alertDialogBuilder.setNeutralButton(
-					getString(R.string.show_more_information_about_error),
-					new OnClickListener() {
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							dialog.dismiss();
-							(new AlertDialog.Builder(SettingsActivity.this))
-									.setTitle(
-											SettingsActivity.this
-													.getString(R.string.sync_error))
-									.setMessage(errorMsg).create().show();
-						}
-					});
-			alertDialogBuilder.create().show();
-			break;
-		default:
-			break;
-        }     
-    }
+				// make sure to dismiss progress dialog
+				mProgressDialog.dismiss();
+				// show error dialog
+				final String errorMsg = resultData.getString(Intent.EXTRA_TEXT);
+				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+						this);
+				alertDialogBuilder.setTitle(getString(R.string.sync_error));
+				alertDialogBuilder.setMessage(getString(R.string.sync_error_msg));
+				alertDialogBuilder.setNeutralButton(
+						getString(R.string.show_more_information_about_error),
+						new OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								dialog.dismiss();
+								(new AlertDialog.Builder(SettingsActivity.this))
+										.setTitle(
+												SettingsActivity.this
+														.getString(R.string.sync_error))
+										.setMessage(errorMsg).create().show();
+							}
+						});
+				alertDialogBuilder.create().show();
+				break;
+			default:
+				break;
+		}
+	}
 
 	private void checkSizeExercises(ArrayList<ExerciseType> allExercises) {
 		if(allExercises.size() <= 0){
-            // show notification: no new exercises
-            AlertDialog.Builder finishedDialogBuilder = new AlertDialog.Builder(this);
-            finishedDialogBuilder.setTitle(getString(R.string.sync_finished));
-            finishedDialogBuilder.setMessage(getString(R.string.sync_finished_no_new_exercises));
-            finishedDialogBuilder.create().show();
-        }else{
-            // let user choose which exercises should be saved
-            AlertDialog.Builder dialogBuilder = new SyncFinishedDialog(this, allExercises);
-            dialogBuilder.create().show();
-        }
+			// show notification: no new exercises
+			AlertDialog.Builder finishedDialogBuilder = new AlertDialog.Builder(this);
+			finishedDialogBuilder.setTitle(getString(R.string.sync_finished));
+			finishedDialogBuilder.setMessage(getString(R.string.sync_finished_no_new_exercises));
+			finishedDialogBuilder.create().show();
+		}else{
+			// let user choose which exercises should be saved
+			AlertDialog.Builder dialogBuilder = new SyncFinishedDialog(this, allExercises);
+			dialogBuilder.create().show();
+		}
 	}
 
 
@@ -572,7 +571,7 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 
 		startService(intent);
 	}
-	
+
 	/**
 	 * Deletes all files in {@link IDataProvider#SYNCED_EXERCISE_FOLDER}.
 	 */
@@ -581,7 +580,7 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 				+ IDataProvider.SYNCED_EXERCISE_FOLDER);
 		File syncedImagesFolder = new File(getFilesDir().toString() + "/"
 				+ IDataProvider.SYNCED_IMAGES_FOLDER);
-		
+
 		// delete exercises
 		File[] exerciseFiles = syncedExerciseFolder.listFiles();
 		if (exerciseFiles != null) {
@@ -596,27 +595,27 @@ public class SettingsActivity extends PreferenceActivity  implements OpenTrainin
 				f.delete();
 			}
 		}
-		
+
 
 		Cache.INSTANCE.updateExerciseCache(this);
-		
+
 		Toast.makeText(this, getString(R.string.synced_files_deleted_msg), Toast.LENGTH_LONG).show();
 	}
-	
+
 	/**
 	 * Checks if phone is connected to a WIFI network (or 3G, ...).
 	 * Does not check if there's a working Internet connection!
-	 * 
+	 *
 	 * @return true if phone is online
 	 */
 	private boolean isOnline() {
-	    ConnectivityManager cm =
-	        (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-	    NetworkInfo netInfo = cm.getActiveNetworkInfo();
-	    if (netInfo != null && netInfo.isConnectedOrConnecting()) {
-	        return true;
-	    }
-	    return false;
+		ConnectivityManager cm =
+				(ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo netInfo = cm.getActiveNetworkInfo();
+		if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+			return true;
+		}
+		return false;
 	}
 
 
