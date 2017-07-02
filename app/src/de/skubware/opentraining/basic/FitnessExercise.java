@@ -186,12 +186,7 @@ public class FitnessExercise implements IExercise, Serializable {
 
 		this.mCustomName = newName;
 	}
-
-	/*
-     * (non-Javadoc)
-     *
-     * @see java.lang.Object#hashCode()
-     */
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
