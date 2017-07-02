@@ -62,13 +62,15 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:21.0.3+'
-    compile 'com.android.support:appcompat-v7:21.0.3+'
-    compile fileTree(dir: 'app/libs', exclude: 'acra-*', include: '*.jar')
-    compile 'ch.acra:acra:4.5.0'
-    androidTestCompile 'com.jayway.android.robotium:robotium-solo:4.2'
-    compile 'org.quanqi:mpandroidchart:1.7.5'
-    compile 'com.nineoldandroids:library:2.4.0'
+  compile 'com.android.support:support-v4:21.0.3+'
+  compile 'com.android.support:appcompat-v7:21.0.3+'
+  compile fileTree(include: '*.jar', exclude: 'acra-*', dir: 'app/libs')
+  compile 'ch.acra:acra:4.5.0'
+  androidTestCompile 'com.jayway.android.robotium:robotium-solo:4.2'
+  compile 'org.quanqi:mpandroidchart:1.7.5'
+  compile 'com.nineoldandroids:library:2.4.0'
+  compile 'org.apache.directory.studio:org.apache.commons.io:2.4'
+  compile 'edu.stanford.nlp:stanford-parser:3.7.0'
 }
 
 task wrapper (type: Wrapper) { gradleVersion = "1.11" }
