@@ -93,8 +93,14 @@ public class ServerModel {
 	 * Server equivalent to {@link Muscle}.
 	 */
 	private static class MuscleCategory{
-
+		/**
+		 * @field id
+		 */
 		public int id;
+
+		/**
+		 * @field name
+		 */
 		public String name;
 
 
@@ -139,11 +145,19 @@ public class ServerModel {
 	 * Server equivalent to {@link Locale}.
 	 */
 	private static class Language{
-
-
-
+		/**
+		 * @field id
+		 */
 		public int id;
+
+		/**
+		 * @field short_name
+		 */
 		public String short_name;
+
+		/**
+		 * @field full_name
+		 */
 		public String full_name;
 
 
