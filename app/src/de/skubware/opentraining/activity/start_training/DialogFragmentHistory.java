@@ -181,11 +181,11 @@ public class DialogFragmentHistory extends DialogFragment {
         for(SetParameter parameter:fset.getSetParameters()){
             Entry e = new Entry(parameter.getValue(), setParameterNumber);
 
-            if(parameter instanceof SetParameter.Duration){
+            if(parameter.getClass().getSimpleName().equals("Duration")){
                 durationList.add(e);
-            }else if(parameter instanceof SetParameter.Repetition){
+            }else if(parameter.getClass().getSimpleName().equals("Repetition")){
                 repList.add(e);
-            }else if(parameter instanceof SetParameter.Weight){
+            }else if(parameter.getClass().getSimpleName().equals("Weight")){
                 e = new Entry(parameter.getValue()/1000, setParameterNumber);
                 weightList.add(e);
             }else{

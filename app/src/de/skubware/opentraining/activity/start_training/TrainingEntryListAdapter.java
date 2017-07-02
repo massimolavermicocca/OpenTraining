@@ -160,13 +160,13 @@ public class TrainingEntryListAdapter extends BaseAdapter {
 	}
 
 	private void analizeParameter(TextView textview_weight, TextView textview_rep, TextView textview_duration, SetParameter para) {
-		if (para instanceof SetParameter.Weight) {
+		if (para.getClass().getSimpleName().equals("Weight")) {
             textview_weight.setText(para.toString());
         }
-		if (para instanceof SetParameter.Duration) {
+		if (para.getClass().getSimpleName().equals("Duration")) {
             textview_duration.setText(para.toString());
         }
-		if (para instanceof SetParameter.Repetition) {
+		if (para.getClass().getSimpleName().equals("Repetition")) {
             textview_rep.setText(para.toString());
         }
 	}
