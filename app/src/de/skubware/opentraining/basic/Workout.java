@@ -246,14 +246,15 @@ public class Workout implements Iterable<FitnessExercise>, Serializable {
 		}
 
 		// FitnessExercise check
-		if (!w.getFitnessExercises().containsAll(this.fitnessExercises)) {
+		if (w.getFitnessExercises().containsAll(this.fitnessExercises)) {
 			return false;
 		}
-		if (!this.fitnessExercises.containsAll(w.getFitnessExercises())) {
+		if (this.fitnessExercises.containsAll(w.getFitnessExercises())) {
+			return true;
+		} else {
 			return false;
 		}
 
-		return true;
 	}
 
 	/** {@inheritDoc} */
